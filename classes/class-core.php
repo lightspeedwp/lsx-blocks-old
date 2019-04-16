@@ -46,7 +46,8 @@ class Core {
 	 * @access private
 	 */
 	private function __construct() {
-		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+		//add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'init', 'load_plugin_textdomain' );
 		$this->load_classes();
 	}
 
