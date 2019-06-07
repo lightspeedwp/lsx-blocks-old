@@ -46,7 +46,6 @@ class Core {
 	 * @access private
 	 */
 	private function __construct() {
-		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		$this->load_classes();
 	}
 
@@ -80,12 +79,5 @@ class Core {
 
 		require_once( LSX_BLOCKS_PATH . 'classes/class-frontend.php' );
 		$this->frontend = Frontend::get_instance();
-	}
-
-	/**
-	 * Load the plugin textdomain
-	 */
-	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'lsx-blocks', false, basename( dirname( __FILE__ ) ) . '/languages' );
 	}
 }
