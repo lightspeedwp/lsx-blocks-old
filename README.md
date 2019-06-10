@@ -1,4 +1,6 @@
-# LSX Blocks  <a href="https://travis-ci.org/lightspeeddevelopment/lsx-blocks/"><img src="https://travis-ci.org/lightspeeddevelopment/lsx-blocks.svg?branch=master" alt="Build Status"></a>
+<h1 align="center">LSX Blocks</h1>
+<p align="center"><a href="https://travis-ci.org/lightspeeddevelopment/lsx-blocks/"><img src="https://travis-ci.org/lightspeeddevelopment/lsx-blocks.svg?branch=master"></a></p>
+
 
 The new Gutenberg editor is here, and with it comes the new block editor. 
 
