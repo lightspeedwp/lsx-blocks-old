@@ -3,9 +3,9 @@ Contributors: feedmymedia
 Donate link: https://www.lsdev.biz/
 Tags: lsx, gutenberg, blocks
 Requires at least: 5.1.1
-Tested up to: 5.1.1
+Tested up to: 5.2.1
 Requires PHP: 7.0
-Stable tag: 1.1.0
+Stable tag: 1.0.0
 License: GPLv3
 
 The new Gutenberg editor is here, and with it comes the new block editor.
@@ -91,18 +91,5 @@ The LSX Blocks plugin was developed with the use of Atomic Blocks https://atomic
 
 == Changelog ==
 
-**1.1.0**
-* Removing unnecesary blocks
-* Block bug fix.
-
-**1.0.1**
-* Block bug fix.
-
 **1.0**
 * Initial release.
-
-== Upgrade Notice ==
-
-**1.0.1**
-* Block bug fix.
-
