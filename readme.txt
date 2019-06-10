@@ -1,7 +1,7 @@
 === LSX Blocks Plugin ===
 Contributors: feedmymedia
 Donate link: https://www.lsdev.biz/
-Tags: lsx, gutenberg, blocks
+Tags: lsx, gutenberg, blocks, drag and drop, wordpress plugin 
 Requires at least: 5.1.1
 Tested up to: 5.2.1
 Requires PHP: 7.0
