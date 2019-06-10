@@ -19,7 +19,7 @@ Looking for more information on setting up your individual blocks? Check out our
 
 ## LSX Blocks currently includes the following blocks:
 
-* Post Carousel Block - [Block Demo](https://lsx.lsdev.biz/blocks/post-carousel-block/)
+* Post Carousel Block - [Block Demo](https://lsx.lsdev.biz/blocks/lsx-post-carousel-block/)
 * Container Block - [Block Demo](https://lsx.lsdev.biz/blocks/container-block/)
 * Inline Notice Block - [Block Demo](https://lsx.lsdev.biz/blocks/inline-notice/)
 * Accordion Block - [Block Demo](https://lsx.lsdev.biz/blocks/accordion-block/)
