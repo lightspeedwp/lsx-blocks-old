@@ -15,7 +15,7 @@ We have built these content blocks so you can simply drag and drop them into you
 * Activate the plugin. 
 * That's it, you can now make use of the LSX Blocks when building a new post or page! 
 
-Looking for more information on setting up your individual blocks? Check out our [Block Documentation](https://www.lsdev.biz/documentation/lsx/blocks/) for a full breakdown on using the blocks.
+Looking for more information on setting up your individual blocks? Check out our [Block Documentation](https://lsx.lsdev.biz/documentation/blocks/) for a full breakdown on using the blocks.
 
 ## LSX Blocks currently includes the following blocks:
 
@@ -34,7 +34,7 @@ Looking for more information on setting up your individual blocks? Check out our
 
 ## LSX Blocks Help & Support  
 
-If you are experiencing issues with the LSX Blocks Plugin, please log any bug issues you are having on the [Github Issues](https://github.com/lightspeeddevelopment/lsx/issues) page.
+If you are experiencing issues with the LSX Blocks Plugin, please log any bug issues you are having on the [Github Issues](https://github.com/lightspeeddevelopment/lsx-blocks/issues) page.
 
 ## Contributing to the LSX Blocks plugin 
 
