@@ -1,11 +1,4 @@
 ## Change log
 
-### 1.1.0
-* Removing unnecesary blocks
-* Block bug fix.
-
-### 1.0.1
-* Adding travis and preparing for for submission to wordpress.org
-
 ### 1.0.0
-* First Version based on Atomic Blocks https://atomicblocks.com
+* Initial Release
