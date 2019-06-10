@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: LSX Blocks
- * Plugin URI: https://www.lsdev.biz/
- * Description: This extension gives you a collection of handy Gutenberg blocks to help you get started with the new WordPress editor and have complete control over the appearance of your LSX-powered WordPress site
+ * Plugin URI: https://lsx.lsdev.biz/blocks/
+ * Description: The LSX Blocks plugin gives you a collection of Guteberg blocks that you can use and customize. All the blocks are built to work with our powerful LSX theme.
  * Author: lightspeed
  * Author URI: https://www.lsdev.biz/
- * Version: 1.1.0
- * License: GPL2+
- * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
+ * Version: 1.0.0
+ * License: GPLv3 or later
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  *
  * @package LSX BLOCKS
  */
