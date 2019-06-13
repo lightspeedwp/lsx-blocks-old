@@ -54,15 +54,11 @@ The LSX Blocks plugin was developed with the use of [Atomic Blocks](https://atom
 
 == Screenshots ==
 
-1. Blocks
-2. Accordion Block
-3. Banner Block
-4. Button Blocks
-5. Card Block
-6. Container Block
-7. CTA Block
-8. Post Carousel Block
-9. Post Grid Block
+1. Back-end Gutenberg block selection
+2. Block Settings Screenshot - Recommend LSX Container 
+3. Block Usage Screenshot 1
+4. Block Usage Screenshot 2
+5. Block Usage Screenshot 3
 
 == Changelog ==
 
