@@ -178,6 +178,7 @@ const blockAttributes = {
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
 
 class LSXBannerBlock extends Component {
+
 	render() {
 		// Setup the attributes
 		const {
@@ -261,7 +262,7 @@ class LSXBannerBlock extends Component {
 							<source data-srcset={ bannerImgURL + '?crop=1.00xw:0.887xh;0,0.108xh&resize=2048:*' } media="(min-width: 100rem)" srcSet={ bannerImgURL + '?crop=1.00xw:0.887xh;0,0.108xh&resize=2048:*' } />
 							<source data-srcset={ bannerImgURL + '?crop=1.00xw:0.887xh;0,0.108xh&resize=1200:*' } media="(min-width: 61.25rem)" srcSet={ bannerImgURL  + '?crop=1.00xw:0.887xh;0,0.108xh&resize=1200:*'} />
 							<source data-srcset={ bannerImgURL + '?crop=0.851xw:1.00xh;0.0753xw,0&resize=768:*' } media="(min-width: 30rem)" srcSet={ bannerImgURL + '?crop=0.851xw:1.00xh;0.0753xw,0&resize=768:*' } />
-							<img title={ bannerName } className="lazyload" data-src={ bannerImgURL + '?crop=0.851xw:1.00xh;0.0753xw,0&resize=640:*' } src={ bannerImgURL } alt={ bannerTitle } />
+							<img id="bg-image" title={ bannerName } className="lazyload" data-src={ bannerImgURL + '?crop=0.851xw:1.00xh;0.0753xw,0&resize=640:*' } src={ bannerImgURL } alt={ bannerTitle } />
 						</picture>
 					) }
 				</ImageColumn>
@@ -409,7 +410,7 @@ registerBlockType( 'lsx-blocks/lsx-banner-box', {
 							<source data-srcset={ bannerImgURL + '?crop=1.00xw:0.887xh;0,0.108xh&resize=2048:*' } media="(min-width: 100rem)" srcSet={ bannerImgURL + '?crop=1.00xw:0.887xh;0,0.108xh&resize=2048:*' } />
 							<source data-srcset={ bannerImgURL + '?crop=1.00xw:0.887xh;0,0.108xh&resize=1200:*' } media="(min-width: 61.25rem)" srcSet={ bannerImgURL + '?crop=1.00xw:0.887xh;0,0.108xh&resize=1200:*' } />
 							<source data-srcset={ bannerImgURL + '?crop=0.851xw:1.00xh;0.0753xw,0&resize=768:*' } media="(min-width: 30rem)" srcSet={ bannerImgURL + '?crop=0.851xw:1.00xh;0.0753xw,0&resize=768:*' } />
-							<img title={ bannerName } className="lazyload" data-src={ bannerImgURL + '?crop=0.851xw:1.00xh;0.0753xw,0&resize=640:*' } src={ bannerImgURL } alt={ bannerTitle } />
+							<img  id="bg-image" title={ bannerName } className="lazyload" data-src={ bannerImgURL + '?crop=0.851xw:1.00xh;0.0753xw,0&resize=640:*' } src={ bannerImgURL } alt={ bannerTitle } />
 						</picture>
 					) }
 				</ImageColumn>

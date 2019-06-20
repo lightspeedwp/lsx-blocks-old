@@ -2,7 +2,7 @@
 	@media (min-width:1024px) {
 		&.has-block-banner {
 			.breadcrumbs-container {
-				position: relative;
+				position: absolute;
 				margin-bottom: -50px;
 				z-index: 99;
 			}
