@@ -109,6 +109,8 @@
 			&[src$=".svg"] {
 				max-width: 90px;
 				padding-top: 30px;
+				max-height: 110px;
+    			object-fit: contain;
 			}
 		}
 	}

@@ -379,8 +379,12 @@ registerBlockType( 'lsx-blocks/lsx-card-box', {
 						'lsx-card-column lsx-card-content-wrap'
 					) }
 				>
-
 					{ cardTitle && (
+					<a
+						href={ buttonUrl }
+						target={ buttonTarget ? '_blank' : '_self' }
+						rel="noopener noreferrer"
+					>
 						<RichText.Content
 							tagName="h2"
 							className="lsx-card-title"
@@ -390,8 +394,8 @@ registerBlockType( 'lsx-blocks/lsx-card-box', {
 							} }
 							value={ cardTitle }
 						/>
+					</a>
 					) }
-
                     { cardSubTitle && (
                         <RichText.Content
                             tagName="p"

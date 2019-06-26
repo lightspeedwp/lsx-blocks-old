@@ -1456,7 +1456,10 @@
     text-align: center; }
     .lsx-block-card .lsx-card-image-square .lsx-card-avatar[src$=".svg"] {
       max-width: 90px;
-      padding-top: 30px; }
+      padding-top: 30px;
+      max-height: 110px;
+      -o-object-fit: contain;
+         object-fit: contain; }
   .lsx-block-card .lsx-block-card.lsx-card-columns:empty, .lsx-block-card .lsx-card-text:empty,
   .lsx-block-card .lsx-card-text p:empty {
     margin: 0;
