@@ -1784,6 +1784,9 @@
     padding-left: 50px;
     padding-right: 50px;
     position: absolute; }
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      .wp-block-lsx-blocks-lsx-banner-box .lsx-banner-content-wrap {
+        top: 20%; } }
     .wp-block-lsx-blocks-lsx-banner-box .lsx-banner-content-wrap .header-headings {
       padding: 0.5rem; }
       @media only screen and (min-width: 600px) {
