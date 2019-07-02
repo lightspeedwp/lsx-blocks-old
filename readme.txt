@@ -1,7 +1,7 @@
 === LSX Blocks Plugin ===
 Contributors: feedmymedia
 Donate link: https://donate.lsdev.biz/
-Tags: lsx, LSX theme, Gutenberg blocks plugin, page builder, block editor
+Tags: lsx, Gutenberg blocks plugin, page builder, block editor
 Requires at least: 5.1.1
 Tested up to: 5.2.1
 Requires PHP: 7.0
