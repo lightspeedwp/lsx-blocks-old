@@ -1034,7 +1034,8 @@
   background-image: none !important; }
 
 .wp-block-lsx-blocks-lsx-banner-box {
-  position: relative; }
+  position: relative;
+  padding-bottom: 10em; }
   .wp-block-lsx-blocks-lsx-banner-box:not(.lsx-has-image) {
     padding-bottom: 1em; }
   @media only screen and (max-width: 766px) {

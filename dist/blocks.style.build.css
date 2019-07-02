@@ -1726,11 +1726,12 @@
   -ms-flex-pack: center;
       justify-content: center;
   -ms-flex-direction: column;
-      flex-direction: column; }
+      flex-direction: column;
+  margin-bottom: 45px; }
   .wp-block-lsx-blocks-lsx-banner-box:not(.lsx-has-image) {
     padding-bottom: 1em; }
-  .wp-block-lsx-blocks-lsx-banner-box + div {
-    padding-top: 5rem; }
+  .wp-block-lsx-blocks-lsx-banner-box + div.wp-block-lsx-blocks-lsx-container {
+    margin-top: -45px !important; }
   @media only screen and (max-width: 766px) {
     .wp-block-lsx-blocks-lsx-banner-box {
       padding-left: 0 !important;
