@@ -1722,6 +1722,9 @@
       -o-object-fit: cover;
          object-fit: cover; } }
 
+.entry-content > .wp-block-lsx-blocks-lsx-banner-box:first-child .lsx-banner-content-wrap {
+  padding-top: 2.4rem; }
+
 .wp-block-lsx-blocks-lsx-banner-box {
   position: relative;
   display: -ms-flexbox;

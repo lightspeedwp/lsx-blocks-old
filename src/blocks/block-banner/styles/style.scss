@@ -33,6 +33,15 @@
 		}
 	}
 }
+.entry-content {
+	> .wp-block-lsx-blocks-lsx-banner-box {
+		&:first-child {
+			.lsx-banner-content-wrap {
+				padding-top: 2.4rem;
+			}
+		}
+	}
+}
 .wp-block-lsx-blocks-lsx-banner-box {
 	position: relative;
 	//margin-bottom: 5rem;
