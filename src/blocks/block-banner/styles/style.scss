@@ -13,6 +13,11 @@
 			z-index: 99;
 		}
 	}
+	&:not(.has-block-banner) {
+		.entry-content {
+			padding-top: 80px;
+		}
+	}
 
 	.wp-block-lsx-blocks-lsx-banner-box.lsx-has-image {
 		background-image: none !important;

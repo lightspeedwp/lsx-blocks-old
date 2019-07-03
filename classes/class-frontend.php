@@ -60,6 +60,7 @@ class Frontend {
 	 * Add the class 'has-block-banner' if the banner block is the first thing on the page.
 	 */
 	public function banner_class( $classes ) {
+		// Add a class if the page is using the banner block
 		$post = get_post();
 		if ( function_exists( 'has_blocks' ) && has_blocks( $post->post_content ) ) {
 			$blocks = parse_blocks( $post->post_content );
@@ -67,6 +68,13 @@ class Frontend {
 			if ( 'lsx-blocks/lsx-banner-box' === $blocks[0]['blockName'] ) {
 				$classes[] = 'has-block-banner';
 			}
+		}
+		// Add a class depending on the 'Disable Title' option
+		$disable_title = get_post_meta( get_the_ID(), 'lsx_disable_title', true );
+		if ( 'yes' === $disable_title ) {
+			$classes[] .= 'lsx-enabled-hidden-title';
+		} else {
+			$classes[] .= 'lsx-disabled-hidden-title';
 		}
 		return $classes;
 	}
