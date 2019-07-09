@@ -111,6 +111,9 @@
 				height: 12px;
 				transition: all 300ms ease-in-out;
 				width: 4rem;
+				@media (min-width: 992px) {
+					height: 6px;
+				}
 			}
 		}
 	}
