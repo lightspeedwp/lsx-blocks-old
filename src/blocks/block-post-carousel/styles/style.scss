@@ -72,7 +72,9 @@
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
 		}
-
+		@media (max-width: 600px) {
+			display: none !important;
+		}
 		&.slick-disabled { cursor: not-allowed; }
 
 		&.slick-prev {
@@ -136,8 +138,7 @@
 		position: relative;
 
 		.slick-slide {
-			margin-bottom: 2.5em;
-			//background-color: #fff;
+			margin-bottom: 0;
 			padding: 1em;
 			@media (max-width:600px) {
 				margin-bottom: 1em;
@@ -173,7 +174,7 @@
 		}
 
 		.lsx-block-post-grid-image {
-			padding-bottom: 1.2em;
+			padding-bottom: 1em;
     		background: #fff;
 
 			img {
@@ -193,20 +194,17 @@
 			text-align: center;
 			margin-top: 0;
 			margin-bottom: 15px;
-			font-size: 22px;
+			font-size: 20px;
 			line-height: 1.2;
-			padding: 15px;
-
+			padding: 0px 15px 10px;
 			a {
-				color: $black;
+				color: $testblack !important;
 				box-shadow: none;
 				transition: .3s ease;
-				font-size: 22px;
-				// &:hover {
-				// 	box-shadow: inset 0 -2px 0 $accent;
-				// 	color: $accent;
-				// 	box-shadow: none;
-				// }
+				font-size: 20px;
+				&:hover {
+					color: $orange !important;
+				}
 			}
 		}
 
@@ -214,8 +212,7 @@
 			//text-transform: uppercase;
 			text-align: center;
 			font-size: 13px;
-			letter-spacing: 1px;
-			color: #919191;
+			color: $textgray;
 			margin-bottom: 15px;
 			padding-left: 15px;
 			padding-right: 15px;
@@ -231,6 +228,9 @@
 					margin-left: auto;
 					margin-right: auto;
 				}
+				+ time.lsx-block-post-grid-date {
+					padding-top: 0;
+				}
 			}
 		}
 
@@ -245,14 +245,18 @@
 				line-height: 1;
 			}
 		}
+		.lsx-block-post-grid-date {
+			padding-top: 15px;
+		}
 
 		.lsx-block-post-grid-author a {
 			box-shadow: none;
-
+			color: $textgray !important;
 			&:hover {
 				color: inherit;
-				box-shadow: 0 -1px 0 inset;
-				color: $accent;
+				box-shadow: none;
+				color: $orange !important;
+				text-decoration: none;
 			}
 		}
 
@@ -285,7 +289,7 @@
 		}
 
 		.lsx-block-post-grid-excerpt {
-			padding: 0 15px 2em;
+			padding: 0 25px 2.4rem;
 			font-size: 15px;
 			font-weight: normal;
 			div + p {
@@ -297,6 +301,17 @@
 			}
 			.moretag {
 				display: none;
+			}
+			&:empty {
+				padding-bottom: 1px;
+			}
+		}
+	}
+	//Gray BG
+	&.gray-bg {
+		.has-thumb.slick-slide {
+			.lsx-block-post-grid-text {
+				background: $graybg;
 			}
 		}
 	}

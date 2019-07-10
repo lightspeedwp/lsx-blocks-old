@@ -64,23 +64,27 @@
 		text-align: center;
 		margin-top: 0;
 		margin-bottom: 15px;
-		font-size: 28px;
+		font-size: 20px;
 		line-height: 1.2;
-
+		padding: 0px 15px 10px;
 		a {
-			color: $black;
+			color: $testblack !important;
 			box-shadow: none;
 			transition: .3s ease;
+			font-size: 20px;
+			&:hover {
+				color: $orange !important;
+			}
 		}
 	}
 
 	.lsx-block-post-grid-byline {
-		//text-transform: uppercase;
 		text-align: center;
 		font-size: 13px;
-		letter-spacing: 1px;
-		color: $lightgray;
+		color: $textgray;
 		margin-bottom: 15px;
+		padding-left: 15px;
+		padding-right: 15px;
 		.lsx-block-post-avatar {
 			position: relative;
 			top: -4em;
@@ -90,6 +94,11 @@
 				width: 75px !important;
 				margin-bottom: 1em;
 				border: 2px solid #FFF;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			+ time.lsx-block-post-grid-date {
+				padding-top: 0;
 			}
 		}
 	}
@@ -108,10 +117,12 @@
 
 	.lsx-block-post-grid-author a {
 		box-shadow: none;
-
+		color: $textgray !important;
 		&:hover {
 			color: inherit;
 			box-shadow: none;
+			color: $orange !important;
+			text-decoration: none;
 		}
 	}
 
@@ -146,12 +157,21 @@
 	}
 
 	.lsx-block-post-grid-excerpt {
-		padding: 0 2em 2em 2em;
+		padding: 0 25px 2.4rem;
+		font-size: 15px;
+		font-weight: normal;
 		div + p {
 			margin-top: 15px;
 		}
+		p, a {
+			font-size: 15px;
+			font-weight: normal;
+		}
 		.moretag {
 			display: none;
+		}
+		&:empty {
+			padding-bottom: 1px;
 		}
 	}
 
@@ -195,6 +215,14 @@
 
 		.no-thumb .lsx-block-post-grid-text {
 			grid-column: span 2;
+		}
+	}
+	//Gray BG
+	&.gray-bg {
+		.has-thumb.slick-slide {
+			.lsx-block-post-grid-text {
+				background: $graybg;
+			}
 		}
 	}
 }
