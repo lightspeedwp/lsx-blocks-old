@@ -48,7 +48,7 @@
 	}
 
 	.lsx-block-post-grid-image {
-		margin-bottom: 1.2em;
+		margin-bottom: 30px;
 
 		img {
 			display: block;
@@ -61,14 +61,13 @@
 	}
 
 	h2 {
-		text-align: center;
 		margin-top: 0;
-		margin-bottom: 15px;
+		margin-bottom: 0;
 		font-size: 20px;
 		line-height: 1.2;
 		padding: 0px 15px 10px;
 		a {
-			color: $testblack !important;
+			color: $blue;
 			box-shadow: none;
 			transition: .3s ease;
 			font-size: 20px;
@@ -79,7 +78,6 @@
 	}
 
 	.lsx-block-post-grid-byline {
-		text-align: center;
 		font-size: 13px;
 		color: $textgray;
 		margin-bottom: 15px;
@@ -106,13 +104,7 @@
 	.lsx-block-post-grid-author,
 	.lsx-block-post-grid-date {
 		display: inline-block;
-
-		&:not(:last-child):after {
-			content: "by";
-			vertical-align: middle;
-			margin: 0 5px;
-			line-height: 1;
-		}
+		margin-right: 5px;
 	}
 
 	.lsx-block-post-grid-author a {
@@ -123,6 +115,10 @@
 			box-shadow: none;
 			color: $orange !important;
 			text-decoration: none;
+		}
+		&:before {
+			content: "By ";
+			line-height: 1;
 		}
 	}
 
@@ -146,18 +142,19 @@
 		transition: .3s ease;
 		font-weight: bold;
 		color: $black;
-
+		text-transform: uppercase;
 		&:hover {
 			box-shadow: none;
 		}
 		&:after {
-			content: " \27F6";
+			content: "\f178";
 			padding-left: 5px;
+			font-family: FontAwesome;
 		}
 	}
 
 	.lsx-block-post-grid-excerpt {
-		padding: 0 25px 2.4rem;
+		padding: 0 15px 2.4rem 15px;
 		font-size: 15px;
 		font-weight: normal;
 		div + p {
