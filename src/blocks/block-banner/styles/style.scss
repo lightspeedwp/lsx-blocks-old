@@ -184,7 +184,9 @@
 			.page-header {
 				margin-bottom: 0;
 				max-width: 1150px;
-				width: 90%;
+				@media (min-width:766px) {
+					width: 90%;
+				}
 				.lsx-banner-name {
 					margin-bottom: 0;
 					&:not(:empty) {
