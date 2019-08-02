@@ -13,11 +13,11 @@
 			z-index: 99;
 		}
 	}
-	&:not(.has-block-banner) {
-		.entry-content {
-			padding-top: 80px;
-		}
-	}
+	// &:not(.has-block-banner) {
+	// 	.entry-content {
+	// 		padding-top: 80px;
+	// 	}
+	// }
 
 	.wp-block-lsx-blocks-lsx-banner-box.lsx-has-image {
 		background-image: none !important;
@@ -184,7 +184,9 @@
 			.page-header {
 				margin-bottom: 0;
 				max-width: 1150px;
-				width: 90%;
+				@media (min-width:766px) {
+					width: 90%;
+				}
 				.lsx-banner-name {
 					margin-bottom: 0;
 					&:not(:empty) {

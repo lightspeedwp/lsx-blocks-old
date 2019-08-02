@@ -953,21 +953,20 @@
     .lsx-block-post-grid div[class*="columns"].is-grid {
       grid-template-columns: 1fr; } }
   .lsx-block-post-grid .lsx-block-post-grid-image {
-    margin-bottom: 1.2em; }
+    margin-bottom: 30px; }
     .lsx-block-post-grid .lsx-block-post-grid-image img {
       display: block;
       width: 100%; }
   .lsx-block-post-grid .lsx-block-post-grid-text {
     text-align: left; }
   .lsx-block-post-grid h2 {
-    text-align: center;
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 0;
     font-size: 20px;
     line-height: 1.2;
     padding: 0px 15px 10px; }
     .lsx-block-post-grid h2 a {
-      color: #4a4a4a !important;
+      color: #418ad0;
       -webkit-box-shadow: none;
               box-shadow: none;
       -webkit-transition: .3s ease;
@@ -977,7 +976,6 @@
       .lsx-block-post-grid h2 a:hover {
         color: #f7ae00 !important; }
   .lsx-block-post-grid .lsx-block-post-grid-byline {
-    text-align: center;
     font-size: 13px;
     color: #919191;
     margin-bottom: 15px;
@@ -998,13 +996,8 @@
         padding-top: 0; }
   .lsx-block-post-grid .lsx-block-post-grid-author,
   .lsx-block-post-grid .lsx-block-post-grid-date {
-    display: inline-block; }
-    .lsx-block-post-grid .lsx-block-post-grid-author:not(:last-child):after,
-    .lsx-block-post-grid .lsx-block-post-grid-date:not(:last-child):after {
-      content: "by";
-      vertical-align: middle;
-      margin: 0 5px;
-      line-height: 1; }
+    display: inline-block;
+    margin-right: 5px; }
   .lsx-block-post-grid .lsx-block-post-grid-author a {
     -webkit-box-shadow: none;
             box-shadow: none;
@@ -1015,6 +1008,9 @@
               box-shadow: none;
       color: #f7ae00 !important;
       text-decoration: none; }
+    .lsx-block-post-grid .lsx-block-post-grid-author a:before {
+      content: "By ";
+      line-height: 1; }
   .lsx-block-post-grid .lsx-block-post-grid-text p {
     margin: 0 0 15px 0;
     line-height: 1.5;
@@ -1032,15 +1028,17 @@
     -o-transition: .3s ease;
     transition: .3s ease;
     font-weight: bold;
-    color: #293038; }
+    color: #293038;
+    text-transform: uppercase; }
     .lsx-block-post-grid .lsx-block-post-grid-link:hover {
       -webkit-box-shadow: none;
               box-shadow: none; }
     .lsx-block-post-grid .lsx-block-post-grid-link:after {
-      content: " \27F6";
-      padding-left: 5px; }
+      content: "\f178";
+      padding-left: 5px;
+      font-family: FontAwesome; }
   .lsx-block-post-grid .lsx-block-post-grid-excerpt {
-    padding: 0 25px 2.4rem;
+    padding: 0 15px 2.4rem 15px;
     font-size: 15px;
     font-weight: normal; }
     .lsx-block-post-grid .lsx-block-post-grid-excerpt div + p {
@@ -1736,9 +1734,6 @@
 .gutenberg-compatible-template.using-gutenberg.has-block-banner .breadcrumbs-container {
   z-index: 99; }
 
-.gutenberg-compatible-template.using-gutenberg:not(.has-block-banner) .entry-content {
-  padding-top: 80px; }
-
 .gutenberg-compatible-template.using-gutenberg .wp-block-lsx-blocks-lsx-banner-box.lsx-has-image {
   background-image: none !important; }
   @media (min-width: 600px) {
@@ -1847,8 +1842,10 @@
         margin-bottom: 2em; }
       .wp-block-lsx-blocks-lsx-banner-box .lsx-banner-content-wrap .header-headings .page-header {
         margin-bottom: 0;
-        max-width: 1150px;
-        width: 90%; }
+        max-width: 1150px; }
+        @media (min-width: 766px) {
+          .wp-block-lsx-blocks-lsx-banner-box .lsx-banner-content-wrap .header-headings .page-header {
+            width: 90%; } }
         .wp-block-lsx-blocks-lsx-banner-box .lsx-banner-content-wrap .header-headings .page-header .lsx-banner-name {
           margin-bottom: 0; }
           .wp-block-lsx-blocks-lsx-banner-box .lsx-banner-content-wrap .header-headings .page-header .lsx-banner-name:not(:empty) {
@@ -2175,16 +2172,15 @@
       text-align: left;
       background: #fff;
       margin-top: -15px;
-      padding-top: 15px; }
+      padding-top: 30px; }
     .lsx-block-post-carousel .lsx-post-carousel-items h2 {
-      text-align: center;
       margin-top: 0;
-      margin-bottom: 15px;
+      margin-bottom: 0;
       font-size: 20px;
       line-height: 1.2;
       padding: 0px 15px 10px; }
       .lsx-block-post-carousel .lsx-post-carousel-items h2 a {
-        color: #4a4a4a !important;
+        color: #418ad0;
         -webkit-box-shadow: none;
                 box-shadow: none;
         -webkit-transition: .3s ease;
@@ -2194,7 +2190,6 @@
         .lsx-block-post-carousel .lsx-post-carousel-items h2 a:hover {
           color: #f7ae00 !important; }
     .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-byline {
-      text-align: center;
       font-size: 13px;
       color: #919191;
       margin-bottom: 15px;
@@ -2215,15 +2210,8 @@
           padding-top: 0; }
     .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-author,
     .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-date {
-      display: inline-block; }
-      .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-author:not(:last-child):after,
-      .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-date:not(:last-child):after {
-        content: "by";
-        vertical-align: middle;
-        margin: 0 5px;
-        line-height: 1; }
-    .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-date {
-      padding-top: 15px; }
+      display: inline-block;
+      margin-right: 5px; }
     .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-author a {
       -webkit-box-shadow: none;
               box-shadow: none;
@@ -2234,6 +2222,9 @@
                 box-shadow: none;
         color: #f7ae00 !important;
         text-decoration: none; }
+      .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-author a:before {
+        content: "By ";
+        line-height: 1; }
     .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-text p {
       margin: 0 0 15px 0;
       line-height: 1.5;
@@ -2251,12 +2242,14 @@
       -o-transition: .3s ease;
       transition: .3s ease;
       font-weight: bold;
-      color: #293038; }
+      color: #293038;
+      text-transform: uppercase; }
       .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-link:after {
-        content: " \27F6";
-        padding-left: 5px; }
+        content: "\f178";
+        padding-left: 5px;
+        font-family: FontAwesome; }
     .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-excerpt {
-      padding: 0 25px 2.4rem;
+      padding: 0 15px 2.4rem 15px;
       font-size: 15px;
       font-weight: normal; }
       .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-excerpt div + p {

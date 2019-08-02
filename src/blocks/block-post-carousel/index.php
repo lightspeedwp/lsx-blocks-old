@@ -87,17 +87,33 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 				$title = __( 'Untitled', 'lsx-blocks' );
 			}
 
+			$list_items_markup .= sprintf(
+				'<h2 class="lsx-block-post-grid-title"><a href="%1$s" rel="bookmark">%2$s</a></h2>',
+				esc_url( get_permalink( $post_id ) ),
+				esc_html( $title )
+			);
+
 			// Wrap the byline content
 			$list_items_markup .= sprintf(
 				'<div class="lsx-block-post-grid-byline">'
 			);
 
+			// if ( isset( $attributes['displayPostAuthorCarousel'] ) && $attributes['displayPostAuthorCarousel'] ) {
+			// 	$list_items_markup .= sprintf(
+			// 		'<div class="lsx-block-post-avatar"><img src="%1$s" alt="avatar"/></div>',
+			// 		esc_html( get_avatar_url( $post->post_author ) )
+			// 	);
+			// }
+
+			// Get the post author
 			if ( isset( $attributes['displayPostAuthorCarousel'] ) && $attributes['displayPostAuthorCarousel'] ) {
 				$list_items_markup .= sprintf(
-					'<div class="lsx-block-post-avatar"><img src="%1$s" alt="avatar"/></div>',
-					esc_html( get_avatar_url( $post->post_author ) )
+					'<div class="lsx-block-post-grid-author"><a class="lsx-text-link" href="%2$s">%1$s</a>,</div>',
+					esc_html( get_the_author_meta( 'display_name', $post->post_author ) ),
+					esc_html( get_author_posts_url( $post->post_author ) )
 				);
 			}
+
 			// Get the post date
 			if ( isset( $attributes['displayPostDateCarousel'] ) && $attributes['displayPostDateCarousel'] ) {
 				$list_items_markup .= sprintf(
@@ -107,25 +123,10 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 				);
 			}
 
-			// Get the post author
-			if ( isset( $attributes['displayPostAuthorCarousel'] ) && $attributes['displayPostAuthorCarousel'] ) {
-				$list_items_markup .= sprintf(
-					'<div class="lsx-block-post-grid-author"><a class="lsx-text-link" href="%2$s">%1$s</a></div>',
-					esc_html( get_the_author_meta( 'display_name', $post->post_author ) ),
-					esc_html( get_author_posts_url( $post->post_author ) )
-				);
-			}
-
 			// Close the byline content
 
 			$list_items_markup .= sprintf(
 				'</div>'
-			);
-
-			$list_items_markup .= sprintf(
-				'<h2 class="lsx-block-post-grid-title"><a href="%1$s" rel="bookmark">%2$s</a></h2>',
-				esc_url( get_permalink( $post_id ) ),
-				esc_html( $title )
 			);
 
 			// Wrap the excerpt content
