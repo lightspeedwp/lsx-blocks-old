@@ -457,15 +457,18 @@
   margin-bottom: 2em;
   background: #F5F5F5;
   border: 1px solid #E0E0E0; }
-  .lsx-block-accordion details summary::-webkit-details-marker {
-    display: none; }
-  .lsx-block-accordion details summary:before {
-    content: "+";
-    color: #418AD0;
-    float: left;
-    font-size: 1.5em;
-    font-weight: bold;
-    margin: -9px 10px 0 0; }
+  .lsx-block-accordion details summary {
+    display: -ms-flexbox;
+    display: flex; }
+    .lsx-block-accordion details summary::-webkit-details-marker {
+      display: none; }
+    .lsx-block-accordion details summary:before {
+      content: "+";
+      color: #418AD0;
+      float: left;
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: -9px 10px 0 0; }
   .lsx-block-accordion details[open] summary:before {
     content: "-";
     font-size: 2em;

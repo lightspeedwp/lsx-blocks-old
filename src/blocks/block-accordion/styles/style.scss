@@ -9,6 +9,7 @@
 	border: 1px solid #E0E0E0;
 	details {
 		summary {
+			display: flex;
 			&::-webkit-details-marker {
 				display: none
 			}
