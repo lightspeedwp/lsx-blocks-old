@@ -1730,9 +1730,6 @@
 .gutenberg-compatible-template.using-gutenberg.has-block-banner .breadcrumbs-container {
   z-index: 99; }
 
-.gutenberg-compatible-template.using-gutenberg:not(.has-block-banner) .entry-content {
-  padding-top: 80px; }
-
 .gutenberg-compatible-template.using-gutenberg .wp-block-lsx-blocks-lsx-banner-box.lsx-has-image {
   background-image: none !important; }
   @media (min-width: 600px) {
