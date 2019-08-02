@@ -1197,6 +1197,9 @@
   margin: 0 0 1.2em 0;
   position: relative;
   padding: 0; }
+  @media only screen and (max-width: 900px) {
+    .lsx-block-container.alignfull .lsx-container-content {
+      padding: 1em 3em; } }
   .lsx-block-container.alignfull .editor-block-list__block {
     max-width: 100%; }
   @media only screen and (min-width: 768px) {
@@ -1228,10 +1231,8 @@
     margin: 0 auto;
     position: relative; }
     @media only screen and (max-width: 900px) {
-      .lsx-block-container .lsx-container-content {
-        padding: 1em 3em; }
-        .lsx-block-container .lsx-container-content .lsx-block-container .lsx-container-content {
-          padding: 0; } }
+      .lsx-block-container .lsx-container-content .lsx-block-container .lsx-container-content {
+        padding: 0; } }
   .lsx-block-container .lsx-container-image:not(.has-background-dim) {
     opacity: 0; }
   .lsx-block-container .has-background-dim {
