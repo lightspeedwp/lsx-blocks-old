@@ -1,4 +1,11 @@
 ## Change log
 
+### 1.0.1
+* Fix - Margin and spacing fixes.
+* Dev - Adding a class if the page is using the banner block for more customization.
+* Dev - Updating styles for block and post carrousel blocks to match the new LSX Blog customizer improvements.
+* Fix - Changing enqueuing files priorities.
+* Fix - Accordion styles fixes for mobile.
+
 ### 1.0.0
 * Initial Release

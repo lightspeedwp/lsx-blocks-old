@@ -2,26 +2,26 @@
 Contributors: feedmymedia
 Donate link: https://donate.lsdev.biz/
 Tags: lsx, Gutenberg blocks plugin, page builder, block editor
-Requires at least: 4.9
+Requires at least: 5.0
 Tested up to: 5.2.2
 Requires PHP: 7.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-The new Gutenberg editor is here, and with it comes the new block-based page builder. 
+The new Gutenberg editor is here, and with it comes the new block-based page builder.
 
 We have built these content blocks so you can simply drag and drop them into your editor, configure to your wishes and you are done!
 
 == Getting Started with LSX Blocks ==
 
-* Login to the backend of your Wordpress website.
+* Login to the backend of your WordPress website.
 * Navigate to the "Plugins" item in your dashboard.
 * Select "Add New".
 * Search for "LSX Blocks" in the plugin search bar.
 * Once you see the LSX Blocks plugin, select "Install".
-* Activate the plugin. 
-* That's it, you can now make use of the LSX Blocks when building a new post or page! 
+* Activate the plugin.
+* That's it, you can now make use of the LSX Blocks when building a new post or page!
 
 Looking for more information on setting up your individual blocks? Check out our [Block Documentation](https://lsx.lsdev.biz/documentation/blocks/) for a full breakdown on using the blocks.
 
@@ -55,12 +55,13 @@ The LSX Blocks plugin was developed with the use of [Atomic Blocks](https://atom
 == Screenshots ==
 
 1. Back-end Gutenberg block selection
-2. Block Settings Screenshot - Recommend LSX Container 
+2. Block Settings Screenshot - Recommend LSX Container
 3. Block Usage Screenshot 1
 4. Block Usage Screenshot 2
 5. Block Usage Screenshot 3
 
-== Changelog ==
+== Upgrade Notice ==
 
-**1.0**
-* Initial release.
+= 1.0.1 =
+Added improvements to the general look and feel of the blog block and the carrousel block. Improvements in spacing.
+
