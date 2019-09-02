@@ -1,7 +1,8 @@
 ## Change log
 
 ### 1.0.2
-Fix - Adding the class 'has-block-banner' only to pages or posts.
+* Fix - Adding the class 'has-block-banner' only to pages or posts.
+* Dev - Adding the .gitattributes file to remove unnecessary files from the WordPress version.
 
 ### 1.0.1 - 6 August 2019
 * Fix - Margin and spacing fixes.
