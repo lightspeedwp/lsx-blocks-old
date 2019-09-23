@@ -21,7 +21,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 		'category' => $categories,
 	), 'OBJECT' );
 
-	$list_items_markup = '';
+	$list_items_markup = array();
 
 	if ( $recent_posts ) {
 		foreach ( $recent_posts as $post ) {
@@ -38,7 +38,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 			}
 
 			// Start the markup for the post
-			$list_items_markup .= sprintf(
+			$list_items_markup[] = sprintf(
 				'<article class="%1$s">',
 				esc_attr( $post_thumb_class )
 			);
@@ -51,7 +51,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 					$post_thumb_size = 'lsx-block-post-grid-square';
 				}
 
-				$list_items_markup .= sprintf(
+				$list_items_markup[] = sprintf(
 					'<div class="lsx-block-post-grid-image"><a href="%1$s" rel="bookmark">%2$s</a></div>',
 					esc_url( get_permalink( $post_id ) ),
 					wp_get_attachment_image( $post_thumb_id, $post_thumb_size )
@@ -59,7 +59,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 			}
 
 			// Wrap the text content
-			$list_items_markup .= sprintf(
+			$list_items_markup[] = sprintf(
 				'<div class="lsx-block-post-grid-text">'
 			);
 
@@ -70,34 +70,34 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 					$title = __( 'Untitled', 'lsx-blocks' );
 				}
 
-				$list_items_markup .= sprintf(
+				$list_items_markup[] = sprintf(
 					'<h2 class="lsx-block-post-grid-title"><a href="%1$s" rel="bookmark">%2$s</a></h2>',
 					esc_url( get_permalink( $post_id ) ),
 					esc_html( $title )
 				);
 
 				// Wrap the byline content
-				$list_items_markup .= sprintf(
+				$list_items_markup[] = sprintf(
 					'<div class="lsx-block-post-grid-byline">'
 				);
 
 				// Get the post author
 				if ( isset( $attributes['displayPostAuthor'] ) && $attributes['displayPostAuthor'] ) {
-					$list_items_markup .= sprintf(
+					$list_items_markup[] = sprintf(
 						'<div class="lsx-block-post-grid-author"><a class="lsx-text-link" href="%2$s">%1$s</a>,</div>',
 						esc_html( get_the_author_meta( 'display_name', $post->post_author ) ),
 						esc_html( get_author_posts_url( $post->post_author ) )
 					);
 				}
 					// if ( isset( $attributes['displayPostAuthor'] ) && $attributes['displayPostAuthor'] ) {
-					// 	$list_items_markup .= sprintf(
+					// 	$list_items_markup[] = sprintf(
 					// 		'<div class="lsx-block-post-avatar"><img src="%1$s" alt="avatar"/></div>',
 					// 		esc_html( get_avatar_url( $post->post_author ) )
 					// 	);
 					// }
 					// Get the post date
 					if ( isset( $attributes['displayPostDate'] ) && $attributes['displayPostDate'] ) {
-						$list_items_markup .= sprintf(
+						$list_items_markup[] = sprintf(
 							'<time datetime="%1$s" class="lsx-block-post-grid-date">%2$s</time>',
 							esc_attr( get_the_date( 'c', $post_id ) ),
 							esc_html( get_the_date( '', $post_id ) )
@@ -106,12 +106,12 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 
 				// Close the byline content
 
-				$list_items_markup .= sprintf(
+				$list_items_markup[] = sprintf(
 					'</div>'
 				);
 
 				// Wrap the excerpt content
-				$list_items_markup .= sprintf(
+				$list_items_markup[] = sprintf(
 					'<div class="lsx-block-post-grid-excerpt">'
 				);
 
@@ -127,11 +127,11 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 					}
 
 					if ( isset( $attributes['displayPostExcerpt'] ) && $attributes['displayPostExcerpt'] ) {
-						$list_items_markup .= wp_kses_post( $excerpt );
+						$list_items_markup[] = wp_kses_post( $excerpt );
 					}
 
 					if ( isset( $attributes['displayPostLink'] ) && $attributes['displayPostLink'] ) {
-						$list_items_markup .= sprintf(
+						$list_items_markup[] = sprintf(
 							'<p><a class="lsx-block-post-grid-link lsx-text-link" href="%1$s" rel="bookmark">%2$s</a></p>',
 							esc_url( get_permalink( $post_id ) ),
 							esc_html( $attributes['readMoreText'] )
@@ -139,17 +139,17 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 					}
 
 				// Close the excerpt content
-				$list_items_markup .= sprintf(
+				$list_items_markup[] = sprintf(
 					'</div>'
 				);
 
 			// Wrap the text content
-			$list_items_markup .= sprintf(
+			$list_items_markup[] = sprintf(
 				'</div>'
 			);
 
 			// Close the markup for the post
-			$list_items_markup .= "</article>\n";
+			$list_items_markup[] = "</article>\n";
 		}
 	}
 
@@ -177,7 +177,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 		'<div class="%1$s"><div class="%2$s">%3$s</div></div>',
 		esc_attr( $class ),
 		esc_attr( $grid_class ),
-		$list_items_markup
+		implode( '', $list_items_markup )
 	);
 
 	return $block_content;
