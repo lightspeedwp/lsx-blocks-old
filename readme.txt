@@ -5,7 +5,7 @@ Tags: lsx, Gutenberg blocks plugin, page builder, block editor
 Requires at least: 5.0
 Tested up to: 5.2.2
 Requires PHP: 7.0
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -62,6 +62,6 @@ The LSX Blocks plugin was developed with the use of [Atomic Blocks](https://atom
 
 == Upgrade Notice ==
 
-= 1.0.1 =
-Added improvements to the general look and feel of the blog block and the carrousel block. Improvements in spacing.
+= 1.0.2 =
+Added improvements to the core of the plugin.
 

@@ -1,6 +1,6 @@
 ## Change log
 
-### 1.0.2
+### 1.0.2 - September 27
 * Fix - Adding the class 'has-block-banner' only to pages or posts.
 * Dev - Adding the .gitattributes file to remove unnecessary files from the WordPress version.
 
