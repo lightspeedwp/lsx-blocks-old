@@ -13,7 +13,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 
 	$categories = isset( $attributes['categories'] ) ? $attributes['categories'] : '';
 
-	$recent_posts = wp_get_recent_posts( array(
+	$recent_posts = new WP_Query( array(
 		'numberposts' => $attributes['postsToShow'],
 		'post_status' => 'publish',
 		'order' => $attributes['order'],
@@ -23,10 +23,12 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 
 	$list_items_markup = array();
 
-	if ( $recent_posts ) {
-		foreach ( $recent_posts as $post ) {
-			// Get the post ID
-			$post_id = $post->ID;
+	if ( $recent_posts->have_posts() ) {
+		
+		while ( $recent_posts->have_posts() ) {
+			$recent_posts->the_post();
+			global $post;
+			$post_id = get_the_ID();
 
 			// Get the post thumbnail
 			$post_thumb_id = get_post_thumbnail_id( $post_id );
@@ -51,10 +53,16 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 					$post_thumb_size = 'lsx-block-post-grid-square';
 				}
 
+				if ( 'lsx-placeholder' === $post_thumb_id ) {
+					$thumbnail = '<img class="attachment-responsive wp-post-image lsx-responsive" src="https://place-hold.it/750x350/cccccc/969696.jpeg&amp;text=750x350&amp;bold&amp;fontsize=16">';
+				} else {
+					$thumbnail = wp_get_attachment_image( $post_thumb_id, $post_thumb_size );
+				}
+
 				$list_items_markup[] = sprintf(
 					'<div class="lsx-block-post-grid-image"><a href="%1$s" rel="bookmark">%2$s</a></div>',
 					esc_url( get_permalink( $post_id ) ),
-					wp_get_attachment_image( $post_thumb_id, $post_thumb_size )
+					$thumbnail
 				);
 			}
 
@@ -151,6 +159,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 			// Close the markup for the post
 			$list_items_markup[] = "</article>\n";
 		}
+		wp_reset_postdata();
 	}
 
 	// Build the classes
