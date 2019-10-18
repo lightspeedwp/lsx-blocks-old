@@ -2,6 +2,8 @@
  * Import the blocks
  */
 
+import './blocks/block-author-profile/index.js';
+
 import './blocks/block-button/index.js';
 import './blocks/block-spacer/index.js';
 import './blocks/block-accordion/index.js';
