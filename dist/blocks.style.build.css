@@ -102,10 +102,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Profile styles
@@ -368,10 +371,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Button styles
@@ -397,7 +403,7 @@
     border-radius: 3px;
     display: inline-block;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 0.54px;
     line-height: 1.25;
     padding: 15px 40px;
@@ -568,10 +574,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Spacer styles
@@ -710,10 +719,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Accordion styles
@@ -874,10 +886,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * CTA styles
@@ -963,7 +978,7 @@
     border-radius: 3px;
     display: inline-block;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 0.54px;
     line-height: 1.25;
     padding: 15px 40px;
@@ -1189,10 +1204,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Post grid styles
@@ -1448,10 +1466,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Container styles
@@ -1658,10 +1679,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * card styles
@@ -1986,10 +2010,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 @media (min-width: 1024px) {
   .gutenberg-compatible-template.using-gutenberg.has-block-banner .breadcrumbs-container {
@@ -2250,10 +2277,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Post grid styles

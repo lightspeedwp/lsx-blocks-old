@@ -102,10 +102,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Editor styles for the admin
@@ -234,10 +237,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Editor styles for the admin
@@ -356,10 +362,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Editor styles for the admin
@@ -513,10 +522,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Editor styles for the admin
@@ -632,10 +644,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Editor styles for the admin
@@ -760,10 +775,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Editor styles for the admin
@@ -896,10 +914,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Editor styles for the admin
@@ -1008,10 +1029,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Editor styles for the admin
@@ -1157,10 +1181,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 .gutenberg-compatible-template.using-gutenberg .wp-block-lsx-blocks-lsx-banner-box.lsx-has-image {
   background-image: none !important; }
@@ -1351,10 +1378,13 @@
             box-shadow: 0 -2px 0 inset;
     color: #5a3fd6; }
 
-.lsx-button:active {
-  left: 2px;
-  top: 2px;
-  position: relative; }
+.lsx-button {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .lsx-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative; }
 
 /**
  * Editor styles for the admin

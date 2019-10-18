@@ -163,6 +163,8 @@ $graybg: #F6F6F6;
 }
 
 .lsx-button {
+	font-weight: 700;
+	text-transform: uppercase;
 	&:active {
 		left: 2px;
 		top: 2px;
