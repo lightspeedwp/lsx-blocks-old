@@ -24,7 +24,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 	$list_items_markup = array();
 
 	if ( $recent_posts->have_posts() ) {
-		
+
 		while ( $recent_posts->have_posts() ) {
 			$recent_posts->the_post();
 			global $post;
