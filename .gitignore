@@ -39,3 +39,5 @@ config.codekit
 node_modules/
 Gruntfile.js
 package-lock.json
+bin/1-save.html
+bin/2-generated.html
