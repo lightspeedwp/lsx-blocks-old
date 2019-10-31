@@ -1,5 +1,8 @@
 ## Change log
 
+### 1.0.4 - in development
+* Dev - Adding the Author profile block.
+
 ### 1.0.3 - 30 October 2019
 * Fix - Making button text bold.
 * Fix - The double size attribute causing the missing blog images
