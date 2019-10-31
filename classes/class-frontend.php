@@ -38,7 +38,7 @@ class Frontend {
 		add_filter( 'lsx_page_banner_disable', array( $this, 'disable_lsx_page_title' ) );
 		add_filter( 'lsx_global_header_disable', array( $this, 'disable_lsx_page_title' ) );
 		add_filter( 'the_content', array( $this, 'mobile_srcset_tag' ), 10, 1 );
-		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'wp_get_attachment_image_attributes' ), 10, 3 );
+		//add_filter( 'wp_get_attachment_image_attributes', array( $this, 'wp_get_attachment_image_attributes' ), 10, 3 );
 	}
 
 	/**
@@ -173,7 +173,7 @@ class Frontend {
 								$mobile_image = str_replace( '-600x400.png', '-350x230.png', $mobile_image );
 								$mobile_image = str_replace( '-600x400.jpeg', '-350x230.jpeg', $mobile_image );
 
-								$srcset_html = ' srcset="' . $mobile_image . ' 400w,' . $current_image_url . ' 1024w" sizes="(max-width: 400px) 50vw, 10vw" ';
+								$srcset_html = ' srcset="' . $mobile_image . ' 400w,' . $current_image_url . ' 1024w" ';
 
 								$new_image_html = str_replace( '<img', '<img ' . $srcset_html, $image_match );
 								$content = str_replace( $image_match, $new_image_html, $content );
