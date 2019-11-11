@@ -132,6 +132,17 @@
 		&.slick-next { right: -4rem; }
 	}
 
+	.lsx-post-carousel-items {
+		.slick-slider:not(.slick-initialized) {
+			display: flex;
+			flex-wrap: wrap;
+			> div {
+				width: 33%;
+				display: block;
+			}
+		}
+	}
+
 	//Post Carousel Styling
 	.lsx-post-carousel-items {
 		margin: 0 0 1.2em 0;
