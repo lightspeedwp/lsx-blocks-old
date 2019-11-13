@@ -62,7 +62,7 @@ class Frontend {
 	public function banner_class( $classes ) {
 		// Add a class if the page is using the banner block
 		$post = get_post();
-		if ( function_exists( 'has_blocks' ) && has_blocks( $post->post_content ) && ( ! is_search() ) && ( ! is_archive() ) ) {
+		if ( function_exists( 'has_blocks' ) && isset( $post->post_content ) && has_blocks( $post->post_content ) && ( ! is_search() ) && ( ! is_archive() ) ) {
 			$blocks = parse_blocks( $post->post_content );
 
 			if ( 'lsx-blocks/lsx-banner-box' === $blocks[0]['blockName'] ) {

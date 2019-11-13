@@ -3,6 +3,7 @@
 ### 1.0.4 - 13 November 2019
 * Dev - Adding the Author profile block.
 * Dev - Adding in CSS to format the Blog Post Carousel incase the JS fails to load.
+* Fix - Fixing error `Trying to get property 'post_content' of non-object`.
 
 ### 1.0.3 - 30 October 2019
 * Fix - Making button text bold.
