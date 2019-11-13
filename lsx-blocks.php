@@ -5,14 +5,14 @@
  * Description: The LSX Blocks plugin gives you a collection of Guteberg blocks that you can use and customize. All the blocks are built to work with our powerful LSX theme.
  * Author: lightspeed
  * Author URI: https://www.lsdev.biz/
- * Version: 1.0.3
+ * Version: 1.0.4
  * License: GPLv3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  *
  * @package LSX BLOCKS
  */
 
-define( 'LSX_BLOCKS_VER', '1.0.3' );
+define( 'LSX_BLOCKS_VER', '1.0.4' );
 define( 'LSX_BLOCKS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'LSX_BLOCKS_CORE', __FILE__ );
 define( 'LSX_BLOCKS_URL', plugin_dir_url( __FILE__ ) );
