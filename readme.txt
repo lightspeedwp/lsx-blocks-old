@@ -3,7 +3,7 @@ Contributors: feedmymedia
 Donate link: https://donate.lsdev.biz/
 Tags: lsx, Gutenberg blocks plugin, page builder, block editor
 Requires at least: 5.0
-Tested up to: 5.2.2
+Tested up to: 5.3
 Requires PHP: 7.0
 Stable tag: 1.0.4
 License: GPLv3
