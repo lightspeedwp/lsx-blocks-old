@@ -1,5 +1,9 @@
 ## Change log
 
+### 1.0.5
+* Dev - General testing to ensure compatibility with latest WordPress version (5.3).
+* Dev - Checking compatibility with LSX 2.6 release.
+
 ### 1.0.4 - 13 November 2019
 * Dev - Adding the Author profile block.
 * Dev - Adding in CSS to format the Blog Post Carousel incase the JS fails to load.
