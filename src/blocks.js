@@ -12,3 +12,6 @@ import './blocks/block-container/index.js';
 import './blocks/block-card/index.js';
 import './blocks/block-banner/index.js';
 import './blocks/block-post-carousel/index.js';
+
+//Team Block
+import './blocks/block-team/index.js';

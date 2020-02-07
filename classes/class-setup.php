@@ -1,5 +1,6 @@
 <?php
 namespace lsx\blocks\classes;
+
 /**
  * @package   lsx\blocks\classes
  * @author    LightSpeed
@@ -78,6 +79,11 @@ class Setup {
 		 * Load Post Carousel PHP
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/blocks/block-post-carousel/index.php';
+
+		/**
+		 * Load Team Block
+		 */
+		require_once LSX_BLOCKS_PATH . 'src/blocks/block-team/index.php';
 	}
 
 	/**
