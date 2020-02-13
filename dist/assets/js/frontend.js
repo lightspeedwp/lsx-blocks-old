@@ -70,7 +70,19 @@ var LSX_BLOCKS = Object.create( null );
                 ]
             });
         } );
-    };
+	};
+
+	//Adding Hover states for Core Button Block Extended
+	LSX_BLOCKS.coreButton = function( ) {
+		$( ".wp-block-button.has-hover-color a" ).mouseenter(function() {
+			var bghover = this.parentNode.getAttribute('bghover');
+			$(this).css("background-color", bghover );
+		});
+		$( ".wp-block-button.has-hover-color a" ).mouseleave(function() {
+			$(this).css("background-color", "" );
+		});
+	};
+
 
     /**
      * On document ready.
@@ -79,7 +91,9 @@ var LSX_BLOCKS = Object.create( null );
      * @subpackage scripts
      */
     LSX_BLOCKS.document.ready( function() {
-        LSX_BLOCKS.init();
+		LSX_BLOCKS.init();
+
+		LSX_BLOCKS.coreButton();
     } );
 
 } )( jQuery, window, document );
