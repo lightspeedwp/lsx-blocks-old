@@ -15,3 +15,4 @@ import './blocks/block-post-carousel/index.js';
 
 import './extensions/block-image/spacing-control.js';
 import './extensions/block-column/padding-control.js';
+import './extensions/block-button/background-control.js';
