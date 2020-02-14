@@ -1,0 +1,13 @@
+:root {
+	--color-surface: red;
+	--color-solid: black;
+	--color-primary: blue;
+}
+
+.wp-block-button {
+	&.has-shadow-color {
+		a {
+			box-shadow: 2px 2px 0 0 var(--color-primary);
+		}
+	}
+}
