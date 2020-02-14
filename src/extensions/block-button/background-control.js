@@ -9,10 +9,23 @@ const { __ } = wp.i18n;
 
 const { addFilter } = wp.hooks;
 
+const { registerBlockStyle } = wp.blocks;
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
 const { InspectorControls, PanelColorSettings } = wp.editor;
 const { PanelBody } = wp.components;
+
+unregisterBlockStyle( 'core/button' , [
+	{ name: 'fill', label: __( 'Fill' ) },
+	{ name: 'outline', label: __( 'Outline' ) },
+]);
+
+// registerBlockStyle( 'core/button' , {
+//     name: 'extended-button-lsx',
+// 	label: __( 'LSX Button' ),
+// 	isDefault: true
+// });
+
 
 // Enable spacing control on the following blocks
 const enableCustomButton = [
@@ -84,7 +97,7 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 
 		const { buttonHoverColor, buttonShadowColor } = props.attributes;
 
-		const applyTheme = (nextTheme) => {
+		const applyTheme = () => {
 			document.documentElement.style.setProperty('--color-primary', buttonShadowColor);
 		};
 

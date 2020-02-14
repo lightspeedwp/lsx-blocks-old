@@ -2687,3 +2687,11 @@
 .wp-block-button.has-shadow-color a {
   -webkit-box-shadow: 2px 2px 0 0 var(--color-primary);
           box-shadow: 2px 2px 0 0 var(--color-primary); }
+
+.is-style-lsx-button-style .wp-block-button__link {
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.54px;
+  line-height: 1.25;
+  text-transform: uppercase; }
