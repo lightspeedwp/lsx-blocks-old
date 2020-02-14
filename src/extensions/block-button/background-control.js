@@ -83,7 +83,6 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 			);
 		}
 
-		const { className } = props;
 		const { buttonHoverColor, buttonShadowColor } = props.attributes;
 
 		const applyTheme = () => {
@@ -93,7 +92,6 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 		// add has-hover class to block
 		if ( buttonHoverColor ) {
 			var buttonHoverClass = `has-hover-color`;
-			console.log(buttonHoverColor);
 		}
 		if ( buttonShadowColor ) {
 			var buttonShadowClass = `has-shadow-color`;
@@ -180,25 +178,39 @@ addFilter(
 	addHoverExtraProps
 );
 
-wp.hooks.addFilter(
-	'blocks.getSaveElement',
-	'lsx-blocks/extend-button-block',
-	(element, block, attributes) => {
-		if(block.name === 'core/button') {
-			return wp.element.cloneElement(
-				element,
-				{},
-				wp.element.cloneElement(
-					element.props.children,
-					{
-						className: classnames(
-							'test',
-							'wp-block-button__link'
-						),
-					},
-				),
-			);
-		}
-		return element;
+/**
+ * Add hover style attribute to save element of block.
+ *
+ * @param {object} saveElementProps Props of save element.
+ * @param {Object} blockType Block type information.
+ * @param {Object} attributes Attributes of block.
+ *
+ * @returns {object} Modified props of save element.
+ */
+const addExtraClassesButton = ( element, block, attributes ) => {
+
+	let boxShadowStyle = 'initial';
+	if ( attributes.buttonShadowColor ) {
+		boxShadowStyle = '2px 2px 0 0 ' + attributes.buttonShadowColor;
 	}
+	if(block.name === 'core/button') {
+		return wp.element.cloneElement(
+			element,
+			{},
+			wp.element.cloneElement(
+				element.props.children,
+				{
+					style: {
+						boxShadow: boxShadowStyle,
+					},
+				},
+			),
+		);
+	}
+	return element;
+};
+addFilter(
+	"blocks.getSaveElement",
+	"lsx-blocks/extend-button-block",
+	addExtraClassesButton
 );
