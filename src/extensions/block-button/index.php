@@ -10,25 +10,6 @@ if ( function_exists( 'register_block_style' ) ) {
 		/**
 		 * Register block style
 		 */
-		unregister_block_style(
-			'core/button',
-			array(
-				array(
-					'name'      => 'fill',
-					'label'     => 'Fill',
-					'isDefault' => false,
-				),
-				array(
-					'name'      => 'outline',
-					'label'     => 'Outline',
-					'isDefault' => false,
-				),
-			)
-		);
-
-		/**
-		 * Register block style
-		 */
 		register_block_style(
 			'core/button',
 			array(

@@ -100,7 +100,7 @@
     color: inherit;
     -webkit-box-shadow: 0 -2px 0 inset;
             box-shadow: 0 -2px 0 inset;
-    color: #5a3fd6; }
+    color: #27639e; }
 
 .lsx-button {
   font-weight: 700;
@@ -369,7 +369,7 @@
     color: inherit;
     -webkit-box-shadow: 0 -2px 0 inset;
             box-shadow: 0 -2px 0 inset;
-    color: #5a3fd6; }
+    color: #27639e; }
 
 .lsx-button {
   font-weight: 700;
@@ -572,7 +572,7 @@
     color: inherit;
     -webkit-box-shadow: 0 -2px 0 inset;
             box-shadow: 0 -2px 0 inset;
-    color: #5a3fd6; }
+    color: #27639e; }
 
 .lsx-button {
   font-weight: 700;
@@ -717,7 +717,7 @@
     color: inherit;
     -webkit-box-shadow: 0 -2px 0 inset;
             box-shadow: 0 -2px 0 inset;
-    color: #5a3fd6; }
+    color: #27639e; }
 
 .lsx-button {
   font-weight: 700;
@@ -884,7 +884,7 @@
     color: inherit;
     -webkit-box-shadow: 0 -2px 0 inset;
             box-shadow: 0 -2px 0 inset;
-    color: #5a3fd6; }
+    color: #27639e; }
 
 .lsx-button {
   font-weight: 700;
@@ -1202,7 +1202,7 @@
     color: inherit;
     -webkit-box-shadow: 0 -2px 0 inset;
             box-shadow: 0 -2px 0 inset;
-    color: #5a3fd6; }
+    color: #27639e; }
 
 .lsx-button {
   font-weight: 700;
@@ -1464,7 +1464,7 @@
     color: inherit;
     -webkit-box-shadow: 0 -2px 0 inset;
             box-shadow: 0 -2px 0 inset;
-    color: #5a3fd6; }
+    color: #27639e; }
 
 .lsx-button {
   font-weight: 700;
@@ -1677,7 +1677,7 @@
     color: inherit;
     -webkit-box-shadow: 0 -2px 0 inset;
             box-shadow: 0 -2px 0 inset;
-    color: #5a3fd6; }
+    color: #27639e; }
 
 .lsx-button {
   font-weight: 700;
@@ -2008,7 +2008,7 @@
     color: inherit;
     -webkit-box-shadow: 0 -2px 0 inset;
             box-shadow: 0 -2px 0 inset;
-    color: #5a3fd6; }
+    color: #27639e; }
 
 .lsx-button {
   font-weight: 700;
@@ -2275,7 +2275,7 @@
     color: inherit;
     -webkit-box-shadow: 0 -2px 0 inset;
             box-shadow: 0 -2px 0 inset;
-    color: #5a3fd6; }
+    color: #27639e; }
 
 .lsx-button {
   font-weight: 700;
@@ -2669,7 +2669,7 @@
     color: inherit;
     -webkit-box-shadow: 0 -2px 0 inset;
             box-shadow: 0 -2px 0 inset;
-    color: #5a3fd6; }
+    color: #27639e; }
 
 .lsx-button {
   font-weight: 700;
@@ -2679,21 +2679,21 @@
     top: 2px;
     position: relative; }
 
-:root {
-  --color-surface: red;
-  --color-solid: black;
-  --color-primary: blue; }
-
-.wp-block-button.has-shadow-color a {
-  -webkit-box-shadow: 2px 2px 0 0 var(--color-primary);
-          box-shadow: 2px 2px 0 0 var(--color-primary);
-  -webkit-box-shadow: 2px 2px 0 0 red;
-          box-shadow: 2px 2px 0 0 red; }
-
-.is-style-lsx-button-style .wp-block-button__link {
+.wp-block-button__link, .wp-block-button .block-editor-rich-text {
   border-radius: 3px;
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.54px;
   line-height: 1.25;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  background-color: #418ad0;
+  background-color: #418AD0;
+  -webkit-box-shadow: 2px 2px 0 0 #27639e;
+          box-shadow: 2px 2px 0 0 #27639e; }
+
+.wp-block-button {
+  margin: 0 0 1em 0; }
+  .wp-block-button.square .wp-block-button__link, .wp-block-button.square .block-editor-rich-text {
+    border-radius: 0; }
+  .wp-block-button.circular .wp-block-button__link, .wp-block-button.circular .block-editor-rich-text {
+    border-radius: 100px; }

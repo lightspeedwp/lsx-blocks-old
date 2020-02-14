@@ -13,7 +13,7 @@ const { addFilter } = wp.hooks;
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
 const { InspectorControls, PanelColorSettings } = wp.editor;
-const { PanelBody } = wp.components;
+const { PanelBody, SelectControl } = wp.components;
 
 // Enable spacing control on the following blocks
 const enableCustomButton = [
@@ -30,7 +30,6 @@ const enableCustomButton = [
 function extendButtonBlock( settings, name ) {
 	if ("core/button" === name ) {
 		settings.title = __("Button Extended", "lsx-blocks" );
-		const INITIAL_BORDER_RADIUS_POSITION = 3;
 	}
 	return settings;
 }
@@ -41,6 +40,22 @@ addFilter(
 );
 
 /** HOVER AND BACKGROUND COLOR */
+
+// Available shape control options
+const buttonShapeOptions = [
+	{
+		label: __( 'Rounded Square' ),
+		value: 'rounded-square',
+	},
+	{
+		label: __( 'Square' ),
+		value: 'square',
+	},
+	{
+		label: __( 'Circular' ),
+		value: 'circular',
+	},
+];
 
 /**
  * Add the hover attribute to the button
@@ -60,6 +75,13 @@ function addHoverControlAttribute ( settings, name ) {
 		},
 		buttonShadowColor: {
 			type: 'string',
+		},
+		borderRadius: {
+			default: 3,
+		},
+		buttonShape: {
+			type: 'string',
+			default: buttonShapeOptions[ 0 ].value,
 		},
 	} );
 
@@ -83,11 +105,7 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 			);
 		}
 
-		const { buttonHoverColor, buttonShadowColor } = props.attributes;
-
-		const applyTheme = () => {
-			document.documentElement.style.setProperty('--color-primary', buttonShadowColor);
-		};
+		const { buttonHoverColor, buttonShadowColor, buttonShape } = props.attributes;
 
 		// add has-hover class to block
 		if ( buttonHoverColor ) {
@@ -96,10 +114,12 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 		if ( buttonShadowColor ) {
 			var buttonShadowClass = `has-shadow-color`;
 		}
+
 		// add has-shadow class to block
 		props.attributes.className = classnames(
 			buttonHoverClass,
-			buttonShadowClass
+			buttonShadowClass,
+			buttonShape
 		)
 
 		return (
@@ -107,12 +127,12 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 				<BlockEdit { ...props } />
 				<InspectorControls>
 					<PanelBody
-						title={ __( 'Change Hover Control' ) }
+						title={ __( 'Additional LSX Settings' ) }
 						initialOpen={ true }
 					>
 						<PanelColorSettings
 							title={ __( 'Button Hover Color' ) }
-							initialOpen={ false }
+							initialOpen={ true }
 							colorSettings={ [ {
 								value: buttonHoverColor,
 								label: __( 'Button Hover Color' ),
@@ -137,6 +157,16 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 							} ] }
 						>
 						</PanelColorSettings>
+						<SelectControl
+							label={ __( 'Button Shape' ) }
+							value={ buttonShape }
+							options={ buttonShapeOptions }
+							onChange={ ( selectedShapeOption ) => {
+								props.setAttributes( {
+									buttonShape: selectedShapeOption,
+								} );
+							} }
+						/>
 					</PanelBody>
 				</InspectorControls>
 			</Fragment>
@@ -179,7 +209,7 @@ addFilter(
 );
 
 /**
- * Add hover style attribute to save element of block.
+ * Add box shadow styles to button.
  *
  * @param {object} saveElementProps Props of save element.
  * @param {Object} blockType Block type information.
@@ -189,7 +219,7 @@ addFilter(
  */
 const addExtraClassesButton = ( element, block, attributes ) => {
 
-	let boxShadowStyle = 'initial';
+	let boxShadowStyle = '#27639e';
 	if ( attributes.buttonShadowColor ) {
 		boxShadowStyle = '2px 2px 0 0 ' + attributes.buttonShadowColor;
 	}
@@ -209,6 +239,7 @@ const addExtraClassesButton = ( element, block, attributes ) => {
 	}
 	return element;
 };
+
 addFilter(
 	"blocks.getSaveElement",
 	"lsx-blocks/extend-button-block",
