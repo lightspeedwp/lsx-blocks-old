@@ -2686,7 +2686,9 @@
 
 .wp-block-button.has-shadow-color a {
   -webkit-box-shadow: 2px 2px 0 0 var(--color-primary);
-          box-shadow: 2px 2px 0 0 var(--color-primary); }
+          box-shadow: 2px 2px 0 0 var(--color-primary);
+  -webkit-box-shadow: 2px 2px 0 0 red;
+          box-shadow: 2px 2px 0 0 red; }
 
 .is-style-lsx-button-style .wp-block-button__link {
   border-radius: 3px;

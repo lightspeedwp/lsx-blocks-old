@@ -9,29 +9,16 @@ const { __ } = wp.i18n;
 
 const { addFilter } = wp.hooks;
 
-const { registerBlockStyle } = wp.blocks;
+//const { registerBlockStyle } = wp.blocks;
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
 const { InspectorControls, PanelColorSettings } = wp.editor;
 const { PanelBody } = wp.components;
 
-unregisterBlockStyle( 'core/button' , [
-	{ name: 'fill', label: __( 'Fill' ) },
-	{ name: 'outline', label: __( 'Outline' ) },
-]);
-
-// registerBlockStyle( 'core/button' , {
-//     name: 'extended-button-lsx',
-// 	label: __( 'LSX Button' ),
-// 	isDefault: true
-// });
-
-
 // Enable spacing control on the following blocks
 const enableCustomButton = [
 	'core/button',
 ];
-
 
 /**
  * Changes name the to Button Block
@@ -43,6 +30,7 @@ const enableCustomButton = [
 function extendButtonBlock( settings, name ) {
 	if ("core/button" === name ) {
 		settings.title = __("Button Extended", "lsx-blocks" );
+		const INITIAL_BORDER_RADIUS_POSITION = 3;
 	}
 	return settings;
 }
@@ -95,6 +83,7 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 			);
 		}
 
+		const { className } = props;
 		const { buttonHoverColor, buttonShadowColor } = props.attributes;
 
 		const applyTheme = () => {
@@ -145,8 +134,7 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 								onChange : ( selectedShadowOption ) =>
 									props.setAttributes( {
 										buttonShadowColor: selectedShadowOption,
-									},
-									applyTheme(nextTheme),
+									}
 								),
 							} ] }
 						>
@@ -190,4 +178,27 @@ addFilter(
 	"blocks.getSaveContent.extraProps",
 	"lsx-blocks/extend-button-block",
 	addHoverExtraProps
+);
+
+wp.hooks.addFilter(
+	'blocks.getSaveElement',
+	'lsx-blocks/extend-button-block',
+	(element, block, attributes) => {
+		if(block.name === 'core/button') {
+			return wp.element.cloneElement(
+				element,
+				{},
+				wp.element.cloneElement(
+					element.props.children,
+					{
+						className: classnames(
+							'test',
+							'wp-block-button__link'
+						),
+					},
+				),
+			);
+		}
+		return element;
+	}
 );
