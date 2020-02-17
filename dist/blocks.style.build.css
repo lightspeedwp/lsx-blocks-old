@@ -2679,7 +2679,7 @@
     top: 2px;
     position: relative; }
 
-.wp-block-button__link, .wp-block-button .block-editor-rich-text {
+.wp-block-button__link {
   border-radius: 3px;
   font-size: 15px;
   font-weight: 700;
@@ -2693,7 +2693,7 @@
 
 .wp-block-button {
   margin: 0 0 1em 0; }
-  .wp-block-button.square .wp-block-button__link, .wp-block-button.square .block-editor-rich-text {
+  .wp-block-button.square .wp-block-button__link {
     border-radius: 0; }
-  .wp-block-button.circular .wp-block-button__link, .wp-block-button.circular .block-editor-rich-text {
+  .wp-block-button.circular .wp-block-button__link {
     border-radius: 100px; }

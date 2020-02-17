@@ -42,6 +42,9 @@ function addHoverControlAttribute ( settings, name ) {
 		buttonHoverTextColor: {
 			type: 'string',
 		},
+		borderRadius: {
+			default: 3,
+		},
 	} );
 
 	return settings;
@@ -184,24 +187,31 @@ addFilter(
  */
 const addExtraClassesButton = ( element, block, attributes ) => {
 
-	let boxShadowStyle = '#27639e';
+	let boxShadowStyle = '2px 2px 0 0 #27639e';
 	if ( attributes.buttonShadowColor ) {
 		boxShadowStyle = '2px 2px 0 0 ' + attributes.buttonShadowColor;
 	}
+
 	if ( block.name === 'core/button' ) {
+		let str = '';
+		let style = '';
+		var obj2 = { 'boxShadow': boxShadowStyle };
+		str = element.props.children.props.style;
+
+		style = { ...str, ...obj2 };
+
 		return wp.element.cloneElement(
 			element,
 			{},
 			wp.element.cloneElement(
 				element.props.children,
 				{
-					style: {
-						boxShadow: boxShadowStyle,
-					},
+					style,
 				},
 			),
 		);
 	}
+
 	return element;
 };
 
