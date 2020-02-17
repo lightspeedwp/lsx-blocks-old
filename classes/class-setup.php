@@ -80,9 +80,9 @@ class Setup {
 		require_once LSX_BLOCKS_PATH . 'src/blocks/block-post-carousel/index.php';
 
 		/**
-		 * Load Gutenerg Button Block Styles
+		 * Load Gutenberg Group Block Styles
 		 */
-		require_once LSX_BLOCKS_PATH . 'src/extensions/block-button/index.php';
+		require_once LSX_BLOCKS_PATH . 'src/extensions/block-group/index.php';
 	}
 
 	/**
