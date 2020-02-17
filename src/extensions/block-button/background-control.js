@@ -21,24 +21,6 @@ const enableCustomButton = [
 ];
 
 /**
- * Changes name the to Button Block
- * @param {*} settings
- * @param {*} name
- * @returns
- */
-/*function extendButtonBlock( settings, name ) {
-	if ( 'core/button' === name ) {
-		settings.title = __( 'Button Extended', 'lsx-blocks' );
-	}
-	return settings;
-}
-addFilter(
-	'blocks.registerBlockType',
-	'lsx-blocks/extend-button-block/extend-button-block',
-	extendButtonBlock
-);*/
-
-/**
  * Add the hover attribute to the button
  *
  * @param {*} settings
@@ -204,8 +186,8 @@ const addExtraClassesButton = ( element, block, attributes ) => {
 	return element;
 };
 
-/*addFilter(
+addFilter(
 	'blocks.getSaveElement',
 	'lsx-blocks/extend-button-block-add-extra-classes',
 	addExtraClassesButton
-);*/
+);
