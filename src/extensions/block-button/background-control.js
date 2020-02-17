@@ -67,6 +67,10 @@ addFilter(
 	addHoverControlAttribute
 );
 
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
+
 /**
  * Create HOC to add Hover control to inspector controls of block.
  */
@@ -79,7 +83,7 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 			);
 		}
 
-		const { buttonHoverColor, buttonShadowColor, buttonShape } = props.attributes;
+		const { buttonHoverColor, buttonShadowColor } = props.attributes;
 
 		// add has-hover class to block
 		if ( buttonHoverColor ) {
@@ -90,11 +94,10 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 		}
 
 		// add has-shadow class to block
-		props.attributes.className = classnames(
-			buttonHoverClass,
-			buttonShadowClass,
-			buttonShape
-		)
+		props.attributes.className = classnames( props.attributes.className, buttonHoverClass, buttonShadowClass );
+		props.attributes.className = props.attributes.className.split( ' ' );
+		props.attributes.className = props.attributes.className.filter( onlyUnique );
+		props.attributes.className = props.attributes.className.join( ' ' );
 
 		return (
 			<Fragment>
@@ -110,7 +113,7 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 							colorSettings={ [ {
 								value: buttonHoverColor,
 								label: __( 'Button Hover Color' ),
-								onChange : ( selectedHoverOption ) =>
+								onChange: ( selectedHoverOption ) =>
 									props.setAttributes( {
 										buttonHoverColor: selectedHoverOption,
 									} ),
@@ -123,11 +126,10 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 							colorSettings={ [ {
 								value: buttonShadowColor,
 								label: __( 'Button Shadow Color' ),
-								onChange : ( selectedShadowOption ) =>
+								onChange: ( selectedShadowOption ) =>
 									props.setAttributes( {
 										buttonShadowColor: selectedShadowOption,
-									}
-									),
+									} ),
 							} ] }
 						>
 						</PanelColorSettings>
@@ -159,9 +161,7 @@ const addHoverExtraProps = ( saveElementProps, blockType, attributes ) => {
 		return saveElementProps;
 	}
 
-	assign( saveElementProps, {
-		bghover: attributes.buttonHoverColor,
-	} );
+	assign( saveElementProps, { bghover: attributes.buttonHoverColor } );
 
 	return saveElementProps;
 };
@@ -187,7 +187,7 @@ const addExtraClassesButton = ( element, block, attributes ) => {
 	if ( attributes.buttonShadowColor ) {
 		boxShadowStyle = '2px 2px 0 0 ' + attributes.buttonShadowColor;
 	}
-	if(block.name === 'core/button') {
+	if ( block.name === 'core/button' ) {
 		return wp.element.cloneElement(
 			element,
 			{},
@@ -204,8 +204,8 @@ const addExtraClassesButton = ( element, block, attributes ) => {
 	return element;
 };
 
-addFilter(
+/*addFilter(
 	'blocks.getSaveElement',
 	'lsx-blocks/extend-button-block-add-extra-classes',
 	addExtraClassesButton
-);
+);*/
