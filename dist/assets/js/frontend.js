@@ -74,12 +74,22 @@ var LSX_BLOCKS = Object.create( null );
 
 	//Adding Hover states for Core Button Block Extended
 	LSX_BLOCKS.coreButton = function( ) {
+		//Hover BG
 		$( ".wp-block-button.has-hover-color a" ).mouseenter(function() {
 			var bghover = this.parentNode.getAttribute('bghover');
 			$(this).css("background-color", bghover );
 		});
 		$( ".wp-block-button.has-hover-color a" ).mouseleave(function() {
 			$(this).css("background-color", "" );
+		});
+
+		//Hover text color
+		$( ".wp-block-button.has-hover-text-color a" ).mouseenter(function() {
+			var texthover = this.parentNode.getAttribute('texthover');
+			$(this).css("color", texthover );
+		});
+		$( ".wp-block-button.has-hover-text-color a" ).mouseleave(function() {
+			$(this).css("color", "" );
 		});
 	};
 
