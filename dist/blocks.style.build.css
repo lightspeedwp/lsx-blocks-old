@@ -2906,14 +2906,16 @@
   letter-spacing: 0.54px;
   line-height: 1.25;
   text-transform: uppercase;
-  background-color: #418ad0;
-  background-color: #418AD0;
-  -webkit-box-shadow: 2px 2px 0 0 #27639e;
-          box-shadow: 2px 2px 0 0 #27639e; }
+  background-color: currentColor; }
 
 .wp-block-button {
   margin: 0 0 1em 0; }
-  .wp-block-button.square .wp-block-button__link {
-    border-radius: 0; }
-  .wp-block-button.circular .wp-block-button__link {
-    border-radius: 100px; }
+  .wp-block-button:active {
+    left: 2px;
+    top: 2px;
+    position: relative;
+    -webkit-box-shadow: 0 0 0 0 !important;
+            box-shadow: 0 0 0 0 !important; }
+  .wp-block-button.is-style-outline .wp-block-button__link {
+    -webkit-box-shadow: 0 0 0 0 !important;
+            box-shadow: 0 0 0 0 !important; }

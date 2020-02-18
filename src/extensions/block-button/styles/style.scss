@@ -5,20 +5,19 @@
 	letter-spacing: 0.54px;
 	line-height: 1.25;
 	text-transform: uppercase;
-	background-color: $blue;
-	background-color: #418AD0;
-	box-shadow: 2px 2px 0 0 $accent;
+	background-color: currentColor;
 }
 .wp-block-button {
 	margin: 0 0 1em 0;
-	&.square {
-		.wp-block-button__link {
-			border-radius: 0;
-		}
+	&:active {
+		left: 2px;
+		top: 2px;
+		position: relative;
+		box-shadow: 0 0 0 0 !important;
 	}
-	&.circular {
+	&.is-style-outline {
 		.wp-block-button__link {
-			border-radius: 100px;
+			box-shadow: 0 0 0 0 !important;
 		}
 	}
 }

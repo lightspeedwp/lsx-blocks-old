@@ -37,6 +37,7 @@ function addHoverControlAttribute ( settings, name ) {
 		},
 		buttonShadowColor: {
 			type: 'string',
+			default: '',
 		},
 		buttonHoverTextColor: {
 			type: 'string',
@@ -217,7 +218,7 @@ addFilter(
  */
 const addExtraClassesButton = ( element, block, attributes ) => {
 
-	let boxShadowStyle = '2px 2px 0 0 #27639e';
+	let boxShadowStyle = 'none';
 	if ( attributes.buttonShadowColor ) {
 		boxShadowStyle = '2px 2px 0 0 ' + attributes.buttonShadowColor;
 	}
