@@ -1,6 +1,5 @@
 // Import CSS
 import './styles/style.scss';
-//import './styles/editor.scss';
 
 import classnames from 'classnames';
 import assign from 'lodash.assign';
@@ -13,7 +12,7 @@ const { addFilter } = wp.hooks;
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
 const { InspectorControls, PanelColorSettings } = wp.blockEditor;
-const { PanelBody } = wp.components;
+const { PanelBody, ToggleControl, TextControl } = wp.components;
 
 // Enable spacing control on the following blocks
 const enableCustomButton = [
@@ -45,6 +44,16 @@ function addHoverControlAttribute ( settings, name ) {
 		borderRadius: {
 			default: 3,
 		},
+		buttonModal: {
+			type: 'boolean',
+			default: false,
+		},
+		buttonDataTarget: {
+			type: 'string',
+		},
+		buttonDataToggle: {
+			type: 'string',
+		},
 	} );
 
 	return settings;
@@ -71,7 +80,7 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 			);
 		}
 
-		const { buttonHoverColor, buttonShadowColor, buttonHoverTextColor } = props.attributes;
+		const { buttonHoverColor, buttonShadowColor, buttonHoverTextColor, buttonModal, buttonDataTarget, buttonDataToggle } = props.attributes;
 
 		// add has-hover class to block
 		if ( buttonHoverColor ) {
@@ -137,6 +146,27 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 							} ] }
 						>
 						</PanelColorSettings>
+						<ToggleControl
+							label={ __( 'Is this a button that opens a Modal?' ) }
+							checked={ buttonModal }
+							onChange={ () => props.setAttributes( { buttonModal: ! buttonModal } ) }
+						/>
+						{ buttonModal &&
+						<TextControl
+							label={ __( 'Add data-target attribute' ) }
+							type="text"
+							value={ buttonDataTarget }
+							onChange={ ( value ) => props.setAttributes( { buttonDataTarget: value } ) }
+						/>
+						}
+						{ buttonModal &&
+							<TextControl
+							label={ __( 'Add data-toggle attribute' ) }
+							type="text"
+							value={ buttonDataToggle }
+							onChange={ ( value ) => props.setAttributes( { buttonDataToggle: value } ) }
+						/>
+						}
 					</PanelBody>
 				</InspectorControls>
 			</Fragment>
@@ -200,6 +230,10 @@ const addExtraClassesButton = ( element, block, attributes ) => {
 
 		style = { ...str, ...obj2 };
 
+
+		let dataToggle = attributes.buttonDataToggle;
+		let dataTarget = attributes.buttonDataTarget;
+
 		return wp.element.cloneElement(
 			element,
 			{},
@@ -207,6 +241,8 @@ const addExtraClassesButton = ( element, block, attributes ) => {
 				element.props.children,
 				{
 					style,
+					'data-target': dataTarget,
+					'data-toggle': dataToggle,
 				},
 			),
 		);
