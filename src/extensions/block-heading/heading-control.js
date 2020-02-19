@@ -35,6 +35,12 @@ function addHeadingControlAttributes ( settings, name ) {
 		headingTextSize: {
 			type: 'number',
 		},
+		headingMarginTop: {
+			type: 'number',
+		},
+		headingMarginBottom: {
+			type: 'number',
+		},
 	} );
 
 	return settings;
@@ -44,11 +50,6 @@ addFilter(
 	'lsx-blocks/extend-heading-block/heading-control-attribute',
 	addHeadingControlAttributes
 );
-
-
-function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-}
 
 /**
  * Create HOC to add Hover control to inspector controls of block.
@@ -62,18 +63,7 @@ const headingSettingsControl = createHigherOrderComponent( ( BlockEdit ) => {
 			);
 		}
 
-		const { headingHoverColor, headingTextSize } = props.attributes;
-
-		// add has-hover class to block
-		if ( headingHoverColor ) {
-			var headingHoverClass = `has-hover-color`;
-		}
-
-		// add has-shadow class to block
-		props.attributes.className = classnames( props.attributes.className, headingHoverClass );
-		props.attributes.className = props.attributes.className.split( ' ' );
-		props.attributes.className = props.attributes.className.filter( onlyUnique );
-		props.attributes.className = props.attributes.className.join( ' ' );
+		const { headingTextSize, headingMarginTop, headingMarginBottom } = props.attributes;
 
 		return (
 			<Fragment>
@@ -87,6 +77,22 @@ const headingSettingsControl = createHigherOrderComponent( ( BlockEdit ) => {
 							label={ __( 'Heading Font Size' ) }
 							value={ headingTextSize }
 							onChange={ ( value ) => props.setAttributes( { headingTextSize: value } ) }
+							min={ 0 }
+							max={ 100 }
+							step={ 1 }
+						/>
+						<RangeControl
+							label={ __( 'Heading Margin Top' ) }
+							value={ headingMarginTop }
+							onChange={ ( value ) => props.setAttributes( { headingMarginTop: value } ) }
+							min={ 0 }
+							max={ 100 }
+							step={ 1 }
+						/>
+						<RangeControl
+							label={ __( 'Heading Margin Bottom' ) }
+							value={ headingMarginBottom }
+							onChange={ ( value ) => props.setAttributes( { headingMarginBottom: value } ) }
 							min={ 0 }
 							max={ 100 }
 							step={ 1 }
@@ -121,19 +127,18 @@ const addExtraPropsHeading = ( saveElementProps, blockType, attributes ) => {
 	}
 
 	if ( blockType.name === 'core/heading' ) {
-		let str = '';
-		str = attributes;
-		console.log(str);
+
 		assign( saveElementProps,
 			{ style: {
 				'color': attributes.customTextColor,
 				'fontSize': attributes.headingTextSize,
+				'marginTop': attributes.headingMarginTop,
+				'marginBottom': attributes.headingMarginBottom,
 			}}
 		);
 	}
 
 	return saveElementProps;
-
 
 };
 
