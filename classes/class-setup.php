@@ -78,6 +78,11 @@ class Setup {
 		 * Load Post Carousel PHP
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/blocks/block-post-carousel/index.php';
+
+		/**
+		 * Load Gutenberg Heading Block Styles
+		 */
+		require_once LSX_BLOCKS_PATH . 'src/extensions/block-heading/index.php';
 	}
 
 	/**
