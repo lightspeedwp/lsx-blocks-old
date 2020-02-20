@@ -181,7 +181,7 @@ const addExtraPropsGroup = ( saveElementProps, blockType, attributes ) => {
 	}
 
 	if ( blockType.name === 'core/group' ) {
-		console.log(attributes);
+
 		assign( saveElementProps,
 			{ style: {
 				'paddingTop': attributes.groupPaddingTop,
