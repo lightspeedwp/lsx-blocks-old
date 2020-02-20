@@ -2844,3 +2844,5 @@
        object-fit: contain; }
   .wp-block-group.is-style-lsx-group-style .wp-block-group__inner-container p + .wp-block-button {
     margin-top: 3rem; }
+  .wp-block-group.is-style-lsx-group-style .wp-block-group__inner-container p.has-small-font-size {
+    margin-bottom: 2rem; }
