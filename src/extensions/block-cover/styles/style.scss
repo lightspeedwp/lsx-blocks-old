@@ -1,0 +1,28 @@
+.wp-block-cover {
+	&.is-style-lsx-cover-style {
+		.wp-block-cover__inner-container {
+			max-width: 75%;
+			color: white;
+			text-align: center;
+			.wp-block-image {
+				margin-bottom: 0;
+				img {
+					max-height: 95px;
+					margin: 0.5em auto;
+					max-width: 95px;
+				};
+			}
+			h2 {
+				font-size: 40px;
+				padding-bottom: 0.2em;
+				line-height: 1em;
+				margin-bottom: 0;
+			}
+			p {
+				font-size: 26px;
+				margin-bottom: 0.5em;
+				line-height: 1.2em;
+			}
+		}
+	}
+}

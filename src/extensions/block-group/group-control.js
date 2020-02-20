@@ -88,7 +88,7 @@ const groupSettingsControl = createHigherOrderComponent( ( BlockEdit ) => {
 						initialOpen={ true }
 					>
 						<RangeControl
-							label={ __( 'Group Padding Top' ) }
+							label={ __( 'Group Padding Top (px)' ) }
 							value={ groupPaddingTop }
 							onChange={ ( value ) => props.setAttributes( { groupPaddingTop: value } ) }
 							min={ 0 }
@@ -96,7 +96,7 @@ const groupSettingsControl = createHigherOrderComponent( ( BlockEdit ) => {
 							step={ 1 }
 						/>
 						<RangeControl
-							label={ __( 'Group Padding Bottom' ) }
+							label={ __( 'Group Padding Bottom (px)' ) }
 							value={ groupPaddingBottom }
 							onChange={ ( value ) => props.setAttributes( { groupPaddingBottom: value } ) }
 							min={ 0 }
@@ -104,7 +104,7 @@ const groupSettingsControl = createHigherOrderComponent( ( BlockEdit ) => {
 							step={ 1 }
 						/>
 						<RangeControl
-							label={ __( 'Group Padding Left' ) }
+							label={ __( 'Group Padding Left (px)' ) }
 							value={ groupPaddingLeft }
 							onChange={ ( value ) => props.setAttributes( { groupPaddingLeft: value } ) }
 							min={ 0 }
@@ -112,7 +112,7 @@ const groupSettingsControl = createHigherOrderComponent( ( BlockEdit ) => {
 							step={ 1 }
 						/>
 						<RangeControl
-							label={ __( 'Group Padding Right' ) }
+							label={ __( 'Group Padding Right (px)' ) }
 							value={ groupPaddingRight }
 							onChange={ ( value ) => props.setAttributes( { groupPaddingRight: value } ) }
 							min={ 0 }
@@ -120,7 +120,7 @@ const groupSettingsControl = createHigherOrderComponent( ( BlockEdit ) => {
 							step={ 1 }
 						/>
 						<RangeControl
-							label={ __( 'Group Margin Top' ) }
+							label={ __( 'Group Margin Top (px)' ) }
 							value={ groupMarginTop }
 							onChange={ ( value ) => props.setAttributes( { groupMarginTop: value } ) }
 							min={ 0 }
@@ -128,7 +128,7 @@ const groupSettingsControl = createHigherOrderComponent( ( BlockEdit ) => {
 							step={ 1 }
 						/>
 						<RangeControl
-							label={ __( 'Group Margin Bottom' ) }
+							label={ __( 'Group Margin Bottom (px)' ) }
 							value={ groupMarginBottom }
 							onChange={ ( value ) => props.setAttributes( { groupMarginBottom: value } ) }
 							min={ 0 }
@@ -136,7 +136,7 @@ const groupSettingsControl = createHigherOrderComponent( ( BlockEdit ) => {
 							step={ 1 }
 						/>
 						<RangeControl
-							label={ __( 'Group Margin Left' ) }
+							label={ __( 'Group Margin Left (px)' ) }
 							value={ groupMarginLeft }
 							onChange={ ( value ) => props.setAttributes( { groupMarginLeft: value } ) }
 							min={ 0 }
@@ -144,7 +144,7 @@ const groupSettingsControl = createHigherOrderComponent( ( BlockEdit ) => {
 							step={ 1 }
 						/>
 						<RangeControl
-							label={ __( 'Group Margin Right' ) }
+							label={ __( 'Group Margin Right (px)' ) }
 							value={ groupMarginRight }
 							onChange={ ( value ) => props.setAttributes( { groupMarginRight: value } ) }
 							min={ 0 }
