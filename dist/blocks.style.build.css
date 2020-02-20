@@ -2822,7 +2822,8 @@
       flex-direction: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: 100%; }
+  width: 100%;
+  padding: 0; }
   .wp-block-group.is-style-lsx-group-style .wp-block-group__inner-container,
   .wp-block-group.is-style-lsx-group-style .wp-block-image img,
   .wp-block-group.is-style-lsx-group-style .wp-block-button .wp-block-button__link {
@@ -2842,4 +2843,4 @@
     -o-object-fit: contain;
        object-fit: contain; }
   .wp-block-group.is-style-lsx-group-style .wp-block-group__inner-container p + .wp-block-button {
-    margin-top: 4.25rem; }
+    margin-top: 3rem; }
