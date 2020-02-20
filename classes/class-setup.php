@@ -83,6 +83,8 @@ class Setup {
 		 * Load Gutenberg Group Block Styles
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/extensions/block-group/index.php';
+		require_once LSX_BLOCKS_PATH . 'src/extensions/block-heading/index.php';
+		
 	}
 
 	/**

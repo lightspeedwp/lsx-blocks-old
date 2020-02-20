@@ -16,3 +16,8 @@ export function fontRatioToClass( ratio ) {
 export function generateUniqueID( input ) {
 	return md5( input ).substr( 0, 6 );
 }
+
+// Generate unique classnames.
+export function onlyUnique(value, index, self) {
+	return self.indexOf(value) === index;
+}

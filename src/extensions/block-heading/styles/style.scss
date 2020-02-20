@@ -1,0 +1,11 @@
+.is-style-lsx-heading-style {
+	text-align: center;
+	&::after {
+		content: '';
+		display: block;
+		height: 2px;
+		margin: 2.4rem auto 0;
+		width: 80px;
+		background-color: #ddd;
+	}
+}
