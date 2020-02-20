@@ -1,0 +1,44 @@
+//Group Block extension
+.wp-block-group {
+	&.is-style-lsx-group-style {
+		background: $groupbg;
+		margin: 0 auto 2.4em;
+		display: flex;
+		flex-flow: row wrap;
+		flex-direction: column;
+		justify-content: space-around;
+		width: 100%;
+		padding: 0;
+		.wp-block-group__inner-container,
+		.wp-block-image img,
+		.wp-block-button .wp-block-button__link {
+			width: 100%;
+		}
+		.wp-block-group__inner-container {
+			>*:not(.wp-block-image) {
+				padding-left: 1.5rem;
+				padding-right: 1.5rem;
+			}
+			h1, h2, h3, h4, h5, h6 {
+				margin-bottom: 0;
+			}
+			h2 {
+				font-size: 20px;
+				font-weight: bold;
+			}
+			img[src$=".svg"] {
+				max-width: 90px;
+				padding-top: 30px;
+				max-height: 110px;
+				object-fit: contain;
+			}
+			p + .wp-block-button {
+				margin-top: 3rem;
+			}
+			p.has-small-font-size {
+				margin-bottom: 2rem;
+			}
+		}
+
+	}
+}

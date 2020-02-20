@@ -1,0 +1,23 @@
+.wp-block-button__link {
+	border-radius: 3px;
+	font-size: 15px;
+	font-weight: 700;
+	letter-spacing: 0.54px;
+	line-height: 1.25;
+	text-transform: uppercase;
+	background-color: currentColor;
+}
+.wp-block-button {
+	margin: 0 0 1em 0;
+	&:active {
+		left: 2px;
+		top: 2px;
+		position: relative;
+		box-shadow: 0 0 0 0 !important;
+	}
+	&.is-style-outline {
+		.wp-block-button__link {
+			box-shadow: 0 0 0 0 !important;
+		}
+	}
+}

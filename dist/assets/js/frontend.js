@@ -70,7 +70,38 @@ var LSX_BLOCKS = Object.create( null );
                 ]
             });
         } );
-    };
+	};
+
+	//Adding Hover states for Core Button Block Extended
+	LSX_BLOCKS.coreButton = function( ) {
+		//Hover BG
+		$( ".wp-block-button.has-hover-color a" ).each(function() {
+			var prevbghover = this.style.backgroundColor;
+			$(this).mouseenter(function() {
+				var bghover = this.parentNode.getAttribute('bghover');
+				$(this).css("background-color", bghover );
+			});
+			$(this).mouseleave(function() {
+				$(this).css("background-color", prevbghover );
+			});
+
+		});
+
+		$( ".wp-block-button.has-hover-text-color a" ).each(function() {
+			var prevtexthover = this.style.color;
+			//Hover text color
+			$(this).mouseenter(function() {
+				var texthover = this.parentNode.getAttribute('texthover');
+				$(this).css("color", texthover );
+			});
+			$(this).mouseleave(function() {
+				$(this).css("color", prevtexthover );
+			});
+
+		});
+
+	};
+
 
     /**
      * On document ready.
@@ -79,7 +110,9 @@ var LSX_BLOCKS = Object.create( null );
      * @subpackage scripts
      */
     LSX_BLOCKS.document.ready( function() {
-        LSX_BLOCKS.init();
+		LSX_BLOCKS.init();
+
+		LSX_BLOCKS.coreButton();
     } );
 
 } )( jQuery, window, document );
