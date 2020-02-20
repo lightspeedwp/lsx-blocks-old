@@ -22,6 +22,10 @@ registerBlockType( 'lsx-blocks/lsx-team', {
 		__( 'team', 'lsx-blocks' ),
 		__( 'lsx', 'lsx-blocks' ),
 	],
+	supports: {
+		align: true,
+		html: false,
+	},
 	edit,
 	save() {
 		// Rendering in PHP

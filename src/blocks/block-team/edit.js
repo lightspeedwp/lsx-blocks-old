@@ -1,7 +1,10 @@
 /**
  * External dependencies
  */
+import classnames from 'classnames';
+
 const { __ } = wp.i18n;
+const { decodeEntities } = wp.htmlEntities;
 const { withSelect } = wp.data;
 const { Spinner } = wp.components;
 
@@ -23,16 +26,45 @@ export default withSelect( select => {
 		return <p>{ __( 'No Posts', 'lsx-blocks' ) }</p>;
 	}
 	return (
-		<ul className={ className }>
-			{ posts.map( post => {
+		<div className={ className }>
+			{ posts.map( ( post, i ) => {
+
+				console.log(post);
 				return (
-					<li  key="inspector">
-						<a className={ className } href={ post.link }>
-							{ post.title.rendered }
-						</a>
-					</li>
+					<article key={ i }
+						className={ classnames(
+							post.featured_media ? 'has-thumb' : 'no-thumb'
+						) }
+					>
+						{
+							post.featured_media !== undefined && post.featured_media ? (
+								<div className="lsx-block-post-grid-image">
+									<a href={ post.link } target="_blank" rel="bookmark">
+										<img
+											src={ post.images.medium }
+											alt={ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }
+										/>
+									</a>
+								</div>
+							) : (
+								null
+							)
+						}
+
+						<div className="lsx-block-post-grid-text">
+							<h2 className="entry-title"><a href={ post.link } target="_blank" rel="bookmark">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a></h2>
+
+							<div className="lsx-block-post-grid-excerpt">
+								{ post.excerpt &&
+									<div dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
+								}
+
+								<p><a className="lsx-block-post-grid-link lsx-text-link" href={ post.link } target="_blank" rel="bookmark">#</a></p>
+							</div>
+						</div>
+					</article>
 				);
 			}) }
-		</ul>
+		</div>
 	);
 } ) // end withAPIData
