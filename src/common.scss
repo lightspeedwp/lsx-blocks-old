@@ -172,3 +172,71 @@ $groupbg: #f2f2f2;
 		position: relative;
 	}
 }
+
+//Pullquote
+.wp-block-pullquote,
+.wp-block-quote {
+	border: none;
+	padding: 0;
+	margin-bottom: 4.25rem;
+	&.alignwide {
+		max-width: 75%;
+	}
+	&.alignfull {
+		max-width: 100%;
+	}
+	&.alignleft,
+	&.alignright {
+		padding: 0 4.25rem;
+		max-width: 50%;
+	}
+	&.alignleft {
+		padding-left: 10%;
+	}
+	&.alignright {
+		padding-right: 10%;
+	}
+	@media (max-width:767px) {
+		&.alignleft,
+		&.alignright {
+			max-width: 80%;
+			width: 80%;
+			padding: 0;
+		}
+	}
+	&.is-style-lsx-pullquote-style,
+	&.is-style-lsx-quote-style {
+		max-width: 585px !important;
+		margin: 6rem 0;
+		blockquote {
+			cite {
+				text-transform: initial;
+			}
+		}
+	}
+}
+.editor-block-list__block-edit {
+	.wp-block-pullquote,
+	.wp-block-quote {
+		border: 1px solid #DADDDF;
+		border-radius: 10px;
+		font-size: 16px;
+    padding: 4rem 4rem 2.4rem;
+		&:before {
+			border-radius: 50%;
+			content: '”';
+			font-style: normal;
+			left: 50%;
+			line-height: 1.375;
+			overflow: hidden;
+			position: absolute;
+			transform: translateX(-50%);
+			height: 30px;
+			top: -15px;
+			width: 30px;
+			font-size: 32px;
+			background-color: #f6f6f6;
+			color: #d84e2e;
+		}
+	}
+}
