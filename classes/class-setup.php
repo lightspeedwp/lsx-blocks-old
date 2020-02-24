@@ -84,7 +84,11 @@ class Setup {
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/extensions/block-group/index.php';
 		require_once LSX_BLOCKS_PATH . 'src/extensions/block-heading/index.php';
-		
+
+		/**
+		 * Load Gutenberg Cover Block Styles
+		 */
+		require_once LSX_BLOCKS_PATH . 'src/extensions/block-cover/index.php';
 	}
 
 	/**
