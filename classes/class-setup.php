@@ -89,6 +89,11 @@ class Setup {
 		 * Load Gutenberg Cover Block Styles
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/extensions/block-cover/index.php';
+
+		/**
+		 * Load Gutenberg Pullquote Block Styles
+		 */
+		require_once LSX_BLOCKS_PATH . 'src/extensions/block-pullquote/index.php';
 	}
 
 	/**
