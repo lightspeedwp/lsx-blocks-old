@@ -163,13 +163,15 @@ $groupbg: #f2f2f2;
   }
 }
 
-.lsx-button {
-	font-weight: 700;
-	text-transform: uppercase;
-	&:active {
-		left: 2px;
-		top: 2px;
-		position: relative;
+article {
+	.lsx-button {
+		font-weight: 700;
+		text-transform: uppercase;
+		&:active {
+			left: 2px;
+			top: 2px;
+			position: relative;
+		}
 	}
 }
 
