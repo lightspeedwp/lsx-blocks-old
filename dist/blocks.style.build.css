@@ -2679,9 +2679,11 @@
     top: 2px;
     position: relative; }
 
-.wp-block-lsx-blocks-team li {
-  list-style-position: inside; }
-
-.wp-block-lsx-blocks-team .spinner {
+.wp-block-lsx-blocks-lsx-team .spinner,
+.lsx-team-block .spinner {
   float: none;
   margin: 6px 2px 10px 0; }
+
+.wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar,
+.lsx-team-block .lsx-team-slot .lsx-team-avatar {
+  height: auto; }

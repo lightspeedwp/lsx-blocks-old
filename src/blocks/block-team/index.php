@@ -132,7 +132,8 @@ function render_dynamic_team_block( $attributes ) {
 
 		$column_size = intval( 12 / $columns );
 
-		$carousel = $attributes['displayCarousel'];
+		$carousel    = $attributes['displayCarousel'];
+		$post_layout = $attributes['postLayout'];
 
 		$show_link      = $attributes['displayPostLink'];
 		$show_email     = $attributes['displayEmail'];
@@ -144,7 +145,7 @@ function render_dynamic_team_block( $attributes ) {
 
 		$output = '';
 
-		if ( $carousel ) {
+		if ( $carousel && ( 'grid' === $post_layout ) ) {
 			$output .= "<div class='lsx-team-block' id='lsx-team-slider' data-slick='{\"slidesToShow\": $columns, \"slidesToScroll\": $columns }'>";
 		} else {
 			$output .= "<div class='lsx-team-block'><div class='row'>";

@@ -16,6 +16,7 @@ const {
 	Placeholder,
 	QueryControls,
 	RangeControl,
+	RadioControl,
 	SelectControl,
 	Spinner,
 	TextControl,
@@ -52,15 +53,20 @@ class TeamBlock extends Component {
 			return <p>{ __( 'No Posts', 'lsx-blocks' ) }</p>;
 		}
 
+		// Layouts options
+		const postLayoutOptions = [
+			{ value: 'grid', label: __( 'Grid' ) },
+			{ value: 'list', label: __( 'List' ) },
+		];
+
 		const inspectorControls = (
 			<InspectorControls>
 				<PanelBody title={ __( 'Layout Settings' ) }>
-					<QueryControls
-						{ ...{ order, orderBy, postsToShow } }
-						numberOfItems={ postsToShow }
-						onOrderChange={ ( value ) => setAttributes( { order: value } ) }
-						onOrderByChange={ ( value ) => setAttributes( { orderBy: value } ) }
-						onNumberOfItemsChange={ ( value ) => setAttributes( { postsToShow: value } ) }
+					<RadioControl
+						label={ __( 'Layout' ) }
+						selected={ postLayout }
+						options={ postLayoutOptions }
+						onChange={ ( value ) => setAttributes( { postLayout: value } ) }
 					/>
 					{ postLayout === 'grid' &&
 						<RangeControl
@@ -80,30 +86,21 @@ class TeamBlock extends Component {
 						onChange={ () => this.props.setAttributes( { displayPostImage: ! displayPostImage } ) }
 					/>
 				</PanelBody>
+				<PanelBody title={ __( 'General Settings' ) }>
+					<QueryControls
+						{ ...{ order, orderBy, postsToShow } }
+						numberOfItems={ postsToShow }
+						onOrderChange={ ( value ) => setAttributes( { order: value } ) }
+						onOrderByChange={ ( value ) => setAttributes( { orderBy: value } ) }
+						onNumberOfItemsChange={ ( value ) => setAttributes( { postsToShow: value } ) }
+					/>
+				</PanelBody>
 			</InspectorControls>
 		);
-
-		const layoutControls = [
-			{
-				icon: 'grid-view',
-				title: __( 'Grid View' ),
-				onClick: () => setAttributes( { postLayout: 'grid' } ),
-				isActive: postLayout === 'grid',
-			},
-			{
-				icon: 'list-view',
-				title: __( 'List View' ),
-				onClick: () => setAttributes( { postLayout: 'list' } ),
-				isActive: postLayout === 'list',
-			},
-		];
 
 		return (
 			<Fragment>
 				{ inspectorControls }
-				<BlockControls>
-					<Toolbar controls={ layoutControls } />
-				</BlockControls>
 				<div className={ className }>
 					{ posts.map( ( post, i ) => {
 
