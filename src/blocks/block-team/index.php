@@ -1,4 +1,10 @@
 <?php
+/**
+ * Server-side rendering for the team block
+ *
+ * @since   1.1.0
+ * @package LSX BLOCKS
+ */
 
 /**
  * Register the dynamic Team block.
@@ -49,6 +55,10 @@ function register_dynamic_block() {
 				'type'    => 'boolean',
 				'default' => true,
 			),
+			'displayEmail'        => array(
+				'type'    => 'boolean',
+				'default' => true,
+			),
 			'displayCarousel'     => array(
 				'type'    => 'boolean',
 				'default' => true,
@@ -93,7 +103,10 @@ function register_dynamic_block() {
 add_action( 'init', 'register_dynamic_block' );
 
 /**
- * Server rendering for /blocks/examples/12-dynamic
+ * Server-side rendering for the team block.
+ *
+ * @param [type] $attributes the attributes.
+ * @return output.
  */
 function render_dynamic_team_block( $attributes ) {
 	$team = new WP_Query( [
@@ -121,30 +134,21 @@ function render_dynamic_team_block( $attributes ) {
 
 		$carousel = $attributes['displayCarousel'];
 
-		//$carousel = true === $carousel || 'true' === $carousel ? true : false;
-
 		$show_link      = $attributes['displayPostLink'];
+		$show_email     = $attributes['displayEmail'];
 		$show_roles     = $attributes['displayTeamRole'];
 		$show_job_title = $attributes['displayTeamJobTitle'];
 		$show_desc      = $attributes['displayPostExcerpt'];
 		$show_image     = $attributes['displayPostImage'];
 		$show_social    = $attributes['displayTeamSocial'];
 
+		$output = '';
+
 		if ( $carousel ) {
 			$output .= "<div class='lsx-team-block' id='lsx-team-slider' data-slick='{\"slidesToShow\": $columns, \"slidesToScroll\": $columns }'>";
 		} else {
 			$output .= "<div class='lsx-team-block'><div class='row'>";
 		}
-
-		// $recent_posts->the_post();
-		// global $post;
-		// $post_id = get_the_ID();
-
-		// $markup  .= sprintf(
-		// 	'<div class="lsx-team-slot"><a href="%1$s">%2$s</a></div>',
-		// 	esc_url( get_permalink( $post_id ) ),
-		// 	esc_html( get_the_title( $post_id ) )
-		// );
 
 		while ( $team->have_posts() ) {
 			$team->the_post();
@@ -156,14 +160,14 @@ function render_dynamic_team_block( $attributes ) {
 			$member_name        = apply_filters( 'the_title', $post->post_title );
 			$member_roles       = '';
 			$member_description = '';
-			$member_avatar = '';
-			$member_socials = '';
-			$member_job_title = '';
-			$member_email = '';
-			$bottom_link = '';
-			$facebook = get_post_meta( $post->ID, 'lsx_facebook', true );
-			$twitter = get_post_meta( $post->ID, 'lsx_twitter', true );
-			$linkedin = get_post_meta( $post->ID, 'lsx_linkedin', true );
+			$member_avatar      = '';
+			$member_socials     = '';
+			$member_job_title   = '';
+			$member_email       = '';
+			$bottom_link        = '';
+			$facebook           = get_post_meta( $post->ID, 'lsx_facebook', true );
+			$twitter            = get_post_meta( $post->ID, 'lsx_twitter', true );
+			$linkedin           = get_post_meta( $post->ID, 'lsx_linkedin', true );
 
 			// Link to single.
 			if ( ( true === $show_link || 'true' === $show_link ) ) {
@@ -202,7 +206,7 @@ function render_dynamic_team_block( $attributes ) {
 
 			// Member job title.
 			if ( true === $show_job_title || 'true' === $show_job_title ) {
-				$job_title = get_post_meta( $post->ID, 'lsx_job_title', true );
+				$job_title        = get_post_meta( $post->ID, 'lsx_job_title', true );
 				$member_job_title = ! empty( $job_title ) ? "<small class='lsx-team-job-title'>$job_title</small>" : '';
 			}
 
@@ -233,7 +237,7 @@ function render_dynamic_team_block( $attributes ) {
 			if ( true === $show_social || 'true' === $show_social ) {
 				$links = array(
 					'facebook' => $facebook,
-					'twitter' => $twitter,
+					'twitter'  => $twitter,
 					'linkedin' => $linkedin,
 				);
 
@@ -269,7 +273,7 @@ function render_dynamic_team_block( $attributes ) {
 				if ( $count == $columns && $team->post_count > $count_global ) {
 					$output .= '</div>';
 					$output .= '<div class="row">';
-					$count = 0;
+					$count   = 0;
 				}
 			}
 
