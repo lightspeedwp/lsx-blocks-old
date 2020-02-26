@@ -37,7 +37,7 @@ class TeamBlock extends Component {
 
 	render() {
 		const { attributes, posts, className, isSelected, setAttributes } = this.props;
-		const { order, orderBy } = attributes;
+		const { order, orderBy, postsToShow, postLayout, columns, displayPostImage } = attributes;
 
 		if ( ! posts ) {
 			return (
@@ -52,45 +52,97 @@ class TeamBlock extends Component {
 			return <p>{ __( 'No Posts', 'lsx-blocks' ) }</p>;
 		}
 
+		const inspectorControls = (
+			<InspectorControls>
+				<PanelBody title={ __( 'Layout Settings' ) }>
+					<QueryControls
+						{ ...{ order, orderBy, postsToShow } }
+						numberOfItems={ postsToShow }
+						onOrderChange={ ( value ) => setAttributes( { order: value } ) }
+						onOrderByChange={ ( value ) => setAttributes( { orderBy: value } ) }
+						onNumberOfItemsChange={ ( value ) => setAttributes( { postsToShow: value } ) }
+					/>
+					{ postLayout === 'grid' &&
+						<RangeControl
+							label={ __( 'Columns' ) }
+							value={ columns }
+							onChange={ ( value ) => setAttributes( { columns: value } ) }
+							min={ 2 }
+							max={ 6 }
+							step={ 1 }
+						/>
+					}
+				</PanelBody>
+				<PanelBody title={ __( 'Display Settings' ) }>
+					<ToggleControl
+						label={ __( 'Display Featured Image' ) }
+						checked={ displayPostImage }
+						onChange={ () => this.props.setAttributes( { displayPostImage: ! displayPostImage } ) }
+					/>
+				</PanelBody>
+			</InspectorControls>
+		);
+
+		const layoutControls = [
+			{
+				icon: 'grid-view',
+				title: __( 'Grid View' ),
+				onClick: () => setAttributes( { postLayout: 'grid' } ),
+				isActive: postLayout === 'grid',
+			},
+			{
+				icon: 'list-view',
+				title: __( 'List View' ),
+				onClick: () => setAttributes( { postLayout: 'list' } ),
+				isActive: postLayout === 'list',
+			},
+		];
+
 		return (
-			<div className={ className }>
-				{ posts.map( ( post, i ) => {
+			<Fragment>
+				{ inspectorControls }
+				<BlockControls>
+					<Toolbar controls={ layoutControls } />
+				</BlockControls>
+				<div className={ className }>
+					{ posts.map( ( post, i ) => {
 
-					console.log(post);
-					return (
-						<article key={ i }
-							className={ classnames(
-								post.featured_media ? 'has-thumb' : 'no-thumb'
-							) }
-						>
-							{
-								post.featured_media !== undefined && post.featured_media ? (
-									<div className="lsx-block-post-grid-image">
-										<a href={ post.link } target="_blank" rel="bookmark">
-											<img
-												src={ post.images.medium }
-												alt={ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }
-											/>
-										</a>
+						console.log(post);
+						return (
+							<article key={ i }
+								className={ classnames(
+									post.featured_media && displayPostImage ? 'has-thumb' : 'no-thumb'
+								) }
+							>
+								{
+									displayPostImage && post.featured_media !== undefined && post.featured_media ? (
+										<div className="lsx-block-post-grid-image">
+											<a href={ post.link } target="_blank" rel="bookmark">
+												<img
+													src={ post.images.medium }
+													alt={ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }
+												/>
+											</a>
+										</div>
+									) : (
+										null
+									)
+								}
+
+								<div className="lsx-block-post-grid-text">
+									<h2 className="entry-title"><a href={ post.link } target="_blank" rel="bookmark">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a></h2>
+									<small className="lsx-team-job-title">{ post.teamrole[0] }</small>
+									<div className="lsx-block-post-grid-excerpt">
+										{ post.excerpt &&
+											<div dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
+										}
 									</div>
-								) : (
-									null
-								)
-							}
-
-							<div className="lsx-block-post-grid-text">
-								<h2 className="entry-title"><a href={ post.link } target="_blank" rel="bookmark">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a></h2>
-								<small className="lsx-team-job-title">{ post.teamrole[0] }</small>
-								<div className="lsx-block-post-grid-excerpt">
-									{ post.excerpt &&
-										<div dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
-									}
 								</div>
-							</div>
-						</article>
-					);
-				}) }
-			</div>
+							</article>
+						);
+					}) }
+				</div>
+			</Fragment>
 		);
 	}
 }

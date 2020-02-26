@@ -29,7 +29,7 @@ function register_dynamic_block() {
 			),
 			'postsToShow'         => array(
 				'type'    => 'number',
-				'default' => 6,
+				'default' => 12,
 			),
 			'displayPostExcerpt'  => array(
 				'type'    => 'string',

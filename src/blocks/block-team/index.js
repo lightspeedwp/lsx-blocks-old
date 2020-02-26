@@ -13,7 +13,7 @@ const { registerBlockType } = wp.blocks;
 
 registerBlockType( 'lsx-blocks/lsx-team', {
 	title: __( 'LSX Team', 'lsx-blocks' ),
-	description: __( 'Add a team block.', 'lsx-blocks' ),
+	description: __( 'Add your team and customize options.', 'lsx-blocks' ),
 	icon:  'groups',
 	category: 'lsx-blocks',
 	keywords: [
