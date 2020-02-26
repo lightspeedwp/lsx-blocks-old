@@ -10,8 +10,6 @@ import edit from './edit';
  */
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { Spinner } = wp.components;
-const { withSelect } = wp.data;
 
 registerBlockType( 'lsx-blocks/lsx-team', {
 	title: __( 'LSX Team', 'lsx-blocks' ),
