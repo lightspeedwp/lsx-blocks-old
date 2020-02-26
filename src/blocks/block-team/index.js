@@ -15,7 +15,7 @@ const { withSelect } = wp.data;
 
 registerBlockType( 'lsx-blocks/lsx-team', {
 	title: __( 'LSX Team', 'lsx-blocks' ),
-	description: __( 'Add a teams block.', 'lsx-blocks' ),
+	description: __( 'Add a team block.', 'lsx-blocks' ),
 	icon:  'groups',
 	category: 'lsx-blocks',
 	keywords: [
