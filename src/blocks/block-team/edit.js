@@ -38,7 +38,7 @@ class TeamBlock extends Component {
 
 	render() {
 		const { attributes, posts, className, isSelected, setAttributes } = this.props;
-		const { order, orderBy, postsToShow, postLayout, columns, displayPostImage } = attributes;
+		const { order, orderBy, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt } = attributes;
 
 		if ( ! posts ) {
 			return (
@@ -59,6 +59,19 @@ class TeamBlock extends Component {
 			{ value: 'list', label: __( 'List' ) },
 		];
 
+		//Image Shape options
+		const imageShapeOptions = [
+			{ value: 'circle', label: __( 'Circle' ) },
+			{ value: 'square', label: __( 'Square' ) },
+		];
+
+		//Image Shape options
+		const displayPostExcerptOptions = [
+			{ value: 'excerpt', label: __( 'Excerpt' ) },
+			{ value: 'full', label: __( 'Full Content' ) },
+			{ value: 'none', label: __( 'No Content' ) },
+		];
+
 		const inspectorControls = (
 			<InspectorControls>
 				<PanelBody title={ __( 'Layout Settings' ) }>
@@ -77,12 +90,37 @@ class TeamBlock extends Component {
 							step={ 1 }
 						/>
 					}
+					{ postLayout === 'grid' &&
+						<ToggleControl
+							label={ __( 'Enable Carousel' ) }
+							checked={ displayCarousel }
+							onChange={ () => this.props.setAttributes( { displayCarousel: ! displayCarousel } ) }
+						/>
+					}
+					<SelectControl
+						label={ __( 'Image Shape' ) }
+						value={ imageShape }
+						options={ imageShapeOptions.map( ({ value, label }) => ( {
+							value: value,
+							label: label,
+						} ) ) }
+						onChange={ ( value ) => { this.props.setAttributes( { imageShape: value } ) } }
+					/>
 				</PanelBody>
 				<PanelBody title={ __( 'Display Settings' ) }>
 					<ToggleControl
 						label={ __( 'Display Featured Image' ) }
 						checked={ displayPostImage }
 						onChange={ () => this.props.setAttributes( { displayPostImage: ! displayPostImage } ) }
+					/>
+					<SelectControl
+						label={ __( 'Display Excerpt' ) }
+						value={ displayPostExcerpt }
+						options={ displayPostExcerptOptions.map( ({ value, label }) => ( {
+							value: value,
+							label: label,
+						} ) ) }
+						onChange={ ( value ) => { this.props.setAttributes( { displayPostExcerpt: value } ) } }
 					/>
 				</PanelBody>
 				<PanelBody title={ __( 'General Settings' ) }>
@@ -119,6 +157,7 @@ class TeamBlock extends Component {
 										<div className="lsx-block-post-grid-image">
 											<a href={ post.link } target="_blank" rel="bookmark">
 												<img
+													className={ imageShape }
 													src={ post.images.medium }
 													alt={ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }
 												/>
@@ -133,8 +172,11 @@ class TeamBlock extends Component {
 									<h2 className="entry-title"><a href={ post.link } target="_blank" rel="bookmark">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a></h2>
 									<small className="lsx-team-job-title">{ post.teamrole[0] }</small>
 									<div className="lsx-block-post-grid-excerpt">
-										{ post.excerpt &&
+										{ displayPostExcerpt === 'excerpt' && post.excerpt &&
 											<div dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
+										}
+										{ displayPostExcerpt === 'full' && post.content &&
+											<div dangerouslySetInnerHTML={ { __html: post.content.rendered } } />
 										}
 									</div>
 								</div>

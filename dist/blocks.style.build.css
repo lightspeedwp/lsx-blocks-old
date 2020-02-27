@@ -2686,7 +2686,23 @@
 
 .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar,
 .lsx-team-block .lsx-team-slot .lsx-team-avatar {
-  height: auto; }
+  height: auto;
+  width: auto;
+  border-radius: initial; }
+  .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar img,
+  .lsx-team-block .lsx-team-slot .lsx-team-avatar img {
+    border-radius: 50%;
+    display: block;
+    height: auto;
+    margin: 0 auto 2rem;
+    overflow: hidden;
+    width: 170px; }
+  .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar.square,
+  .lsx-team-block .lsx-team-slot .lsx-team-avatar.square {
+    border-radius: 0; }
+    .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar.square img,
+    .lsx-team-block .lsx-team-slot .lsx-team-avatar.square img {
+      border-radius: 0; }
 
 .wp-block-lsx-blocks-lsx-team.is-grid {
   display: grid;
@@ -2709,6 +2725,16 @@
 @media only screen and (max-width: 600px) {
   .wp-block-lsx-blocks-lsx-teamdiv[class*="columns"].is-grid {
     grid-template-columns: 1fr; } }
+
+.wp-block-lsx-blocks-lsx-team article.has-thumb img.circle {
+  border-radius: 50%;
+  max-height: 170px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover; }
+
+.wp-block-lsx-blocks-lsx-team article.has-thumb img.square {
+  border-radius: 0; }
 
 .components-base-control.components-radio-control .components-base-control__field {
   display: -ms-flexbox;

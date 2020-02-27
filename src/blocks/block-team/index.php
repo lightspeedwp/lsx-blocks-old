@@ -134,6 +134,7 @@ function render_dynamic_team_block( $attributes ) {
 
 		$carousel    = $attributes['displayCarousel'];
 		$post_layout = $attributes['postLayout'];
+		$image_shape = $attributes['imageShape'];
 
 		$show_link      = $attributes['displayPostLink'];
 		$show_email     = $attributes['displayEmail'];
@@ -228,7 +229,7 @@ function render_dynamic_team_block( $attributes ) {
 				$member_avatar = get_the_post_thumbnail( $post->ID, 'thumbnail' );
 
 				if ( ( true === $show_link || 'true' === $show_link ) ) {
-					$member_avatar = "<figure class='lsx-team-avatar'><a href='" . get_permalink() . "'>$member_avatar</a></figure>";
+					$member_avatar = "<figure class='lsx-team-avatar $image_shape'><a href='" . get_permalink() . "'>$member_avatar</a></figure>";
 				} else {
 					$member_avatar = "<figure class='lsx-team-avatar'>$member_avatar</figure>";
 				}

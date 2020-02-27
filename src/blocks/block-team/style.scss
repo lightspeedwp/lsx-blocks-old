@@ -7,6 +7,22 @@
 	.lsx-team-slot {
 		.lsx-team-avatar {
 			height: auto;
+			width: auto;
+			border-radius: initial;
+			img {
+				border-radius: 50%;
+				display: block;
+				height: auto;
+				margin: 0 auto 2rem;
+				overflow: hidden;
+				width: 170px;
+			}
+			&.square {
+				border-radius: 0;
+				img {
+					border-radius: 0;
+				}
+			}
 		}
 	}
 }
@@ -39,6 +55,21 @@
 	&div[class*="columns"].is-grid {
 		@media only screen and (max-width: 600px) {
 			grid-template-columns: 1fr;
+		}
+	}
+	article {
+		&.has-thumb {
+			img {
+				&.circle {
+					border-radius: 50%;
+					max-height: 170px;
+					width: 100%;
+					object-fit: cover;
+				}
+				&.square {
+					border-radius: 0;
+				}
+			}
 		}
 	}
 }
