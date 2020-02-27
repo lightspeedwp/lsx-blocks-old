@@ -215,12 +215,11 @@ function render_dynamic_team_block( $attributes ) {
 			// Member description.
 			if ( 'none' !== $show_desc ) {
 				if ( 'full' === $show_desc ) {
-					$member_description = apply_filters( 'the_content', get_the_content( esc_html__( 'Read More', 'lsx-team' ) ) );
+					$member_description = apply_filters( 'the_content', get_the_content() );
 					$member_description = str_replace( ']]>', ']]&gt;', $member_description );
 				} elseif ( 'excerpt' === $show_desc ) {
 					$member_description = apply_filters( 'the_excerpt', get_the_excerpt() );
 				}
-
 				$member_description = ! empty( $member_description ) ? "<div class='lsx-team-description'>$member_description</div>" : '';
 			}
 
@@ -257,7 +256,7 @@ function render_dynamic_team_block( $attributes ) {
 			}
 
 			$output .= "
-				<div class='lsx-team-slot'>
+				<article class='lsx-team-slot'>
 					$member_avatar
 					$member_name
 					$member_job_title
@@ -266,7 +265,7 @@ function render_dynamic_team_block( $attributes ) {
 					$member_socials
 					$member_email
 					$bottom_link
-				</div>
+				</article>
 			";
 
 			if ( ! $carousel ) {

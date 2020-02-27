@@ -24,6 +24,11 @@
 				}
 			}
 		}
+		.lsx-team-description {
+			.moretag {
+				display: none;
+			}
+		}
 	}
 }
 
@@ -68,6 +73,51 @@
 				}
 				&.square {
 					border-radius: 0;
+				}
+			}
+		}
+		.lsx-team-description {
+			margin-top: 2rem;
+			.lsx-team-name {
+				margin: 5px;
+				color: #333;
+				text-decoration: none;
+				font-weight: 500;
+				font-size: 20px;
+				line-height: 1.3;
+				a {
+					color: #333;
+					text-decoration: none;
+				}
+			}
+			.lsx-block-post-grid-excerpt {
+				p {
+					margin: 0;
+				}
+			}
+			.team-social {
+				display: flex;
+				list-style: none;
+				margin-bottom: 0;
+				justify-content: center;
+				li {
+					padding: 0 1rem;
+				}
+				i {
+					font: normal normal normal 14px/1 FontAwesome;
+				}
+			}
+			.lsx-team-email {
+				display: block;
+				text-decoration: none;
+			}
+			.lsx-team-show-more {
+				display: block;
+				text-decoration: none;
+				line-height: 1.1;
+				margin-top: 1rem;
+				i {
+					font: normal normal normal 14px/1 FontAwesome;
 				}
 			}
 		}

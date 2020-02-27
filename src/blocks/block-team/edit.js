@@ -38,7 +38,7 @@ class TeamBlock extends Component {
 
 	render() {
 		const { attributes, posts, className, isSelected, setAttributes } = this.props;
-		const { order, orderBy, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt } = attributes;
+		const { order, orderBy, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt, displayPostLink, displayTeamSocial, displayTeamJobTitle } = attributes;
 
 		if ( ! posts ) {
 			return (
@@ -122,6 +122,21 @@ class TeamBlock extends Component {
 						} ) ) }
 						onChange={ ( value ) => { this.props.setAttributes( { displayPostExcerpt: value } ) } }
 					/>
+					<ToggleControl
+						label={ __( 'Link to single team member' ) }
+						checked={ displayPostLink }
+						onChange={ () => this.props.setAttributes( { displayPostLink: ! displayPostLink } ) }
+					/>
+					<ToggleControl
+						label={ __( 'Show Social Icons' ) }
+						checked={ displayTeamSocial }
+						onChange={ () => this.props.setAttributes( { displayTeamSocial: ! displayTeamSocial } ) }
+					/>
+					<ToggleControl
+						label={ __( 'Show Job Title' ) }
+						checked={ displayTeamJobTitle }
+						onChange={ () => this.props.setAttributes( { displayTeamJobTitle: ! displayTeamJobTitle } ) }
+					/>
 				</PanelBody>
 				<PanelBody title={ __( 'General Settings' ) }>
 					<QueryControls
@@ -144,12 +159,12 @@ class TeamBlock extends Component {
 					[ `columns-${ columns }` ],
 				)}>
 					{ posts.map( ( post, i ) => {
-
 						console.log(post);
 						return (
 							<article key={ i }
 								className={ classnames(
-									post.featured_media && displayPostImage ? 'has-thumb' : 'no-thumb'
+									post.featured_media && displayPostImage ? 'has-thumb' : 'no-thumb',
+									'lsx-team-slot'
 								) }
 							>
 								{
@@ -168,9 +183,14 @@ class TeamBlock extends Component {
 									)
 								}
 
-								<div className="lsx-block-post-grid-text">
-									<h2 className="entry-title"><a href={ post.link } target="_blank" rel="bookmark">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a></h2>
-									<small className="lsx-team-job-title">{ post.teamrole[0] }</small>
+								<div className="lsx-block-post-grid-text lsx-team-description">
+									<h5 className="lsx-team-name"><a href={ post.link } target="_blank" rel="bookmark">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a></h5>
+									{/* { role &&
+										<small className="lsx-team-job-title">{role}</small>
+									} */}
+									{ post.additional_meta.job_title &&
+										<small className="lsx-team-job-title">{post.additional_meta.job_title}</small>
+									}
 									<div className="lsx-block-post-grid-excerpt">
 										{ displayPostExcerpt === 'excerpt' && post.excerpt &&
 											<div dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
@@ -179,6 +199,25 @@ class TeamBlock extends Component {
 											<div dangerouslySetInnerHTML={ { __html: post.content.rendered } } />
 										}
 									</div>
+									{ displayTeamSocial && (post.additional_meta.facebook || post.additional_meta.twitter || post.additional_meta.linkedin ) &&
+										<ul className="team-social">
+											{ post.additional_meta.facebook &&
+												<li className="fb"><a href={post.additional_meta.facebook}><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
+											}
+											{ post.additional_meta.twitter &&
+												<li className="tw"><a href={post.additional_meta.twitter}><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
+											}
+											{ post.additional_meta.linkedin &&
+												<li className="ln"><a href={post.additional_meta.linkedin}><i className="fa fa-linkedin" aria-hidden="true"></i></a></li>
+											}
+										</ul>
+									}
+									{ post.additional_meta.email &&
+										<a href={post.additional_meta.email} class="lsx-team-email" tabindex="0">{post.additional_meta.email}</a>
+									}
+									{ displayPostLink === true &&
+										<a href={ post.link } class="lsx-team-show-more" tabindex="0">More about { decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+									}
 								</div>
 							</article>
 						);
