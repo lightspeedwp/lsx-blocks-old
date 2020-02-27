@@ -188,7 +188,7 @@ class TeamBlock extends Component {
 									{/* { role &&
 										<small className="lsx-team-job-title">{role}</small>
 									} */}
-									{ post.additional_meta.job_title &&
+									{ displayTeamJobTitle === true && post.additional_meta.job_title &&
 										<small className="lsx-team-job-title">{post.additional_meta.job_title}</small>
 									}
 									<div className="lsx-block-post-grid-excerpt">
