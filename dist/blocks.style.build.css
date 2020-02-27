@@ -2687,3 +2687,48 @@
 .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar,
 .lsx-team-block .lsx-team-slot .lsx-team-avatar {
   height: auto; }
+
+.wp-block-lsx-blocks-lsx-team.is-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 0 2em; }
+  .wp-block-lsx-blocks-lsx-team.is-grid article {
+    margin-bottom: 2.5em;
+    background-color: #fff; }
+
+.wp-block-lsx-blocks-lsx-team.is-grid.columns-2 {
+  grid-template-columns: 1fr 1fr; }
+
+.wp-block-lsx-blocks-lsx-team.is-grid.columns-3 {
+  grid-template-columns: 1fr 1fr 1fr; }
+
+.wp-block-lsx-blocks-lsx-team.is-grid.columns-4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+@media only screen and (max-width: 600px) {
+  .wp-block-lsx-blocks-lsx-teamdiv[class*="columns"].is-grid {
+    grid-template-columns: 1fr; } }
+
+.components-base-control.components-radio-control .components-base-control__field {
+  display: -ms-flexbox;
+  display: flex; }
+  .components-base-control.components-radio-control .components-base-control__field .components-radio-control__option {
+    margin-right: 2rem;
+    margin-top: 3rem; }
+    .components-base-control.components-radio-control .components-base-control__field .components-radio-control__option .components-radio-control__input {
+      position: relative; }
+      .components-base-control.components-radio-control .components-base-control__field .components-radio-control__option .components-radio-control__input:before {
+        content: '';
+        position: absolute;
+        left: 0px;
+        top: -3.5rem;
+        height: 40px;
+        width: 40px;
+        background-repeat: no-repeat;
+        border-radius: 0; }
+      .components-base-control.components-radio-control .components-base-control__field .components-radio-control__option .components-radio-control__input[value="list"]:before {
+        background-image: url(assets/images/icon-list.svg);
+        top: -3.4rem; }
+      .components-base-control.components-radio-control .components-base-control__field .components-radio-control__option .components-radio-control__input[value="grid"]:before {
+        background-image: url(assets/images/icon-grid.svg); }

@@ -63,7 +63,6 @@ class TeamBlock extends Component {
 			<InspectorControls>
 				<PanelBody title={ __( 'Layout Settings' ) }>
 					<RadioControl
-						label={ __( 'Layout' ) }
 						selected={ postLayout }
 						options={ postLayoutOptions }
 						onChange={ ( value ) => setAttributes( { postLayout: value } ) }
@@ -101,7 +100,11 @@ class TeamBlock extends Component {
 		return (
 			<Fragment>
 				{ inspectorControls }
-				<div className={ className }>
+				<div className={ classnames(
+					className,
+					postLayout === 'grid' ? 'is-grid' : 'is-list',
+					[ `columns-${ columns }` ],
+				)}>
 					{ posts.map( ( post, i ) => {
 
 						console.log(post);
