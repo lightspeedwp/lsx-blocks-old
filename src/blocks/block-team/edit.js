@@ -40,6 +40,7 @@ class TeamBlock extends Component {
 	constructor() {
 		super( ...arguments );
 		this.state = { teamroleList: [] };
+		this.stillMounted = false;
 	}
 
 	componentDidMount() {
@@ -200,7 +201,7 @@ class TeamBlock extends Component {
 					[ `columns-${ columns }` ],
 				)}>
 					{ posts.map( ( post, i ) => {
-						console.log(post.teamrole);
+						//console.log(post.teamrole);
 						return (
 							<article key={ i }
 								className={ classnames(

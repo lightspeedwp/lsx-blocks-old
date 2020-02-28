@@ -89,7 +89,7 @@ function register_dynamic_block() {
 			),
 			'teamrole'            => array(
 				'type'    => 'string',
-				'default' => 'all',
+				'default' => '',
 			),
 			'includeId'           => array(
 				'type'    => 'string',
@@ -119,6 +119,9 @@ add_action( 'init', 'register_dynamic_block' );
 function render_dynamic_team_block( $attributes ) {
 
 	$team_id_array = explode( ', ', $attributes['includeId'] );
+	if ( empty( $attributes['teamrole'] ) ) {
+		$attributes['teamrole'] = 'all';
+	}
 
 	if ( ! empty( $attributes['includeId'] ) ) {
 		$team = new WP_Query( [
@@ -325,4 +328,5 @@ function render_dynamic_team_block( $attributes ) {
 
 		return $output;
 	}
+
 }

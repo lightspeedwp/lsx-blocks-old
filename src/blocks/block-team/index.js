@@ -11,6 +11,10 @@ import edit from './edit';
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
+let hpBlock = JSON.stringify(wp.blocks.getCategories());
+
+console.log(hpBlock);
+
 registerBlockType( 'lsx-blocks/lsx-team', {
 	title: __( 'LSX Team', 'lsx-blocks' ),
 	description: __( 'Add your team and customize options.', 'lsx-blocks' ),
