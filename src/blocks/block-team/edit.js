@@ -3,6 +3,7 @@
  */
 import isUndefined from 'lodash/isUndefined';
 import pickBy from 'lodash/pickBy';
+import map from 'lodash/map';
 import classnames from 'classnames';
 
 const { Component, Fragment } = wp.element;
@@ -10,6 +11,10 @@ const { Component, Fragment } = wp.element;
 const { __ } = wp.i18n;
 const { decodeEntities } = wp.htmlEntities;
 const { withSelect } = wp.data;
+
+const { addQueryArgs } = wp.url;
+const { apiFetch } = wp;
+const { compose } = wp.compose;
 
 const {
 	PanelBody,
@@ -31,16 +36,40 @@ const {
 	BlockControls,
 } = wp.editor;
 
-const WAIT_INTERVAL = 2000;
-
 class TeamBlock extends Component {
 	constructor() {
 		super( ...arguments );
+		this.state = { teamroleList: [] };
+	}
+
+	componentDidMount() {
+		this.stillMounted = true;
+		this.fetchRequest = apiFetch({
+			path: addQueryArgs( '/wp/v2/teamrole', { per_page: -1 })
+		}).then(
+			( categoriesList ) => {
+				if ( this.stillMounted ) {
+					this.setState({ categoriesList });
+				}
+			}
+		).catch(
+			() => {
+				if ( this.stillMounted ) {
+					this.setState({ categoriesList: [] });
+				}
+			}
+		);
+	}
+
+	componentWillUnmount() {
+		this.stillMounted = false;
 	}
 
 	render() {
 		const { attributes, posts, className, isSelected, setAttributes, numberOfItems } = this.props;
-		const { order, orderBy, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt, displayPostLink, displayTeamSocial, displayTeamJobTitle, includeId } = attributes;
+		const { order, orderBy, teamrole, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt, displayPostLink, displayTeamSocial, displayTeamJobTitle, includeId } = attributes;
+
+		const { categoriesList } = this.state;
 
 		if ( ! posts ) {
 			return (
@@ -142,10 +171,13 @@ class TeamBlock extends Component {
 				</PanelBody>
 				<PanelBody title={ __( 'General Settings' ) }>
 					<QueryControls
-						{ ...{ order, orderBy, postsToShow, numberOfItems } }
+						{ ...{ order, orderBy, postsToShow, numberOfItems, teamrole } }
 						numberOfItems={ postsToShow }
+						categoriesList={ categoriesList }
+						selectedCategoryId={ teamrole }
 						onOrderChange={ ( value ) => setAttributes( { order: value } ) }
 						onOrderByChange={ ( value ) => setAttributes( { orderBy: value } ) }
+						onCategoryChange={ ( value ) => setAttributes({ teamrole: '' !== value ? value : undefined }) }
 						onNumberOfItemsChange={ ( value ) => setAttributes( { postsToShow: value } ) }
 					/>
 					<TextControl
@@ -168,7 +200,7 @@ class TeamBlock extends Component {
 					[ `columns-${ columns }` ],
 				)}>
 					{ posts.map( ( post, i ) => {
-						console.log(post);
+						console.log(post.teamrole);
 						return (
 							<article key={ i }
 								className={ classnames(
@@ -237,15 +269,18 @@ class TeamBlock extends Component {
 	}
 }
 
-export default withSelect( (select, props ) => {
-	const { postsToShow, order, orderBy, includeId } = props.attributes;
-	const latestPostsQuery = pickBy( {
-		order: order,
-		orderby: orderBy,
-		per_page: postsToShow,
-		include: includeId,
-	}, ( value ) => ! isUndefined( value ) );
-	return {
-		posts: select( 'core' ).getEntityRecords( 'postType', 'team', latestPostsQuery )
-	};
-} )( TeamBlock ) // end withAPIData
+export default compose([
+	withSelect( (select, props ) => {
+		const { postsToShow, order, orderBy, includeId, teamrole } = props.attributes;
+		const latestPostsQuery = pickBy( {
+			teamrole,
+			order,
+			orderby: orderBy,
+			per_page: postsToShow,
+			include: includeId,
+		}, ( value ) => ! isUndefined( value ) );
+		return {
+			posts: select( 'core' ).getEntityRecords( 'postType', 'team', latestPostsQuery )
+		};
+	})
+])( TeamBlock ); // end withAPIData

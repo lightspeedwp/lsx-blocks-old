@@ -87,6 +87,10 @@ function register_dynamic_block() {
 				'type'    => 'string',
 				'default' => 'date',
 			),
+			'teamrole'            => array(
+				'type'    => 'string',
+				'default' => 'all',
+			),
 			'includeId'           => array(
 				'type'    => 'string',
 				'default' => '',
@@ -124,6 +128,13 @@ function render_dynamic_team_block( $attributes ) {
 			'order'       => $attributes['order'],
 			'orderby'     => $attributes['orderBy'],
 			'post__in'    => $team_id_array,
+			'tax_query'   => array(
+				array(
+					'taxonomy' => 'team_role',
+					'field'    => 'id',
+					'terms'    => $attributes['teamrole'],
+				),
+			),
 		] );
 	} else {
 		$team = new WP_Query( [
@@ -132,6 +143,13 @@ function render_dynamic_team_block( $attributes ) {
 			'post_type'   => 'team',
 			'order'       => $attributes['order'],
 			'orderby'     => $attributes['orderBy'],
+			'tax_query'   => array(
+				array(
+					'taxonomy' => 'team_role',
+					'field'    => 'id',
+					'terms'    => $attributes['teamrole'],
+				),
+			),
 		] );
 	}
 
