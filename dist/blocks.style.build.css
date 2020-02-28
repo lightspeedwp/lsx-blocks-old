@@ -2752,6 +2752,8 @@
     .wp-block-lsx-blocks-lsx-team article .lsx-team-description .lsx-team-name a {
       color: #333;
       text-decoration: none; }
+  .wp-block-lsx-blocks-lsx-team article .lsx-team-description .lsx-team-job-title {
+    color: #919191; }
   .wp-block-lsx-blocks-lsx-team article .lsx-team-description .lsx-block-post-grid-excerpt p {
     margin: 0; }
   .wp-block-lsx-blocks-lsx-team article .lsx-team-description .team-social {
@@ -2775,6 +2777,11 @@
     margin-top: 1rem; }
     .wp-block-lsx-blocks-lsx-team article .lsx-team-description .lsx-team-show-more i {
       font: normal normal normal 14px/1 FontAwesome; }
+
+.wp-block-lsx-blocks-lsx-team.is-list article {
+  margin-bottom: 4rem; }
+  .wp-block-lsx-blocks-lsx-team.is-list article.has-thumb img.circle {
+    max-width: 170px; }
 
 .components-base-control.components-radio-control .components-base-control__field {
   display: -ms-flexbox;

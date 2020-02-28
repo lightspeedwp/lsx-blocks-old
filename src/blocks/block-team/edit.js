@@ -31,14 +31,16 @@ const {
 	BlockControls,
 } = wp.editor;
 
+const WAIT_INTERVAL = 2000;
+
 class TeamBlock extends Component {
 	constructor() {
 		super( ...arguments );
 	}
 
 	render() {
-		const { attributes, posts, className, isSelected, setAttributes } = this.props;
-		const { order, orderBy, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt, displayPostLink, displayTeamSocial, displayTeamJobTitle } = attributes;
+		const { attributes, posts, className, isSelected, setAttributes, numberOfItems } = this.props;
+		const { order, orderBy, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt, displayPostLink, displayTeamSocial, displayTeamJobTitle, includeId } = attributes;
 
 		if ( ! posts ) {
 			return (
@@ -140,11 +142,18 @@ class TeamBlock extends Component {
 				</PanelBody>
 				<PanelBody title={ __( 'General Settings' ) }>
 					<QueryControls
-						{ ...{ order, orderBy, postsToShow } }
+						{ ...{ order, orderBy, postsToShow, numberOfItems } }
 						numberOfItems={ postsToShow }
 						onOrderChange={ ( value ) => setAttributes( { order: value } ) }
 						onOrderByChange={ ( value ) => setAttributes( { orderBy: value } ) }
 						onNumberOfItemsChange={ ( value ) => setAttributes( { postsToShow: value } ) }
+					/>
+					<TextControl
+						label={ __( 'Specify team members by ID' ) }
+						help={__('Comma separated list, overrides limit setting')}
+						type="text"
+						value={ includeId }
+						onChange={ ( value ) => this.props.setAttributes( { includeId: value } ) }
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -213,10 +222,10 @@ class TeamBlock extends Component {
 										</ul>
 									}
 									{ post.additional_meta.email &&
-										<a href={post.additional_meta.email} class="lsx-team-email" tabindex="0">{post.additional_meta.email}</a>
+										<a href={post.additional_meta.email} className="lsx-team-email" tabIndex="0">{post.additional_meta.email}</a>
 									}
 									{ displayPostLink === true &&
-										<a href={ post.link } class="lsx-team-show-more" tabindex="0">More about { decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+										<a href={ post.link } className="lsx-team-show-more" tabIndex="0">More about { decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }<i className="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 									}
 								</div>
 							</article>
@@ -229,11 +238,12 @@ class TeamBlock extends Component {
 }
 
 export default withSelect( (select, props ) => {
-	const { postsToShow, order, orderBy } = props.attributes;
+	const { postsToShow, order, orderBy, includeId } = props.attributes;
 	const latestPostsQuery = pickBy( {
 		order: order,
 		orderby: orderBy,
 		per_page: postsToShow,
+		include: includeId,
 	}, ( value ) => ! isUndefined( value ) );
 	return {
 		posts: select( 'core' ).getEntityRecords( 'postType', 'team', latestPostsQuery )

@@ -87,6 +87,10 @@ function register_dynamic_block() {
 				'type'    => 'string',
 				'default' => 'date',
 			),
+			'includeId'           => array(
+				'type'    => 'string',
+				'default' => '',
+			),
 			'imageShape'          => array(
 				'type'    => 'string',
 				'default' => 'circle',
@@ -109,13 +113,27 @@ add_action( 'init', 'register_dynamic_block' );
  * @return output.
  */
 function render_dynamic_team_block( $attributes ) {
-	$team = new WP_Query( [
-		'showposts'   => $attributes['postsToShow'],
-		'post_status' => 'publish',
-		'post_type'   => 'team',
-		'order'       => $attributes['order'],
-		'orderby'     => $attributes['orderBy'],
-	] );
+
+	$team_id_array = explode( ', ', $attributes['includeId'] );
+
+	if ( ! empty( $attributes['includeId'] ) ) {
+		$team = new WP_Query( [
+			'showposts'   => $attributes['postsToShow'],
+			'post_status' => 'publish',
+			'post_type'   => 'team',
+			'order'       => $attributes['order'],
+			'orderby'     => $attributes['orderBy'],
+			'post__in'    => $team_id_array,
+		] );
+	} else {
+		$team = new WP_Query( [
+			'showposts'   => $attributes['postsToShow'],
+			'post_status' => 'publish',
+			'post_type'   => 'team',
+			'order'       => $attributes['order'],
+			'orderby'     => $attributes['orderBy'],
+		] );
+	}
 
 	if ( empty( $team ) ) {
 		return '<p>No Team Members found</p>';

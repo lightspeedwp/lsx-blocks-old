@@ -90,6 +90,9 @@
 					text-decoration: none;
 				}
 			}
+			.lsx-team-job-title {
+				color: $textgray;
+			}
 			.lsx-block-post-grid-excerpt {
 				p {
 					margin: 0;
@@ -118,6 +121,18 @@
 				margin-top: 1rem;
 				i {
 					font: normal normal normal 14px/1 FontAwesome;
+				}
+			}
+		}
+	}
+	&.is-list {
+		article {
+			margin-bottom: 4rem;
+			&.has-thumb {
+				img {
+					&.circle {
+						max-width: 170px;
+					}
 				}
 			}
 		}
