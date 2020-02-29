@@ -173,7 +173,7 @@ class TeamBlock extends Component {
 						selectedCategoryId={ teamrole }
 						onOrderChange={ ( value ) => setAttributes( { order: value } ) }
 						onOrderByChange={ ( value ) => setAttributes( { orderBy: value } ) }
-						onCategoryChange={ ( value ) => setAttributes({ teamrole: '' !== value ? value : undefined }) }
+						onCategoryChange={ ( value ) => setAttributes({ teamrole }) }
 						onNumberOfItemsChange={ ( value ) => setAttributes( { postsToShow: value } ) }
 					/>
 					<TextControl
