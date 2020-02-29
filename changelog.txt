@@ -6,6 +6,7 @@
 ### 1.0.5 - 19 December 2019
 * Dev - General testing to ensure compatibility with latest WordPress version (5.3).
 * Dev - Checking compatibility with LSX 2.6 release.
+* Dev - Adding a Team Block that will be enabled if the LSX Team plugin is enabled.
 
 ### 1.0.4 - 13 November 2019
 * Dev - Adding the Author profile block.
