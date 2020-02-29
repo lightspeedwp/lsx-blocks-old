@@ -61,7 +61,7 @@ function register_dynamic_block() {
 			),
 			'displayCarousel'     => array(
 				'type'    => 'boolean',
-				'default' => true,
+				'default' => false,
 			),
 			'postLayout'          => array(
 				'type'    => 'string',
@@ -108,7 +108,9 @@ function register_dynamic_block() {
 	) );
 
 }
-add_action( 'init', 'register_dynamic_block' );
+if ( in_array( 'lsx-team/lsx-team.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
+	add_action( 'init', 'register_dynamic_block' );
+}
 
 /**
  * Server-side rendering for the team block.
