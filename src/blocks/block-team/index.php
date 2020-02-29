@@ -108,9 +108,7 @@ function register_dynamic_block() {
 	) );
 
 }
-if ( in_array( 'lsx-team/lsx-team.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
-	add_action( 'init', 'register_dynamic_block' );
-}
+add_action( 'init', 'register_dynamic_block' );
 
 /**
  * Server-side rendering for the team block.
@@ -121,47 +119,86 @@ if ( in_array( 'lsx-team/lsx-team.php', apply_filters( 'active_plugins', get_opt
 function render_dynamic_team_block( $attributes ) {
 
 	$team_id_array = explode( ', ', $attributes['includeId'] );
-	if ( empty( $attributes['teamrole'] ) ) {
-		$attributes['teamrole'] = 'all';
-	}
+	// if ( empty( $attributes['teamrole'] ) ) {
+	// 	$terms = $attributes['teamrole'] = 'all';
+	// }
+
+	// if ( ! empty( $attributes['teamrole'] ) ) {
+	// 	$args['tax_query'] = array(
+	// 		array(
+	// 			'taxonomy' => 'team_role',
+	// 			'field'    => 'id',
+	// 			'terms'    => $attributes['teamrole'],
+	// 		),
+	// 	);
+	// }
+
+	// if ( ! empty( $attributes['includeId'] ) ) {
+	// 	$team = new WP_Query( [
+	// 		'showposts'   => $attributes['postsToShow'],
+	// 		'post_status' => 'publish',
+	// 		'post_type'   => 'team',
+	// 		'order'       => $attributes['order'],
+	// 		'orderby'     => $attributes['orderBy'],
+	// 		'post__in'    => $team_id_array,
+	// 		$args,
+	// 	] );
+	// } else {
+	// 	$team = new WP_Query( [
+	// 		'showposts'   => $attributes['postsToShow'],
+	// 		'post_status' => 'publish',
+	// 		'post_type'   => 'team',
+	// 		'order'       => $attributes['order'],
+	// 		'orderby'     => $attributes['orderBy'],
+	// 		$args,
+	// 	] );
+	// }
 
 	if ( ! empty( $attributes['includeId'] ) ) {
-		$team = new WP_Query( [
+
+		$args = array(
 			'showposts'   => $attributes['postsToShow'],
 			'post_status' => 'publish',
 			'post_type'   => 'team',
 			'order'       => $attributes['order'],
 			'orderby'     => $attributes['orderBy'],
 			'post__in'    => $team_id_array,
-			'tax_query'   => array(
-				array(
-					'taxonomy' => 'team_role',
-					'field'    => 'id',
-					'terms'    => $attributes['teamrole'],
-				),
-			),
-		] );
+		);
 	} else {
-		$team = new WP_Query( [
+		$args = array(
 			'showposts'   => $attributes['postsToShow'],
 			'post_status' => 'publish',
 			'post_type'   => 'team',
 			'order'       => $attributes['order'],
 			'orderby'     => $attributes['orderBy'],
-			'tax_query'   => array(
-				array(
-					'taxonomy' => 'team_role',
-					'field'    => 'id',
-					'terms'    => $attributes['teamrole'],
-				),
-			),
-		] );
+		);
 	}
+
+	if ( ! empty( $attributes['teamrole'] ) ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'team_role',
+				'field'    => 'id',
+				'terms'    => $attributes['teamrole'],
+			),
+		);
+	}
+	// if ( ! empty( $role ) ) {
+	// 	$args['tax_query'] = array(
+	// 		array(
+	// 			'taxonomy' => 'team_role',
+	// 			'field'    => 'id',
+	// 			'terms'    => $role,
+	// 		),
+	// 	);
+	// }
+
+	$team = new \WP_Query( $args );
 
 	if ( empty( $team ) ) {
 		return '<p>No Team Members found</p>';
 	}
-
+	//print( '<pre>' . print_r( $team, true ) . '</pre>' );
 	if ( $team->have_posts() ) {
 
 		global $post;

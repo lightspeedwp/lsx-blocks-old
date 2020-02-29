@@ -18,7 +18,6 @@ const { compose } = wp.compose;
 
 const {
 	PanelBody,
-	Placeholder,
 	QueryControls,
 	RangeControl,
 	RadioControl,
@@ -26,15 +25,11 @@ const {
 	Spinner,
 	TextControl,
 	ToggleControl,
-	Toolbar,
-	withAPIData,
 } = wp.components;
 
 const {
-	InspectorControls,
-	BlockAlignmentToolbar,
-	BlockControls,
-} = wp.editor;
+	InspectorControls
+} = wp.blockEditor;
 
 class TeamBlock extends Component {
 	constructor() {
@@ -67,7 +62,7 @@ class TeamBlock extends Component {
 	}
 
 	render() {
-		const { attributes, posts, className, isSelected, setAttributes, numberOfItems } = this.props;
+		const { attributes, posts, className, setAttributes, numberOfItems } = this.props;
 		const { order, orderBy, teamrole, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt, displayPostLink, displayTeamSocial, displayTeamJobTitle, includeId } = attributes;
 
 		const { categoriesList } = this.state;
@@ -284,4 +279,4 @@ export default compose([
 			posts: select( 'core' ).getEntityRecords( 'postType', 'team', latestPostsQuery )
 		};
 	})
-])( TeamBlock ); // end withAPIData
+])( TeamBlock );
