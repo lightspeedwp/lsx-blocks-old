@@ -66,7 +66,7 @@ class TeamBlock extends Component {
 		const { order, orderBy, teamrole, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt, displayPostLink, displayTeamSocial, displayTeamJobTitle, includeId } = attributes;
 
 		const { categoriesList } = this.state;
-
+		//console.log(categoriesList);
 		if ( ! posts ) {
 			return (
 				<p className={className} >
@@ -173,7 +173,7 @@ class TeamBlock extends Component {
 						selectedCategoryId={ teamrole }
 						onOrderChange={ ( value ) => setAttributes( { order: value } ) }
 						onOrderByChange={ ( value ) => setAttributes( { orderBy: value } ) }
-						onCategoryChange={ ( value ) => setAttributes({ teamrole }) }
+						onCategoryChange={ ( value ) => setAttributes({ teamrole: '' !== value ? value : undefined }) }
 						onNumberOfItemsChange={ ( value ) => setAttributes( { postsToShow: value } ) }
 					/>
 					<TextControl
@@ -274,7 +274,8 @@ export default compose([
 			orderby: orderBy,
 			per_page: postsToShow,
 			include: includeId,
-		}, ( value ) => ! isUndefined( value ) );
+		} );
+
 		return {
 			posts: select( 'core' ).getEntityRecords( 'postType', 'team', latestPostsQuery )
 		};
