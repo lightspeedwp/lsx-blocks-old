@@ -87,15 +87,42 @@ var LSX_BLOCKS = Object.create( null );
 
 		});
 
+		//Hover BG border
+		$( ".wp-block-button.has-hover-color.is-style-outline a" ).each(function() {
+			var prevbghover = this.style.backgroundColor;
+			$(this).mouseenter(function() {
+				var bghover = this.parentNode.getAttribute('bghover');
+				$(this).css("border-color", bghover );
+			});
+			$(this).mouseleave(function() {
+				$(this).css("border-color", prevbghover );
+			});
+
+		});
+
+		//Hover text color
 		$( ".wp-block-button.has-hover-text-color a" ).each(function() {
 			var prevtexthover = this.style.color;
-			//Hover text color
 			$(this).mouseenter(function() {
 				var texthover = this.parentNode.getAttribute('texthover');
 				$(this).css("color", texthover );
 			});
 			$(this).mouseleave(function() {
 				$(this).css("color", prevtexthover );
+			});
+
+		});
+
+		//Hover shadow color
+		$( ".wp-block-button.has-shadow-hover-color a" ).each(function() {
+			var prevshadowhover = this.style.boxShadow;
+			$(this).mouseenter(function() {
+				var shadowhovercolor = this.parentNode.getAttribute('shadowhover');
+				var shadowhover = shadowhovercolor + ' 2px 2px 0px 0px';
+				$(this).css("box-shadow", shadowhover );
+			});
+			$(this).mouseleave(function() {
+				$(this).css("box-shadow", prevshadowhover );
 			});
 
 		});
