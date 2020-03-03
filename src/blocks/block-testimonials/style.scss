@@ -83,10 +83,12 @@
 	}
 	article {
 		&.has-thumb {
+			text-align: center;
 			img {
 				&.circle {
 					border-radius: 50%;
-					max-height: 170px;
+					max-height: 110px;
+					max-width: 110px;
 					width: 100%;
 					object-fit: cover;
 				}
@@ -97,7 +99,7 @@
 		}
 		.lsx-testimonial-description {
 			margin-top: 2rem;
-			.lsx-testimonial-name {
+			.lsx-testimonials-title {
 				margin: 5px;
 				color: #333;
 				text-decoration: none;
@@ -113,25 +115,44 @@
 				color: $textgray;
 			}
 			.lsx-block-post-grid-excerpt {
+				margin-top: 4rem;
+				border: 1px solid #ddd;
+				display: block;
+				padding: 2rem 2rem 1.4rem;
+				position: relative;
+				text-align: center;
+				border-radius: 10px;
+				blockquote {
+					margin: 0;
+					font-style: italic;
+					line-height: 1.375;
+					font-family: 'Noto Sans Italic', sans-serif;
+					font-weight: 200;
+					font-size: 14px;
+					&:before {
+						border-radius: 50%;
+						content: '”';
+						font-family: "Lora",serif;
+						font-style: normal;
+						left: 50%;
+						line-height: 1.375;
+						overflow: hidden;
+						position: absolute;
+						transform: translateX(-50%);
+						background: #fff;
+						font-size: 72px;
+						height: 60px;
+						top: -30px;
+						width: 60px;
+						color: #d84e2e;
+					}
+				}
 				p {
 					margin: 0;
 				}
-			}
-			.testimonial-social {
-				display: flex;
-				list-style: none;
-				margin-bottom: 0;
-				justify-content: center;
-				li {
-					padding: 0 1rem;
+				.moretag {
+					display: none;
 				}
-				i {
-					font: normal normal normal 14px/1 FontAwesome;
-				}
-			}
-			.lsx-testimonial-email {
-				display: block;
-				text-decoration: none;
 			}
 			.lsx-testimonial-show-more {
 				display: block;
@@ -150,7 +171,7 @@
 			&.has-thumb {
 				img {
 					&.circle {
-						max-width: 170px;
+						//max-width: 170px;
 					}
 				}
 			}

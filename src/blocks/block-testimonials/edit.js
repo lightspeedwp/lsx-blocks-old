@@ -206,7 +206,7 @@ class TestimonialBlock extends Component {
 											<a href={ post.link } target="_blank" rel="bookmark">
 												<img
 													className={ imageShape }
-													src={ post.images.medium }
+													src={ post.images.medium ? post.images.medium : 'https://www.gravatar.com/avatar/none?d=mm&s=300' }
 													alt={ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }
 												/>
 											</a>
@@ -217,20 +217,26 @@ class TestimonialBlock extends Component {
 								}
 
 								<div className="lsx-block-post-grid-text lsx-testimonial-description">
-									<h5 className="lsx-testimonial-name"><a href={ post.link } target="_blank" rel="bookmark">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a></h5>
+									<h5 className="lsx-testimonials-title"><a href={ post.link } target="_blank" rel="bookmark">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a></h5>
 									{ displayTestimonialJobTitle === true && post.additional_meta.job_title &&
-										<small className="lsx-testimonial-job-title">{post.additional_meta.job_title}</small>
+										<small className="lsx-testimonial-job-title"><i className="fa fa-briefcase" aria-hidden="true"></i> {post.additional_meta.job_title}</small>
 									}
 									<div className="lsx-block-post-grid-excerpt">
 										{ displayPostExcerpt === 'excerpt' && post.excerpt &&
 											<blockquote dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
+										}
+										{ displayPostExcerpt === 'excerpt' && post.excerpt.rendered === '' && post.content &&
+											<blockquote>
+												<p dangerouslySetInnerHTML={ { __html: post.content.rendered.length > 10 ? post.content.rendered.substring(0, 150) + '...' : post.content.rendered } } />
+											</blockquote>
+
 										}
 										{ displayPostExcerpt === 'full' && post.content &&
 											<blockquote dangerouslySetInnerHTML={ { __html: post.content.rendered } } />
 										}
 									</div>
 									{ displayPostLink === true &&
-										<a href={ post.link } className="lsx-testimonial-show-more" tabIndex="0">More about { decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }<i className="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+										<a href={ post.link } className="lsx-testimonial-show-more" tabIndex="0">More about { decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }<i className="fa fa-long-arrow-left" aria-hidden="true"></i></a>
 									}
 								</div>
 							</article>

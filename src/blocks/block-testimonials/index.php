@@ -65,10 +65,6 @@ function register_dynamic_testimonial_block() {
 			),
 			'align'               => array(
 				'type'    => 'string',
-				'default' => 'center',
-			),
-			'width'               => array(
-				'type'    => 'string',
 				'default' => 'wide',
 			),
 			'order'               => array(
@@ -184,7 +180,7 @@ function render_dynamic_testimonial_block( $attributes ) {
 	if ( ! empty( $attributes['testimonialtag'] ) ) {
 		$args['tax_query'] = array(
 			array(
-				'taxonomy' => 'testimonial-tag',
+				'taxonomy' => 'testimonial_tag',
 				'field'    => 'id',
 				'terms'    => $attributes['testimonialtag'],
 			),
@@ -196,6 +192,7 @@ function render_dynamic_testimonial_block( $attributes ) {
 	if ( empty( $testimonial ) ) {
 		return '<p>No Testimonials found</p>';
 	}
+	//print( '<pre>' . print_r( $testimonial, true ) . '</pre>' );
 	if ( $testimonial->have_posts() ) {
 
 		global $post;
@@ -242,6 +239,7 @@ function render_dynamic_testimonial_block( $attributes ) {
 			$bottom_link = '';
 			$member_description = '';
 			$member_job_title = '';
+			$member_roles = '';
 
 			// Link to single.
 			if ( ( true === $show_link || 'true' === $show_link ) ) {
@@ -261,26 +259,26 @@ function render_dynamic_testimonial_block( $attributes ) {
 			}
 
 			// Member roles.
-			if ( true === $show_roles || 'true' === $show_roles ) {
-				$roles = '';
-				$terms = get_the_terms( $post->ID, 'testimonial_tag' );
+			// if ( true === $show_roles || 'true' === $show_roles ) {
+			// 	$roles = '';
+			// 	$terms = get_the_terms( $post->ID, 'testimonial_tag' );
 
-				if ( $terms && ! is_wp_error( $terms ) ) {
-					$roles = array();
+			// 	if ( $terms && ! is_wp_error( $terms ) ) {
+			// 		$roles = array();
 
-					foreach ( $terms as $term ) {
-						$roles[] = $term->name;
-					}
+			// 		foreach ( $terms as $term ) {
+			// 			$roles[] = $term->name;
+			// 		}
 
-					$roles = join( ', ', $roles );
-				}
+			// 		$roles = join( ', ', $roles );
+			// 	}
 
-				$member_roles = '' !== $roles ? "<small class='lsx-testimonial-roles'>$roles</small>" : '';
-			}
+			// 	$member_roles = '' !== $roles ? "<small class='lsx-testimonial-tag'>$roles</small>" : '';
+			// }
 
 			// Member job title.
 			if ( true === $show_job_title || 'true' === $show_job_title ) {
-				$job_title        = get_post_meta( $post->ID, 'lsx_testimonial_byline', true );
+				$job_title = get_post_meta( $post->ID, 'lsx_testimonial_byline', true );
 
 				$small = "<small class='lsx-testimonials-meta-wrap'><i class='fa fa-briefcase'></i> <span class='lsx-testimonials-meta'>" . esc_html__( 'Role & Company', 'lsx-testimonials' ) . ':</span> ' . $link_open . $job_title . $link_close . '</small>';
 
@@ -295,9 +293,8 @@ function render_dynamic_testimonial_block( $attributes ) {
 				} elseif ( 'excerpt' === $show_desc ) {
 					if ( ! has_excerpt() ) {
 
-						$excerpt_more = '<p><a class="moretag" href="' . esc_url( get_permalink() ) . '">' . esc_html__( 'Read More', 'lsx' ) . '</a></p>';
-						$content      = wp_trim_words( get_the_content(), 20 );
-						$content      = '<p>' . $content . '</p>' . $excerpt_more;
+						$content = wp_trim_words( get_the_content(), 30 );
+						$content = '<p>' . $content . '</p>';
 						$member_description = wp_kses_post( $content );
 					} else {
 						$member_description = apply_filters( 'the_excerpt', get_the_excerpt() );
