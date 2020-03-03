@@ -191,7 +191,7 @@ class TestimonialBlock extends Component {
 					[ `columns-${ columns }` ],
 				)}>
 					{ posts.map( ( post, i ) => {
-						console.log(post);
+						//console.log(post);
 						//console.log(post.testimonialtag);
 						return (
 							<article key={ i }

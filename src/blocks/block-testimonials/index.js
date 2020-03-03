@@ -11,9 +11,10 @@ import edit from './edit';
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
-//let testimonialBlock = JSON.stringify(wp.blocks.getCategories());
+let testimonialsBlock = JSON.stringify(wp.blocks.getCategories());
+//console.log(testimonialsBlock);
 
-//if ( testimonialBlock.includes('lsx-testimonial-blocks') ) {
+if ( testimonialsBlock.includes('lsx-testimonials-blocks') ) {
 	registerBlockType( 'lsx-blocks/lsx-testimonial', {
 		title: __( 'LSX Testimonials', 'lsx-blocks' ),
 		description: __( 'Add your testimonials and customize options.', 'lsx-blocks' ),
@@ -33,4 +34,4 @@ const { registerBlockType } = wp.blocks;
 			return null;
 		},
 	} );
-//}
+}

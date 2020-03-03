@@ -86,7 +86,7 @@ function lsx_blocks_editor_assets() {
 add_action( 'enqueue_block_editor_assets', 'lsx_blocks_editor_assets' );
 
 
-// Add custom block category
+// Add custom block category.
 add_filter( 'block_categories', function( $categories, $post ) {
 	return array_merge(
 		$categories,
@@ -98,3 +98,21 @@ add_filter( 'block_categories', function( $categories, $post ) {
 		)
 	);
 }, 10, 2 );
+
+
+if ( in_array( 'lsx-testimonials/lsx-testimonials.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
+	/**
+	 * Add custom block category for Team block that will only show if the plugin is active.
+	 */
+	add_filter( 'block_categories', function( $categories, $post ) {
+		return array_merge(
+			$categories,
+			array(
+				array(
+					'slug'  => 'lsx-testimonials-blocks',
+					'title' => __( 'LSX Team Blocks', 'lsx-blocks' ),
+				),
+			)
+		);
+	}, 10, 2 );
+}
