@@ -34,14 +34,14 @@ const {
 class TestimonialBlock extends Component {
 	constructor() {
 		super( ...arguments );
-		this.state = { testimonialroleList: [] };
+		this.state = { testimonialtagList: [] };
 		this.stillMounted = false;
 	}
 
 	componentDidMount() {
 		this.stillMounted = true;
 		this.fetchRequest = apiFetch({
-			path: addQueryArgs( '/wp/v2/testimonialrole', { per_page: -1 })
+			path: addQueryArgs( '/wp/v2/testimonialtag', { per_page: -1 })
 		}).then(
 			( categoriesList ) => {
 				if ( this.stillMounted ) {
@@ -63,7 +63,7 @@ class TestimonialBlock extends Component {
 
 	render() {
 		const { attributes, posts, className, setAttributes, numberOfItems } = this.props;
-		const { order, orderBy, testimonialrole, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt, displayPostLink, displayTestimonialSocial, displayTestimonialJobTitle, includeId } = attributes;
+		const { order, orderBy, testimonialtag, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt, displayPostLink, displayTestimonialJobTitle, includeId } = attributes;
 
 		const { categoriesList } = this.state;
 		//console.log(categoriesList);
@@ -71,13 +71,13 @@ class TestimonialBlock extends Component {
 			return (
 				<p className={className} >
 					<Spinner />
-					{ __( 'Loading Posts', 'lsx-blocks' ) }
+					{ __( 'Loading Testimonials', 'lsx-blocks' ) }
 
 				</p>
 			);
 		}
 		if ( 0 === posts.length ) {
-			return <p>{ __( 'No Posts', 'lsx-blocks' ) }</p>;
+			return <p>{ __( 'No Testimonials', 'lsx-blocks' ) }</p>;
 		}
 
 		// Layouts options
@@ -155,25 +155,20 @@ class TestimonialBlock extends Component {
 						onChange={ () => this.props.setAttributes( { displayPostLink: ! displayPostLink } ) }
 					/>
 					<ToggleControl
-						label={ __( 'Show Social Icons' ) }
-						checked={ displayTestimonialSocial }
-						onChange={ () => this.props.setAttributes( { displayTestimonialSocial: ! displayTestimonialSocial } ) }
-					/>
-					<ToggleControl
-						label={ __( 'Show Job Title' ) }
+						label={ __( 'Show Role and Company' ) }
 						checked={ displayTestimonialJobTitle }
 						onChange={ () => this.props.setAttributes( { displayTestimonialJobTitle: ! displayTestimonialJobTitle } ) }
 					/>
 				</PanelBody>
 				<PanelBody title={ __( 'General Settings' ) }>
 					<QueryControls
-						{ ...{ order, orderBy, postsToShow, numberOfItems, testimonialrole } }
+						{ ...{ order, orderBy, postsToShow, numberOfItems, testimonialtag } }
 						numberOfItems={ postsToShow }
 						categoriesList={ categoriesList }
-						selectedCategoryId={ testimonialrole }
+						selectedCategoryId={ testimonialtag }
 						onOrderChange={ ( value ) => setAttributes( { order: value } ) }
 						onOrderByChange={ ( value ) => setAttributes( { orderBy: value } ) }
-						onCategoryChange={ ( value ) => setAttributes({ testimonialrole: '' !== value ? value : undefined }) }
+						onCategoryChange={ ( value ) => setAttributes({ testimonialtag: '' !== value ? value : undefined }) }
 						onNumberOfItemsChange={ ( value ) => setAttributes( { postsToShow: value } ) }
 					/>
 					<TextControl
@@ -196,7 +191,8 @@ class TestimonialBlock extends Component {
 					[ `columns-${ columns }` ],
 				)}>
 					{ posts.map( ( post, i ) => {
-						//console.log(post.testimonialrole);
+						console.log(post);
+						//console.log(post.testimonialtag);
 						return (
 							<article key={ i }
 								className={ classnames(
@@ -222,9 +218,6 @@ class TestimonialBlock extends Component {
 
 								<div className="lsx-block-post-grid-text lsx-testimonial-description">
 									<h5 className="lsx-testimonial-name"><a href={ post.link } target="_blank" rel="bookmark">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a></h5>
-									{/* { role &&
-										<small className="lsx-testimonial-job-title">{role}</small>
-									} */}
 									{ displayTestimonialJobTitle === true && post.additional_meta.job_title &&
 										<small className="lsx-testimonial-job-title">{post.additional_meta.job_title}</small>
 									}
@@ -236,22 +229,6 @@ class TestimonialBlock extends Component {
 											<div dangerouslySetInnerHTML={ { __html: post.content.rendered } } />
 										}
 									</div>
-									{ displayTestimonialSocial && (post.additional_meta.facebook || post.additional_meta.twitter || post.additional_meta.linkedin ) &&
-										<ul className="testimonial-social">
-											{ post.additional_meta.facebook &&
-												<li className="fb"><a href={post.additional_meta.facebook}><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
-											}
-											{ post.additional_meta.twitter &&
-												<li className="tw"><a href={post.additional_meta.twitter}><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
-											}
-											{ post.additional_meta.linkedin &&
-												<li className="ln"><a href={post.additional_meta.linkedin}><i className="fa fa-linkedin" aria-hidden="true"></i></a></li>
-											}
-										</ul>
-									}
-									{ post.additional_meta.email &&
-										<a href={post.additional_meta.email} className="lsx-testimonial-email" tabIndex="0">{post.additional_meta.email}</a>
-									}
 									{ displayPostLink === true &&
 										<a href={ post.link } className="lsx-testimonial-show-more" tabIndex="0">More about { decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }<i className="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 									}
@@ -267,9 +244,9 @@ class TestimonialBlock extends Component {
 
 export default compose([
 	withSelect( (select, props ) => {
-		const { postsToShow, order, orderBy, includeId, testimonialrole } = props.attributes;
+		const { postsToShow, order, orderBy, includeId, testimonialtag } = props.attributes;
 		const latestPostsQuery = pickBy( {
-			testimonialrole,
+			testimonialtag,
 			order,
 			orderby: orderBy,
 			per_page: postsToShow,

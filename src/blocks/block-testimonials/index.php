@@ -2,18 +2,18 @@
 /**
  * Server-side rendering for the testimonial block
  *
- * @since   1.1.0
+ * @since   2.0.0
  * @package LSX BLOCKS
  */
 
 /**
  * Register the dynamic Testimonial block.
  *
- * @since 2.1.0
+ * @since   2.0.0
  *
  * @return void
  */
-function register_dynamic_block() {
+function register_dynamic_testimonial_block() {
 
 	// Only load if Gutenberg is available.
 	if ( ! function_exists( 'register_block_type' ) ) {
@@ -48,10 +48,6 @@ function register_dynamic_block() {
 				'default' => true,
 			),
 			'displayTestimonialJobTitle' => array(
-				'type'    => 'boolean',
-				'default' => true,
-			),
-			'displayTestimonialSocial'   => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
@@ -108,7 +104,7 @@ function register_dynamic_block() {
 	) );
 
 }
-add_action( 'init', 'register_dynamic_block' );
+add_action( 'init', 'register_dynamic_testimonial_block' );
 
 /**
  * Server-side rendering for the testimonial block.
@@ -143,7 +139,7 @@ function render_dynamic_testimonial_block( $attributes ) {
 	if ( ! empty( $attributes['testimonialtag'] ) ) {
 		$args['tax_query'] = array(
 			array(
-				'taxonomy' => 'testimonial_tag',
+				'taxonomy' => 'testimonial-tag',
 				'field'    => 'id',
 				'terms'    => $attributes['testimonialtag'],
 			),
@@ -176,7 +172,6 @@ function render_dynamic_testimonial_block( $attributes ) {
 		$show_job_title = $attributes['displayTestimonialJobTitle'];
 		$show_desc      = $attributes['displayPostExcerpt'];
 		$show_image     = $attributes['displayPostImage'];
-		$show_social    = $attributes['displayTestimonialSocial'];
 
 		$output = '';
 
@@ -258,23 +253,6 @@ function render_dynamic_testimonial_block( $attributes ) {
 				} else {
 					$member_avatar = "<figure class='lsx-testimonial-avatar'>$member_avatar</figure>";
 				}
-			}
-
-			// Member socials.
-			if ( true === $show_social || 'true' === $show_social ) {
-				$links = array(
-					'facebook' => $facebook,
-					'twitter'  => $twitter,
-					'linkedin' => $linkedin,
-				);
-
-				foreach ( $links as $sm => $sm_link ) {
-					if ( ! empty( $sm_link ) ) {
-						$member_socials .= "<li><a href='$sm_link' target='_blank'><i class='fa fa-$sm' aria-hidden='true'></i></a></li>";
-					}
-				}
-
-				$member_socials = ! empty( $member_socials ) ? "<ul class='lsx-testimonial-socials list-inline'>$member_socials</ul>" : '';
 			}
 
 			if ( ! $carousel ) {

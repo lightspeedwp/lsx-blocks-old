@@ -11,13 +11,13 @@ import edit from './edit';
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
-let testimonialBlock = JSON.stringify(wp.blocks.getCategories());
+//let testimonialBlock = JSON.stringify(wp.blocks.getCategories());
 
-if ( testimonialBlock.includes('lsx-testimonial-blocks') ) {
+//if ( testimonialBlock.includes('lsx-testimonial-blocks') ) {
 	registerBlockType( 'lsx-blocks/lsx-testimonial', {
 		title: __( 'LSX Testimonials', 'lsx-blocks' ),
-		description: __( 'Add your testimonial and customize options.', 'lsx-blocks' ),
-		icon:  'groups',
+		description: __( 'Add your testimonials and customize options.', 'lsx-blocks' ),
+		icon:  'format-quote',
 		category: 'lsx-blocks',
 		keywords: [
 			__( 'testimonial', 'lsx-blocks' ),
@@ -33,4 +33,4 @@ if ( testimonialBlock.includes('lsx-testimonial-blocks') ) {
 			return null;
 		},
 	} );
-}
+//}
