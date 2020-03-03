@@ -80,6 +80,11 @@ class Setup {
 		require_once LSX_BLOCKS_PATH . 'src/blocks/block-post-carousel/index.php';
 
 		/**
+		 * Load Gutenberg testimonial Block.
+		 */
+		require_once LSX_BLOCKS_PATH . 'src/blocks/block-testimonials/index.php';
+
+		/**
 		 * Load Gutenberg Group Block Styles
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/extensions/block-group/index.php';
@@ -94,6 +99,7 @@ class Setup {
 		 * Load Gutenberg Pullquote Block Styles
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/extensions/block-pullquote/index.php';
+
 	}
 
 	/**

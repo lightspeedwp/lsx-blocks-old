@@ -197,7 +197,7 @@ class TestimonialBlock extends Component {
 							<article key={ i }
 								className={ classnames(
 									post.featured_media && displayPostImage ? 'has-thumb' : 'no-thumb',
-									'lsx-testimonial-slot'
+									'lsx-testimonials-slot'
 								) }
 							>
 								{
@@ -223,10 +223,10 @@ class TestimonialBlock extends Component {
 									}
 									<div className="lsx-block-post-grid-excerpt">
 										{ displayPostExcerpt === 'excerpt' && post.excerpt &&
-											<div dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
+											<blockquote dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
 										}
 										{ displayPostExcerpt === 'full' && post.content &&
-											<div dangerouslySetInnerHTML={ { __html: post.content.rendered } } />
+											<blockquote dangerouslySetInnerHTML={ { __html: post.content.rendered } } />
 										}
 									</div>
 									{ displayPostLink === true &&

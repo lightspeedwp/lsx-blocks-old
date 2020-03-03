@@ -51,10 +51,6 @@ function register_dynamic_testimonial_block() {
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'displayEmail'        => array(
-				'type'    => 'boolean',
-				'default' => true,
-			),
 			'displayCarousel'     => array(
 				'type'    => 'boolean',
 				'default' => false,
@@ -105,6 +101,55 @@ function register_dynamic_testimonial_block() {
 
 }
 add_action( 'init', 'register_dynamic_testimonial_block' );
+
+/**
+ * Return the team thumbnail.
+ */
+function testimonial_get_thumbnail( $post, $thumbnail_class = 'img-responsive' ) {
+	add_filter( 'lsx_placeholder_url', 'testimonial_placeholder', 10, 1 );
+	add_filter( 'lsx_to_placeholder_url', 'testimonial_placeholder', 10, 1 );
+
+	$thumbnail  = '';
+
+	if ( ! empty( get_the_post_thumbnail( $post->ID ) ) ) {
+		$thumbnail = get_the_post_thumbnail(
+			$post->ID, 'medium', array(
+				'class' => $thumbnail_class,
+			)
+		);
+	} elseif ( ! empty( get_post_meta( $post->ID, 'lsx_testimonial_email_gravatar', true ) ) ) {
+		$thumbnail = get_avatar(
+			get_post_meta( $post->ID, 'lsx_testimonial_email_gravatar', true ), 'thumbnail', $this->options['display']['testimonials_placeholder'], false, array(
+				'class' => $thumbnail_class,
+			)
+		);
+	} else {
+		$thumbnail = '';
+	}
+
+	if ( empty( $thumbnail ) ) {
+		$thumbnail = '<img class="' . $thumbnail_class . '" src="https://www.gravatar.com/avatar/none?d=mm&s=300" width="300" alt="placeholder" />';
+	}
+
+	remove_filter( 'lsx_placeholder_url', 'testimonial_placeholder', 10, 1 );
+	remove_filter( 'lsx_to_placeholder_url', 'testimonial_placeholder', 10, 1 );
+
+	return $thumbnail;
+}
+
+/**
+ * Replaces the widget with Mystery Man
+ */
+function testimonial_placeholder( $image ) {
+	$image = array(
+		LSX_BLOCKS_PATH . 'assets/img/mystery-man-square.png',
+		512,
+		512,
+		true,
+	);
+
+	return $image;
+}
 
 /**
  * Server-side rendering for the testimonial block.
@@ -167,7 +212,6 @@ function render_dynamic_testimonial_block( $attributes ) {
 		$image_shape = $attributes['imageShape'];
 
 		$show_link      = $attributes['displayPostLink'];
-		$show_email     = $attributes['displayEmail'];
 		$show_roles     = $attributes['displayTestimonialRole'];
 		$show_job_title = $attributes['displayTestimonialJobTitle'];
 		$show_desc      = $attributes['displayPostExcerpt'];
@@ -176,7 +220,7 @@ function render_dynamic_testimonial_block( $attributes ) {
 		$output = '';
 
 		if ( $carousel && ( 'grid' === $post_layout ) ) {
-			$output .= "<div class='lsx-testimonial-block' id='lsx-testimonial-slider' data-slick='{\"slidesToShow\": $columns, \"slidesToScroll\": $columns }'>";
+			$output .= "<div class='lsx-testimonial-block' id='lsx-testimonials-slider' data-slick='{\"slidesToShow\": $columns, \"slidesToScroll\": $columns }'>";
 		} else {
 			$output .= "<div class='lsx-testimonial-block'><div class='row'>";
 		}
@@ -188,25 +232,29 @@ function render_dynamic_testimonial_block( $attributes ) {
 			$count++;
 			$count_global++;
 
+			$member_name = apply_filters( 'the_title', $post->post_title );
+
 			// Link.
 			$link_open  = '';
 			$link_close = '';
+			$bottom_link = '';
+			$member_description = '';
 
 			// Link to single.
 			if ( ( true === $show_link || 'true' === $show_link ) ) {
+
+				if ( get_post_meta( $post->ID, 'lsx_testimonial_url', true ) ) {
+					$link_open  = "<a href='" . get_post_meta( $post->ID, 'lsx_testimonial_url', true ) . "' target='_blank'>";
+					$link_close = '</a>';
+				}
+
 				$bottom_link = '<a href="' . get_permalink( $post->ID ) . '" class="lsx-testimonial-show-more">More about ' . strtok( $member_name, ' ' ) . '<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
 			}
 
-			if ( true === $show_email || 'true' === $show_email ) {
-				$email = get_post_meta( $post->ID, 'lsx_email_contact', true );
-
-				$member_email = '<a href="mailto:' . sanitize_email( $email ) . '" class="lsx-testimonial-email">' . sanitize_email( $email ) . '</a>';
-			}
-
 			if ( ( true === $show_link || 'true' === $show_link ) ) {
-				$member_name = '<h5 class="lsx-testimonial-name"><a href="' . get_permalink() . '">' . $member_name . '</a></h5>';
+				$member_name = '<h5 class="lsx-testimonials-title"><a href="' . get_permalink() . '">' . $member_name . '</a></h5>';
 			} else {
-				$member_name = '<h5 class="lsx-testimonial-name">' . $member_name . '</h5>';
+				$member_name = '<h5 class="lsx-testimonials-title">' . $member_name . '</h5>';
 			}
 
 			// Member roles.
@@ -229,8 +277,11 @@ function render_dynamic_testimonial_block( $attributes ) {
 
 			// Member job title.
 			if ( true === $show_job_title || 'true' === $show_job_title ) {
-				$job_title        = get_post_meta( $post->ID, 'lsx_job_title', true );
-				$member_job_title = ! empty( $job_title ) ? "<small class='lsx-testimonial-job-title'>$job_title</small>" : '';
+				$job_title        = get_post_meta( $post->ID, 'lsx_testimonial_byline', true );
+
+				$small = "<small class='lsx-testimonials-meta-wrap'><i class='fa fa-briefcase'></i> <span class='lsx-testimonials-meta'>" . esc_html__( 'Role & Company', 'lsx-testimonials' ) . ':</span> ' . $link_open . $job_title . $link_close . '</small>';
+
+				$member_job_title = ! empty( $job_title ) ? "<small class='lsx-testimonial-job-title'>$small</small>" : '';
 			}
 
 			// Member description.
@@ -239,20 +290,25 @@ function render_dynamic_testimonial_block( $attributes ) {
 					$member_description = apply_filters( 'the_content', get_the_content() );
 					$member_description = str_replace( ']]>', ']]&gt;', $member_description );
 				} elseif ( 'excerpt' === $show_desc ) {
-					$member_description = apply_filters( 'the_excerpt', get_the_excerpt() );
+					if ( ! has_excerpt() ) {
+
+						$excerpt_more = '<p><a class="moretag" href="' . esc_url( get_permalink() ) . '">' . esc_html__( 'Read More', 'lsx' ) . '</a></p>';
+						$content      = wp_trim_words( get_the_content(), 20 );
+						$content      = '<p>' . $content . '</p>' . $excerpt_more;
+						$member_description = wp_kses_post( $content );
+					} else {
+						$member_description = apply_filters( 'the_excerpt', get_the_excerpt() );
+					}
 				}
-				$member_description = ! empty( $member_description ) ? "<div class='lsx-testimonial-description'>$member_description</div>" : '';
+				$member_description = ! empty( $member_description ) ? "<blockquote class='lsx-testimonials-content'>$member_description $bottom_link</blockquote>" : '';
 			}
 
-			// Member avatar.
-			if ( true === $show_image || 'true' === $show_image ) {
-				$member_avatar = get_the_post_thumbnail( $post->ID, 'thumbnail' );
-
-				if ( ( true === $show_link || 'true' === $show_link ) ) {
-					$member_avatar = "<figure class='lsx-testimonial-avatar $image_shape'><a href='" . get_permalink() . "'>$member_avatar</a></figure>";
-				} else {
-					$member_avatar = "<figure class='lsx-testimonial-avatar'>$member_avatar</figure>";
-				}
+			// Image.
+			if ( 'true' === $show_image || true === $show_image ) {
+				$testimonial_thumb = testimonial_get_thumbnail( $post, 'thumbnail', 'img-responsive' );
+				$image = '<figure class="lsx-testimonials-avatar">' . $testimonial_thumb . '</figure>';
+			} else {
+				$image = '';
 			}
 
 			if ( ! $carousel ) {
@@ -260,26 +316,23 @@ function render_dynamic_testimonial_block( $attributes ) {
 			}
 
 			$output .= "
-				<article class='lsx-testimonial-slot'>
-					$member_avatar
+				<article class='lsx-testimonials-slot'>
+					$image
 					$member_name
-					$member_job_title
 					$member_roles
+					$member_job_title
 					$member_description
-					$member_socials
-					$member_email
-					$bottom_link
 				</article>
 			";
 
 			if ( ! $carousel ) {
 				$output .= '</div>';
 
-				if ( $count == $columns && $testimonial->post_count > $count_global ) {
-					$output .= '</div>';
-					$output .= '<div class="row">';
-					$count   = 0;
-				}
+				// if ( $count == $columns && $testimonial->post_count > $count_global ) {
+				// 	$output .= '</div>';
+				// 	$output .= '<div class="row">';
+				// 	$count   = 0;
+				// }
 			}
 
 			wp_reset_postdata();

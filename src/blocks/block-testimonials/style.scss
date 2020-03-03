@@ -4,8 +4,8 @@
 	  float: none;
 	  margin: 6px 2px 10px 0;
 	}
-	.lsx-testimonial-slot {
-		.lsx-testimonial-avatar {
+	.lsx-testimonials-slot {
+		.lsx-testimonials-avatar {
 			height: auto;
 			width: auto;
 			border-radius: initial;
@@ -15,7 +15,8 @@
 				height: auto;
 				margin: 0 auto 2rem;
 				overflow: hidden;
-				width: 170px;
+				width: 100px;
+				border: none;
 			}
 			&.square {
 				border-radius: 0;
@@ -24,7 +25,7 @@
 				}
 			}
 		}
-		.lsx-testimonial-description {
+		.lsx-testimonials-content {
 			.moretag {
 				display: none;
 			}
