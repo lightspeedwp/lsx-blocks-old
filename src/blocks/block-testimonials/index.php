@@ -207,6 +207,8 @@ function render_dynamic_testimonial_block( $attributes ) {
 
 		$column_size = intval( 12 / $columns );
 
+		$block_width = $attributes['align'];
+
 		$carousel    = $attributes['displayCarousel'];
 		$post_layout = $attributes['postLayout'];
 		$image_shape = $attributes['imageShape'];
@@ -220,9 +222,9 @@ function render_dynamic_testimonial_block( $attributes ) {
 		$output = '';
 
 		if ( $carousel && ( 'grid' === $post_layout ) ) {
-			$output .= "<div class='lsx-testimonial-block' id='lsx-testimonials-slider' data-slick='{\"slidesToShow\": $columns, \"slidesToScroll\": $columns }'>";
+			$output .= "<div class='lsx-testimonial-block " . $block_width . ' ' . $post_layout . "-view' id='lsx-testimonials-slider' data-slick='{\"slidesToShow\": $columns, \"slidesToScroll\": $columns }'>";
 		} else {
-			$output .= "<div class='lsx-testimonial-block'><div class='row'>";
+			$output .= "<div class='lsx-testimonial-block " . $post_layout . "-view'><div class='row'>";
 		}
 
 		while ( $testimonial->have_posts() ) {
@@ -239,6 +241,7 @@ function render_dynamic_testimonial_block( $attributes ) {
 			$link_close = '';
 			$bottom_link = '';
 			$member_description = '';
+			$member_job_title = '';
 
 			// Link to single.
 			if ( ( true === $show_link || 'true' === $show_link ) ) {
@@ -306,7 +309,7 @@ function render_dynamic_testimonial_block( $attributes ) {
 			// Image.
 			if ( 'true' === $show_image || true === $show_image ) {
 				$testimonial_thumb = testimonial_get_thumbnail( $post, 'thumbnail', 'img-responsive' );
-				$image = '<figure class="lsx-testimonials-avatar">' . $testimonial_thumb . '</figure>';
+				$image = '<figure class="lsx-testimonials-avatar ' . $image_shape . '">' . $testimonial_thumb . '</figure>';
 			} else {
 				$image = '';
 			}

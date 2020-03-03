@@ -4191,6 +4191,15 @@ article .lsx-button {
   float: none;
   margin: 6px 2px 10px 0; }
 
+.wp-block-lsx-blocks-lsx-testimonial.grid-view > .row,
+.lsx-testimonial-block.grid-view > .row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
 .wp-block-lsx-blocks-lsx-testimonial .lsx-testimonials-slot .lsx-testimonials-avatar,
 .lsx-testimonial-block .lsx-testimonials-slot .lsx-testimonials-avatar {
   height: auto;
@@ -4210,11 +4219,23 @@ article .lsx-button {
     border-radius: 0; }
     .wp-block-lsx-blocks-lsx-testimonial .lsx-testimonials-slot .lsx-testimonials-avatar.square img,
     .lsx-testimonial-block .lsx-testimonials-slot .lsx-testimonials-avatar.square img {
-      border-radius: 0; }
+      border-radius: 0;
+      width: auto; }
 
 .wp-block-lsx-blocks-lsx-testimonial .lsx-testimonials-slot .lsx-testimonials-content .moretag,
 .lsx-testimonial-block .lsx-testimonials-slot .lsx-testimonials-content .moretag {
   display: none; }
+
+.wp-block-lsx-blocks-lsx-testimonial.list-view > .row,
+.lsx-testimonial-block.list-view > .row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+  .wp-block-lsx-blocks-lsx-testimonial.list-view > .row > div,
+  .lsx-testimonial-block.list-view > .row > div {
+    margin-left: auto;
+    margin-right: auto; }
 
 .wp-block-lsx-blocks-lsx-testimonial.is-grid {
   display: grid;
