@@ -9,11 +9,15 @@ import moment from 'moment';
 import classnames from 'classnames';
 import { stringify } from 'querystringify';
 
+const { compose } = wp.compose;
+
 const { Component, Fragment } = wp.element;
 
 const { __ } = wp.i18n;
 
 const { decodeEntities } = wp.htmlEntities;
+
+const { addQueryArgs } = wp.url;
 
 const { apiFetch } = wp;
 
@@ -47,11 +51,37 @@ class LatestPostsBlock extends Component {
 	constructor() {
 		super( ...arguments );
 
+		this.state = { categoriesList: [] };
+		this.stillMounted = false;
+
 		this.toggleDisplayPostDate = this.toggleDisplayPostDate.bind( this );
 		this.toggleDisplayPostExcerpt = this.toggleDisplayPostExcerpt.bind( this );
 		this.toggleDisplayPostAuthor = this.toggleDisplayPostAuthor.bind( this );
 		this.toggleDisplayPostImage = this.toggleDisplayPostImage.bind( this );
 		this.toggleDisplayPostLink = this.toggleDisplayPostLink.bind( this );
+	}
+
+	componentDidMount() {
+		this.stillMounted = true;
+		this.fetchRequest = apiFetch({
+			path: addQueryArgs( '/wp/v2/categories', { per_page: -1 })
+		}).then(
+			( categoriesList ) => {
+				if ( this.stillMounted ) {
+					this.setState({ categoriesList });
+				}
+			}
+		).catch(
+			() => {
+				if ( this.stillMounted ) {
+					this.setState({ categoriesList: [] });
+				}
+			}
+		);
+	}
+
+	componentWillUnmount() {
+		this.stillMounted = false;
 	}
 
 	toggleDisplayPostDate() {
@@ -97,8 +127,10 @@ class LatestPostsBlock extends Component {
 	}
 
 	render() {
-		const { attributes, categoriesList, setAttributes, latestPosts } = this.props;
+		const { attributes, setAttributes, latestPosts } = this.props;
 		const { displayPostDate, displayPostExcerpt, displayPostAuthor, displayPostImage,displayPostLink, align, postLayout, columns, order, orderBy, categories, postsToShow, width, imageCrop, readMoreText } = attributes;
+
+		const { categoriesList } = this.state;
 
 		// Thumbnail options
 		const imageCropOptions = [
@@ -305,7 +337,7 @@ export default withSelect( ( select, props ) => {
 		order,
 		orderby: orderBy,
 		per_page: postsToShow,
-	}, ( value ) => ! isUndefined( value ) );
+	} );
 	const categoriesListQuery = {
 		per_page: 100,
 	};
