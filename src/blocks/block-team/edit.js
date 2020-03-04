@@ -63,7 +63,7 @@ class TeamBlock extends Component {
 
 	render() {
 		const { attributes, posts, className, setAttributes, numberOfItems } = this.props;
-		const { order, orderBy, teamrole, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt, displayPostLink, displayTeamSocial, displayTeamJobTitle, includeId } = attributes;
+		const { order, orderBy, teamrole, postsToShow, postLayout, columns, displayCarousel, imageShape, displayPostImage, displayPostExcerpt, displayPostLink, displayTeamSocial, displayTeamJobTitle, displayTeamRole, includeId } = attributes;
 
 		const { categoriesList } = this.state;
 		//console.log(categoriesList);
@@ -71,13 +71,13 @@ class TeamBlock extends Component {
 			return (
 				<p className={className} >
 					<Spinner />
-					{ __( 'Loading Posts', 'lsx-blocks' ) }
+					{ __( 'Loading Team Members', 'lsx-blocks' ) }
 
 				</p>
 			);
 		}
 		if ( 0 === posts.length ) {
-			return <p>{ __( 'No Posts', 'lsx-blocks' ) }</p>;
+			return <p>{ __( 'No Team Members found', 'lsx-blocks' ) }</p>;
 		}
 
 		// Layouts options
@@ -135,11 +135,6 @@ class TeamBlock extends Component {
 					/>
 				</PanelBody>
 				<PanelBody title={ __( 'Display Settings' ) }>
-					<ToggleControl
-						label={ __( 'Display Featured Image' ) }
-						checked={ displayPostImage }
-						onChange={ () => this.props.setAttributes( { displayPostImage: ! displayPostImage } ) }
-					/>
 					<SelectControl
 						label={ __( 'Display Excerpt' ) }
 						value={ displayPostExcerpt }
@@ -148,6 +143,11 @@ class TeamBlock extends Component {
 							label: label,
 						} ) ) }
 						onChange={ ( value ) => { this.props.setAttributes( { displayPostExcerpt: value } ) } }
+					/>
+					<ToggleControl
+						label={ __( 'Display Featured Image' ) }
+						checked={ displayPostImage }
+						onChange={ () => this.props.setAttributes( { displayPostImage: ! displayPostImage } ) }
 					/>
 					<ToggleControl
 						label={ __( 'Link to single team member' ) }
@@ -164,8 +164,13 @@ class TeamBlock extends Component {
 						checked={ displayTeamJobTitle }
 						onChange={ () => this.props.setAttributes( { displayTeamJobTitle: ! displayTeamJobTitle } ) }
 					/>
+					<ToggleControl
+						label={ __( 'Show Role' ) }
+						checked={ displayTeamRole }
+						onChange={ () => this.props.setAttributes( { displayTeamRole: ! displayTeamRole } ) }
+					/>
 				</PanelBody>
-				<PanelBody title={ __( 'General Settings' ) }>
+				<PanelBody className="team-panel" title={ __( 'General Settings' ) }>
 					<QueryControls
 						{ ...{ order, orderBy, postsToShow, numberOfItems, teamrole } }
 						numberOfItems={ postsToShow }
@@ -216,7 +221,15 @@ class TeamBlock extends Component {
 											</a>
 										</div>
 									) : (
-										null
+										<div className="lsx-block-post-grid-image">
+											<a href={ post.link } target="_blank" rel="bookmark">
+												<img
+													className={ imageShape }
+													src={ document.location.origin + '/wp-content/plugins/lsx-blocks/dist/assets/images/mystery-man-square.png' }
+													alt={ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }
+												/>
+											</a>
+										</div>
 									)
 								}
 
@@ -230,10 +243,16 @@ class TeamBlock extends Component {
 									}
 									<div className="lsx-block-post-grid-excerpt">
 										{ displayPostExcerpt === 'excerpt' && post.excerpt &&
-											<div dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
+											<blockquote dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
+										}
+										{ displayPostExcerpt === 'excerpt' && post.excerpt.rendered === '' && post.content &&
+											<blockquote>
+												<p dangerouslySetInnerHTML={ { __html: post.content.rendered.length > 10 ? post.content.rendered.substring(0, 150) + '...' : post.content.rendered } } />
+											</blockquote>
+
 										}
 										{ displayPostExcerpt === 'full' && post.content &&
-											<div dangerouslySetInnerHTML={ { __html: post.content.rendered } } />
+											<blockquote dangerouslySetInnerHTML={ { __html: post.content.rendered } } />
 										}
 									</div>
 									{ displayTeamSocial && (post.additional_meta.facebook || post.additional_meta.twitter || post.additional_meta.linkedin ) &&

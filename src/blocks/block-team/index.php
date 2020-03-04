@@ -73,7 +73,7 @@ function register_dynamic_block() {
 			),
 			'align'               => array(
 				'type'    => 'string',
-				'default' => 'center',
+				'default' => 'wide',
 			),
 			'width'               => array(
 				'type'    => 'string',
@@ -109,6 +109,49 @@ function register_dynamic_block() {
 
 }
 add_action( 'init', 'register_dynamic_block' );
+
+/**
+ * Return the team thumbnail.
+ */
+function team_get_thumbnail( $post, $thumbnail_class = 'img-responsive' ) {
+	add_filter( 'lsx_placeholder_url', 'team_placeholder', 10, 1 );
+	add_filter( 'lsx_to_placeholder_url', 'team_placeholder', 10, 1 );
+
+	$thumbnail  = '';
+
+	if ( ! empty( get_the_post_thumbnail( $post->ID ) ) ) {
+		$thumbnail = get_the_post_thumbnail(
+			$post->ID, 'medium', array(
+				'class' => $thumbnail_class,
+			)
+		);
+	} else {
+		$thumbnail = '';
+	}
+
+	if ( empty( $thumbnail ) ) {
+		$thumbnail = '<img class="' . $thumbnail_class . '" src="https://www.gravatar.com/avatar/none?d=mm&s=300" width="300" alt="placeholder" />';
+	}
+
+	remove_filter( 'lsx_placeholder_url', 'team_placeholder', 10, 1 );
+	remove_filter( 'lsx_to_placeholder_url', 'team_placeholder', 10, 1 );
+
+	return $thumbnail;
+}
+
+/**
+ * Replaces the widget with Mystery Man
+ */
+function team_placeholder( $image ) {
+	$image = array(
+		get_site_url() . '/wp-content/plugins/lsx-blocks/dist/assets/images/mystery-man-square.png',
+		512,
+		512,
+		true,
+	);
+
+	return $image;
+}
 
 /**
  * Server-side rendering for the team block.
@@ -166,6 +209,8 @@ function render_dynamic_team_block( $attributes ) {
 
 		$column_size = intval( 12 / $columns );
 
+		$block_width = $attributes['align'];
+
 		$carousel    = $attributes['displayCarousel'];
 		$post_layout = $attributes['postLayout'];
 		$image_shape = $attributes['imageShape'];
@@ -181,9 +226,9 @@ function render_dynamic_team_block( $attributes ) {
 		$output = '';
 
 		if ( $carousel && ( 'grid' === $post_layout ) ) {
-			$output .= "<div class='lsx-team-block' id='lsx-team-slider' data-slick='{\"slidesToShow\": $columns, \"slidesToScroll\": $columns }'>";
+			$output .= "<div class='lsx-team-block " . $block_width . "' id='lsx-team-slider' data-slick='{\"slidesToShow\": $columns, \"slidesToScroll\": $columns }'>";
 		} else {
-			$output .= "<div class='lsx-team-block'><div class='row'>";
+			$output .= "<div class='lsx-team-block " . $block_width . "'><div class='row'>";
 		}
 
 		while ( $team->have_posts() ) {
@@ -252,7 +297,14 @@ function render_dynamic_team_block( $attributes ) {
 					$member_description = apply_filters( 'the_content', get_the_content() );
 					$member_description = str_replace( ']]>', ']]&gt;', $member_description );
 				} elseif ( 'excerpt' === $show_desc ) {
-					$member_description = apply_filters( 'the_excerpt', get_the_excerpt() );
+					if ( ! has_excerpt() ) {
+
+						$content = wp_trim_words( get_the_content(), 30 );
+						$content = '<p>' . $content . '</p>';
+						$member_description = wp_kses_post( $content );
+					} else {
+						$member_description = apply_filters( 'the_excerpt', get_the_excerpt() );
+					}
 				}
 				$member_description = ! empty( $member_description ) ? "<div class='lsx-team-description'>$member_description</div>" : '';
 			}
@@ -266,6 +318,12 @@ function render_dynamic_team_block( $attributes ) {
 				} else {
 					$member_avatar = "<figure class='lsx-team-avatar'>$member_avatar</figure>";
 				}
+			}
+			if ( 'true' === $show_image || true === $show_image ) {
+				$team_thumb = team_get_thumbnail( $post, 'thumbnail', 'img-responsive' );
+				$member_avatar = '<figure class="lsx-team-avatar ' . $image_shape . '">' . $team_thumb . '</figure>';
+			} else {
+				$image = '';
 			}
 
 			// Member socials.

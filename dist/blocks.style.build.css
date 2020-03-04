@@ -2695,8 +2695,15 @@
     display: block;
     height: auto;
     margin: 0 auto 2rem;
+    width: 170px;
+    height: 170px;
+    min-width: 170px;
+    min-height: 170px;
     overflow: hidden;
-    width: 170px; }
+    -o-object-fit: cover;
+       object-fit: cover;
+    border: none;
+    background-color: none; }
   .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar.square,
   .lsx-team-block .lsx-team-slot .lsx-team-avatar.square {
     border-radius: 0; }
@@ -2707,6 +2714,10 @@
 .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-description .moretag,
 .lsx-team-block .lsx-team-slot .lsx-team-description .moretag {
   display: none; }
+
+.wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-email,
+.lsx-team-block .lsx-team-slot .lsx-team-email {
+  display: block; }
 
 .wp-block-lsx-blocks-lsx-team.is-grid {
   display: grid;
@@ -2726,18 +2737,27 @@
 .wp-block-lsx-blocks-lsx-team.is-grid.columns-4 {
   grid-template-columns: 1fr 1fr 1fr 1fr; }
 
+.wp-block-lsx-blocks-lsx-team.is-grid.columns-5 {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
+
+.wp-block-lsx-blocks-lsx-team.is-grid.columns-6 {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; }
+
 @media only screen and (max-width: 600px) {
   .wp-block-lsx-blocks-lsx-teamdiv[class*="columns"].is-grid {
     grid-template-columns: 1fr; } }
 
-.wp-block-lsx-blocks-lsx-team article.has-thumb img.circle {
+.wp-block-lsx-blocks-lsx-team article.has-thumb img.circle, .wp-block-lsx-blocks-lsx-team article.no-thumb img.circle {
   border-radius: 50%;
-  max-height: 170px;
-  width: 100%;
+  width: 170px;
+  height: 170px;
+  min-width: 170px;
+  min-height: 170px;
+  overflow: hidden;
   -o-object-fit: cover;
      object-fit: cover; }
 
-.wp-block-lsx-blocks-lsx-team article.has-thumb img.square {
+.wp-block-lsx-blocks-lsx-team article.has-thumb img.square, .wp-block-lsx-blocks-lsx-team article.no-thumb img.square {
   border-radius: 0; }
 
 .wp-block-lsx-blocks-lsx-team article .lsx-team-description {
@@ -2780,8 +2800,12 @@
 
 .wp-block-lsx-blocks-lsx-team.is-list article {
   margin-bottom: 4rem; }
-  .wp-block-lsx-blocks-lsx-team.is-list article.has-thumb img.circle {
-    max-width: 170px; }
+  .wp-block-lsx-blocks-lsx-team.is-list article.has-thumb img.circle, .wp-block-lsx-blocks-lsx-team.is-list article.no-thumb img.circle {
+    width: 170px;
+    height: 170px;
+    min-width: 170px;
+    min-height: 170px;
+    overflow: hidden; }
 
 .components-base-control.components-radio-control .components-base-control__field {
   display: -ms-flexbox;
@@ -2805,3 +2829,9 @@
         top: -3.4rem; }
       .components-base-control.components-radio-control .components-base-control__field .components-radio-control__option .components-radio-control__input[value="grid"]:before {
         background-image: url(assets/images/icon-grid.svg); }
+
+.edit-post-settings-sidebar__panel-block .components-panel__body.team-panel .components-base-control:nth-of-type(2) .components-base-control__field .components-base-control__label {
+  font-size: 0; }
+  .edit-post-settings-sidebar__panel-block .components-panel__body.team-panel .components-base-control:nth-of-type(2) .components-base-control__field .components-base-control__label:after {
+    content: "Roles";
+    font-size: 13px; }
