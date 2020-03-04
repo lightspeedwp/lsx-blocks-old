@@ -115,7 +115,7 @@ function testimonial_get_thumbnail( $post, $thumbnail_class = 'img-responsive' )
 		);
 	} elseif ( ! empty( get_post_meta( $post->ID, 'lsx_testimonial_email_gravatar', true ) ) ) {
 		$thumbnail = get_avatar(
-			get_post_meta( $post->ID, 'lsx_testimonial_email_gravatar', true ), 'thumbnail', $this->options['display']['testimonials_placeholder'], false, array(
+			get_post_meta( $post->ID, 'lsx_testimonial_email_gravatar', true ), 'thumbnail', false, array(
 				'class' => $thumbnail_class,
 			)
 		);
