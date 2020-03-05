@@ -228,7 +228,7 @@ function render_dynamic_team_block( $attributes ) {
 		if ( $carousel && ( 'grid' === $post_layout ) ) {
 			$output .= "<div class='lsx-team-block " . $block_width . "' id='lsx-team-slider' data-slick='{\"slidesToShow\": $columns, \"slidesToScroll\": $columns }'>";
 		} else {
-			$output .= "<div class='lsx-team-block " . $block_width . "'><div class='row'>";
+			$output .= "<div class='lsx-team-block block-template-" . $post_layout . ' ' . $block_width . "'><div class='row'>";
 		}
 
 		while ( $team->have_posts() ) {
@@ -255,10 +255,11 @@ function render_dynamic_team_block( $attributes ) {
 				$bottom_link = '<a href="' . get_permalink( $post->ID ) . '" class="lsx-team-show-more">More about ' . strtok( $member_name, ' ' ) . '<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
 			}
 
-			if ( true === $show_email || 'true' === $show_email ) {
+			if ( true === $show_email || 'true' === $show_email  ) {
 				$email = get_post_meta( $post->ID, 'lsx_email_contact', true );
-
-				$member_email = '<a href="mailto:' . sanitize_email( $email ) . '" class="lsx-team-email">' . sanitize_email( $email ) . '</a>';
+				if ( ! empty( $email ) ) {
+					$member_email = '<a href="mailto:' . sanitize_email( $email ) . '" class="lsx-team-email">' . sanitize_email( $email ) . '</a>';
+				}
 			}
 
 			if ( ( true === $show_link || 'true' === $show_link ) ) {
@@ -288,7 +289,11 @@ function render_dynamic_team_block( $attributes ) {
 			// Member job title.
 			if ( true === $show_job_title || 'true' === $show_job_title ) {
 				$job_title        = get_post_meta( $post->ID, 'lsx_job_title', true );
-				$member_job_title = ! empty( $job_title ) ? "<small class='lsx-team-job-title'>$job_title</small>" : '';
+				$job_title_key = '';
+				if ( 'list' === $post_layout ) {
+					$job_title_key = '<span class="lsx-to-meta-data-key">Role:</span>';
+				}
+				$member_job_title = ! empty( $job_title ) ? $job_title_key . "<small class='lsx-team-job-title'>$job_title</small>" : '';
 			}
 
 			// Member description.
@@ -344,10 +349,33 @@ function render_dynamic_team_block( $attributes ) {
 			}
 
 			if ( ! $carousel ) {
+				if ( 'list' === $post_layout ) {
+					$column_size = 12;
+				}
 				$output .= "<div class='col-xs-12 col-md-$column_size'>";
 			}
 
-			$output .= "
+			if ( 'list' === $post_layout ) {
+				$output .= "
+				<article class='lsx-team-slot'>
+					$member_avatar
+					<div class='entry-layout-wrapper'>
+						<div class='entry-layout-content'>
+							$member_name
+							$member_description
+							$bottom_link
+						</div>
+						<div class='entry-layout-meta'>
+							$member_job_title
+							$member_roles
+							$member_email
+							$member_socials
+						</div>
+					</div>
+				</article>
+			";
+			} else {
+				$output .= "
 				<article class='lsx-team-slot'>
 					$member_avatar
 					$member_name
@@ -359,15 +387,16 @@ function render_dynamic_team_block( $attributes ) {
 					$bottom_link
 				</article>
 			";
+			}
 
 			if ( ! $carousel ) {
 				$output .= '</div>';
 
-				if ( $count == $columns && $team->post_count > $count_global ) {
-					$output .= '</div>';
-					$output .= '<div class="row">';
-					$count   = 0;
-				}
+				// if ( $count == $columns && $team->post_count > $count_global ) {
+				// 	$output .= '</div>';
+				// 	$output .= '<div class="row">';
+				// 	$count   = 0;
+				// }
 			}
 
 			wp_reset_postdata();

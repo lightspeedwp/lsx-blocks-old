@@ -243,16 +243,16 @@ class TeamBlock extends Component {
 									}
 									<div className="lsx-block-post-grid-excerpt">
 										{ displayPostExcerpt === 'excerpt' && post.excerpt &&
-											<blockquote dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
+											<div dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
 										}
 										{ displayPostExcerpt === 'excerpt' && post.excerpt.rendered === '' && post.content &&
-											<blockquote>
+											<div>
 												<p dangerouslySetInnerHTML={ { __html: post.content.rendered.length > 10 ? post.content.rendered.substring(0, 150) + '...' : post.content.rendered } } />
-											</blockquote>
+											</div>
 
 										}
 										{ displayPostExcerpt === 'full' && post.content &&
-											<blockquote dangerouslySetInnerHTML={ { __html: post.content.rendered } } />
+											<div dangerouslySetInnerHTML={ { __html: post.content.rendered } } />
 										}
 									</div>
 									{ displayTeamSocial && (post.additional_meta.facebook || post.additional_meta.twitter || post.additional_meta.linkedin ) &&

@@ -2719,6 +2719,128 @@
 .lsx-team-block .lsx-team-slot .lsx-team-email {
   display: block; }
 
+@media (min-width: 968px) {
+  .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot,
+  .lsx-team-block.block-template-list .lsx-team-slot {
+    display: -ms-flexbox;
+    display: flex; } }
+
+@media (max-width: 967px) {
+  .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot,
+  .lsx-team-block.block-template-list .lsx-team-slot {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto; } }
+
+.wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .lsx-team-avatar,
+.lsx-team-block.block-template-list .lsx-team-slot .lsx-team-avatar {
+  padding: 0;
+  margin: 0; }
+  @media (min-width: 968px) {
+    .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .lsx-team-avatar,
+    .lsx-team-block.block-template-list .lsx-team-slot .lsx-team-avatar {
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+      width: 30%; } }
+  .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .lsx-team-avatar.square img,
+  .lsx-team-block.block-template-list .lsx-team-slot .lsx-team-avatar.square img {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0; }
+  .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .lsx-team-avatar.circle,
+  .lsx-team-block.block-template-list .lsx-team-slot .lsx-team-avatar.circle {
+    background: white;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center; }
+    @media (max-width: 967px) {
+      .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .lsx-team-avatar.circle,
+      .lsx-team-block.block-template-list .lsx-team-slot .lsx-team-avatar.circle {
+        padding-top: 1rem; } }
+
+.wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper,
+.lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper {
+  background: white;
+  padding: 2.4rem 15px;
+  text-align: left;
+  padding-left: 4rem;
+  word-break: break-word; }
+  @media (min-width: 968px) {
+    .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper,
+    .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper {
+      -ms-flex-positive: 5;
+          flex-grow: 5;
+      width: 70%;
+      display: -ms-flexbox;
+      display: flex;
+      padding-left: 2.4rem; } }
+  .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-content,
+  .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-content {
+    min-height: 170px;
+    padding-right: 4rem; }
+    @media (min-width: 968px) {
+      .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-content,
+      .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-content {
+        -ms-flex-positive: 5;
+            flex-grow: 5;
+        width: 70%; } }
+  .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta,
+  .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta {
+    -ms-flex-positive: 2;
+        flex-grow: 2;
+    width: 30%; }
+    .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta > *,
+    .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta > * {
+      position: relative;
+      display: -ms-flexbox;
+      display: flex; }
+      .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta > *:before,
+      .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta > *:before {
+        color: inherit;
+        display: inline-block;
+        font-family: 'FontAwesome';
+        font-size: inherit;
+        left: -2rem;
+        position: absolute;
+        text-rendering: auto;
+        color: #919191;
+        font-weight: 100; }
+    .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-to-meta-data-key,
+    .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-to-meta-data-key {
+      font-size: 13px;
+      font-weight: 600; }
+      @media (max-width: 967px) {
+        .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-to-meta-data-key,
+        .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-to-meta-data-key {
+          margin-left: 2rem; } }
+      .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-to-meta-data-key:before,
+      .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-to-meta-data-key:before {
+        content: '\f0c0'; }
+    .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-job-title,
+    .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-job-title {
+      margin-top: 0; }
+    @media (max-width: 967px) {
+      .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-email,
+      .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-email {
+        margin-left: 2rem; } }
+    .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-email:before,
+    .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-email:before {
+      content: '\f0e0'; }
+    .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-socials,
+    .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-socials {
+      margin-left: -2rem;
+      margin-top: 1rem; }
+      @media (max-width: 967px) {
+        .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-socials,
+        .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-socials {
+          margin-left: 2rem; } }
+      .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-socials li,
+      .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-socials li {
+        padding-left: 0;
+        padding-right: 1rem; }
+
 .wp-block-lsx-blocks-lsx-team.is-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2800,12 +2922,33 @@
 
 .wp-block-lsx-blocks-lsx-team.is-list article {
   margin-bottom: 4rem; }
+  @media (min-width: 968px) {
+    .wp-block-lsx-blocks-lsx-team.is-list article.has-thumb, .wp-block-lsx-blocks-lsx-team.is-list article.no-thumb {
+      display: -ms-flexbox;
+      display: flex; } }
+  .wp-block-lsx-blocks-lsx-team.is-list article.has-thumb .lsx-block-post-grid-image, .wp-block-lsx-blocks-lsx-team.is-list article.no-thumb .lsx-block-post-grid-image {
+    margin-right: 2rem; }
+    @media (min-width: 968px) {
+      .wp-block-lsx-blocks-lsx-team.is-list article.has-thumb .lsx-block-post-grid-image, .wp-block-lsx-blocks-lsx-team.is-list article.no-thumb .lsx-block-post-grid-image {
+        -ms-flex-positive: 2;
+            flex-grow: 2;
+        width: 30%; } }
   .wp-block-lsx-blocks-lsx-team.is-list article.has-thumb img.circle, .wp-block-lsx-blocks-lsx-team.is-list article.no-thumb img.circle {
     width: 170px;
     height: 170px;
     min-width: 170px;
     min-height: 170px;
     overflow: hidden; }
+  .wp-block-lsx-blocks-lsx-team.is-list article.has-thumb .lsx-block-post-grid-text, .wp-block-lsx-blocks-lsx-team.is-list article.no-thumb .lsx-block-post-grid-text {
+    text-align: left;
+    margin-top: 0; }
+    @media (min-width: 968px) {
+      .wp-block-lsx-blocks-lsx-team.is-list article.has-thumb .lsx-block-post-grid-text, .wp-block-lsx-blocks-lsx-team.is-list article.no-thumb .lsx-block-post-grid-text {
+        width: 70%;
+        -ms-flex-positive: 5;
+            flex-grow: 5; } }
+    .wp-block-lsx-blocks-lsx-team.is-list article.has-thumb .lsx-block-post-grid-text .lsx-team-name, .wp-block-lsx-blocks-lsx-team.is-list article.no-thumb .lsx-block-post-grid-text .lsx-team-name {
+      margin: 5px 0; }
 
 .components-base-control.components-radio-control .components-base-control__field {
   display: -ms-flexbox;

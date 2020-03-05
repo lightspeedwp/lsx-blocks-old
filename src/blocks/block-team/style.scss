@@ -39,6 +39,115 @@
 			display: block;
 		}
 	}
+	&.block-template-list {
+		.lsx-team-slot {
+			@media (min-width:968px) {
+				display: flex;
+			}
+			@media (max-width:967px) {
+				max-width: 400px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.lsx-team-avatar {
+				@media (min-width:968px) {
+					flex-grow: 2;
+					width: 30%;
+				}
+				padding: 0;
+				margin: 0;
+				&.square {
+					img {
+						height: 100%;
+						width: 100%;
+						padding: 0;
+						margin: 0;
+					}
+				}
+				&.circle {
+					@media (max-width:967px) {
+						padding-top: 1rem;
+					}
+					background: white;
+					display: flex;
+					align-items: center;
+				}
+			}
+			.entry-layout-wrapper {
+				background: white;
+				padding: 2.4rem 15px;
+				text-align: left;
+				padding-left: 4rem;
+				word-break: break-word;
+				@media (min-width:968px) {
+					flex-grow: 5;
+					width: 70%;
+					display: flex;
+					padding-left: 2.4rem;
+				}
+				.entry-layout-content {
+					@media (min-width:968px) {
+						flex-grow: 5;
+						width: 70%;
+					}
+					min-height: 170px;
+					padding-right: 4rem;
+				}
+				.entry-layout-meta {
+					flex-grow: 2;
+					width: 30%;
+					> * {
+						position: relative;
+						display: flex;
+						&:before {
+							color: inherit;
+							display: inline-block;
+							font-family: 'FontAwesome';
+							font-size: inherit;
+							left: -2rem;
+							position: absolute;
+							text-rendering: auto;
+							color: #919191;
+							font-weight: 100;
+						}
+					}
+					.lsx-to-meta-data-key {
+						@media (max-width:967px) {
+							margin-left: 2rem;
+						}
+						font-size: 13px;
+						font-weight: 600;
+						&:before {
+							content: '\f0c0';
+						}
+					}
+					.lsx-team-job-title {
+						margin-top: 0;
+					}
+					.lsx-team-email {
+						@media (max-width:967px) {
+							margin-left: 2rem;
+						}
+						&:before {
+							content: '\f0e0';
+						}
+					}
+					.lsx-team-socials {
+						@media (max-width:967px) {
+							margin-left: 2rem;
+						}
+						margin-left: -2rem;
+						margin-top: 1rem;
+						li {
+							padding-left: 0;
+							padding-right: 1rem;
+						}
+					}
+				}
+			}
+
+		}
+	}
 }
 
 .wp-block-lsx-blocks-lsx-team {
@@ -151,6 +260,16 @@
 			margin-bottom: 4rem;
 			&.has-thumb,
 			&.no-thumb {
+				@media (min-width:968px) {
+					display: flex;
+				}
+				.lsx-block-post-grid-image {
+					margin-right: 2rem;
+					@media (min-width:968px) {
+						flex-grow: 2;
+						width: 30%;
+					}
+				}
 				img {
 					&.circle {
 						width: 170px;
@@ -158,6 +277,17 @@
 						min-width: 170px;
 						min-height: 170px;
 						overflow: hidden;
+					}
+				}
+				.lsx-block-post-grid-text {
+					text-align: left;
+					margin-top: 0;
+					@media (min-width:968px) {
+						width: 70%;
+						flex-grow: 5;
+					}
+					.lsx-team-name {
+						margin: 5px 0;
 					}
 				}
 			}
