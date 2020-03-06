@@ -39,6 +39,10 @@ function addHoverControlAttribute ( settings, name ) {
 			type: 'string',
 			default: '',
 		},
+		buttonHoverShadowColor: {
+			type: 'string',
+			default: '',
+		},
 		buttonHoverTextColor: {
 			type: 'string',
 		},
@@ -81,7 +85,7 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 			);
 		}
 
-		const { buttonHoverColor, buttonShadowColor, buttonHoverTextColor, buttonModal, buttonDataTarget, buttonDataToggle } = props.attributes;
+		const { buttonHoverColor, buttonShadowColor, buttonHoverShadowColor, buttonHoverTextColor, buttonModal, buttonDataTarget, buttonDataToggle } = props.attributes;
 
 		// add has-hover class to block
 		if ( buttonHoverColor ) {
@@ -90,12 +94,15 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 		if ( buttonShadowColor ) {
 			var buttonShadowClass = `has-shadow-color`;
 		}
+		if ( buttonHoverShadowColor ) {
+			var buttonHoverShadowClass = `has-shadow-hover-color`;
+		}
 		if ( buttonHoverTextColor ) {
 			var buttonHoverTextClass = `has-hover-text-color`;
 		}
 
 		// add has-shadow class to block
-		props.attributes.className = classnames( props.attributes.className, buttonHoverClass, buttonShadowClass, buttonHoverTextClass );
+		props.attributes.className = classnames( props.attributes.className, buttonHoverClass, buttonShadowClass, buttonHoverShadowClass, buttonHoverTextClass );
 		props.attributes.className = props.attributes.className.split( ' ' );
 		props.attributes.className = props.attributes.className.filter( onlyUnique );
 		props.attributes.className = props.attributes.className.join( ' ' );
@@ -143,6 +150,19 @@ const withHoverControl = createHigherOrderComponent( ( BlockEdit ) => {
 								onChange: ( selectedShadowOption ) =>
 									props.setAttributes( {
 										buttonShadowColor: selectedShadowOption,
+									} ),
+							} ] }
+						>
+						</PanelColorSettings>
+						<PanelColorSettings
+							title={ __( 'Button hover Shadow Color' ) }
+							initialOpen={ true }
+							colorSettings={ [ {
+								value: buttonHoverShadowColor,
+								label: __( 'Button Hover Shadow Color' ),
+								onChange: ( selectedHoverShadowOption ) =>
+									props.setAttributes( {
+										buttonHoverShadowColor: selectedHoverShadowOption,
 									} ),
 							} ] }
 						>
@@ -196,7 +216,7 @@ const addHoverExtraProps = ( saveElementProps, blockType, attributes ) => {
 		return saveElementProps;
 	}
 
-	assign( saveElementProps, { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor } );
+	assign( saveElementProps, { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } );
 
 	return saveElementProps;
 };
