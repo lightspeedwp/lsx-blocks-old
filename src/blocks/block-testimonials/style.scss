@@ -15,12 +15,14 @@
 		.lsx-testimonials-avatar {
 			height: auto;
 			width: auto;
+			max-height: 110px;
+			max-width: 110px;
 			border-radius: initial;
 			img {
 				border-radius: 50%;
 				display: block;
 				height: auto;
-				margin: 0 auto 2rem;
+				margin: 0 auto;
 				overflow: hidden;
 				width: 100px;
 				border: none;
@@ -85,10 +87,10 @@
 		&.has-thumb {
 			text-align: center;
 			img {
+				max-height: 110px;
+				max-width: 110px;
 				&.circle {
 					border-radius: 50%;
-					max-height: 110px;
-					max-width: 110px;
 					width: 100%;
 					object-fit: cover;
 				}

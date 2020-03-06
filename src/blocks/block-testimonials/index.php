@@ -249,7 +249,7 @@ function render_dynamic_testimonial_block( $attributes ) {
 					$link_close = '</a>';
 				}
 
-				$bottom_link = '<a href="' . get_permalink( $post->ID ) . '" class="lsx-testimonial-show-more">More about ' . strtok( $member_name, ' ' ) . '<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
+				$bottom_link = '<a href="' . get_permalink( $post->ID ) . '" class="lsx-testimonial-show-more">More about ' . strtok( $member_name, ' ' ) . ' <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
 			}
 
 			if ( ( true === $show_link || 'true' === $show_link ) ) {
@@ -312,6 +312,9 @@ function render_dynamic_testimonial_block( $attributes ) {
 			}
 
 			if ( ! $carousel ) {
+				if ( 'list' === $post_layout ) {
+					$column_size = 12;
+				}
 				$output .= "<div class='col-xs-12 col-md-$column_size'>";
 			}
 

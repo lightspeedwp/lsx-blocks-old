@@ -4204,13 +4204,15 @@ article .lsx-button {
 .lsx-testimonial-block .lsx-testimonials-slot .lsx-testimonials-avatar {
   height: auto;
   width: auto;
+  max-height: 110px;
+  max-width: 110px;
   border-radius: initial; }
   .wp-block-lsx-blocks-lsx-testimonial .lsx-testimonials-slot .lsx-testimonials-avatar img,
   .lsx-testimonial-block .lsx-testimonials-slot .lsx-testimonials-avatar img {
     border-radius: 50%;
     display: block;
     height: auto;
-    margin: 0 auto 2rem;
+    margin: 0 auto;
     overflow: hidden;
     width: 100px;
     border: none; }
@@ -4261,15 +4263,16 @@ article .lsx-button {
 
 .wp-block-lsx-blocks-lsx-testimonial article.has-thumb {
   text-align: center; }
-  .wp-block-lsx-blocks-lsx-testimonial article.has-thumb img.circle {
-    border-radius: 50%;
+  .wp-block-lsx-blocks-lsx-testimonial article.has-thumb img {
     max-height: 110px;
-    max-width: 110px;
-    width: 100%;
-    -o-object-fit: cover;
-       object-fit: cover; }
-  .wp-block-lsx-blocks-lsx-testimonial article.has-thumb img.square {
-    border-radius: 0; }
+    max-width: 110px; }
+    .wp-block-lsx-blocks-lsx-testimonial article.has-thumb img.circle {
+      border-radius: 50%;
+      width: 100%;
+      -o-object-fit: cover;
+         object-fit: cover; }
+    .wp-block-lsx-blocks-lsx-testimonial article.has-thumb img.square {
+      border-radius: 0; }
 
 .wp-block-lsx-blocks-lsx-testimonial article .lsx-testimonial-description {
   margin-top: 2rem; }
