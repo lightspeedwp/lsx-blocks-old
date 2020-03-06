@@ -4,6 +4,7 @@
 * Dev - Extend Gutenberg Core blocks with LSX attributes.
 * Dev - Extending Core Heading block.
 * Dev - Adding LSX block styles to Quote and Blockquote core blocks.
+* Dev - Adding a Testimonial Block that will be enabled if the LSX Testimonial plugin is enabled.
 
 ### 1.0.5 - 19 December 2019
 * Dev - General testing to ensure compatibility with latest WordPress version (5.3).
