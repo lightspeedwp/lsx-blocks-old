@@ -110,6 +110,17 @@
     top: 2px;
     position: relative; }
 
+#editor .edit-post-layout__content {
+  display: block; }
+  #editor .edit-post-layout__content .edit-post-visual-editor {
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    /* override the default flex-basis: 100%;*/
+    clear: both; }
+
+#editor .editor-writing-flow {
+  overflow: auto; }
+
 /**
  * Editor styles for the admin
  */
@@ -245,6 +256,17 @@
     top: 2px;
     position: relative; }
 
+#editor .edit-post-layout__content {
+  display: block; }
+  #editor .edit-post-layout__content .edit-post-visual-editor {
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    /* override the default flex-basis: 100%;*/
+    clear: both; }
+
+#editor .editor-writing-flow {
+  overflow: auto; }
+
 /**
  * Editor styles for the admin
  */
@@ -369,6 +391,17 @@
     left: 2px;
     top: 2px;
     position: relative; }
+
+#editor .edit-post-layout__content {
+  display: block; }
+  #editor .edit-post-layout__content .edit-post-visual-editor {
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    /* override the default flex-basis: 100%;*/
+    clear: both; }
+
+#editor .editor-writing-flow {
+  overflow: auto; }
 
 /**
  * Editor styles for the admin
@@ -530,6 +563,17 @@
     top: 2px;
     position: relative; }
 
+#editor .edit-post-layout__content {
+  display: block; }
+  #editor .edit-post-layout__content .edit-post-visual-editor {
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    /* override the default flex-basis: 100%;*/
+    clear: both; }
+
+#editor .editor-writing-flow {
+  overflow: auto; }
+
 /**
  * Editor styles for the admin
  */
@@ -651,6 +695,17 @@
     left: 2px;
     top: 2px;
     position: relative; }
+
+#editor .edit-post-layout__content {
+  display: block; }
+  #editor .edit-post-layout__content .edit-post-visual-editor {
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    /* override the default flex-basis: 100%;*/
+    clear: both; }
+
+#editor .editor-writing-flow {
+  overflow: auto; }
 
 /**
  * Editor styles for the admin
@@ -782,6 +837,17 @@
     left: 2px;
     top: 2px;
     position: relative; }
+
+#editor .edit-post-layout__content {
+  display: block; }
+  #editor .edit-post-layout__content .edit-post-visual-editor {
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    /* override the default flex-basis: 100%;*/
+    clear: both; }
+
+#editor .editor-writing-flow {
+  overflow: auto; }
 
 /**
  * Editor styles for the admin
@@ -922,6 +988,17 @@
     top: 2px;
     position: relative; }
 
+#editor .edit-post-layout__content {
+  display: block; }
+  #editor .edit-post-layout__content .edit-post-visual-editor {
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    /* override the default flex-basis: 100%;*/
+    clear: both; }
+
+#editor .editor-writing-flow {
+  overflow: auto; }
+
 /**
  * Editor styles for the admin
  */
@@ -1036,6 +1113,17 @@
     left: 2px;
     top: 2px;
     position: relative; }
+
+#editor .edit-post-layout__content {
+  display: block; }
+  #editor .edit-post-layout__content .edit-post-visual-editor {
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    /* override the default flex-basis: 100%;*/
+    clear: both; }
+
+#editor .editor-writing-flow {
+  overflow: auto; }
 
 /**
  * Editor styles for the admin
@@ -1188,6 +1276,17 @@
     left: 2px;
     top: 2px;
     position: relative; }
+
+#editor .edit-post-layout__content {
+  display: block; }
+  #editor .edit-post-layout__content .edit-post-visual-editor {
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    /* override the default flex-basis: 100%;*/
+    clear: both; }
+
+#editor .editor-writing-flow {
+  overflow: auto; }
 
 .gutenberg-compatible-template.using-gutenberg .wp-block-lsx-blocks-lsx-banner-box.lsx-has-image {
   background-image: none !important; }
@@ -1385,6 +1484,17 @@
     left: 2px;
     top: 2px;
     position: relative; }
+
+#editor .edit-post-layout__content {
+  display: block; }
+  #editor .edit-post-layout__content .edit-post-visual-editor {
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    /* override the default flex-basis: 100%;*/
+    clear: both; }
+
+#editor .editor-writing-flow {
+  overflow: auto; }
 
 /**
  * Editor styles for the admin

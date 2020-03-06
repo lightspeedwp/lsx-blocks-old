@@ -4,6 +4,10 @@
 	  float: none;
 	  margin: 6px 2px 10px 0;
 	}
+	> .row {
+		display: flex;
+		flex-flow: wrap;
+	}
 	.lsx-team-slot {
 		.lsx-team-avatar {
 			height: auto;
@@ -41,6 +45,7 @@
 	}
 	&.block-template-list {
 		.lsx-team-slot {
+			width: 100%;
 			@media (min-width:968px) {
 				display: flex;
 			}

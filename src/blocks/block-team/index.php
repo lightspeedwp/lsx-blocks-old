@@ -73,7 +73,7 @@ function register_dynamic_block() {
 			),
 			'align'               => array(
 				'type'    => 'string',
-				'default' => 'wide',
+				'default' => 'center',
 			),
 			'width'               => array(
 				'type'    => 'string',
@@ -216,7 +216,6 @@ function render_dynamic_team_block( $attributes ) {
 		$image_shape = $attributes['imageShape'];
 
 		$show_link      = $attributes['displayPostLink'];
-		$show_email     = $attributes['displayEmail'];
 		$show_roles     = $attributes['displayTeamRole'];
 		$show_job_title = $attributes['displayTeamJobTitle'];
 		$show_desc      = $attributes['displayPostExcerpt'];
@@ -244,7 +243,6 @@ function render_dynamic_team_block( $attributes ) {
 			$member_avatar      = '';
 			$member_socials     = '';
 			$member_job_title   = '';
-			$member_email       = '';
 			$bottom_link        = '';
 			$facebook           = get_post_meta( $post->ID, 'lsx_facebook', true );
 			$twitter            = get_post_meta( $post->ID, 'lsx_twitter', true );
@@ -253,13 +251,6 @@ function render_dynamic_team_block( $attributes ) {
 			// Link to single.
 			if ( ( true === $show_link || 'true' === $show_link ) ) {
 				$bottom_link = '<a href="' . get_permalink( $post->ID ) . '" class="lsx-team-show-more">More about ' . strtok( $member_name, ' ' ) . '<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
-			}
-
-			if ( true === $show_email || 'true' === $show_email  ) {
-				$email = get_post_meta( $post->ID, 'lsx_email_contact', true );
-				if ( ! empty( $email ) ) {
-					$member_email = '<a href="mailto:' . sanitize_email( $email ) . '" class="lsx-team-email">' . sanitize_email( $email ) . '</a>';
-				}
 			}
 
 			if ( ( true === $show_link || 'true' === $show_link ) ) {
@@ -368,7 +359,6 @@ function render_dynamic_team_block( $attributes ) {
 						<div class='entry-layout-meta'>
 							$member_job_title
 							$member_roles
-							$member_email
 							$member_socials
 						</div>
 					</div>
@@ -383,7 +373,6 @@ function render_dynamic_team_block( $attributes ) {
 					$member_roles
 					$member_description
 					$member_socials
-					$member_email
 					$bottom_link
 				</article>
 			";

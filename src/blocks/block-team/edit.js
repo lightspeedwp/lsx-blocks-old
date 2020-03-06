@@ -268,9 +268,6 @@ class TeamBlock extends Component {
 											}
 										</ul>
 									}
-									{ post.additional_meta.email &&
-										<a href={post.additional_meta.email} className="lsx-team-email" tabIndex="0">{post.additional_meta.email}</a>
-									}
 									{ displayPostLink === true &&
 										<a href={ post.link } className="lsx-team-show-more" tabIndex="0">More about { decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }<i className="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 									}
