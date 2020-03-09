@@ -98,3 +98,20 @@ add_filter( 'block_categories', function( $categories, $post ) {
 		)
 	);
 }, 10, 2 );
+
+if ( in_array( 'lsx-team/lsx-team.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
+	/**
+	 * Add custom block category for Team block that will only show if the plugin is active.
+	 */
+	add_filter( 'block_categories', function( $categories, $post ) {
+		return array_merge(
+			$categories,
+			array(
+				array(
+					'slug'  => 'lsx-team-blocks',
+					'title' => __( 'LSX Team Blocks', 'lsx-blocks' ),
+				),
+			)
+		);
+	}, 10, 2 );
+}

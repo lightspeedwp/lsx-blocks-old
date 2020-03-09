@@ -242,3 +242,16 @@ article {
 		}
 	}
 }
+
+#editor {
+	.edit-post-layout__content {
+		display: block;
+		.edit-post-visual-editor {
+			flex-basis: auto;  /* override the default flex-basis: 100%;*/
+			clear: both;
+		}
+	}
+	.editor-writing-flow {
+		overflow: auto;
+	}
+}

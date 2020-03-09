@@ -221,7 +221,7 @@ class LSXBannerBlock extends Component {
 
 		// Upload Image options
 		const onSelectLogo = logo => {
-			console.log( logo );
+			//console.log( logo );
 			setAttributes( {
 				bannerLogoID: logo.id,
 				bannerLogoURL: logo.url,

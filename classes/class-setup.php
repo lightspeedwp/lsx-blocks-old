@@ -1,5 +1,6 @@
 <?php
 namespace lsx\blocks\classes;
+
 /**
  * @package   lsx\blocks\classes
  * @author    LightSpeed
@@ -94,6 +95,10 @@ class Setup {
 		 * Load Gutenberg Pullquote Block Styles
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/extensions/block-pullquote/index.php';
+
+		/** Load Team Block
+		 */
+		require_once LSX_BLOCKS_PATH . 'src/blocks/block-team/index.php';
 	}
 
 	/**
