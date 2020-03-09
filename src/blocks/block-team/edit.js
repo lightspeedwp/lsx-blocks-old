@@ -209,7 +209,7 @@ class TeamBlock extends Component {
 								) }
 							>
 								{
-									displayPostImage && post.featured_media !== undefined && post.featured_media ? (
+									displayPostImage && undefined !== post.featured_media && post.featured_media ? (
 										<div className="lsx-block-post-grid-image">
 											<a href={ post.link } target="_blank" rel="bookmark">
 												<img
