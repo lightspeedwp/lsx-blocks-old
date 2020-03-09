@@ -201,7 +201,6 @@ class TeamBlock extends Component {
 					[ `columns-${ columns }` ],
 				)}>
 					{ posts.map( ( post, i ) => {
-						//console.log(post.teamrole);
 						return (
 							<article key={ i }
 								className={ classnames(
@@ -238,8 +237,8 @@ class TeamBlock extends Component {
 									{/* { role &&
 										<small className="lsx-team-job-title">{role}</small>
 									} */}
-									{ displayTeamJobTitle === true && post.additional_meta.job_title &&
-										<small className="lsx-team-job-title">{post.additional_meta.job_title}</small>
+									{ displayTeamJobTitle === true && undefined !== post.additional_meta && undefined !== post.additional_meta.job_title &&
+										<small className="lsx-team-job-title">{ post.additional_meta.job_title }</small>
 									}
 									<div className="lsx-block-post-grid-excerpt">
 										{ displayPostExcerpt === 'excerpt' && post.excerpt &&
@@ -255,7 +254,7 @@ class TeamBlock extends Component {
 											<div dangerouslySetInnerHTML={ { __html: post.content.rendered } } />
 										}
 									</div>
-									{ displayTeamSocial && (post.additional_meta.facebook || post.additional_meta.twitter || post.additional_meta.linkedin ) &&
+									{ displayTeamSocial && undefined !== post.additional_meta && (post.additional_meta.facebook || post.additional_meta.twitter || post.additional_meta.linkedin ) &&
 										<ul className="team-social">
 											{ post.additional_meta.facebook &&
 												<li className="fb"><a href={post.additional_meta.facebook}><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
