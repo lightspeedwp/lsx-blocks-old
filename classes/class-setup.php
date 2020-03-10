@@ -101,7 +101,7 @@ class Setup {
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/extensions/block-pullquote/index.php';
 
-		/** 
+		/**
 		 * Load Team Block
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/blocks/block-team/index.php';
@@ -111,7 +111,7 @@ class Setup {
 	 * Add image sizes
 	 */
 	public function blocks_image_sizes() {
-		// Post Grid Block
+		// Post Grid Block.
 		add_image_size( 'lsx-block-post-grid-landscape', 600, 400, true );
 		add_image_size( 'lsx-block-post-grid-square', 600, 600, true );
 	}
