@@ -24,6 +24,36 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 		'cat'         => $categories,
 
 	), 'OBJECT' );
+	if ( isset( $attributes['categories'] ) ) {
+
+		$args = array(
+			'numberposts' => $attributes['postsToShow'],
+			'post_status' => 'publish',
+			'order' => $attributes['order'],
+			'orderby' => $attributes['orderBy'],
+			'cat' => $categories,
+		);
+	} else {
+		$args = array(
+			'numberposts' => $attributes['postsToShow'],
+			'post_status' => 'publish',
+			'order' => $attributes['order'],
+			'orderby' => $attributes['orderBy'],
+		);
+	}
+
+	// $recent_posts = new WP_Query( array(
+	// 	'numberposts' => $attributes['postsToShow'],
+	// 	'post_status' => 'publish',
+	// 	'order' => $attributes['order'],
+	// 	'orderby' => $attributes['orderBy'],
+	// 	'category' => $categories,
+	// ), 'OBJECT' );
+
+	$recent_posts = new \WP_Query( $args );
+
+	//print( '<pre>' . print_r( $recent_posts, true ) . '</pre>' );
+>>>>>>> fix/35
 
 	$list_items_markup = array();
 
@@ -205,6 +235,7 @@ function lsx_blocks_register_block_core_latest_posts() {
 		'attributes'      => array(
 			'categories'         => array(
 				'type' => 'string',
+				'default' => '',
 			),
 			'className'          => array(
 				'type' => 'string',
