@@ -52,9 +52,6 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 
 	$recent_posts = new \WP_Query( $args );
 
-	//print( '<pre>' . print_r( $recent_posts, true ) . '</pre>' );
->>>>>>> fix/35
-
 	$list_items_markup = array();
 
 	if ( $recent_posts->have_posts() ) {
