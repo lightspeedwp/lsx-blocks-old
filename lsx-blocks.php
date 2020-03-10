@@ -24,6 +24,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Load internals
+// Load internals.
 require_once LSX_BLOCKS_PATH . 'classes/class-core.php';
 $lsx_blocks = lsx\blocks\classes\Core::get_instance();
