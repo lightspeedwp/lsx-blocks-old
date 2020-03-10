@@ -6,7 +6,8 @@
 * Dev - Adding LSX block styles to Quote and Blockquote core blocks.
 * Dev - Adding Team block.
 * Dev - Adding a Testimonial Block that will be enabled if the LSX Testimonial plugin is enabled.
-* Fixed - LSX Blocks using the development version of react [#45](https://github.com/lightspeeddevelopment/lsx-blocks/issues/45)
+* Fix - LSX Blocks using the development version of react [#45](https://github.com/lightspeeddevelopment/lsx-blocks/issues/45)
+* Fix - Fixing the loading error for the Grid Post block.
 
 ### 1.0.5 - 19 December 2019
 * Dev - General testing to ensure compatibility with latest WordPress version (5.3).

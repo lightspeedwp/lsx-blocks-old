@@ -10,6 +10,8 @@ import moment from 'moment';
 import classnames from 'classnames';
 import { stringify } from 'querystringify';
 
+const { compose } = wp.compose;
+
 const { Component, Fragment } = wp.element;
 
 const { __ } = wp.i18n;
@@ -51,6 +53,9 @@ class LatestPostsBlock extends Component {
 		super( ...arguments );
 		this.state = { categoriesList: [] };
 
+		this.stillMounted = false;
+
+		this.state = { categoriesList: [] };
 		this.stillMounted = false;
 
 		this.toggleDisplayPostDate = this.toggleDisplayPostDate.bind( this );
@@ -126,8 +131,10 @@ class LatestPostsBlock extends Component {
 	}
 
 	render() {
-		const { attributes, categoriesList, setAttributes, latestPosts } = this.props;
+		const { attributes, setAttributes, latestPosts } = this.props;
 		const { displayPostDate, displayPostExcerpt, displayPostAuthor, displayPostImage,displayPostLink, align, postLayout, columns, order, orderBy, categories, postsToShow, width, imageCrop, readMoreText } = attributes;
+
+		const { categoriesList } = this.state;
 
 		// Thumbnail options
 		const imageCropOptions = [
@@ -336,7 +343,7 @@ export default withSelect( ( select, props ) => {
 		order,
 		orderby: orderBy,
 		per_page: postsToShow,
-	}, ( value ) => ! isUndefined( value ) );
+	} );
 	const categoriesListQuery = {
 		per_page: 100,
 	};

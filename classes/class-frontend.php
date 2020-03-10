@@ -96,7 +96,7 @@ class Frontend {
 	 */
 	public function disable_lsx_page_title( $disable ) {
 		$disable_title = get_post_meta( get_the_ID(), 'lsx_disable_title', true );
-		if ( 'yes' === $disable_title ) {
+		if ( 'yes' === $disable_title && is_singular( 'post' ) ) {
 			$disable = true;
 		}
 		return $disable;

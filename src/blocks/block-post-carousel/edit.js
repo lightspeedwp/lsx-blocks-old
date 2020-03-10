@@ -15,6 +15,8 @@ const { __ } = wp.i18n;
 
 const { decodeEntities } = wp.htmlEntities;
 
+const { addQueryArgs } = wp.url;
+
 const { apiFetch } = wp;
 
 const {
@@ -47,11 +49,37 @@ class LatestPostsBlockCarousel extends Component {
 	constructor() {
 		super( ...arguments );
 
+		this.state = { categoriesList: [] };
+		this.stillMounted = false;
+
 		this.toggledisplayPostDateCarousel = this.toggledisplayPostDateCarousel.bind( this );
 		this.toggledisplayPostExcerptCarousel = this.toggledisplayPostExcerptCarousel.bind( this );
 		this.toggledisplayPostAuthorCarousel = this.toggledisplayPostAuthorCarousel.bind( this );
 		this.toggledisplayPostImageCarousel = this.toggledisplayPostImageCarousel.bind( this );
 		this.toggledisplayPostLinkCarousel = this.toggledisplayPostLinkCarousel.bind( this );
+	}
+
+	componentDidMount() {
+		this.stillMounted = true;
+		this.fetchRequest = apiFetch({
+			path: addQueryArgs( '/wp/v2/categories', { per_page: -1 })
+		}).then(
+			( categoriesList ) => {
+				if ( this.stillMounted ) {
+					this.setState({ categoriesList });
+				}
+			}
+		).catch(
+			() => {
+				if ( this.stillMounted ) {
+					this.setState({ categoriesList: [] });
+				}
+			}
+		);
+	}
+
+	componentWillUnmount() {
+		this.stillMounted = false;
 	}
 
 	toggledisplayPostDateCarousel() {
@@ -97,8 +125,10 @@ class LatestPostsBlockCarousel extends Component {
 	}
 
 	render() {
-		const { attributes, categoriesList, setAttributes, latestPosts } = this.props;
+		const { attributes, setAttributes, latestPosts } = this.props;
 		const { customTaxonomy, customTermID, displayPostDateCarousel, displayPostExcerptCarousel, displayPostAuthorCarousel, displayPostImageCarousel, displayPostLinkCarousel, alignCarousel, columnsCarousel, orderCarousel, orderByCarousel, categories, postsToShowCarousel, width, imageCrop, readMoreText } = attributes;
+
+		const { categoriesList } = this.state;
 
 		// Thumbnail options
 		const imageCropOptions = [
@@ -341,7 +371,7 @@ export default withSelect( ( select, props ) => {
 		orderCarousel,
 		orderby: orderByCarousel,
 		per_page: postsToShowCarousel,
-	}, ( value ) => ! isUndefined( value ) );
+	} );
 	const categoriesListQueryCarousel = {
 		per_page: 100,
 	};

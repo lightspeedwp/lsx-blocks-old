@@ -33,7 +33,7 @@ class Admin {
 	 * @access private
 	 */
 	private function __construct() {
-		add_action( 'add_meta_boxes', array( $this, 'featured_meta' ) );
+		add_action( 'add_meta_boxes_post', array( $this, 'featured_meta' ) );
 		add_action( 'save_post', array( $this, 'meta_save' ) );
 	}
 
@@ -56,14 +56,16 @@ class Admin {
 	 * Adds a meta box to the post editing screen
 	 */
 	public function featured_meta() {
-		add_meta_box(
-			'lsx_blocks_title_meta',
-			__( 'Disable Title', 'lsx-blocks' ),
-			array( $this, 'meta_callback' ),
-			null,
-			'side',
-			'high'
-		);
+		if ( use_block_editor_for_post( get_the_ID() ) ) {
+			add_meta_box(
+				'lsx_blocks_title_meta',
+				__( 'Disable Title', 'lsx-blocks' ),
+				array( $this, 'meta_callback' ),
+				null,
+				'side',
+				'high'
+			);
+		}
 	}
 
 
