@@ -21,3 +21,6 @@ import './extensions/block-button/background-control.js';
 import './extensions/block-group/group-control.js';
 import './extensions/block-heading/heading-control.js';
 import './extensions/block-cover/cover-control.js';
+
+//Testimonial Block
+import './blocks/block-testimonials/index.js';
