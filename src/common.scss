@@ -217,7 +217,8 @@ article {
 		}
 	}
 }
-.editor-block-list__block-edit {
+.editor-block-list__block-edit,
+.block-editor-block-list__block-edit {
 	.wp-block-pullquote,
 	.wp-block-quote {
 		border: 1px solid #DADDDF;
@@ -240,18 +241,5 @@ article {
 			background-color: #f6f6f6;
 			color: #d84e2e;
 		}
-	}
-}
-
-#editor {
-	.edit-post-layout__content {
-		display: block;
-		.edit-post-visual-editor {
-			flex-basis: auto;  /* override the default flex-basis: 100%;*/
-			clear: both;
-		}
-	}
-	.editor-writing-flow {
-		overflow: auto;
 	}
 }

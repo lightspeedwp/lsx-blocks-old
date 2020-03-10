@@ -67,7 +67,8 @@
 		}
 	}
 
-	.editor-rich-text .editor-rich-text__inline-toolbar {
+	.editor-rich-text .editor-rich-text__inline-toolbar,
+	.block-editor-rich-text .block-editor-rich-text__inline-toolbar {
 		display: block;
 		left: 40%;
 	}
