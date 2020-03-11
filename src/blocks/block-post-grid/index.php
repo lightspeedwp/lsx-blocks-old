@@ -17,38 +17,33 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 	$categories = isset( $attributes['categories'] ) ? $attributes['categories'] : '';
 
 	$recent_posts = new WP_Query( array(
-		'numberposts' => $attributes['postsToShow'],
-		'post_status' => 'publish',
-		'order'       => $attributes['order'],
-		'orderby'     => $attributes['orderBy'],
-		'cat'         => $categories,
+		'posts_per_page'      => $attributes['postsToShow'],
+		'post_status'         => 'publish',
+		'order'               => $attributes['order'],
+		'orderby'             => $attributes['orderBy'],
+		'cat'                 => $categories,
+		'ignore_sticky_posts' => 1,
 
 	), 'OBJECT' );
 	if ( isset( $attributes['categories'] ) ) {
 
 		$args = array(
-			'numberposts' => $attributes['postsToShow'],
-			'post_status' => 'publish',
-			'order' => $attributes['order'],
-			'orderby' => $attributes['orderBy'],
-			'cat' => $categories,
+			'posts_per_page'      => $attributes['postsToShow'],
+			'post_status'         => 'publish',
+			'order'               => $attributes['order'],
+			'orderby'             => $attributes['orderBy'],
+			'cat'                 => $categories,
+			'ignore_sticky_posts' => 1,
 		);
 	} else {
 		$args = array(
-			'numberposts' => $attributes['postsToShow'],
-			'post_status' => 'publish',
-			'order' => $attributes['order'],
-			'orderby' => $attributes['orderBy'],
+			'posts_per_page'      => $attributes['postsToShow'],
+			'post_status'         => 'publish',
+			'order'               => $attributes['order'],
+			'orderby'             => $attributes['orderBy'],
+			'ignore_sticky_posts' => 1,
 		);
 	}
-
-	// $recent_posts = new WP_Query( array(
-	// 	'numberposts' => $attributes['postsToShow'],
-	// 	'post_status' => 'publish',
-	// 	'order' => $attributes['order'],
-	// 	'orderby' => $attributes['orderBy'],
-	// 	'category' => $categories,
-	// ), 'OBJECT' );
 
 	$recent_posts = new \WP_Query( $args );
 

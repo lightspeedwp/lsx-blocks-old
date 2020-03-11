@@ -166,20 +166,20 @@ function render_dynamic_team_block( $attributes ) {
 	if ( ! empty( $attributes['includeId'] ) ) {
 
 		$args = array(
-			'showposts'   => $attributes['postsToShow'],
-			'post_status' => 'publish',
-			'post_type'   => 'team',
-			'order'       => $attributes['order'],
-			'orderby'     => $attributes['orderBy'],
-			'post__in'    => $team_id_array,
+			'posts_per_page' => $attributes['postsToShow'],
+			'post_status'    => 'publish',
+			'post_type'      => 'team',
+			'order'          => $attributes['order'],
+			'orderby'        => $attributes['orderBy'],
+			'post__in'       => $team_id_array,
 		);
 	} else {
 		$args = array(
-			'showposts'   => $attributes['postsToShow'],
-			'post_status' => 'publish',
-			'post_type'   => 'team',
-			'order'       => $attributes['order'],
-			'orderby'     => $attributes['orderBy'],
+			'posts_per_page' => $attributes['postsToShow'],
+			'post_status'    => 'publish',
+			'post_type'      => 'team',
+			'order'          => $attributes['order'],
+			'orderby'        => $attributes['orderBy'],
 		);
 	}
 

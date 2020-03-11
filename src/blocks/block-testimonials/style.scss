@@ -26,6 +26,8 @@
 				overflow: hidden;
 				width: 100px;
 				border: none;
+				max-height: 100px;
+				object-fit: cover;
 			}
 			&.square {
 				border-radius: 0;
@@ -50,6 +52,13 @@
 				margin-right: auto;
 			}
 		}
+	}
+}
+
+@media (min-width:768px) {
+	.gutenberg-compatible-template.using-gutenberg .alignwide figure.lsx-testimonials-avatar img,
+	.gutenberg-compatible-template.using-gutenberg .alignfull figure.lsx-testimonials-avatar img {
+		width: 100px;
 	}
 }
 
