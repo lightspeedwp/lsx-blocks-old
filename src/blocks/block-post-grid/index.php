@@ -15,47 +15,33 @@
 function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 
 	$categories = isset( $attributes['categories'] ) ? $attributes['categories'] : '';
+	$tags = isset( $attributes['tags'] ) ? $attributes['tags'] : '';
 
-	$recent_posts = new WP_Query( array(
-		'numberposts' => $attributes['postsToShow'],
-		'post_status' => 'publish',
-		'order'       => $attributes['order'],
-		'orderby'     => $attributes['orderBy'],
-		'cat'         => $categories,
-
-	), 'OBJECT' );
-	if ( isset( $attributes['categories'] ) ) {
+	if ( '' !== $attributes['categories'] ) {
 
 		$args = array(
 			'numberposts' => $attributes['postsToShow'],
 			'post_status' => 'publish',
-			'order' => $attributes['order'],
-			'orderby' => $attributes['orderBy'],
-			'cat' => $categories,
+			'order'       => $attributes['order'],
+			'orderby'     => $attributes['orderBy'],
+			'cat'         => $categories,
 		);
 	} else {
 		$args = array(
 			'numberposts' => $attributes['postsToShow'],
 			'post_status' => 'publish',
-			'order' => $attributes['order'],
-			'orderby' => $attributes['orderBy'],
+			'order'       => $attributes['order'],
+			'orderby'     => $attributes['orderBy'],
+			//'tag__in'     => '277',
 		);
 	}
-
-	// $recent_posts = new WP_Query( array(
-	// 	'numberposts' => $attributes['postsToShow'],
-	// 	'post_status' => 'publish',
-	// 	'order' => $attributes['order'],
-	// 	'orderby' => $attributes['orderBy'],
-	// 	'category' => $categories,
-	// ), 'OBJECT' );
 
 	$recent_posts = new \WP_Query( $args );
 
 	$list_items_markup = array();
 
 	if ( $recent_posts->have_posts() ) {
-
+		//print( '<pre>' . print_r( $args, true ) . '</pre>' );
 		while ( $recent_posts->have_posts() ) {
 			$recent_posts->the_post();
 			global $post;
@@ -231,7 +217,11 @@ function lsx_blocks_register_block_core_latest_posts() {
 		'style'           => 'lsx-blocks-style-css',
 		'attributes'      => array(
 			'categories'         => array(
-				'type' => 'string',
+				'type'    => 'string',
+				'default' => '',
+			),
+			'tags'               => array(
+				'type'    => 'string',
 				'default' => '',
 			),
 			'className'          => array(

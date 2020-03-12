@@ -52,11 +52,10 @@ class LatestPostsBlock extends Component {
 	constructor() {
 		super( ...arguments );
 		this.state = { categoriesList: [] };
+		this.state = { tagsList: [] };
 
 		this.stillMounted = false;
-
-		this.state = { categoriesList: [] };
-		this.stillMounted = false;
+		this.stillMountedTag = false;
 
 		this.toggleDisplayPostDate = this.toggleDisplayPostDate.bind( this );
 		this.toggleDisplayPostExcerpt = this.toggleDisplayPostExcerpt.bind( this );
@@ -67,6 +66,7 @@ class LatestPostsBlock extends Component {
 
 	componentDidMount() {
 		this.stillMounted = true;
+
 		this.fetchRequest = apiFetch({
 			path: addQueryArgs( '/wp/v2/categories', { per_page: -1 })
 		}).then(
@@ -82,10 +82,29 @@ class LatestPostsBlock extends Component {
 				}
 			}
 		);
+
+		this.stillMountedTag = true;
+
+		this.fetchRequestTag = apiFetch({
+			path: addQueryArgs( '/wp/v2/tags', { per_page: -1 })
+		}).then(
+			( tagsList ) => {
+				if ( this.stillMountedTag ) {
+					this.setState({ tagsList });
+				}
+			}
+		).catch(
+			() => {
+				if ( this.stillMountedTag ) {
+					this.setState({ tagsList: [] });
+				}
+			}
+		);
 	}
 
 	componentWillUnmount() {
 		this.stillMounted = false;
+		this.stillMountedTag = false;
 	}
 
 	toggleDisplayPostDate() {
@@ -132,9 +151,9 @@ class LatestPostsBlock extends Component {
 
 	render() {
 		const { attributes, setAttributes, latestPosts } = this.props;
-		const { displayPostDate, displayPostExcerpt, displayPostAuthor, displayPostImage,displayPostLink, align, postLayout, columns, order, orderBy, categories, postsToShow, width, imageCrop, readMoreText } = attributes;
+		const { displayPostDate, displayPostExcerpt, displayPostAuthor, displayPostImage,displayPostLink, align, postLayout, columns, order, orderBy, categories, tags, postsToShow, width, imageCrop, readMoreText } = attributes;
 
-		const { categoriesList } = this.state;
+		const { categoriesList, tagsList } = this.state;
 
 		// Thumbnail options
 		const imageCropOptions = [
@@ -152,9 +171,12 @@ class LatestPostsBlock extends Component {
 							numberOfItems={ attributes.postsToShow }
 							categoriesList={ categoriesList }
 							selectedCategoryId={ attributes.categories }
+							tagsList={ tagsList }
+							selectedTagId={ attributes.tags }
 							onOrderChange={ ( value ) => setAttributes({ order: value }) }
 							onOrderByChange={ ( value ) => setAttributes({ orderBy: value }) }
 							onCategoryChange={ ( value ) => setAttributes({ categories: '' !== value ? value : undefined }) }
+							onTagChange={ ( value ) => setAttributes({ tags: '' !== value ? value : undefined }) }
 							onNumberOfItemsChange={ ( value ) => setAttributes({ postsToShow: value }) }
 					/>
 					{ postLayout === 'grid' &&
@@ -336,10 +358,11 @@ class LatestPostsBlock extends Component {
 }
 
 export default withSelect( ( select, props ) => {
-	const { postsToShow, order, orderBy, categories } = props.attributes;
+	const { postsToShow, order, orderBy, categories, tags } = props.attributes;
 	const { getEntityRecords } = select( 'core' );
 	const latestPostsQuery = pickBy( {
 		categories,
+		tags,
 		order,
 		orderby: orderBy,
 		per_page: postsToShow,
@@ -347,8 +370,12 @@ export default withSelect( ( select, props ) => {
 	const categoriesListQuery = {
 		per_page: 100,
 	};
+	const tagsListQuery = {
+		per_page: 100,
+	};
 	return {
 		latestPosts: getEntityRecords( 'postType', 'post', latestPostsQuery ),
 		categoriesList: getEntityRecords( 'taxonomy', 'category', categoriesListQuery ),
+		tagsList: getEntityRecords( 'taxonomy', 'tag', '277' ),
 	};
 } )( LatestPostsBlock );
