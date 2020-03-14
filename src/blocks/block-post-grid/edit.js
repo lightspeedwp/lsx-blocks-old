@@ -151,7 +151,7 @@ class LatestPostsBlock extends Component {
 
 	render() {
 		const { attributes, setAttributes, latestPosts } = this.props;
-		const { displayPostDate, displayPostExcerpt, displayPostAuthor, displayPostImage,displayPostLink, align, postLayout, columns, order, orderBy, categories, tags, postsToShow, width, imageCrop, readMoreText } = attributes;
+		const { displayPostDate, displayPostExcerpt, displayPostAuthor, displayPostImage, displayPostLink, align, postLayout, columns, order, orderBy, categories, tags, selectedTag, postsToShow, width, imageCrop, readMoreText } = attributes;
 
 		const { categoriesList, tagsList } = this.state;
 
@@ -163,6 +163,12 @@ class LatestPostsBlock extends Component {
 
 		const isLandscape = imageCrop === 'landscape';
 
+		const tagsListObject = [];
+
+		for (var index = 0; index < tagsList.length; index++) {
+			tagsListObject[index] = { value: tagsList[index].id, label: tagsList[index].name };
+		}
+		//console.log(objects);
 		const inspectorControls = (
 			<InspectorControls>
 				<PanelBody title={ __( 'Post Grid Settings' ) }>
@@ -171,14 +177,17 @@ class LatestPostsBlock extends Component {
 							numberOfItems={ attributes.postsToShow }
 							categoriesList={ categoriesList }
 							selectedCategoryId={ attributes.categories }
-							tagsList={ tagsList }
-							selectedTagId={ attributes.tags }
 							onOrderChange={ ( value ) => setAttributes({ order: value }) }
 							onOrderByChange={ ( value ) => setAttributes({ orderBy: value }) }
 							onCategoryChange={ ( value ) => setAttributes({ categories: '' !== value ? value : undefined }) }
-							onTagChange={ ( value ) => setAttributes({ tags: '' !== value ? value : undefined }) }
 							onNumberOfItemsChange={ ( value ) => setAttributes({ postsToShow: value }) }
 					/>
+					<SelectControl
+							label={ __( 'Tags' ) }
+							options={ tagsListObject }
+							value={ selectedTag }
+							onChange={ ( value ) => this.props.setAttributes( { selectedTag: value } ) }
+						/>
 					{ postLayout === 'grid' &&
 						<RangeControl
 							label={ __( 'Columns' ) }
@@ -358,8 +367,11 @@ class LatestPostsBlock extends Component {
 }
 
 export default withSelect( ( select, props ) => {
+	//console.log(selectedTag);
 	const { postsToShow, order, orderBy, categories, tags } = props.attributes;
 	const { getEntityRecords } = select( 'core' );
+	//console.log(categories);
+	//const tags = '277';
 	const latestPostsQuery = pickBy( {
 		categories,
 		tags,
@@ -373,9 +385,10 @@ export default withSelect( ( select, props ) => {
 	const tagsListQuery = {
 		per_page: 100,
 	};
+
 	return {
 		latestPosts: getEntityRecords( 'postType', 'post', latestPostsQuery ),
 		categoriesList: getEntityRecords( 'taxonomy', 'category', categoriesListQuery ),
-		tagsList: getEntityRecords( 'taxonomy', 'tag', '277' ),
+		tagsList: getEntityRecords( 'taxonomy', 'post_tag', tagsListQuery ),
 	};
 } )( LatestPostsBlock );
