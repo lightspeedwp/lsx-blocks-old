@@ -147,7 +147,7 @@ class LatestPostsBlockCarousel extends Component {
 
 	render() {
 		const { attributes, setAttributes, latestPosts } = this.props;
-		const { customTaxonomy, customTermID, displayPostDateCarousel, displayPostExcerptCarousel, displayPostAuthorCarousel, displayPostImageCarousel, displayPostLinkCarousel, alignCarousel, columnsCarousel, orderCarousel, orderByCarousel, categories, selectedTag, postsToShowCarousel, width, imageCrop, postsBackgroundColor, readMoreText } = attributes;
+		const { customTaxonomy, customTermID, displayPostDateCarousel, displayPostExcerptCarousel, displayPostAuthorCarousel, displayPostImageCarousel, displayPostLinkCarousel, alignCarousel, columnsCarousel, orderCarousel, orderByCarousel, categories, selectedTag, postsToShowCarousel, width, imageCrop, postsBackgroundColorCarousel, readMoreText } = attributes;
 
 		const { categoriesList, tagsList } = this.state;
 
@@ -178,7 +178,7 @@ class LatestPostsBlockCarousel extends Component {
 		}
 
 		//Color value changes
-		const onChangeBackgroundColor = value => setAttributes( { postsBackgroundColor: value } );
+		const onChangeBackgroundColorCarousel = value => setAttributes( { postsBackgroundColorCarousel: value } );
 
 		const inspectorControls = (
 			<InspectorControls>
@@ -245,8 +245,8 @@ class LatestPostsBlockCarousel extends Component {
 						title={ __( 'Grid Background Color' ) }
 						initialOpen={ true }
 						colorSettings={ [ {
-							value: postsBackgroundColor,
-							onChange: onChangeBackgroundColor,
+							value: postsBackgroundColorCarousel,
+							onChange: onChangeBackgroundColorCarousel,
 							label: __( 'Grid Background Color', 'lsx-blocks' )
 						} ] }
 					>
@@ -331,7 +331,7 @@ class LatestPostsBlockCarousel extends Component {
                         [ `columns-${ columnsCarousel }` ]
 					) }
 					style={ {
-						backgroundColor: postsBackgroundColor,
+						backgroundColor: postsBackgroundColorCarousel,
 					} }
 				>
 					<div

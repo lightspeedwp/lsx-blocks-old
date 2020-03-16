@@ -194,9 +194,12 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 	$interval         = 'data-interval="false"';
 	$slick_internal   = "data-slick='{ \"slidesToShow\": {$slides_to_show}, \"slidesToScroll\": {$slides_to_scroll} }'";
 
-	// Output the post markup
+	$bgcolor = $attributes['postsBackgroundColorCarousel'];
+
+	// Output the post markup.
 	$block_content = sprintf(
-		'<div class="%1$s"><div class="%2$s"' . $slick_internal . $interval . '>%3$s</div></div>',
+		'<div style="background-color:%1$s" class="%2$s"><div class="%3$s"' . $slick_internal . $interval . '>%4$s</div></div>',
+		esc_attr( $bgcolor ),
 		esc_attr( $class ),
 		esc_attr( $grid_class ),
 		$list_items_markup
@@ -279,6 +282,10 @@ function lsx_blocks_register_block_core_latest_posts_carousel() {
 			'readMoreText'               => array(
 				'type'    => 'string',
 				'default' => 'Continue Reading',
+			),
+			'postsBackgroundColorCarousel'       => array(
+				'type'    => 'string',
+				'default' => 'transparent',
 			),
 			'customTaxonomy'             => array(
 				'type'    => 'string',
