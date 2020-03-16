@@ -79,10 +79,10 @@ var LSX_BLOCKS = Object.create( null );
 			var prevbghover = this.style.backgroundColor;
 			$(this).mouseenter(function() {
 				var bghover = this.parentNode.getAttribute('bghover');
-				$(this).css("background-color", bghover );
+				$(this).css("background", bghover );
 			});
 			$(this).mouseleave(function() {
-				$(this).css("background-color", prevbghover );
+				$(this).css("background", prevbghover );
 			});
 
 		});

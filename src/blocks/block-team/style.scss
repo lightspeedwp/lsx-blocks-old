@@ -25,7 +25,7 @@
 				overflow: hidden;
 				object-fit: cover;
 				border: none;
-				background-color: none;
+				background-color: transparent;
 			}
 			&.square {
 				border-radius: 0;
@@ -299,6 +299,15 @@
 		}
 	}
 }
+
+@media (min-width:768px) {
+	.gutenberg-compatible-template.using-gutenberg .alignwide figure.lsx-team-avatar img,
+	.gutenberg-compatible-template.using-gutenberg .alignfull figure.lsx-team-avatar img {
+		height: 170px;
+		width: 170px;
+	}
+}
+
 .components-base-control.components-radio-control {
 	.components-base-control__field {
 		display: flex;
