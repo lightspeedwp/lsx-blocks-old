@@ -1242,30 +1242,10 @@ article .lsx-button {
 /**
  * Editor styles for the admin
  */
-.lsx-block-post-carousel h2 a {
-  text-decoration: none; }
-
-.lsx-block-post-carousel article {
-  display: none; }
-
-.lsx-block-post-carousel.columns-2 article {
-  width: 50%; }
-  .lsx-block-post-carousel.columns-2 article:nth-child(1), .lsx-block-post-carousel.columns-2 article:nth-child(2) {
-    display: inline-block; }
-
-.lsx-block-post-carousel.columns-3 article {
-  width: 33.33%; }
-  .lsx-block-post-carousel.columns-3 article:nth-child(1), .lsx-block-post-carousel.columns-3 article:nth-child(2), .lsx-block-post-carousel.columns-3 article:nth-child(3) {
-    display: inline-block; }
-
-.lsx-block-post-carousel.columns-4 article {
-  width: 25%; }
-  .lsx-block-post-carousel.columns-4 article:nth-child(1), .lsx-block-post-carousel.columns-4 article:nth-child(2), .lsx-block-post-carousel.columns-4 article:nth-child(3), .lsx-block-post-carousel.columns-4 article:nth-child(4) {
-    display: inline-block; }
-
-.lsx-block-post-carousel .slick-dots:not(.dropdown-menu) {
-  -ms-flex-flow: row;
-      flex-flow: row; }
+.lsx-block-post-grid {
+  padding: 2rem; }
+  .lsx-block-post-grid h2 a {
+    text-decoration: none; }
 @charset "UTF-8";
 /**
  * Common styles
@@ -2149,5 +2129,27 @@ article .lsx-button {
 /**
  * Editor styles for the admin
  */
-.lsx-block-post-grid h2 a {
+.lsx-block-post-carousel h2 a {
   text-decoration: none; }
+
+.lsx-block-post-carousel article {
+  display: none; }
+
+.lsx-block-post-carousel.columns-2 article {
+  width: 50%; }
+  .lsx-block-post-carousel.columns-2 article:nth-child(1), .lsx-block-post-carousel.columns-2 article:nth-child(2) {
+    display: inline-block; }
+
+.lsx-block-post-carousel.columns-3 article {
+  width: 33.33%; }
+  .lsx-block-post-carousel.columns-3 article:nth-child(1), .lsx-block-post-carousel.columns-3 article:nth-child(2), .lsx-block-post-carousel.columns-3 article:nth-child(3) {
+    display: inline-block; }
+
+.lsx-block-post-carousel.columns-4 article {
+  width: 25%; }
+  .lsx-block-post-carousel.columns-4 article:nth-child(1), .lsx-block-post-carousel.columns-4 article:nth-child(2), .lsx-block-post-carousel.columns-4 article:nth-child(3), .lsx-block-post-carousel.columns-4 article:nth-child(4) {
+    display: inline-block; }
+
+.lsx-block-post-carousel .slick-dots:not(.dropdown-menu) {
+  -ms-flex-flow: row;
+      flex-flow: row; }

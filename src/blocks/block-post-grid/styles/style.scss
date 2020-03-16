@@ -6,7 +6,10 @@
  .lsx-block-post-grid {
 	margin: 0 0 1.2em 0;
 	position: relative;
-
+	word-break: break-all;
+	@media (min-width:900px) {
+		padding: 4rem;
+	}
 	.is-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -24,21 +27,11 @@
 	}
 
 	.is-grid.columns-3 {
-		grid-template-columns: 1fr 1fr 1fr;
-		.lsx-block-post-grid-image {
-			// img {
-			// 	max-height: 170px;
-			// }
-		}
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 
 	.is-grid.columns-4 {
-		grid-template-columns: 1fr 1fr 1fr 1fr;
-		.lsx-block-post-grid-image {
-			// img {
-			// 	max-height: 160px;
-			// }
-		}
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 
 	div[class*="columns"].is-grid {

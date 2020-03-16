@@ -1674,7 +1674,11 @@ article .lsx-button {
  */
 .lsx-block-post-grid {
   margin: 0 0 1.2em 0;
-  position: relative; }
+  position: relative;
+  word-break: break-all; }
+  @media (min-width: 900px) {
+    .lsx-block-post-grid {
+      padding: 4rem; } }
   .lsx-block-post-grid .is-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1686,9 +1690,9 @@ article .lsx-button {
   .lsx-block-post-grid .is-grid.columns-2 {
     grid-template-columns: 1fr 1fr; }
   .lsx-block-post-grid .is-grid.columns-3 {
-    grid-template-columns: 1fr 1fr 1fr; }
+    grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .lsx-block-post-grid .is-grid.columns-4 {
-    grid-template-columns: 1fr 1fr 1fr 1fr; }
+    grid-template-columns: repeat(4, minmax(0, 1fr)); }
   @media only screen and (max-width: 600px) {
     .lsx-block-post-grid div[class*="columns"].is-grid {
       grid-template-columns: 1fr; } }

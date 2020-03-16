@@ -40,6 +40,7 @@ const {
 	InspectorControls,
 	BlockAlignmentToolbar,
 	BlockControls,
+	PanelColorSettings,
 } = wp.editor;
 
 const MAX_POSTS_COLUMNS = 4;
@@ -147,7 +148,7 @@ class LatestPostsBlock extends Component {
 
 	render() {
 		const { attributes, setAttributes, latestPosts } = this.props;
-		const { displayPostDate, displayPostExcerpt, displayPostAuthor, displayPostImage, displayPostLink, align, postLayout, columns, order, orderBy, categories, tags, selectedTag, postsToShow, width, imageCrop, readMoreText } = attributes;
+		const { displayPostDate, displayPostExcerpt, displayPostAuthor, displayPostImage, displayPostLink, align, postLayout, columns, order, orderBy, categories, tags, selectedTag, postsToShow, width, imageCrop, postsBackgroundColor, readMoreText } = attributes;
 
 		const { categoriesList, tagsList } = this.state;
 
@@ -156,7 +157,6 @@ class LatestPostsBlock extends Component {
 			{ value: 'landscape', label: __( 'Landscape' ) },
 			{ value: 'square', label: __( 'Square' ) },
 		];
-
 		const isLandscape = imageCrop === 'landscape';
 
 		//Create category
@@ -176,6 +176,9 @@ class LatestPostsBlock extends Component {
 			}
 			tagsListObject.unshift({ value: '', label: __( 'All' ) });
 		}
+
+		//Color value changes
+		const onChangeBackgroundColor = value => setAttributes( { postsBackgroundColor: value } );
 
 		const inspectorControls = (
 			<InspectorControls>
@@ -245,6 +248,16 @@ class LatestPostsBlock extends Component {
 						checked={ displayPostLink }
 						onChange={ this.toggleDisplayPostLink }
 					/>
+					<PanelColorSettings
+						title={ __( 'Grid Background Color' ) }
+						initialOpen={ true }
+						colorSettings={ [ {
+							value: postsBackgroundColor,
+							onChange: onChangeBackgroundColor,
+							label: __( 'Grid Background Color', 'lsx-blocks' )
+						} ] }
+					>
+					</PanelColorSettings>
 					{ displayPostLink &&
 					<TextControl
 						label={ __( 'Customize Read More Link' ) }
@@ -305,7 +318,7 @@ class LatestPostsBlock extends Component {
 						onChange={ ( value ) => {
 							setAttributes( { align: value } );
 						} }
-						controls={ [ 'center', 'wide' ] }
+						controls={ [ 'center', 'wide', 'full' ] }
 					/>
 					<Toolbar controls={ layoutControls } />
 				</BlockControls>
@@ -313,7 +326,11 @@ class LatestPostsBlock extends Component {
 					className={ classnames(
 						this.props.className,
 						'lsx-block-post-grid',
+						align
 					) }
+					style={ {
+						backgroundColor: postsBackgroundColor,
+					} }
 				>
 					<div
 						className={ classnames( {
@@ -342,7 +359,15 @@ class LatestPostsBlock extends Component {
 												</a>
 											</div>
 										) : (
-											null
+											<div className="lsx-block-post-grid-image">
+												<a href={ post.link } target="_blank" rel="bookmark">
+													<img
+														classnames="attachment-responsive wp-post-image lsx-responsive"
+														src="https://place-hold.it/750x350/cccccc/969696.jpeg&amp;text=750x350&amp;bold&amp;fontsize=16"
+														alt={ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }
+													/>
+												</a>
+											</div>
 										)
 									}
 
@@ -365,7 +390,11 @@ class LatestPostsBlock extends Component {
 											{ displayPostExcerpt && post.excerpt &&
 												<div dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
 											}
-
+											{ post.excerpt.rendered === '' && post.content &&
+												<div>
+													<p dangerouslySetInnerHTML={ { __html: post.content.rendered.length > 10 ? post.content.rendered.substring(0, 150) + '...' : post.content.rendered } } />
+												</div>
+											}
 											{ displayPostLink &&
 												<p><a className="lsx-block-post-grid-link lsx-text-link" href={ post.link } target="_blank" rel="bookmark">{ readMoreText }</a></p>
 											}
@@ -393,16 +422,8 @@ export default withSelect( ( select, props ) => {
 		per_page: postsToShow,
 		exclude: [ wp.data.select( 'core/editor' ).getCurrentPostId() ],
 	}, ( value ) => ! isUndefined( value ) );
-	// const categoriesListQuery = {
-	// 	per_page: 100,
-	// };
-	// const tagsListQuery = {
-	// 	per_page: 100,
-	// };
 
 	return {
 		latestPosts: getEntityRecords( 'postType', 'post', latestPostsQuery ),
-		// categoriesList: getEntityRecords( 'taxonomy', 'category', categoriesListQuery ),
-		// tagsList: getEntityRecords( 'taxonomy', 'post_tag', tagsListQuery ),
 	};
 } )( LatestPostsBlock );
