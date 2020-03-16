@@ -13,6 +13,7 @@ const {
   ColorPalette,
   PanelColorSettings,
   MediaUpload,
+  MediaUploadCheck,
 } = wp.editor;
 
 // Import Inspector components
@@ -40,7 +41,7 @@ export default class Inspector extends Component {
 	render() {
 
 		// Setup the attributes
-		const { containerPaddingTop, containerPaddingRight, containerPaddingBottom, containerPaddingLeft, containerMarginTop, containerMarginBottom, containerMaxWidth, containerBackgroundColor, containerDimRatio, bgPosition, bgFit, containerImgURL, containerImgID, containerImgAlt } = this.props.attributes;
+		const { containerPaddingTop, containerPaddingRight, containerPaddingBottom, containerPaddingLeft, containerMarginTop, containerMarginBottom, containerMaxWidth, containerBackgroundColor, containerDimRatio, bgPosition, bgFit, containerImgURL, containerImgID, containerImgIDMobile, containerImgURLMobile, containerImgAltMobile, containerImgAlt } = this.props.attributes;
 		const { setAttributes } = this.props;
 
 		const onSelectImage = img => {
@@ -51,11 +52,27 @@ export default class Inspector extends Component {
 			} );
 		};
 
+		const onSelectImageMobile = imgMob => {
+			setAttributes( {
+				containerImgIDMobile: imgMob.id,
+				containerImgURLMobile: imgMob.url,
+				containerImgAltMobile: imgMob.alt,
+			} );
+		};
+
 		const onRemoveImage = () => {
 			setAttributes( {
 				containerImgID: null,
 				containerImgURL: null,
 				containerImgAlt: null,
+			} );
+		};
+
+		const onRemoveImageMobile = () => {
+			setAttributes( {
+				containerImgIDMobile: null,
+				containerImgURLMobile: null,
+				containerImgAltMobile: null,
 			} );
 		};
 
@@ -149,37 +166,38 @@ export default class Inspector extends Component {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Background Options' ) } initialOpen={ false }>
-					<p>{ __( 'Select a background image:' ) }</p>
-					<MediaUpload
-						onSelect={ onSelectImage }
-						type="image"
-						value={ containerImgID }
-						render={ ( { open } ) => (
-							<div>
-								<IconButton
-									className="lsx-container-inspector-media"
-									label={ __( 'Edit image' ) }
-									icon="format-image"
-									onClick={ open }
-								>
-									{ __( 'Select Image' ) }
-								</IconButton>
-
-								{ containerImgURL && !! containerImgURL.length && (
+					<p>{ __( 'Select a background image for desktop:' ) }</p>
+					<MediaUploadCheck>
+						<MediaUpload
+							onSelect={ onSelectImage }
+							type="image"
+							value={ containerImgID }
+							render={ ( { open } ) => (
+								<div>
 									<IconButton
 										className="lsx-container-inspector-media"
-										label={ __( 'Remove Image' ) }
-										icon="dismiss"
-										onClick={ onRemoveImage }
+										label={ __( 'Edit image' ) }
+										icon="format-image"
+										onClick={ open }
 									>
-										{ __( 'Remove' ) }
+										{ __( 'Select Image' ) }
 									</IconButton>
-								) }
-							</div>
-						) }
-					>
-					</MediaUpload>
 
+									{ containerImgURL && !! containerImgURL.length && (
+										<IconButton
+											className="lsx-container-inspector-media"
+											label={ __( 'Remove Image' ) }
+											icon="dismiss"
+											onClick={ onRemoveImage }
+										>
+											{ __( 'Remove' ) }
+										</IconButton>
+									) }
+								</div>
+							) }
+						>
+						</MediaUpload>
+					</MediaUploadCheck>
 					{ containerImgURL && !! containerImgURL.length && (
 						<RangeControl
 							label={ __( 'Image Opacity' ) }
@@ -190,7 +208,6 @@ export default class Inspector extends Component {
 							step={ 10 }
 						/>
 					) }
-
 					{ containerImgURL && !! containerImgURL.length && (
 						<SelectControl
 							label={ __( 'Background Position' ) }
@@ -199,16 +216,14 @@ export default class Inspector extends Component {
 							onChange={ ( value ) => setAttributes( { bgPosition: value } ) }
 						/>
 					) }
-
-                    { containerImgURL && !! containerImgURL.length && (
-                        <SelectControl
-                            label={ __( 'Background Fit' ) }
-                            options={ bgFitOptions }
-                            value={ bgFit }
-                            onChange={ ( value ) => setAttributes( { bgFit: value } ) }
-                        />
-                    ) }
-
+					{ containerImgURL && !! containerImgURL.length && (
+						<SelectControl
+							label={ __( 'Background Fit' ) }
+							options={ bgFitOptions }
+							value={ bgFit }
+							onChange={ ( value ) => setAttributes( { bgFit: value } ) }
+						/>
+					) }
 					<PanelColorSettings
 						title={ __( 'Background Color' ) }
 						initialOpen={ false }
@@ -219,6 +234,39 @@ export default class Inspector extends Component {
 						} ] }
 					>
 					</PanelColorSettings>
+				</PanelBody>
+				<PanelBody title={ __( 'Mobile Background Options' ) } initialOpen={ false }>
+					<p>{ __( 'Select a background image for mobile:' ) }</p>
+					<MediaUploadCheck>
+						<MediaUpload
+							onSelect={ onSelectImageMobile }
+							type="image"
+							value={ containerImgIDMobile }
+							render={ ( { open } ) => (
+								<div>
+									<IconButton
+										className="lsx-container-inspector-media"
+										label={ __( 'Edit image' ) }
+										icon="format-image"
+										onClick={ open }
+									>
+										{ __( 'Select Mobile Image' ) }
+									</IconButton>
+									{ containerImgURLMobile && !! containerImgURLMobile.length && (
+										<IconButton
+											className="lsx-container-inspector-media"
+											label={ __( 'Remove Mobile Image' ) }
+											icon="dismiss"
+											onClick={ onRemoveImageMobile }
+										>
+											{ __( 'Remove' ) }
+										</IconButton>
+									) }
+								</div>
+							) }
+						>
+						</MediaUpload>
+					</MediaUploadCheck>
 				</PanelBody>
 			</InspectorControls>
 		);

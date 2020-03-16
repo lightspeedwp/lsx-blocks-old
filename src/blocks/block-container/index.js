@@ -85,10 +85,25 @@ const blockAttributes = {
 		attribute: 'src',
 		selector: 'img',
 	},
+	containerImgURLMobile: {
+		type: 'string',
+		source: 'attribute',
+		attribute: 'src',
+		selector: 'img',
+	},
 	containerImgID: {
 		type: 'number',
 	},
+	containerImgIDMobile: {
+		type: 'number',
+	},
 	containerImgAlt: {
+		type: 'string',
+		source: 'attribute',
+		attribute: 'alt',
+		selector: 'img',
+	},
+	containerImgAltMobile: {
 		type: 'string',
 		source: 'attribute',
 		attribute: 'alt',
@@ -127,6 +142,9 @@ class LSXContainerBlock extends Component {
 				containerImgURL,
 				containerImgID,
 				containerImgAlt,
+				containerImgURLMobile,
+				containerImgIDMobile,
+				containerImgAltMobile,
 				bgPosition,
                 bgFit,
 				containerDimRatio,
@@ -143,6 +161,14 @@ class LSXContainerBlock extends Component {
 				containerImgID: img.id,
 				containerImgURL: img.url,
 				containerImgAlt: img.alt,
+			} );
+		};
+
+		const onSelectImageMobile = imgMob => {
+			setAttributes( {
+				containerImgIDMobile: imgMob.id,
+				containerImgURLMobile: imgMob.url,
+				containerImgAltMobile: imgMob.alt,
 			} );
 		};
 
@@ -232,7 +258,6 @@ registerBlockType( 'lsx-blocks/lsx-container', {
 
 	// Save the attributes and markup
 	save: function( props ) {
-
 		// Setup the attributes
 		const {
 			containerPaddingTop,
@@ -247,10 +272,16 @@ registerBlockType( 'lsx-blocks/lsx-container', {
 			containerImgURL,
 			containerImgID,
 			containerImgAlt,
+			containerImgURLMobile,
+			containerImgIDMobile,
+			containerImgAltMobile,
 			bgPosition,
             bgFit,
 			containerDimRatio,
 		} = props.attributes;
+		{ containerImgURL &&
+			console.log(containerImgURLMobile);
+		}
 
 		// Save the block markup for the front end
 		return (
@@ -273,7 +304,6 @@ registerBlockType( 'lsx-blocks/lsx-container', {
 							/>
 						</div>
 					) }
-
 					<div
 						className="lsx-container-content"
 						style={ {
@@ -338,7 +368,6 @@ registerBlockType( 'lsx-blocks/lsx-container', {
                                     />
                                 </div>
                             ) }
-
                             <div
                                 className="lsx-container-content"
                                 style={ {
