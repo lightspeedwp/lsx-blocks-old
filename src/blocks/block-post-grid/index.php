@@ -42,7 +42,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 	$list_items_markup = array();
 
 	if ( $recent_posts->have_posts() ) {
-		//print( '<pre>' . print_r( $args, true ) . '</pre>' );
+
 		while ( $recent_posts->have_posts() ) {
 			$recent_posts->the_post();
 			global $post;
@@ -329,14 +329,13 @@ function lsx_blocks_register_rest_fields() {
 		'post',
 		'author_info',
 		array(
-			'get_callback' => 'lsx_blocks_get_author_info',
+			'get_callback'    => 'lsx_blocks_get_author_info',
 			'update_callback' => null,
-			'schema' => null,
+			'schema'          => null,
 		)
 	);
 }
 add_action( 'rest_api_init', 'lsx_blocks_register_rest_fields' );
-
 
 /**
  * Get landscape featured image source for the rest field

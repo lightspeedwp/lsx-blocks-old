@@ -170,7 +170,7 @@
 			display: grid;
 			grid-template-columns: 30% 1fr;
 			grid-template-rows: 1fr;
-			grid-gap: 0 2em;
+			grid-gap: 0 1em;
 
 			&:not(:last-child) {
 				margin-bottom: 5%;
@@ -190,14 +190,17 @@
 
 		.lsx-block-post-grid-image {
 			margin-bottom: 0;
-
 			@media only screen and (max-width: 600px) {
 				margin-bottom: 5%;
+			}
+			img {
+				height: 100%;
+				object-fit: cover;
 			}
 		}
 
 		.lsx-block-post-grid-title {
-			padding: 0 1em;
+			display: flex;
 			@media only screen and (min-width: 600px) {
 				font-size: 34px;
 			}

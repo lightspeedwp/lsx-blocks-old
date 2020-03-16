@@ -1798,7 +1798,7 @@ article .lsx-button {
     display: grid;
     grid-template-columns: 30% 1fr;
     grid-template-rows: 1fr;
-    grid-gap: 0 2em; }
+    grid-gap: 0 1em; }
     .lsx-block-post-grid .is-list article:not(:last-child) {
       margin-bottom: 5%;
       padding-bottom: 5%; }
@@ -1813,8 +1813,13 @@ article .lsx-button {
     @media only screen and (max-width: 600px) {
       .lsx-block-post-grid .is-list .lsx-block-post-grid-image {
         margin-bottom: 5%; } }
+    .lsx-block-post-grid .is-list .lsx-block-post-grid-image img {
+      height: 100%;
+      -o-object-fit: cover;
+         object-fit: cover; }
   .lsx-block-post-grid .is-list .lsx-block-post-grid-title {
-    padding: 0 1em; }
+    display: -ms-flexbox;
+    display: flex; }
     @media only screen and (min-width: 600px) {
       .lsx-block-post-grid .is-list .lsx-block-post-grid-title {
         font-size: 34px; } }
