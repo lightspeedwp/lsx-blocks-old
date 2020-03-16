@@ -243,11 +243,6 @@ class LatestPostsBlock extends Component {
 						checked={ displayPostExcerpt }
 						onChange={ this.toggleDisplayPostExcerpt }
 					/>
-					<ToggleControl
-						label={ __( 'Display Continue Reading Link' ) }
-						checked={ displayPostLink }
-						onChange={ this.toggleDisplayPostLink }
-					/>
 					<PanelColorSettings
 						title={ __( 'Grid Background Color' ) }
 						initialOpen={ true }
@@ -258,6 +253,11 @@ class LatestPostsBlock extends Component {
 						} ] }
 					>
 					</PanelColorSettings>
+					<ToggleControl
+						label={ __( 'Display Continue Reading Link' ) }
+						checked={ displayPostLink }
+						onChange={ this.toggleDisplayPostLink }
+					/>
 					{ displayPostLink &&
 					<TextControl
 						label={ __( 'Customize Read More Link' ) }
@@ -390,7 +390,7 @@ class LatestPostsBlock extends Component {
 											{ displayPostExcerpt && post.excerpt &&
 												<div dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
 											}
-											{ post.excerpt.rendered === '' && post.content &&
+											{ displayPostExcerpt && post.excerpt.rendered === '' && post.content &&
 												<div>
 													<p dangerouslySetInnerHTML={ { __html: post.content.rendered.length > 10 ? post.content.rendered.substring(0, 150) + '...' : post.content.rendered } } />
 												</div>

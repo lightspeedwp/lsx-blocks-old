@@ -8,34 +8,40 @@
 
 /**
  * Renders the post carousel block on server.
+ *
+ * @param [type] $attributes
+ * @return void
  */
 function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 
 	$categories = isset( $attributes['categories'] ) ? $attributes['categories'] : '';
+	$tags       = isset( $attributes['selectedTag'] ) ? $attributes['selectedTag'] : '';
 
-	$custom_taxonomy = isset( $attributes['customTaxonomy'] ) ? $attributes['customTaxonomy'] : '';
-	$custom_terms = isset( $attributes['customTermID'] ) ? $attributes['customTermID'] : '';
-
-	$post_args = array(
-		'posts_per_page' => $attributes['postsToShowCarousel'],
-		'post_status' => 'publish',
-		'order' => $attributes['orderCarousel'],
-		'orderby' => $attributes['orderByCarousel'],
-		'category' => $categories,
-		'post_type' => 'post',
-		'suppress_filters' => true,
-	);
-	if ( '' !== $custom_taxonomy && '' !== $custom_terms ) {
-		unset( $post_args['category'] );
-		$post_args[ trim( $custom_taxonomy ) ] = trim( $custom_terms );
+	if ( '' !== $attributes['categories'] ) {
+		$post_args = array(
+			'posts_per_page'   => $attributes['postsToShowCarousel'],
+			'post_status'      => 'publish',
+			'order'            => $attributes['orderCarousel'],
+			'orderby'          => $attributes['orderByCarousel'],
+			'cat'              => $categories,
+			'post_type'        => 'post',
+			'suppress_filters' => false,
+			'tag__in'          => $tags,
+		);
+	} else {
+		$post_args = array(
+			'posts_per_page'   => $attributes['postsToShowCarousel'],
+			'post_status'      => 'publish',
+			'order'            => $attributes['orderCarousel'],
+			'orderby'          => $attributes['orderByCarousel'],
+			'post_type'        => 'post',
+			'suppress_filters' => false,
+			'tag__in'          => $tags,
+		);
 	}
 	$recent_posts = get_posts( $post_args );
 
-	/*if (isset($_GET['debug'])) {
-		print_r('<pre>');
-		print_r($recent_posts);
-		print_r('</pre>');
-	}*/
+	//$recent_posts = new \WP_Query( $post_args );
 
 	$list_items_markup = '';
 
@@ -54,33 +60,39 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 				$post_thumb_class = 'no-thumb';
 			}
 
-			// Start the markup for the post
+			// Start the markup for the post.
 			$list_items_markup .= sprintf(
 				'<div class="%1$s">',
 				esc_attr( $post_thumb_class )
 			);
 
-			// Get the featured image
-			if ( isset( $attributes['displayPostImageCarousel'] ) && $attributes['displayPostImageCarousel'] && $post_thumb_id ) {
+			// Get the featured image.
+			if ( isset( $attributes['displayPostImageCarousel'] ) && $attributes['displayPostImageCarousel'] ) {
 				if ( 'landscape' === $attributes['imageCrop'] ) {
 					$post_thumb_size = 'lsx-block-post-grid-landscape';
 				} else {
 					$post_thumb_size = 'lsx-block-post-grid-square';
 				}
 
+				if ( ( 'lsx-placeholder' === $post_thumb_id ) || ( 0 === $post_thumb_id ) ) {
+					$thumbnail = '<img class="attachment-responsive wp-post-image lsx-responsive" src="https://place-hold.it/750x350/cccccc/969696.jpeg&amp;text=750x350&amp;bold&amp;fontsize=16">';
+				} else {
+					$thumbnail = wp_get_attachment_image( $post_thumb_id, $post_thumb_size );
+				}
+
 				$list_items_markup .= sprintf(
 					'<div class="lsx-block-post-grid-image"><a href="%1$s" rel="bookmark">%2$s</a></div>',
 					esc_url( get_permalink( $post_id ) ),
-					wp_get_attachment_image( $post_thumb_id, $post_thumb_size )
+					$thumbnail
 				);
 			}
 
-			// Wrap the text content
+			// Wrap the text content.
 			$list_items_markup .= sprintf(
 				'<div class="lsx-block-post-grid-text">'
 			);
 
-			// Get the post title
+			// Get the post title.
 			$title = get_the_title( $post_id );
 
 			if ( ! $title ) {
@@ -93,19 +105,12 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 				esc_html( $title )
 			);
 
-			// Wrap the byline content
+			// Wrap the byline content.
 			$list_items_markup .= sprintf(
 				'<div class="lsx-block-post-grid-byline">'
 			);
 
-			// if ( isset( $attributes['displayPostAuthorCarousel'] ) && $attributes['displayPostAuthorCarousel'] ) {
-			// 	$list_items_markup .= sprintf(
-			// 		'<div class="lsx-block-post-avatar"><img src="%1$s" alt="avatar"/></div>',
-			// 		esc_html( get_avatar_url( $post->post_author ) )
-			// 	);
-			// }
-
-			// Get the post author
+			// Get the post author.
 			if ( isset( $attributes['displayPostAuthorCarousel'] ) && $attributes['displayPostAuthorCarousel'] ) {
 				$list_items_markup .= sprintf(
 					'<div class="lsx-block-post-grid-author"><a class="lsx-text-link" href="%2$s">%1$s</a>,</div>',
@@ -114,7 +119,7 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 				);
 			}
 
-			// Get the post date
+			// Get the post date.
 			if ( isset( $attributes['displayPostDateCarousel'] ) && $attributes['displayPostDateCarousel'] ) {
 				$list_items_markup .= sprintf(
 					'<time datetime="%1$s" class="lsx-block-post-grid-date">%2$s</time>',
@@ -123,18 +128,17 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 				);
 			}
 
-			// Close the byline content
-
+			// Close the byline content.
 			$list_items_markup .= sprintf(
 				'</div>'
 			);
 
-			// Wrap the excerpt content
+			// Wrap the excerpt content.
 			$list_items_markup .= sprintf(
 				'<div class="lsx-block-post-grid-excerpt">'
 			);
 
-			// Get the excerpt
+			// Get the excerpt.
 			$excerpt = apply_filters( 'the_excerpt', get_post_field( 'post_excerpt', $post_id, 'display' ) );
 
 			if ( empty( $excerpt ) ) {
@@ -157,22 +161,22 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 				);
 			}
 
-			// Close the excerpt content
+			// Close the excerpt content.
 			$list_items_markup .= sprintf(
 				'</div>'
 			);
 
-			// Wrap the text content
+			// Wrap the text content.
 			$list_items_markup .= sprintf(
 				'</div>'
 			);
 
-			// Close the markup for the post
+			// Close the markup for the post.
 			$list_items_markup .= "</div>\n";
 		}
 	}
 
-	// Build the classes
+	// Build the classes.
 	$class = "lsx-block-post-carousel align{$attributes['alignCarousel']}";
 
 	if ( isset( $attributes['className'] ) ) {
@@ -206,77 +210,82 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
  */
 function lsx_blocks_register_block_core_latest_posts_carousel() {
 
-	// Check if the register function exists
+	// Check if the register function exists.
 	if ( ! function_exists( 'register_block_type' ) ) {
 		return;
 	}
 
 	register_block_type( 'lsx-blocks/lsx-post-carousel', array(
-		'attributes' => array(
-			'categories' => array(
+		'attributes'      => array(
+			'categories'                 => array(
+				'type'    => 'string',
+				'default' => '',
+			),
+			'selectedTag'                => array(
+				'type'    => 'string',
+				'default' => '',
+			),
+			'className'                  => array(
 				'type' => 'string',
 			),
-			'className' => array(
-				'type' => 'string',
-			),
-			'postsToShowCarousel' => array(
-				'type' => 'number',
+			'postsToShowCarousel'        => array(
+				'type'    => 'number',
 				'default' => 6,
 			),
-			'displayPostDateCarousel' => array(
-				'type' => 'boolean',
+			'displayPostDateCarousel'    => array(
+				'type'    => 'boolean',
 				'default' => true,
 			),
 			'displayPostExcerptCarousel' => array(
-				'type' => 'boolean',
+				'type'    => 'boolean',
 				'default' => true,
 			),
-			'displayPostAuthorCarousel' => array(
-				'type' => 'boolean',
+			'displayPostAuthorCarousel'  => array(
+				'type'    => 'boolean',
 				'default' => true,
 			),
-			'displayPostImageCarousel' => array(
-				'type' => 'boolean',
+			'displayPostImageCarousel'   => array(
+				'type'    => 'boolean',
 				'default' => true,
 			),
-			'displayPostLinkCarousel' => array(
-				'type' => 'boolean',
+			'displayPostLinkCarousel'    => array(
+				'type'    => 'boolean',
 				'default' => true,
 			),
-			'columnsCarousel' => array(
-				'type' => 'number',
+			'columnsCarousel'            => array(
+				'type'    => 'number',
 				'default' => 3,
 			),
-			'alignCarousel' => array(
-				'type' => 'string',
+			'alignCarousel'              => array(
+				'type'    => 'string',
 				'default' => 'center',
 			),
-			'width' => array(
-				'type' => 'string',
+			'width'                      => array(
+				'type'    => 'string',
 				'default' => 'wide',
 			),
-			'orderCarousel' => array(
-				'type' => 'string',
+			'orderCarousel'              => array(
+				'type'    => 'string',
 				'default' => 'desc',
 			),
-			'orderByCarousel'  => array(
-				'type' => 'string',
+			'orderByCarousel'            => array(
+				'type'    => 'string',
 				'default' => 'date',
 			),
-			'imageCrop'  => array(
-				'type' => 'string',
+			'imageCrop'                  => array(
+				'type'    => 'string',
 				'default' => 'landscape',
 			),
-			'readMoreText'  => array(
-				'type' => 'string',
+			'readMoreText'               => array(
+				'type'    => 'string',
 				'default' => 'Continue Reading',
 			),
-			'customTaxonomy'  => array(
-				'type' => 'string',
+			'customTaxonomy'             => array(
+				'type'    => 'string',
 				'default' => '',
 			),
-			'customTermID'  => array(
-				'type' => 'string',
+			'customTermID'               => array(
+				'type'    => 'string',
 				'default' => '',
 			),
 		),
@@ -291,7 +300,7 @@ add_action( 'init', 'lsx_blocks_register_block_core_latest_posts_carousel' );
  * Create API fields for additional info
  */
 function lsx_blocks_register_rest_fields_carousel() {
-	// Add landscape featured image source
+	// Add landscape featured image source.
 	register_rest_field(
 		'post',
 		'featured_image_src',
@@ -302,7 +311,7 @@ function lsx_blocks_register_rest_fields_carousel() {
 		)
 	);
 
-	// Add square featured image source
+	// Add square featured image source.
 	register_rest_field(
 		'post',
 		'featured_image_src_square',

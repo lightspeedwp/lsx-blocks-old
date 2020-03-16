@@ -2129,11 +2129,16 @@ article .lsx-button {
 /**
  * Editor styles for the admin
  */
+.lsx-block-post-carousel .slick-list {
+  display: -ms-flexbox;
+  display: flex; }
+
 .lsx-block-post-carousel h2 a {
   text-decoration: none; }
 
 .lsx-block-post-carousel article {
-  display: none; }
+  display: none;
+  padding-right: 10px; }
 
 .lsx-block-post-carousel.columns-2 article {
   width: 50%; }

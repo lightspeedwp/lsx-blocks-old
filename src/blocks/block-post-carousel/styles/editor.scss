@@ -3,12 +3,17 @@
  */
 
 .lsx-block-post-carousel {
+
+	.slick-list {
+		display: flex;
+	}
 	h2 a {
 		text-decoration: none;
 	}
 
 	article {
 		display:none;
+		padding-right: 10px;
 	}
 	&.columns-2 {
 		article {
