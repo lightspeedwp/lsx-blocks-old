@@ -163,11 +163,12 @@ class LatestPostsBlock extends Component {
 
 		const isLandscape = imageCrop === 'landscape';
 
+		//Create taglist
 		const tagsListObject = [];
-
-		for (var index = 0; index < tagsList.length; index++) {
-			tagsListObject[index] = { value: tagsList[index].id, label: tagsList[index].name };
+		for (var item = 0; item < tagsList.length; item++) {
+			tagsListObject[item] = { value: tagsList[item].id, label: tagsList[item].name };
 		}
+
 		//console.log(objects);
 		const inspectorControls = (
 			<InspectorControls>
@@ -367,14 +368,13 @@ class LatestPostsBlock extends Component {
 }
 
 export default withSelect( ( select, props ) => {
-	//console.log(selectedTag);
-	const { postsToShow, order, orderBy, categories, tags } = props.attributes;
+	const { postsToShow, order, orderBy, categories, selectedTag } = props.attributes;
 	const { getEntityRecords } = select( 'core' );
-	//console.log(categories);
-	//const tags = '277';
+	//console.log(selectedTag);
+
 	const latestPostsQuery = pickBy( {
 		categories,
-		tags,
+		tags: selectedTag,
 		order,
 		orderby: orderBy,
 		per_page: postsToShow,

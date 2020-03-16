@@ -15,7 +15,7 @@
 function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 
 	$categories = isset( $attributes['categories'] ) ? $attributes['categories'] : '';
-	$tags = isset( $attributes['tags'] ) ? $attributes['tags'] : '';
+	$tags       = isset( $attributes['selectedTag'] ) ? $attributes['selectedTag'] : '';
 
 	if ( '' !== $attributes['categories'] ) {
 
@@ -25,6 +25,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 			'order'       => $attributes['order'],
 			'orderby'     => $attributes['orderBy'],
 			'cat'         => $categories,
+			'tag__in'     => $tags,
 		);
 	} else {
 		$args = array(
@@ -32,7 +33,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 			'post_status' => 'publish',
 			'order'       => $attributes['order'],
 			'orderby'     => $attributes['orderBy'],
-			//'tag__in'     => '277',
+			'tag__in'     => $tags,
 		);
 	}
 
@@ -220,7 +221,7 @@ function lsx_blocks_register_block_core_latest_posts() {
 				'type'    => 'string',
 				'default' => '',
 			),
-			'tags'               => array(
+			'selectedTag'        => array(
 				'type'    => 'string',
 				'default' => '',
 			),
