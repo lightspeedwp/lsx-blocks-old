@@ -258,7 +258,7 @@ function lsx_blocks_register_block_core_latest_posts() {
 			),
 			'columns'            => array(
 				'type'    => 'number',
-				'default' => 2,
+				'default' => 3,
 			),
 			'align'              => array(
 				'type'    => 'string',

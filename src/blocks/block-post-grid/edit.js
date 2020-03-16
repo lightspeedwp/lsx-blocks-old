@@ -8,9 +8,6 @@ import map from 'lodash/map';
 import pickBy from 'lodash/pickBy';
 import moment from 'moment';
 import classnames from 'classnames';
-import { stringify } from 'querystringify';
-
-const { compose } = wp.compose;
 
 const { Component, Fragment } = wp.element;
 
@@ -23,7 +20,6 @@ const { addQueryArgs } = wp.url;
 const { apiFetch } = wp;
 
 const {
-	registerStore,
 	withSelect,
 } = wp.data;
 
@@ -163,32 +159,50 @@ class LatestPostsBlock extends Component {
 
 		const isLandscape = imageCrop === 'landscape';
 
-		//Create taglist
-		const tagsListObject = [];
-		for (var item = 0; item < tagsList.length; item++) {
-			tagsListObject[item] = { value: tagsList[item].id, label: tagsList[item].name };
+		//Create category
+		const categoriesListObject = [];
+		if (categoriesList && categoriesList.length) {
+			for (var item = 0; item < categoriesList.length; item++) {
+				categoriesListObject[item] = { value: categoriesList[item].id, label: categoriesList[item].name };
+			}
+			categoriesListObject.unshift({ value: '', label: __( 'All' ) });
 		}
 
-		//console.log(objects);
+		//Create taglist
+		const tagsListObject = [];
+		if ( tagsList && tagsList.length ) {
+			for (var item = 0; item < tagsList.length; item++) {
+				tagsListObject[item] = { value: tagsList[item].id, label: tagsList[item].name };
+			}
+			tagsListObject.unshift({ value: '', label: __( 'All' ) });
+		}
+
 		const inspectorControls = (
 			<InspectorControls>
 				<PanelBody title={ __( 'Post Grid Settings' ) }>
 					<QueryControls
-							{ ...{ order, orderBy } }
-							numberOfItems={ attributes.postsToShow }
-							categoriesList={ categoriesList }
-							selectedCategoryId={ attributes.categories }
-							onOrderChange={ ( value ) => setAttributes({ order: value }) }
-							onOrderByChange={ ( value ) => setAttributes({ orderBy: value }) }
-							onCategoryChange={ ( value ) => setAttributes({ categories: '' !== value ? value : undefined }) }
-							onNumberOfItemsChange={ ( value ) => setAttributes({ postsToShow: value }) }
+						{ ...{ order, orderBy } }
+						numberOfItems={ attributes.postsToShow }
+						onOrderChange={ ( value ) => setAttributes({ order: value }) }
+						onOrderByChange={ ( value ) => setAttributes({ orderBy: value }) }
+						onNumberOfItemsChange={ ( value ) => setAttributes({ postsToShow: value }) }
 					/>
-					<SelectControl
-							label={ __( 'Tags' ) }
+					{ categoriesListObject &&
+						<SelectControl
+							label={ __( 'Filter by Categories' ) }
+							options={ categoriesListObject }
+							value={ categories }
+							onChange={ ( value ) => this.props.setAttributes( { categories: value } ) }
+						/>
+					}
+					{ tagsListObject &&
+						<SelectControl
+							label={ __( 'Filter by Tags' ) }
 							options={ tagsListObject }
 							value={ selectedTag }
 							onChange={ ( value ) => this.props.setAttributes( { selectedTag: value } ) }
 						/>
+					}
 					{ postLayout === 'grid' &&
 						<RangeControl
 							label={ __( 'Columns' ) }
@@ -370,7 +384,6 @@ class LatestPostsBlock extends Component {
 export default withSelect( ( select, props ) => {
 	const { postsToShow, order, orderBy, categories, selectedTag } = props.attributes;
 	const { getEntityRecords } = select( 'core' );
-	//console.log(selectedTag);
 
 	const latestPostsQuery = pickBy( {
 		categories,
@@ -378,17 +391,18 @@ export default withSelect( ( select, props ) => {
 		order,
 		orderby: orderBy,
 		per_page: postsToShow,
-	} );
-	const categoriesListQuery = {
-		per_page: 100,
-	};
-	const tagsListQuery = {
-		per_page: 100,
-	};
+		exclude: [ wp.data.select( 'core/editor' ).getCurrentPostId() ],
+	}, ( value ) => ! isUndefined( value ) );
+	// const categoriesListQuery = {
+	// 	per_page: 100,
+	// };
+	// const tagsListQuery = {
+	// 	per_page: 100,
+	// };
 
 	return {
 		latestPosts: getEntityRecords( 'postType', 'post', latestPostsQuery ),
-		categoriesList: getEntityRecords( 'taxonomy', 'category', categoriesListQuery ),
-		tagsList: getEntityRecords( 'taxonomy', 'post_tag', tagsListQuery ),
+		// categoriesList: getEntityRecords( 'taxonomy', 'category', categoriesListQuery ),
+		// tagsList: getEntityRecords( 'taxonomy', 'post_tag', tagsListQuery ),
 	};
 } )( LatestPostsBlock );
