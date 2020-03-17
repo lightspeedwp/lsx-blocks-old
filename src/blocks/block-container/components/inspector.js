@@ -242,13 +242,13 @@ export default class Inspector extends Component {
 							onSelect={ onSelectImageMobile }
 							type="image"
 							value={ containerImgIDMobile }
-							render={ ( { open } ) => (
+							render={ ( { openMob } ) => (
 								<div>
 									<IconButton
 										className="lsx-container-inspector-media"
 										label={ __( 'Edit image' ) }
 										icon="format-image"
-										onClick={ open }
+										onClick={ openMob }
 									>
 										{ __( 'Select Mobile Image' ) }
 									</IconButton>
