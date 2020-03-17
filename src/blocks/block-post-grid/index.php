@@ -15,33 +15,25 @@
 function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 
 	$categories = isset( $attributes['categories'] ) ? $attributes['categories'] : '';
+	$tags       = isset( $attributes['selectedTag'] ) ? $attributes['selectedTag'] : '';
 
-	$recent_posts = new WP_Query( array(
-		'posts_per_page'      => $attributes['postsToShow'],
-		'post_status'         => 'publish',
-		'order'               => $attributes['order'],
-		'orderby'             => $attributes['orderBy'],
-		'cat'                 => $categories,
-		'ignore_sticky_posts' => 1,
-
-	), 'OBJECT' );
-	if ( isset( $attributes['categories'] ) ) {
+	if ( '' !== $attributes['categories'] ) {
 
 		$args = array(
-			'posts_per_page'      => $attributes['postsToShow'],
-			'post_status'         => 'publish',
-			'order'               => $attributes['order'],
-			'orderby'             => $attributes['orderBy'],
-			'cat'                 => $categories,
-			'ignore_sticky_posts' => 1,
+			'numberposts' => $attributes['postsToShow'],
+			'post_status' => 'publish',
+			'order'       => $attributes['order'],
+			'orderby'     => $attributes['orderBy'],
+			'cat'         => $categories,
+			'tag__in'     => $tags,
 		);
 	} else {
 		$args = array(
-			'posts_per_page'      => $attributes['postsToShow'],
-			'post_status'         => 'publish',
-			'order'               => $attributes['order'],
-			'orderby'             => $attributes['orderBy'],
-			'ignore_sticky_posts' => 1,
+			'numberposts' => $attributes['postsToShow'],
+			'post_status' => 'publish',
+			'order'       => $attributes['order'],
+			'orderby'     => $attributes['orderBy'],
+			'tag__in'     => $tags,
 		);
 	}
 
@@ -62,7 +54,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 			if ( $post_thumb_id && isset( $attributes['displayPostImage'] ) && $attributes['displayPostImage'] ) {
 				$post_thumb_class = 'has-thumb';
 			} else {
-				$post_thumb_class = 'no-thumb';
+				$post_thumb_class = 'placeholder-thumb';
 			}
 
 			// Start the markup for the post.
@@ -72,14 +64,14 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 			);
 
 			// Get the featured image.
-			if ( isset( $attributes['displayPostImage'] ) && $attributes['displayPostImage'] && $post_thumb_id ) {
+			if ( isset( $attributes['displayPostImage'] ) && $attributes['displayPostImage'] ) {
 				if ( 'landscape' === $attributes['imageCrop'] ) {
 					$post_thumb_size = 'lsx-block-post-grid-landscape';
 				} else {
 					$post_thumb_size = 'lsx-block-post-grid-square';
 				}
 
-				if ( 'lsx-placeholder' === $post_thumb_id ) {
+				if ( ( 'lsx-placeholder' === $post_thumb_id ) || ( 0 === $post_thumb_id ) ) {
 					$thumbnail = '<img class="attachment-responsive wp-post-image lsx-responsive" src="https://place-hold.it/750x350/cccccc/969696.jpeg&amp;text=750x350&amp;bold&amp;fontsize=16">';
 				} else {
 					$thumbnail = wp_get_attachment_image( $post_thumb_id, $post_thumb_size );
@@ -201,9 +193,12 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 		$grid_class .= ' columns-' . $attributes['columns'];
 	}
 
+	$bgcolor = $attributes['postsBackgroundColor'];
+
 	// Output the post markup.
 	$block_content = sprintf(
-		'<div class="%1$s"><div class="%2$s">%3$s</div></div>',
+		'<div style="background-color:%1$s" class="%2$s"><div class="%3$s">%4$s</div></div>',
+		esc_attr( $bgcolor ),
 		esc_attr( $class ),
 		esc_attr( $grid_class ),
 		implode( '', $list_items_markup )
@@ -225,66 +220,74 @@ function lsx_blocks_register_block_core_latest_posts() {
 	register_block_type( 'lsx-blocks/lsx-post-grid', array(
 		'style'           => 'lsx-blocks-style-css',
 		'attributes'      => array(
-			'categories'         => array(
-				'type' => 'string',
+			'categories'           => array(
+				'type'    => 'string',
 				'default' => '',
 			),
-			'className'          => array(
+			'selectedTag'          => array(
+				'type'    => 'string',
+				'default' => '',
+			),
+			'className'            => array(
 				'type' => 'string',
 			),
-			'postsToShow'        => array(
+			'postsToShow'          => array(
 				'type'    => 'number',
 				'default' => 6,
 			),
-			'displayPostDate'    => array(
+			'displayPostDate'      => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'displayPostExcerpt' => array(
+			'displayPostExcerpt'   => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'displayPostAuthor'  => array(
+			'displayPostAuthor'    => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'displayPostImage'   => array(
+			'displayPostImage'     => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'displayPostLink'    => array(
+			'displayPostLink'      => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'postLayout'         => array(
+			'postLayout'           => array(
 				'type'    => 'string',
 				'default' => 'grid',
 			),
-			'columns'            => array(
+			'columns'              => array(
 				'type'    => 'number',
-				'default' => 2,
+				'default' => 3,
 			),
-			'align'              => array(
-				'type'    => 'string',
-				'default' => 'center',
-			),
-			'width'              => array(
+			'align'                => array(
 				'type'    => 'string',
 				'default' => 'wide',
 			),
-			'order'              => array(
+			'width'                => array(
+				'type'    => 'string',
+				'default' => 'wide',
+			),
+			'order'                => array(
 				'type'    => 'string',
 				'default' => 'desc',
 			),
-			'orderBy'            => array(
+			'orderBy'              => array(
 				'type'    => 'string',
 				'default' => 'date',
 			),
-			'imageCrop'          => array(
+			'imageCrop'            => array(
 				'type'    => 'string',
 				'default' => 'landscape',
 			),
-			'readMoreText'       => array(
+			'postsBackgroundColor' => array(
+				'type'    => 'string',
+				'default' => 'transparent',
+			),
+			'readMoreText'         => array(
 				'type'    => 'string',
 				'default' => 'Continue Reading',
 			),
@@ -326,14 +329,13 @@ function lsx_blocks_register_rest_fields() {
 		'post',
 		'author_info',
 		array(
-			'get_callback' => 'lsx_blocks_get_author_info',
+			'get_callback'    => 'lsx_blocks_get_author_info',
 			'update_callback' => null,
-			'schema' => null,
+			'schema'          => null,
 		)
 	);
 }
 add_action( 'rest_api_init', 'lsx_blocks_register_rest_fields' );
-
 
 /**
  * Get landscape featured image source for the rest field

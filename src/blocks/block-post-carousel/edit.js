@@ -7,7 +7,6 @@ import isUndefined from 'lodash/isUndefined';
 import pickBy from 'lodash/pickBy';
 import moment from 'moment';
 import classnames from 'classnames';
-import { stringify } from 'querystringify';
 
 const { Component, Fragment } = wp.element;
 
@@ -20,7 +19,6 @@ const { addQueryArgs } = wp.url;
 const { apiFetch } = wp;
 
 const {
-	registerStore,
 	withSelect,
 } = wp.data;
 
@@ -41,6 +39,7 @@ const {
 	InspectorControls,
 	BlockAlignmentToolbar,
 	BlockControls,
+	PanelColorSettings,
 } = wp.editor;
 
 const MAX_POSTS_COLUMNS_CAROUSEL = 4;
@@ -50,7 +49,10 @@ class LatestPostsBlockCarousel extends Component {
 		super( ...arguments );
 
 		this.state = { categoriesList: [] };
+		this.state = { tagsList: [] };
+
 		this.stillMounted = false;
+		this.stillMountedTag = false;
 
 		this.toggledisplayPostDateCarousel = this.toggledisplayPostDateCarousel.bind( this );
 		this.toggledisplayPostExcerptCarousel = this.toggledisplayPostExcerptCarousel.bind( this );
@@ -76,10 +78,29 @@ class LatestPostsBlockCarousel extends Component {
 				}
 			}
 		);
+
+		this.stillMountedTag = true;
+
+		this.fetchRequestTag = apiFetch({
+			path: addQueryArgs( '/wp/v2/tags', { per_page: -1 })
+		}).then(
+			( tagsList ) => {
+				if ( this.stillMountedTag ) {
+					this.setState({ tagsList });
+				}
+			}
+		).catch(
+			() => {
+				if ( this.stillMountedTag ) {
+					this.setState({ tagsList: [] });
+				}
+			}
+		);
 	}
 
 	componentWillUnmount() {
 		this.stillMounted = false;
+		this.stillMountedTag = false;
 	}
 
 	toggledisplayPostDateCarousel() {
@@ -126,9 +147,9 @@ class LatestPostsBlockCarousel extends Component {
 
 	render() {
 		const { attributes, setAttributes, latestPosts } = this.props;
-		const { customTaxonomy, customTermID, displayPostDateCarousel, displayPostExcerptCarousel, displayPostAuthorCarousel, displayPostImageCarousel, displayPostLinkCarousel, alignCarousel, columnsCarousel, orderCarousel, orderByCarousel, categories, postsToShowCarousel, width, imageCrop, readMoreText } = attributes;
+		const { customTaxonomy, customTermID, displayPostDateCarousel, displayPostExcerptCarousel, displayPostAuthorCarousel, displayPostImageCarousel, displayPostLinkCarousel, alignCarousel, columnsCarousel, orderCarousel, orderByCarousel, categories, selectedTag, postsToShowCarousel, width, imageCrop, postsBackgroundColorCarousel, readMoreText } = attributes;
 
-		const { categoriesList } = this.state;
+		const { categoriesList, tagsList } = this.state;
 
 		// Thumbnail options
 		const imageCropOptions = [
@@ -138,19 +159,53 @@ class LatestPostsBlockCarousel extends Component {
 
 		const isLandscape = imageCrop === 'landscape';
 
+		//Create category
+		const categoriesListObject = [];
+		if (categoriesList && categoriesList.length) {
+			for (var item = 0; item < categoriesList.length; item++) {
+				categoriesListObject[item] = { value: categoriesList[item].id, label: categoriesList[item].name };
+			}
+			categoriesListObject.unshift({ value: '', label: __( 'All' ) });
+		}
+
+		//Create taglist
+		const tagsListObject = [];
+		if ( tagsList && tagsList.length ) {
+			for (var item = 0; item < tagsList.length; item++) {
+				tagsListObject[item] = { value: tagsList[item].id, label: tagsList[item].name };
+			}
+			tagsListObject.unshift({ value: '', label: __( 'All' ) });
+		}
+
+		//Color value changes
+		const onChangeBackgroundColorCarousel = value => setAttributes( { postsBackgroundColorCarousel: value } );
+
 		const inspectorControls = (
 			<InspectorControls>
 				<PanelBody title={ __( 'Post Carousel Settings' ) }>
 					<QueryControls
 						{ ...{ orderCarousel, orderByCarousel } }
 						numberOfItems={ postsToShowCarousel }
-						categoriesList={ categoriesList }
-						selectedCategoryId={ categories }
 						onOrderChange={ ( value ) => setAttributes( { orderCarousel: value } ) }
 						onOrderByChange={ ( value ) => setAttributes( { orderByCarousel: value } ) }
-						onCategoryChange={ ( value ) => setAttributes( { categories: '' !== value ? value : undefined } ) }
                         onNumberOfItemsChange={ ( value ) => setAttributes( { postsToShowCarousel: value } ) }
 					/>
+					{ categoriesListObject &&
+						<SelectControl
+							label={ __( 'Filter by Categories' ) }
+							options={ categoriesListObject }
+							value={ categories }
+							onChange={ ( value ) => this.props.setAttributes( { categories: value } ) }
+						/>
+					}
+					{ tagsListObject &&
+						<SelectControl
+							label={ __( 'Filter by Tags' ) }
+							options={ tagsListObject }
+							value={ selectedTag }
+							onChange={ ( value ) => this.props.setAttributes( { selectedTag: value } ) }
+						/>
+					}
 					<RangeControl
 						label={ __( 'Columns' ) }
 						value={ columnsCarousel }
@@ -186,6 +241,16 @@ class LatestPostsBlockCarousel extends Component {
 						checked={ displayPostExcerptCarousel }
 						onChange={ this.toggledisplayPostExcerptCarousel }
 					/>
+					<PanelColorSettings
+						title={ __( 'Grid Background Color' ) }
+						initialOpen={ true }
+						colorSettings={ [ {
+							value: postsBackgroundColorCarousel,
+							onChange: onChangeBackgroundColorCarousel,
+							label: __( 'Grid Background Color', 'lsx-blocks' )
+						} ] }
+					>
+					</PanelColorSettings>
 					<ToggleControl
 						label={ __( 'Display Continue Reading Link' ) }
 						checked={ displayPostLinkCarousel }
@@ -201,7 +266,7 @@ class LatestPostsBlockCarousel extends Component {
 					}
 
 				</PanelBody>
-                <PanelBody title={ __( 'Custom Taxonomy' ) }>
+                {/* <PanelBody title={ __( 'Custom Taxonomy' ) }>
                     <TextControl
                         label={ __( 'Taxonomy Slug' ) }
                         type="text"
@@ -218,7 +283,7 @@ class LatestPostsBlockCarousel extends Component {
                         help={ __( 'Enter the term slug or term_id, you can enter several items separated by a comma.' ) }
                     />
                     }
-                </PanelBody>
+                </PanelBody> */}
 			</InspectorControls>
 		);
 
@@ -265,6 +330,9 @@ class LatestPostsBlockCarousel extends Component {
 						'lsx-block-post-carousel',
                         [ `columns-${ columnsCarousel }` ]
 					) }
+					style={ {
+						backgroundColor: postsBackgroundColorCarousel,
+					} }
 				>
 					<div
 						className={ classnames( 'lsx-post-carousel-items slick-slider slick-initialized slick-dotted' ) }
@@ -299,7 +367,15 @@ class LatestPostsBlockCarousel extends Component {
                                                 </a>
                                             </div>
                                         ) : (
-                                            null
+                                            <div className="lsx-block-post-grid-image">
+												<a href={ post.link } target="_blank" rel="bookmark">
+													<img
+														classnames="attachment-responsive wp-post-image lsx-responsive"
+														src="https://place-hold.it/750x350/cccccc/969696.jpeg&amp;text=750x350&amp;bold&amp;fontsize=16"
+														alt={ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }
+													/>
+												</a>
+											</div>
                                         )
                                     }
 
@@ -322,7 +398,11 @@ class LatestPostsBlockCarousel extends Component {
                                             { displayPostExcerptCarousel && post.excerpt &&
                                                 <div dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
                                             }
-
+											{ displayPostExcerptCarousel && post.excerpt.rendered === '' && post.content &&
+												<div>
+													<p dangerouslySetInnerHTML={ { __html: post.content.rendered.length > 10 ? post.content.rendered.substring(0, 150) + '...' : post.content.rendered } } />
+												</div>
+											}
                                             { displayPostLinkCarousel &&
                                                 <p><a className="lsx-block-post-grid-link lsx-text-link" href={ post.link } target="_blank" rel="bookmark">{ readMoreText }</a></p>
                                             }
@@ -363,20 +443,18 @@ class LatestPostsBlockCarousel extends Component {
 }
 
 export default withSelect( ( select, props ) => {
-	const { postsToShowCarousel, orderCarousel, orderByCarousel, categories } = props.attributes;
+	const { postsToShowCarousel, orderCarousel, orderByCarousel, categories, selectedTag } = props.attributes;
 	const { getEntityRecords } = select( 'core' );
 
 	const latestPostsQueryCarousel = pickBy( {
 		categories,
-		orderCarousel,
+		tags: selectedTag,
+		order: orderCarousel,
 		orderby: orderByCarousel,
 		per_page: postsToShowCarousel,
-	} );
-	const categoriesListQueryCarousel = {
-		per_page: 100,
-	};
+		exclude: [ wp.data.select( 'core/editor' ).getCurrentPostId() ],
+	}, ( value ) => ! isUndefined( value ) );
 	return {
 		latestPosts: getEntityRecords( 'postType', 'post', latestPostsQueryCarousel ),
-		categoriesList: getEntityRecords( 'taxonomy', 'category', categoriesListQueryCarousel ),
 	};
 } )( LatestPostsBlockCarousel );

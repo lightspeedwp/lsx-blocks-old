@@ -8,9 +8,6 @@ import map from 'lodash/map';
 import pickBy from 'lodash/pickBy';
 import moment from 'moment';
 import classnames from 'classnames';
-import { stringify } from 'querystringify';
-
-const { compose } = wp.compose;
 
 const { Component, Fragment } = wp.element;
 
@@ -23,7 +20,6 @@ const { addQueryArgs } = wp.url;
 const { apiFetch } = wp;
 
 const {
-	registerStore,
 	withSelect,
 } = wp.data;
 
@@ -44,6 +40,7 @@ const {
 	InspectorControls,
 	BlockAlignmentToolbar,
 	BlockControls,
+	PanelColorSettings,
 } = wp.editor;
 
 const MAX_POSTS_COLUMNS = 4;
@@ -52,11 +49,10 @@ class LatestPostsBlock extends Component {
 	constructor() {
 		super( ...arguments );
 		this.state = { categoriesList: [] };
+		this.state = { tagsList: [] };
 
 		this.stillMounted = false;
-
-		this.state = { categoriesList: [] };
-		this.stillMounted = false;
+		this.stillMountedTag = false;
 
 		this.toggleDisplayPostDate = this.toggleDisplayPostDate.bind( this );
 		this.toggleDisplayPostExcerpt = this.toggleDisplayPostExcerpt.bind( this );
@@ -67,6 +63,7 @@ class LatestPostsBlock extends Component {
 
 	componentDidMount() {
 		this.stillMounted = true;
+
 		this.fetchRequest = apiFetch({
 			path: addQueryArgs( '/wp/v2/categories', { per_page: -1 })
 		}).then(
@@ -82,10 +79,29 @@ class LatestPostsBlock extends Component {
 				}
 			}
 		);
+
+		this.stillMountedTag = true;
+
+		this.fetchRequestTag = apiFetch({
+			path: addQueryArgs( '/wp/v2/tags', { per_page: -1 })
+		}).then(
+			( tagsList ) => {
+				if ( this.stillMountedTag ) {
+					this.setState({ tagsList });
+				}
+			}
+		).catch(
+			() => {
+				if ( this.stillMountedTag ) {
+					this.setState({ tagsList: [] });
+				}
+			}
+		);
 	}
 
 	componentWillUnmount() {
 		this.stillMounted = false;
+		this.stillMountedTag = false;
 	}
 
 	toggleDisplayPostDate() {
@@ -132,31 +148,64 @@ class LatestPostsBlock extends Component {
 
 	render() {
 		const { attributes, setAttributes, latestPosts } = this.props;
-		const { displayPostDate, displayPostExcerpt, displayPostAuthor, displayPostImage,displayPostLink, align, postLayout, columns, order, orderBy, categories, postsToShow, width, imageCrop, readMoreText } = attributes;
+		const { displayPostDate, displayPostExcerpt, displayPostAuthor, displayPostImage, displayPostLink, align, postLayout, columns, order, orderBy, categories, tags, selectedTag, postsToShow, width, imageCrop, postsBackgroundColor, readMoreText } = attributes;
 
-		const { categoriesList } = this.state;
+		const { categoriesList, tagsList } = this.state;
 
 		// Thumbnail options
 		const imageCropOptions = [
 			{ value: 'landscape', label: __( 'Landscape' ) },
 			{ value: 'square', label: __( 'Square' ) },
 		];
-
 		const isLandscape = imageCrop === 'landscape';
+
+		//Create category
+		const categoriesListObject = [];
+		if (categoriesList && categoriesList.length) {
+			for (var item = 0; item < categoriesList.length; item++) {
+				categoriesListObject[item] = { value: categoriesList[item].id, label: categoriesList[item].name };
+			}
+			categoriesListObject.unshift({ value: '', label: __( 'All' ) });
+		}
+
+		//Create taglist
+		const tagsListObject = [];
+		if ( tagsList && tagsList.length ) {
+			for (var item = 0; item < tagsList.length; item++) {
+				tagsListObject[item] = { value: tagsList[item].id, label: tagsList[item].name };
+			}
+			tagsListObject.unshift({ value: '', label: __( 'All' ) });
+		}
+
+		//Color value changes
+		const onChangeBackgroundColor = value => setAttributes( { postsBackgroundColor: value } );
 
 		const inspectorControls = (
 			<InspectorControls>
 				<PanelBody title={ __( 'Post Grid Settings' ) }>
 					<QueryControls
-							{ ...{ order, orderBy } }
-							numberOfItems={ attributes.postsToShow }
-							categoriesList={ categoriesList }
-							selectedCategoryId={ attributes.categories }
-							onOrderChange={ ( value ) => setAttributes({ order: value }) }
-							onOrderByChange={ ( value ) => setAttributes({ orderBy: value }) }
-							onCategoryChange={ ( value ) => setAttributes({ categories: '' !== value ? value : undefined }) }
-							onNumberOfItemsChange={ ( value ) => setAttributes({ postsToShow: value }) }
+						{ ...{ order, orderBy } }
+						numberOfItems={ attributes.postsToShow }
+						onOrderChange={ ( value ) => setAttributes({ order: value }) }
+						onOrderByChange={ ( value ) => setAttributes({ orderBy: value }) }
+						onNumberOfItemsChange={ ( value ) => setAttributes({ postsToShow: value }) }
 					/>
+					{ categoriesListObject &&
+						<SelectControl
+							label={ __( 'Filter by Categories' ) }
+							options={ categoriesListObject }
+							value={ categories }
+							onChange={ ( value ) => this.props.setAttributes( { categories: value } ) }
+						/>
+					}
+					{ tagsListObject &&
+						<SelectControl
+							label={ __( 'Filter by Tags' ) }
+							options={ tagsListObject }
+							value={ selectedTag }
+							onChange={ ( value ) => this.props.setAttributes( { selectedTag: value } ) }
+						/>
+					}
 					{ postLayout === 'grid' &&
 						<RangeControl
 							label={ __( 'Columns' ) }
@@ -194,6 +243,16 @@ class LatestPostsBlock extends Component {
 						checked={ displayPostExcerpt }
 						onChange={ this.toggleDisplayPostExcerpt }
 					/>
+					<PanelColorSettings
+						title={ __( 'Grid Background Color' ) }
+						initialOpen={ true }
+						colorSettings={ [ {
+							value: postsBackgroundColor,
+							onChange: onChangeBackgroundColor,
+							label: __( 'Grid Background Color', 'lsx-blocks' )
+						} ] }
+					>
+					</PanelColorSettings>
 					<ToggleControl
 						label={ __( 'Display Continue Reading Link' ) }
 						checked={ displayPostLink }
@@ -259,7 +318,7 @@ class LatestPostsBlock extends Component {
 						onChange={ ( value ) => {
 							setAttributes( { align: value } );
 						} }
-						controls={ [ 'center', 'wide' ] }
+						controls={ [ 'center', 'wide', 'full' ] }
 					/>
 					<Toolbar controls={ layoutControls } />
 				</BlockControls>
@@ -267,7 +326,11 @@ class LatestPostsBlock extends Component {
 					className={ classnames(
 						this.props.className,
 						'lsx-block-post-grid',
+						align
 					) }
+					style={ {
+						backgroundColor: postsBackgroundColor,
+					} }
 				>
 					<div
 						className={ classnames( {
@@ -296,7 +359,15 @@ class LatestPostsBlock extends Component {
 												</a>
 											</div>
 										) : (
-											null
+											<div className="lsx-block-post-grid-image">
+												<a href={ post.link } target="_blank" rel="bookmark">
+													<img
+														classnames="attachment-responsive wp-post-image lsx-responsive"
+														src="https://place-hold.it/750x350/cccccc/969696.jpeg&amp;text=750x350&amp;bold&amp;fontsize=16"
+														alt={ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }
+													/>
+												</a>
+											</div>
 										)
 									}
 
@@ -319,7 +390,11 @@ class LatestPostsBlock extends Component {
 											{ displayPostExcerpt && post.excerpt &&
 												<div dangerouslySetInnerHTML={ { __html: post.excerpt.rendered } } />
 											}
-
+											{ displayPostExcerpt && post.excerpt.rendered === '' && post.content &&
+												<div>
+													<p dangerouslySetInnerHTML={ { __html: post.content.rendered.length > 10 ? post.content.rendered.substring(0, 150) + '...' : post.content.rendered } } />
+												</div>
+											}
 											{ displayPostLink &&
 												<p><a className="lsx-block-post-grid-link lsx-text-link" href={ post.link } target="_blank" rel="bookmark">{ readMoreText }</a></p>
 											}
@@ -336,19 +411,19 @@ class LatestPostsBlock extends Component {
 }
 
 export default withSelect( ( select, props ) => {
-	const { postsToShow, order, orderBy, categories } = props.attributes;
+	const { postsToShow, order, orderBy, categories, selectedTag } = props.attributes;
 	const { getEntityRecords } = select( 'core' );
+
 	const latestPostsQuery = pickBy( {
 		categories,
+		tags: selectedTag,
 		order,
 		orderby: orderBy,
 		per_page: postsToShow,
-	} );
-	const categoriesListQuery = {
-		per_page: 100,
-	};
+		exclude: [ wp.data.select( 'core/editor' ).getCurrentPostId() ],
+	}, ( value ) => ! isUndefined( value ) );
+
 	return {
 		latestPosts: getEntityRecords( 'postType', 'post', latestPostsQuery ),
-		categoriesList: getEntityRecords( 'taxonomy', 'category', categoriesListQuery ),
 	};
 } )( LatestPostsBlock );

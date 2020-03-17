@@ -7,6 +7,9 @@
 	margin: 0 0 1.2em 0;
 	position: relative;
 	word-break: break-all;
+	@media (min-width:900px) {
+		padding: 4rem;
+	}
 	.is-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -25,13 +28,11 @@
 	}
 
 	.is-grid.columns-3 {
-		grid-template-columns: 1fr 1fr 1fr;
-		grid-template-columns: repeat(3, 33.333%);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 
 	.is-grid.columns-4 {
-		grid-template-columns: 1fr 1fr 1fr 1fr;
-		grid-template-columns: repeat(4, 25%);
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 
 	div[class*="columns"].is-grid {
@@ -170,7 +171,7 @@
 			display: grid;
 			grid-template-columns: 30% 1fr;
 			grid-template-rows: 1fr;
-			grid-gap: 0 2em;
+      grid-gap: 0 1em;
 			word-break: break-word;
 			&:not(:last-child) {
 				margin-bottom: 5%;
@@ -190,14 +191,17 @@
 
 		.lsx-block-post-grid-image {
 			margin-bottom: 0;
-
 			@media only screen and (max-width: 600px) {
 				margin-bottom: 5%;
+			}
+			img {
+				height: 100%;
+				object-fit: cover;
 			}
 		}
 
 		.lsx-block-post-grid-title {
-			padding: 0 1em;
+			display: flex;
 			@media only screen and (min-width: 600px) {
 				font-size: 34px;
 			}

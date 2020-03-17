@@ -40,7 +40,7 @@ registerBlockType( 'lsx-blocks/lsx-post-grid', {
 
 	getEditWrapperProps( attributes ) {
 		const { align } = attributes;
-		if ( -1 !== validAlignments.indexOf( align ) ) {
+		if ( 'center' === align || 'wide' === align || 'full' === align ) {
 			return { 'data-align': align };
 		}
 	},
