@@ -16,6 +16,7 @@
 		article {
 			margin-bottom: 2.5em;
 			background-color: #fff;
+			word-break: break-word;
 		}
 	}
 
@@ -170,7 +171,7 @@
 			grid-template-columns: 30% 1fr;
 			grid-template-rows: 1fr;
 			grid-gap: 0 2em;
-
+			word-break: break-word;
 			&:not(:last-child) {
 				margin-bottom: 5%;
 				padding-bottom: 5%;
