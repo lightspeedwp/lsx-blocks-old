@@ -9,6 +9,7 @@
 * Fix - LSX Blocks using the development version of react [#45](https://github.com/lightspeeddevelopment/lsx-blocks/issues/45)
 * Fix - Fixing the loading error for the Grid Post block.
 * Add - Adding support for "post tags" to both the post grid and carousel blocks.
+* Add - Adding compatible classes for WordPress 5.4+.
 
 ### 1.0.5 - 19 December 2019
 * Dev - General testing to ensure compatibility with latest WordPress version (5.3).

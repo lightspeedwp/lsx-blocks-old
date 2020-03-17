@@ -8,6 +8,7 @@
 	border: 1px solid #E0E0E0;
 }
 
-.editor-block-list__layout [data-type="lsx-blocks/lsx-accordion"] {
+.editor-block-list__layout [data-type="lsx-blocks/lsx-accordion"],
+.block-editor-block-list__layout [data-type="lsx-blocks/lsx-accordion"] {
     margin-bottom: 1.2em;
 }

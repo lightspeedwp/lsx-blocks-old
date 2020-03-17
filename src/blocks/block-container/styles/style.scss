@@ -16,7 +16,8 @@
 	}
 
 	&.alignfull {
-		.editor-block-list__block {
+		.editor-block-list__block,
+		.block-editor-block-list__block {
 			max-width: 100%;
 		}
 	}
