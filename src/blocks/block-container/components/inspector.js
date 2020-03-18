@@ -190,7 +190,7 @@ export default class Inspector extends Component {
 						step={ 1 }
 					/>
 				</PanelBody>
-				<PanelBody title={ __( 'Background Options' ) } initialOpen={ false } key={this.getKey()}>
+				<PanelBody title={ __( 'Background Options' ) } initialOpen={ true }>
 					<p>{ __( 'Select a background image for desktop:' ) }</p>
 					{ ! containerImgID ? (
 					<MediaUploadCheck>
@@ -268,7 +268,7 @@ export default class Inspector extends Component {
 					</PanelColorSettings>
 				</PanelBody>
 				{ containerImgID &&
-					<PanelBody title={ __( 'Mobile Background Options' ) } initialOpen={ false } key={this.getKey()}>
+					<PanelBody title={ __( 'Mobile Background Options' ) } initialOpen={ true }>
 						<p>{ __( 'Select a background image for mobile:' ) }</p>
 						{ ! containerImgIDMobile ? (
 						<MediaUploadCheck>
