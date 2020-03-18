@@ -2037,11 +2037,14 @@ article .lsx-button {
     height: 100%;
     z-index: 0;
     background-size: 0; }
-    @media (max-width: 600px) {
+    @media (max-width: 767px) {
       .lsx-block-container .lsx-container-image-wrap.has-background-mobile {
         background-size: auto; }
         .lsx-block-container .lsx-container-image-wrap.has-background-mobile img {
           display: none; } }
+    @media (min-width: 768px) {
+      .lsx-block-container .lsx-container-image-wrap.has-background-mobile {
+        background-size: 0 !important; } }
   .lsx-block-container .lsx-container-image {
     -o-object-fit: cover;
        object-fit: cover;

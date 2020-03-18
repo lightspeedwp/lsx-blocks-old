@@ -118,6 +118,14 @@ const blockAttributes = {
     bgFit: {
         type: 'string',
         default: '',
+	},
+	bgPositionMobile: {
+		type: 'string',
+		default: 'center',
+	},
+    bgFitMobile: {
+        type: 'string',
+        default: 'cover',
     },
 	containerDimRatio: {
 		type: 'number',
@@ -161,7 +169,9 @@ class LSXContainerBlock extends Component {
 				contMobURL,
 				contMobHasImg,
 				bgPosition,
-                bgFit,
+				bgFit,
+				bgPositionMobile,
+                bgFitMobile,
 				containerDimRatio,
 			},
 			attributes,
@@ -278,7 +288,9 @@ registerBlockType( 'lsx-blocks/lsx-container', {
 			bgPosition,
 			contMobURL,
 			contMobHasImg,
-            bgFit,
+			bgFit,
+			bgPositionMobile,
+			bgFitMobile,
 			containerDimRatio,
 		} = props.attributes;
 
@@ -294,7 +306,13 @@ registerBlockType( 'lsx-blocks/lsx-container', {
 							}
 							) }
 							style={
-								{ backgroundImage: contMobHasImg != true? 'none' : `url(${contMobURL})` }
+								Object.assign(
+									{},
+									{ backgroundPosition: bgPositionMobile },
+									{ backgroundSize: bgFitMobile },
+									{ backgroundImage: contMobHasImg != true? 'none' : `url(${contMobURL})` }
+								)
+
 							}
 						>
 							<img
