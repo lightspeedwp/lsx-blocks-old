@@ -44,6 +44,16 @@
 		left: 0;
 		height: 100%;
 		z-index: 0;
+		background-size: 0;
+		&.has-background-mobile {
+			@media (max-width:600px) {
+				background-size: auto;
+				img {
+					display: none;
+				}
+			}
+
+		}
 	}
 
 	.lsx-container-image {

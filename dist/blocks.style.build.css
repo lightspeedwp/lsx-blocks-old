@@ -2035,7 +2035,13 @@ article .lsx-button {
     right: 0;
     left: 0;
     height: 100%;
-    z-index: 0; }
+    z-index: 0;
+    background-size: 0; }
+    @media (max-width: 600px) {
+      .lsx-block-container .lsx-container-image-wrap.has-background-mobile {
+        background-size: auto; }
+        .lsx-block-container .lsx-container-image-wrap.has-background-mobile img {
+          display: none; } }
   .lsx-block-container .lsx-container-image {
     -o-object-fit: cover;
        object-fit: cover;

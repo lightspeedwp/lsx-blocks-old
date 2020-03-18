@@ -36,27 +36,35 @@ export default class Inspector extends Component {
 
 	constructor( props ) {
 		super( ...arguments );
+
+		this.keyCount = 0;
+		this.getKey = this.getKey.bind(this);
+	}
+
+	getKey(){
+		return this.keyCount++;
 	}
 
 	render() {
 
 		// Setup the attributes
-		const { containerPaddingTop, containerPaddingRight, containerPaddingBottom, containerPaddingLeft, containerMarginTop, containerMarginBottom, containerMaxWidth, containerBackgroundColor, containerDimRatio, bgPosition, bgFit, containerImgURL, containerImgID, containerImgIDMobile, containerImgURLMobile, containerImgAltMobile, containerImgAlt } = this.props.attributes;
-		const { setAttributes } = this.props;
+		const { containerPaddingTop, containerPaddingRight, containerPaddingBottom, containerPaddingLeft, containerMarginTop, containerMarginBottom, containerMaxWidth, containerBackgroundColor, containerDimRatio, bgPosition, bgFit, containerImgURL, containerImgID, containerImgIDMobile, containerImgAltMobile, containerImgAlt, media, contMobURL, contMobHasImg } = this.props.attributes;
+		const { setAttributes, isSelected } = this.props;
+
+		const onSelectImageMobile = media => {
+			setAttributes( {
+				containerImgIDMobile: media.id,
+				contMobURL: media.url,
+				containerImgAltMobile: media.alt,
+				contMobHasImg : true,
+			} );
+		};
 
 		const onSelectImage = img => {
 			setAttributes( {
 				containerImgID: img.id,
 				containerImgURL: img.url,
 				containerImgAlt: img.alt,
-			} );
-		};
-
-		const onSelectImageMobile = imgMob => {
-			setAttributes( {
-				containerImgIDMobile: imgMob.id,
-				containerImgURLMobile: imgMob.url,
-				containerImgAltMobile: imgMob.alt,
 			} );
 		};
 
@@ -71,8 +79,9 @@ export default class Inspector extends Component {
 		const onRemoveImageMobile = () => {
 			setAttributes( {
 				containerImgIDMobile: null,
-				containerImgURLMobile: null,
+				contMobURL: null,
 				containerImgAltMobile: null,
+				contMobHasImg : false,
 			} );
 		};
 
@@ -90,16 +99,16 @@ export default class Inspector extends Component {
             { value: 'lsx-container-initial', label: __( 'Clear' ) },
 		];
 
-        const bgFitOptions = [
-            { value: 'lsx-container-fit', label: __( 'Original Size' ) },
-            { value: '', label: __( 'Fit to Container' ) },
-        ];
+		const bgFitOptions = [
+			{ value: 'lsx-container-fit', label: __( 'Original Size' ) },
+			{ value: '', label: __( 'Fit to Container' ) },
+		];
 
 		// Update color values
 		const onChangeBackgroundColor = value => setAttributes( { containerBackgroundColor: value } );
 
 		return (
-			<InspectorControls key="inspector">
+			<InspectorControls key={this.getKey()}>
 				<PanelBody title={ __( 'Container Options' ) } initialOpen={ true }>
 					<RangeControl
 						label={ __( 'Padding Top (%)' ) }
@@ -164,40 +173,47 @@ export default class Inspector extends Component {
 						step={ 1 }
 					/>
 				</PanelBody>
-
-				<PanelBody title={ __( 'Background Options' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Background Options' ) } initialOpen={ false } key={this.getKey()}>
 					<p>{ __( 'Select a background image for desktop:' ) }</p>
+					{ containerImgID }
+					{ ! containerImgID ? (
 					<MediaUploadCheck>
 						<MediaUpload
 							onSelect={ onSelectImage }
 							type="image"
 							value={ containerImgID }
 							render={ ( { open } ) => (
-								<div>
-									<IconButton
-										className="lsx-container-inspector-media"
-										label={ __( 'Edit image' ) }
-										icon="format-image"
-										onClick={ open }
-									>
-										{ __( 'Select Image' ) }
-									</IconButton>
-
-									{ containerImgURL && !! containerImgURL.length && (
-										<IconButton
-											className="lsx-container-inspector-media"
-											label={ __( 'Remove Image' ) }
-											icon="dismiss"
-											onClick={ onRemoveImage }
-										>
-											{ __( 'Remove' ) }
-										</IconButton>
-									) }
-								</div>
+								<IconButton
+									className="lsx-container-inspector-media"
+									label={ __( 'Edit image' ) }
+									icon="format-image"
+									onClick={ open }
+								>
+									{ __( 'Select Image' ) }
+								</IconButton>
 							) }
 						>
 						</MediaUpload>
 					</MediaUploadCheck>
+					) : (
+					<p className="image-wrapper">
+						<img
+							src={ containerImgURL }
+							alt={ containerImgAlt }
+						/>
+						{ isSelected ? (
+							<IconButton
+								className="lsx-container-inspector-media"
+								label={ __( 'Remove Image' ) }
+								icon="dismiss"
+								onClick={ onRemoveImage }
+							>
+								{ __( 'Remove Image' ) }
+							</IconButton>
+
+						) : null }
+					</p>
+					)}
 					{ containerImgURL && !! containerImgURL.length && (
 						<RangeControl
 							label={ __( 'Image Opacity' ) }
@@ -235,38 +251,47 @@ export default class Inspector extends Component {
 					>
 					</PanelColorSettings>
 				</PanelBody>
-				<PanelBody title={ __( 'Mobile Background Options' ) } initialOpen={ false }>
-					<p>{ __( 'Select a background image for mobile:' ) }</p>
+				<PanelBody title={ __( 'Mobile Background Options' ) } initialOpen={ false } key={this.getKey()}>
+				<p>{ __( 'Select a background image for mobile:' ) }</p>
+				{ containerImgIDMobile }
+					{ ! containerImgIDMobile ? (
 					<MediaUploadCheck>
 						<MediaUpload
 							onSelect={ onSelectImageMobile }
 							type="image"
 							value={ containerImgIDMobile }
-							render={ ( { openMob } ) => (
-								<div>
-									<IconButton
-										className="lsx-container-inspector-media"
-										label={ __( 'Edit image' ) }
-										icon="format-image"
-										onClick={ openMob }
-									>
-										{ __( 'Select Mobile Image' ) }
-									</IconButton>
-									{ containerImgURLMobile && !! containerImgURLMobile.length && (
-										<IconButton
-											className="lsx-container-inspector-media"
-											label={ __( 'Remove Mobile Image' ) }
-											icon="dismiss"
-											onClick={ onRemoveImageMobile }
-										>
-											{ __( 'Remove' ) }
-										</IconButton>
-									) }
-								</div>
+							render={ ( { open } ) => (
+								<IconButton
+									className="lsx-container-inspector-media"
+									label={ __( 'Edit Mobile image' ) }
+									icon="format-image"
+									onClick={ open }
+								>
+									{ __( 'Select Mobile Image' ) }
+								</IconButton>
 							) }
 						>
 						</MediaUpload>
 					</MediaUploadCheck>
+					) : (
+					<p className="image-wrapper-mob">
+						<img
+							src={ contMobURL }
+							alt={ containerImgAltMobile }
+						/>
+						{ isSelected ? (
+							<IconButton
+								className="lsx-container-inspector-media"
+								label={ __( 'Remove Mobile Image' ) }
+								icon="dismiss"
+								onClick={ onRemoveImageMobile }
+							>
+								{ __( 'Remove Mobile Image' ) }
+							</IconButton>
+
+						) : null }
+					</p>
+					)}
 				</PanelBody>
 			</InspectorControls>
 		);

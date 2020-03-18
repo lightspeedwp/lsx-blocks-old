@@ -10,8 +10,6 @@ import Container from './components/container';
 // Import CSS
 import './styles/style.scss';
 import './styles/editor.scss';
-import CardBox from "../block-card/components/card";
-import AvatarColumn from "../block-card/components/avatar";
 
 // Components
 const { __ } = wp.i18n;
@@ -87,9 +85,13 @@ const blockAttributes = {
 	},
 	containerImgURLMobile: {
 		type: 'string',
-		source: 'attribute',
-		attribute: 'src',
-		selector: 'img',
+	},
+	contMobURL: {
+		type: 'string',
+	},
+	contMobHasImg: {
+		type: 'boolean',
+		default: false,
 	},
 	containerImgID: {
 		type: 'number',
@@ -125,6 +127,17 @@ const blockAttributes = {
 
 class LSXContainerBlock extends Component {
 
+	constructor( props ) {
+		super( props );
+
+		this.keyCount = 0;
+		this.getKey = this.getKey.bind(this);
+	}
+
+	getKey(){
+		return this.keyCount++;
+	}
+
 	render() {
 
 		// Setup the attributes
@@ -145,6 +158,8 @@ class LSXContainerBlock extends Component {
 				containerImgURLMobile,
 				containerImgIDMobile,
 				containerImgAltMobile,
+				contMobURL,
+				contMobHasImg,
 				bgPosition,
                 bgFit,
 				containerDimRatio,
@@ -156,25 +171,9 @@ class LSXContainerBlock extends Component {
 			setAttributes
 		} = this.props;
 
-		const onSelectImage = img => {
-			setAttributes( {
-				containerImgID: img.id,
-				containerImgURL: img.url,
-				containerImgAlt: img.alt,
-			} );
-		};
-
-		const onSelectImageMobile = imgMob => {
-			setAttributes( {
-				containerImgIDMobile: imgMob.id,
-				containerImgURLMobile: imgMob.url,
-				containerImgAltMobile: imgMob.alt,
-			} );
-		};
-
 		return [
 			// Show the alignment toolbar on focus
-			<BlockControls>
+			<BlockControls key={this.getKey()}>
 				<BlockAlignmentToolbar
 					value={ containerWidth }
 					onChange={ containerWidth => setAttributes( { containerWidth } ) }
@@ -182,11 +181,11 @@ class LSXContainerBlock extends Component {
 				/>
 			</BlockControls>,
 			// Show the block controls on focus
-			<Inspector
+			<Inspector key={this.getKey()}
 				{ ...{ setAttributes, ...this.props } }
 			/>,
 			// Show the container markup in the editor
-			<Container { ...this.props }>
+			<Container { ...this.props } key={this.getKey()} >
 				<div className="lsx-container-inside">
 					{ containerImgURL && !! containerImgURL.length && (
 						<div className="lsx-container-image-wrap">
@@ -206,14 +205,13 @@ class LSXContainerBlock extends Component {
 							/>
 						</div>
 					) }
-
 					<div
 						className="lsx-container-content"
 						style={ {
 							maxWidth: `${containerMaxWidth}px`,
 						} }
 					>
-						<InnerBlocks />
+						<InnerBlocks key={this.getKey()} />
 					</div>
 				</div>
 			</Container>
@@ -256,6 +254,8 @@ registerBlockType( 'lsx-blocks/lsx-container', {
 	// Render the block components
 	edit: LSXContainerBlock,
 
+
+
 	// Save the attributes and markup
 	save: function( props ) {
 		// Setup the attributes
@@ -276,19 +276,27 @@ registerBlockType( 'lsx-blocks/lsx-container', {
 			containerImgIDMobile,
 			containerImgAltMobile,
 			bgPosition,
+			contMobURL,
+			contMobHasImg,
             bgFit,
 			containerDimRatio,
 		} = props.attributes;
-		{ containerImgURL &&
-			console.log(containerImgURLMobile);
-		}
 
 		// Save the block markup for the front end
 		return (
 			<Container { ...props }>
 				<div className="lsx-container-inside">
 					{ containerImgURL && !! containerImgURL.length && (
-						<div className="lsx-container-image-wrap">
+						<div className={ classnames(
+							'lsx-container-image-wrap',
+							{
+								'has-background-mobile': contMobHasImg !== false,
+							}
+							) }
+							style={
+								{ backgroundImage: contMobHasImg != true? 'none' : `url(${contMobURL})` }
+							}
+						>
 							<img
 								className={ classnames(
 									'lsx-container-image',
@@ -317,6 +325,71 @@ registerBlockType( 'lsx-blocks/lsx-container', {
 		);
 	},
     deprecated: [
+		//V2
+		{
+			attributes: blockAttributes,
+
+			// Save the attributes and markup
+			save: function( props ) {
+				// Setup the attributes
+				const {
+					containerPaddingTop,
+					containerPaddingRight,
+					containerPaddingBottom,
+					containerPaddingLeft,
+					containerMarginTop,
+					containerMarginBottom,
+					containerWidth,
+					containerMaxWidth,
+					containerBackgroundColor,
+					containerImgURL,
+					containerImgID,
+					containerImgAlt,
+					containerImgURLMobile,
+					containerImgIDMobile,
+					containerImgAltMobile,
+					bgPosition,
+					contMobURL,
+					bgFit,
+					containerDimRatio,
+				} = props.attributes;
+
+
+				// Save the block markup for the front end
+				return (
+					<Container { ...props }>
+						<div className="lsx-container-inside">
+							{ containerImgURL && !! containerImgURL.length && (
+								<div className="lsx-container-image-wrap">
+									<img
+										className={ classnames(
+											'lsx-container-image',
+											bgPosition,
+											bgFit,
+											dimRatioToClass( containerDimRatio ),
+											{
+												'has-background-dim': containerDimRatio !== 0,
+											}
+										) }
+										src={ containerImgURL }
+										alt={ containerImgAlt }
+									/>
+								</div>
+							) }
+							<div
+								className="lsx-container-content"
+								style={ {
+									maxWidth: `${containerMaxWidth}px`,
+								} }
+							>
+								<InnerBlocks.Content />
+							</div>
+						</div>
+					</Container>
+				);
+			},
+
+		},
     	// V1
         {
             attributes: blockAttributes,
