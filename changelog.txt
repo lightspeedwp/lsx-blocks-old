@@ -1,40 +1,70 @@
-## Change log
+# Change log
 
-### 1.1.0 - In Development
-* Dev - Extend Gutenberg Core blocks with LSX attributes.
-* Dev - Extending Core Heading block.
-* Dev - Adding LSX block styles to Quote and Blockquote core blocks.
-* Dev - Adding Team block.
-* Dev - Adding a Testimonial Block that will be enabled if the LSX Testimonial plugin is enabled.
-* Fix - LSX Blocks using the development version of react [#45](https://github.com/lightspeeddevelopment/lsx-blocks/issues/45)
-* Fix - Fixing the loading error for the Grid Post block.
-* Add - Adding support for "post tags" to both the post grid and carousel blocks.
-* Add - Adding compatible classes for WordPress 5.4+.
 
-### 1.0.5 - 19 December 2019
-* Dev - General testing to ensure compatibility with latest WordPress version (5.3).
-* Dev - Checking compatibility with LSX 2.6 release.
-* Dev - Adding a Team Block that will be enabled if the LSX Team plugin is enabled.
+## [Unreleased] - Major version 1.1.0
 
-### 1.0.4 - 13 November 2019
-* Dev - Adding the Author profile block.
-* Dev - Adding in CSS to format the Blog Post Carousel incase the JS fails to load.
-* Fix - Fixing error `Trying to get property 'post_content' of non-object`.
+### Added
+- Extended Gutenberg Core blocks with LSX attributes.
+- Extended Core Heading block.
+- Adding LSX block styles to Quote and Blockquote core blocks.
+- Adding Team block that will be enabled if the LSX Team plugin is enabled.
+- Adding a Testimonial Block that will be enabled if the LSX Testimonial plugin is enabled.
+- Adding support for `post tags` to both the post grid and carousel blocks.
+- Adding compatible classes for WordPress 5.4+.
 
-### 1.0.3 - 30 October 2019
-* Fix - Making button text bold.
-* Fix - The double size attribute causing the missing blog images
+### Fixed
+- Fixing the loading error for the Grid Post block.
 
-### 1.0.2 - 27 September 2019
-* Fix - Adding the class 'has-block-banner' only to pages or posts.
-* Dev - Adding the .gitattributes file to remove unnecessary files from the WordPress version.
+### Security
+- LSX Blocks will be using the production version of React.
 
-### 1.0.1 - 6 August 2019
-* Fix - Margin and spacing fixes.
-* Dev - Adding a class if the page is using the banner block for more customization.
-* Dev - Updating styles for block and post carrousel blocks to match the new LSX Blog customizer improvements.
-* Fix - Changing enqueuing files priorities.
-* Fix - Accordion styles fixes for mobile.
 
-### 1.0.0
-* Initial Release
+## [[1.0.5]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.0.5) - 2019-12-19
+
+### Security
+- General testing to ensure compatibility with latest WordPress version (5.3).
+- Checking compatibility with LSX 2.6 release.
+
+
+## [[1.0.4]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.0.4) - 2019-11-13
+### Added
+- Adding the Author profile block.
+
+### Fixed
+- Adding in CSS to format the Blog Post Carousel incase the JS fails to load.
+- Fixing error "Trying to get property `post_content` of non-object".
+
+
+## [[1.0.3]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.0.3) - 2019-10-30
+
+### Fixed
+- Making button text bold.
+- Fixed the double size attribute causing the missing blog images.
+
+
+## [[1.0.2]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.0.2) - 2019-09-27
+
+### Added
+- Adding the .gitattributes file to remove unnecessary files from the WordPress version.
+
+### Fixed
+- Adding the class `has-block-banner` only to pages or posts.
+
+
+## [[1.0.0]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.0.1) - 2019-08-06
+
+### Added
+- Adding a class if the page is using the banner block for more customization.
+
+### Changed
+- Updating styles for block and post carrousel blocks to match the new LSX Blog customizer improvements.
+- Changing enqueuing files priorities.
+
+### Fixed
+- Margin and spacing fixes.
+- Accordion styles fixes for mobile.
+
+
+## [[1.0.0]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.0.1)
+### Added
+- Initial Release
