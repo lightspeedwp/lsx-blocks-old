@@ -40,6 +40,17 @@ const {
 
 class LSXButtonBlock extends Component {
 
+	constructor( props ) {
+		super( props );
+
+		this.keyCount = 0;
+		this.getKey = this.getKey.bind(this);
+	}
+
+	getKey(){
+		return this.keyCount++;
+	}
+
 	render() {
 
 		// Setup the attributes
@@ -47,7 +58,7 @@ class LSXButtonBlock extends Component {
 
 		return [
 			// Show the alignment toolbar on focus
-			<BlockControls key="controls">
+			<BlockControls key={this.getKey()} >
 				<AlignmentToolbar
 					value={ buttonAlignment }
 					onChange={ ( value ) => {
@@ -56,11 +67,11 @@ class LSXButtonBlock extends Component {
 				/>
 			</BlockControls>,
 			// Show the block controls on focus
-			<Inspector
+			<Inspector key={this.getKey()}
 				{ ...this.props }
 			/>,
 			// Show the button markup in the editor
-			<CustomButton { ...this.props }>
+			<CustomButton { ...this.props } key={this.getKey()} >
 				<RichText
 					tagName="span"
 					placeholder={ __( 'Button text...', 'lsx-blocks' ) }

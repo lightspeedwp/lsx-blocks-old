@@ -13,6 +13,7 @@ const {
   ColorPalette,
   PanelColorSettings,
   MediaUpload,
+  MediaUploadCheck,
 } = wp.editor;
 
 // Import Inspector components
@@ -35,13 +36,29 @@ export default class Inspector extends Component {
 
 	constructor( props ) {
 		super( ...arguments );
+
+		this.keyCount = 0;
+		this.getKey = this.getKey.bind(this);
+	}
+
+	getKey(){
+		return this.keyCount++;
 	}
 
 	render() {
 
 		// Setup the attributes
-		const { containerPaddingTop, containerPaddingRight, containerPaddingBottom, containerPaddingLeft, containerMarginTop, containerMarginBottom, containerMaxWidth, containerBackgroundColor, containerDimRatio, bgPosition, bgFit, containerImgURL, containerImgID, containerImgAlt } = this.props.attributes;
-		const { setAttributes } = this.props;
+		const { containerPaddingTop, containerPaddingRight, containerPaddingBottom, containerPaddingLeft, containerMarginTop, containerMarginBottom, containerMaxWidth, containerBackgroundColor, containerDimRatio, bgPosition, bgFit, bgPositionMobile, bgFitMobile, containerImgURL, containerImgID, containerImgIDMobile, containerImgAltMobile, containerImgAlt, media, contMobURL, contMobHasImg } = this.props.attributes;
+		const { setAttributes, isSelected } = this.props;
+
+		const onSelectImageMobile = media => {
+			setAttributes( {
+				containerImgIDMobile: media.id,
+				contMobURL: media.url,
+				containerImgAltMobile: media.alt,
+				contMobHasImg : true,
+			} );
+		};
 
 		const onSelectImage = img => {
 			setAttributes( {
@@ -59,6 +76,15 @@ export default class Inspector extends Component {
 			} );
 		};
 
+		const onRemoveImageMobile = () => {
+			setAttributes( {
+				containerImgIDMobile: null,
+				contMobURL: null,
+				containerImgAltMobile: null,
+				contMobHasImg : false,
+			} );
+		};
+
 		const bgPositionOptions = [
 			{ value: 'lsx-container-left-top', label: __( 'Left Top' ) },
 			{ value: 'lsx-container-left-center', label: __( 'Left Center' ) },
@@ -73,16 +99,33 @@ export default class Inspector extends Component {
             { value: 'lsx-container-initial', label: __( 'Clear' ) },
 		];
 
-        const bgFitOptions = [
-            { value: 'lsx-container-fit', label: __( 'Original Size' ) },
-            { value: '', label: __( 'Fit to Container' ) },
-        ];
+		const bgPositionOptionsMobile = [
+			{ value: 'center', label: __( 'Center' ) },
+			{ value: 'left top', label: __( 'Left Top' ) },
+			{ value: 'left bottom', label: __( 'Left Center' ) },
+			{ value: 'center top', label: __( 'Left Bottom' ) },
+			{ value: 'center top', label: __( 'Center Top' ) },
+			{ value: 'center bottom', label: __( 'Center Bottom' ) },
+            { value: 'right top', label: __( 'Right Top' ) },
+            { value: 'right center', label: __( 'Right Center' ) },
+            { value: 'right bottom', label: __( 'Right Bottom' ) },
+		];
+
+		const bgFitOptions = [
+			{ value: 'lsx-container-fit', label: __( 'Original Size' ) },
+			{ value: '', label: __( 'Fit to Container' ) },
+		];
+
+		const bgFitOptionsMobile = [
+			{ value: 'contain', label: __( 'Contain' ) },
+			{ value: 'cover', label: __( 'Cover' ) },
+		];
 
 		// Update color values
 		const onChangeBackgroundColor = value => setAttributes( { containerBackgroundColor: value } );
 
 		return (
-			<InspectorControls key="inspector">
+			<InspectorControls key={this.getKey()}>
 				<PanelBody title={ __( 'Container Options' ) } initialOpen={ true }>
 					<RangeControl
 						label={ __( 'Padding Top (%)' ) }
@@ -147,15 +190,15 @@ export default class Inspector extends Component {
 						step={ 1 }
 					/>
 				</PanelBody>
-
-				<PanelBody title={ __( 'Background Options' ) } initialOpen={ false }>
-					<p>{ __( 'Select a background image:' ) }</p>
-					<MediaUpload
-						onSelect={ onSelectImage }
-						type="image"
-						value={ containerImgID }
-						render={ ( { open } ) => (
-							<div>
+				<PanelBody title={ __( 'Background Options' ) } initialOpen={ true }>
+					<p>{ __( 'Select a background image for desktop:' ) }</p>
+					{ ! containerImgID ? (
+					<MediaUploadCheck>
+						<MediaUpload
+							onSelect={ onSelectImage }
+							type="image"
+							value={ containerImgID }
+							render={ ( { open } ) => (
 								<IconButton
 									className="lsx-container-inspector-media"
 									label={ __( 'Edit image' ) }
@@ -164,22 +207,29 @@ export default class Inspector extends Component {
 								>
 									{ __( 'Select Image' ) }
 								</IconButton>
+							) }
+						>
+						</MediaUpload>
+					</MediaUploadCheck>
+					) : (
+					<p className="image-wrapper">
+						<img
+							src={ containerImgURL }
+							alt={ containerImgAlt }
+						/>
+						{ isSelected ? (
+							<IconButton
+								className="lsx-container-inspector-media"
+								label={ __( 'Remove Image' ) }
+								icon="dismiss"
+								onClick={ onRemoveImage }
+							>
+								{ __( 'Remove Image' ) }
+							</IconButton>
 
-								{ containerImgURL && !! containerImgURL.length && (
-									<IconButton
-										className="lsx-container-inspector-media"
-										label={ __( 'Remove Image' ) }
-										icon="dismiss"
-										onClick={ onRemoveImage }
-									>
-										{ __( 'Remove' ) }
-									</IconButton>
-								) }
-							</div>
-						) }
-					>
-					</MediaUpload>
-
+						) : null }
+					</p>
+					)}
 					{ containerImgURL && !! containerImgURL.length && (
 						<RangeControl
 							label={ __( 'Image Opacity' ) }
@@ -190,7 +240,6 @@ export default class Inspector extends Component {
 							step={ 10 }
 						/>
 					) }
-
 					{ containerImgURL && !! containerImgURL.length && (
 						<SelectControl
 							label={ __( 'Background Position' ) }
@@ -199,16 +248,14 @@ export default class Inspector extends Component {
 							onChange={ ( value ) => setAttributes( { bgPosition: value } ) }
 						/>
 					) }
-
-                    { containerImgURL && !! containerImgURL.length && (
-                        <SelectControl
-                            label={ __( 'Background Fit' ) }
-                            options={ bgFitOptions }
-                            value={ bgFit }
-                            onChange={ ( value ) => setAttributes( { bgFit: value } ) }
-                        />
-                    ) }
-
+					{ containerImgURL && !! containerImgURL.length && (
+						<SelectControl
+							label={ __( 'Background Fit' ) }
+							options={ bgFitOptions }
+							value={ bgFit }
+							onChange={ ( value ) => setAttributes( { bgFit: value } ) }
+						/>
+					) }
 					<PanelColorSettings
 						title={ __( 'Background Color' ) }
 						initialOpen={ false }
@@ -220,6 +267,66 @@ export default class Inspector extends Component {
 					>
 					</PanelColorSettings>
 				</PanelBody>
+				{ containerImgID &&
+					<PanelBody title={ __( 'Mobile Background Options' ) } initialOpen={ true }>
+						<p>{ __( 'Select a background image for mobile:' ) }</p>
+						{ ! containerImgIDMobile ? (
+						<MediaUploadCheck>
+							<MediaUpload
+								onSelect={ onSelectImageMobile }
+								type="image"
+								value={ containerImgIDMobile }
+								render={ ( { open } ) => (
+									<IconButton
+										className="lsx-container-inspector-media"
+										label={ __( 'Edit Mobile image' ) }
+										icon="format-image"
+										onClick={ open }
+									>
+										{ __( 'Select Mobile Image' ) }
+									</IconButton>
+								) }
+							>
+							</MediaUpload>
+						</MediaUploadCheck>
+						) : (
+						<p className="image-wrapper-mob">
+							<img
+								src={ contMobURL }
+								alt={ containerImgAltMobile }
+							/>
+							{ isSelected ? (
+								<IconButton
+									className="lsx-container-inspector-media"
+									label={ __( 'Remove Mobile Image' ) }
+									icon="dismiss"
+									onClick={ onRemoveImageMobile }
+								>
+									{ __( 'Remove Mobile Image' ) }
+								</IconButton>
+
+							) : null }
+						</p>
+						)}
+						{ contMobURL && !! contMobURL.length && (
+							<SelectControl
+								label={ __( 'Mobile Background Position' ) }
+								options={ bgPositionOptionsMobile }
+								value={ bgPositionMobile }
+								onChange={ ( value ) => setAttributes( { bgPositionMobile: value } ) }
+							/>
+						) }
+						{ contMobURL && !! contMobURL.length && (
+							<SelectControl
+								label={ __( 'Mobile Background Size' ) }
+								options={ bgFitOptionsMobile }
+								value={ bgFitMobile }
+								onChange={ ( value ) => setAttributes( { bgFitMobile: value } ) }
+							/>
+						) }
+					</PanelBody>
+				}
+
 			</InspectorControls>
 		);
 	}
