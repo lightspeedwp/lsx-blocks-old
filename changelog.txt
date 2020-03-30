@@ -1,7 +1,7 @@
 # Change log
 
 
-## [Unreleased] - Major version 1.1.0
+## [[1.1.0]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.1.0) - 2020-03-30
 
 ### Added
 - Extended Gutenberg Core blocks with LSX attributes.
