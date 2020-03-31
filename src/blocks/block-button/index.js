@@ -28,27 +28,19 @@ const {
 	BlockControls,
 	BlockAlignmentToolbar,
 	URLInput,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Register components
 const {
-	Button,
 	withFallbackStyles,
-	IconButton,
+	Button,
 	Dashicon,
 } = wp.components;
 
 class LSXButtonBlock extends Component {
 
-	constructor( props ) {
-		super( props );
-
-		this.keyCount = 0;
-		this.getKey = this.getKey.bind(this);
-	}
-
-	getKey(){
-		return this.keyCount++;
+	constructor() {
+		super( ...arguments );
 	}
 
 	render() {
@@ -58,7 +50,7 @@ class LSXButtonBlock extends Component {
 
 		return [
 			// Show the alignment toolbar on focus
-			<BlockControls key={this.getKey()} >
+			<BlockControls key="controls">
 				<AlignmentToolbar
 					value={ buttonAlignment }
 					onChange={ ( value ) => {
@@ -67,11 +59,11 @@ class LSXButtonBlock extends Component {
 				/>
 			</BlockControls>,
 			// Show the block controls on focus
-			<Inspector key={this.getKey()}
+			<Inspector key={ 'lsx-button-inspector-' + this.props.clientId }
 				{ ...this.props }
 			/>,
 			// Show the button markup in the editor
-			<CustomButton { ...this.props } key={this.getKey()} >
+			<CustomButton key={ 'lsx-button-' + this.props.clientId } { ...this.props } >
 				<RichText
 					tagName="span"
 					placeholder={ __( 'Button text...', 'lsx-blocks' ) }
@@ -107,7 +99,7 @@ class LSXButtonBlock extends Component {
 						value={ buttonUrl }
 						onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
 					/>
-					<IconButton
+					<Button
 						icon="editor-break"
 						label={ __( 'Apply', 'lsx-blocks' ) }
 						type="submit"

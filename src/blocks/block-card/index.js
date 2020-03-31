@@ -31,13 +31,12 @@ const {
 	InspectorControls,
 	MediaUpload,
 	URLInput,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Register Inspector components
 const {
-	Button,
 	Dashicon,
-	IconButton,
+	Button,
 } = wp.components;
 
 const blockAttributes = {
@@ -303,7 +302,7 @@ class LSXAuthorCardBlock extends Component {
 							value={ buttonUrl }
 							onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
 						/>
-						<IconButton
+						<Button
 							icon="editor-break"
 							label={ __( 'Apply', 'lsx-blocks' ) }
 							type="submit"

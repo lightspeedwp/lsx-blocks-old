@@ -29,13 +29,12 @@ const {
 	BlockAlignmentToolbar,
 	MediaUpload,
 	RichText,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Register components
 const {
-	Button,
 	withFallbackStyles,
-	IconButton,
+	Button,
 	Dashicon,
 	Toolbar,
 } = wp.components;
@@ -390,7 +389,7 @@ class LSXCTABlock extends Component {
 								value={ buttonUrl }
 								onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
 							/>
-							<IconButton
+							<Button
 								icon="editor-break"
 								label={ __( 'Apply', 'lsx-blocks' ) }
 								type="submit"

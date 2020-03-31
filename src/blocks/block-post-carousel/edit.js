@@ -40,7 +40,7 @@ const {
 	BlockAlignmentToolbar,
 	BlockControls,
 	PanelColorSettings,
-} = wp.editor;
+} = wp.blockEditor;
 
 const MAX_POSTS_COLUMNS_CAROUSEL = 4;
 

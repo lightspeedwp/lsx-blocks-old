@@ -74,55 +74,77 @@ var LSX_BLOCKS = Object.create( null );
 
 	//Adding Hover states for Core Button Block Extended
 	LSX_BLOCKS.coreButton = function( ) {
-		//Hover BG
-		$( ".wp-block-button.has-hover-color a" ).each(function() {
+
+		$( ".wp-block-button a" ).each( function() {
+			//if btn is gradient
+			$('[class$="gradient-background"]').addClass(( 'btn-has-gradient' ));
+
+			//if btn is outline
+			if ($(this).parent().hasClass('is-style-outline')) {
+				$(this).addClass(( 'btn-has-outline' ));
+			}
+			//if btn is outline
+			if ($(this).parent().hasClass('has-shadow-hover-color')) {
+				$(this).addClass(( 'btn-has-shadow-hover' ));
+			}
+
+			//Get colors
 			var prevbghover = this.style.backgroundColor;
-			$(this).mouseenter(function() {
-				var bghover = this.parentNode.getAttribute('bghover');
-				$(this).css({"background-color": bghover, "background": bghover });
-			});
-			$(this).mouseleave(function() {
-				$(this).css({ "background-color": prevbghover, "background": prevbghover });
-			});
-
-		});
-
-		//Hover BG border
-		$( ".wp-block-button.has-hover-color.is-style-outline a" ).each(function() {
-			var prevbghover = this.style.backgroundColor;
-			$(this).mouseenter(function() {
-				var bghover = this.parentNode.getAttribute('bghover');
-				$(this).css("border-color", bghover );
-			});
-			$(this).mouseleave(function() {
-				$(this).css("border-color", prevbghover );
-			});
-
-		});
-
-		//Hover text color
-		$( ".wp-block-button.has-hover-text-color a" ).each(function() {
 			var prevtexthover = this.style.color;
-			$(this).mouseenter(function() {
-				var texthover = this.parentNode.getAttribute('texthover');
-				$(this).css("color", texthover );
-			});
-			$(this).mouseleave(function() {
-				$(this).css("color", prevtexthover );
-			});
-
-		});
-
-		//Hover shadow color
-		$( ".wp-block-button.has-shadow-hover-color a" ).each(function() {
 			var prevshadowhover = this.style.boxShadow;
-			$(this).mouseenter(function() {
+
+			if ($(this).parent().hasClass('has-hover-color')) {
+				var bghover = this.parentNode.getAttribute('bghover');
+			}
+			if ($(this).parent().hasClass('has-hover-text-color')) {
+				var texthover = this.parentNode.getAttribute('texthover');
+			}
+			if ($(this).parent().hasClass('has-shadow-hover-color')) {
 				var shadowhovercolor = this.parentNode.getAttribute('shadowhover');
 				var shadowhover = shadowhovercolor + ' 2px 2px 0px 0px';
-				$(this).css("box-shadow", shadowhover );
+			}
+
+			$(this).mouseenter(function() {
+				$(this).css({
+					'backgroundColor' : bghover,
+					'color' : texthover,
+				});
+				if ($(this).hasClass('btn-has-outline')) {
+					$(this).css({
+						'borderColor' : bghover,
+					});
+				}
+				if ($(this).hasClass('btn-has-gradient')) {
+					$(this).css({
+						'background' : bghover,
+					});
+				}
+				if ($(this).hasClass('btn-has-shadow-hover')) {
+					$(this).css({
+						'box-shadow' : shadowhover,
+					});
+				}
 			});
 			$(this).mouseleave(function() {
-				$(this).css("box-shadow", prevshadowhover );
+				$(this).css({
+					'backgroundColor' : prevbghover,
+					'color' : prevtexthover,
+				});
+				if ($(this).hasClass('btn-has-outline')) {
+					$(this).css({
+						'borderColor' : prevbghover,
+					});
+				}
+				if ($(this).hasClass('btn-has-gradient')) {
+					$(this).css({
+						'background' : prevbghover,
+					});
+				}
+				if ($(this).hasClass('btn-has-shadow-hover')) {
+					$(this).css({
+						'box-shadow' : prevshadowhover,
+					});
+				}
 			});
 
 		});

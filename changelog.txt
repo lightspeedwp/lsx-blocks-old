@@ -1,5 +1,12 @@
 # Change log
 
+## Unreleased - 1.1.1
+
+### Fixed
+- Fixing issue `Warning: Each child in a list should have a unique "key" prop.`.
+- Fixing the Post Grid Block issue, where the post were not showing on the backend.
+- Fixing the hover effect buttons for the Button Blocks.
+
 
 ## [[1.1.0]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.1.0) - 2020-03-30
 

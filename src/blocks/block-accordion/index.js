@@ -32,13 +32,12 @@ const {
 	BlockControls,
 	BlockAlignmentToolbar,
 	InnerBlocks,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Register components
 const {
-	Button,
 	withFallbackStyles,
-	IconButton,
+	Button,
 	Dashicon,
 } = wp.components;
 
@@ -82,11 +81,11 @@ class LSXAccordionBlock extends Component {
 				/>
 			</BlockControls>,
 			// Show the block controls on focus
-			<Inspector
+			<Inspector key={ 'lsx-accordion-inspector-' + this.props.clientId }
 				{ ...this.props }
 			/>,
 			// Show the button markup in the editor
-			<Accordion { ...this.props }>
+			<Accordion key={ 'lsx-accordion-' + this.props.clientId } { ...this.props }>
 				<RichText
 					tagName="p"
 					placeholder={ __( 'Accordion Title', 'lsx-blocks' ) }

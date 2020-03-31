@@ -38,10 +38,11 @@ const {
 
 const {
 	InspectorControls,
-	BlockAlignmentToolbar,
 	BlockControls,
+	BlockAlignmentToolbar,
 	PanelColorSettings,
-} = wp.editor;
+} = wp.blockEditor;
+
 
 const MAX_POSTS_COLUMNS = 4;
 
@@ -288,7 +289,7 @@ class LatestPostsBlock extends Component {
 				</Fragment>
 			);
 		}
-
+		//console.log(latestPosts);
 		// Removing posts from display should be instant.
 		const displayPosts = latestPosts.length > attributes.postsToShow ?
 			latestPosts.slice( 0, attributes.postsToShow ) :

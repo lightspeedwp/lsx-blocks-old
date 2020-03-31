@@ -7,10 +7,6 @@
 	h2 a {
 		text-decoration: none;
 	}
-
-	article {
-		display:none;
-	}
 	&.columns-2 {
 		article {
 			width: 50%;
@@ -40,9 +36,4 @@
 	.slick-dots:not(.dropdown-menu) {
 		flex-flow: row;
 	}
-}
-
-div[data-type="lsx-blocks/lsx-post-carousel"] .editor-block-list__block-edit:before,
-div[data-type="lsx-blocks/lsx-post-carousel"] .block-editor-block-list__block-edit:before {
-
 }

@@ -13,30 +13,34 @@
  * @return void
  */
 function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
-
+	global $post;
 	$categories = isset( $attributes['categories'] ) ? $attributes['categories'] : '';
 	$tags       = isset( $attributes['selectedTag'] ) ? $attributes['selectedTag'] : '';
 
 	if ( '' !== $attributes['categories'] ) {
 		$post_args = array(
-			'posts_per_page'   => $attributes['postsToShowCarousel'],
-			'post_status'      => 'publish',
-			'order'            => $attributes['orderCarousel'],
-			'orderby'          => $attributes['orderByCarousel'],
-			'cat'              => $categories,
-			'post_type'        => 'post',
-			'suppress_filters' => false,
-			'tag__in'          => $tags,
+			'posts_per_page'      => $attributes['postsToShowCarousel'],
+			'post_status'         => 'publish',
+			'order'               => $attributes['orderCarousel'],
+			'orderby'             => $attributes['orderByCarousel'],
+			'cat'                 => $categories,
+			'post_type'           => 'post',
+			'suppress_filters'    => false,
+			'tag__in'             => $tags,
+			'ignore_sticky_posts' => 1,
+			'post__not_in'        => array( $post->ID ), // Exclude the current post from the grid.
 		);
 	} else {
 		$post_args = array(
-			'posts_per_page'   => $attributes['postsToShowCarousel'],
-			'post_status'      => 'publish',
-			'order'            => $attributes['orderCarousel'],
-			'orderby'          => $attributes['orderByCarousel'],
-			'post_type'        => 'post',
-			'suppress_filters' => false,
-			'tag__in'          => $tags,
+			'posts_per_page'      => $attributes['postsToShowCarousel'],
+			'post_status'         => 'publish',
+			'order'               => $attributes['orderCarousel'],
+			'orderby'             => $attributes['orderByCarousel'],
+			'post_type'           => 'post',
+			'suppress_filters'    => false,
+			'tag__in'             => $tags,
+			'ignore_sticky_posts' => 1,
+			'post__not_in'        => array( $post->ID ), // Exclude the current post from the grid.
 		);
 	}
 	$recent_posts = get_posts( $post_args );

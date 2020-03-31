@@ -12,7 +12,7 @@ import classnames from 'classnames';
 // Import block components
 const {
 	MediaUpload,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Create an ImageColumn wrapper Component
 export default class ImageColumn extends Component {

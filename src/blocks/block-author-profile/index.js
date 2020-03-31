@@ -30,7 +30,7 @@ const {
 	BlockControls,
 	InspectorControls,
 	MediaUpload,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Register Inspector components
 const {

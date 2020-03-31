@@ -13,27 +13,31 @@
  * @return $block_content
  */
 function lsx_blocks_render_block_core_latest_posts( $attributes ) {
-
+	global $post;
 	$categories = isset( $attributes['categories'] ) ? $attributes['categories'] : '';
 	$tags       = isset( $attributes['selectedTag'] ) ? $attributes['selectedTag'] : '';
 
 	if ( '' !== $attributes['categories'] ) {
 
 		$args = array(
-			'numberposts' => $attributes['postsToShow'],
+			'posts_per_page' => $attributes['postsToShow'],
 			'post_status' => 'publish',
 			'order'       => $attributes['order'],
 			'orderby'     => $attributes['orderBy'],
 			'cat'         => $categories,
 			'tag__in'     => $tags,
+			'ignore_sticky_posts' => 1,
+			'post__not_in'        => array( $post->ID ), // Exclude the current post from the grid.
 		);
 	} else {
 		$args = array(
-			'numberposts' => $attributes['postsToShow'],
+			'posts_per_page' => $attributes['postsToShow'],
 			'post_status' => 'publish',
 			'order'       => $attributes['order'],
 			'orderby'     => $attributes['orderBy'],
 			'tag__in'     => $tags,
+			'ignore_sticky_posts' => 1,
+			'post__not_in'        => array( $post->ID ), // Exclude the current post from the grid.
 		);
 	}
 
