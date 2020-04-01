@@ -32,16 +32,16 @@ function addGroupControlAttributes ( settings, name ) {
 	}
 	settings.attributes = assign( settings.attributes, {
 		groupPaddingTop: {
-			type: 'string',
+			type: 'number',
 		},
 		groupPaddingBottom: {
-			type: 'string',
+			type: 'number',
 		},
 		groupPaddingLeft: {
-			type: 'string',
+			type: 'number',
 		},
 		groupPaddingRight: {
-			type: 'string',
+			type: 'number',
 		},
 		groupMarginTop: {
 			type: 'number',
