@@ -14,35 +14,26 @@ const {
   PanelColorSettings,
   MediaUpload,
   MediaUploadCheck,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Import Inspector components
 const {
 	Toolbar,
-	Button,
 	PanelBody,
 	PanelRow,
 	FormToggle,
 	RangeControl,
 	SelectControl,
 	ToggleControl,
-	IconButton,
+	Button,
 } = wp.components;
 
 /**
  * Create an Inspector Controls wrapper Component
  */
 export default class Inspector extends Component {
-
 	constructor( props ) {
 		super( ...arguments );
-
-		this.keyCount = 0;
-		this.getKey = this.getKey.bind(this);
-	}
-
-	getKey(){
-		return this.keyCount++;
 	}
 
 	render() {
@@ -125,7 +116,7 @@ export default class Inspector extends Component {
 		const onChangeBackgroundColor = value => setAttributes( { containerBackgroundColor: value } );
 
 		return (
-			<InspectorControls key={this.getKey()}>
+			<InspectorControls key="inspector">
 				<PanelBody title={ __( 'Container Options' ) } initialOpen={ true }>
 					<RangeControl
 						label={ __( 'Padding Top (%)' ) }
@@ -199,14 +190,14 @@ export default class Inspector extends Component {
 							type="image"
 							value={ containerImgID }
 							render={ ( { open } ) => (
-								<IconButton
+								<Button
 									className="lsx-container-inspector-media"
 									label={ __( 'Edit image' ) }
 									icon="format-image"
 									onClick={ open }
 								>
 									{ __( 'Select Image' ) }
-								</IconButton>
+								</Button>
 							) }
 						>
 						</MediaUpload>
@@ -218,14 +209,14 @@ export default class Inspector extends Component {
 							alt={ containerImgAlt }
 						/>
 						{ isSelected ? (
-							<IconButton
+							<Button
 								className="lsx-container-inspector-media"
 								label={ __( 'Remove Image' ) }
 								icon="dismiss"
 								onClick={ onRemoveImage }
 							>
 								{ __( 'Remove Image' ) }
-							</IconButton>
+							</Button>
 
 						) : null }
 					</p>
@@ -277,14 +268,14 @@ export default class Inspector extends Component {
 								type="image"
 								value={ containerImgIDMobile }
 								render={ ( { open } ) => (
-									<IconButton
+									<Button
 										className="lsx-container-inspector-media"
 										label={ __( 'Edit Mobile image' ) }
 										icon="format-image"
 										onClick={ open }
 									>
 										{ __( 'Select Mobile Image' ) }
-									</IconButton>
+									</Button>
 								) }
 							>
 							</MediaUpload>
@@ -296,14 +287,14 @@ export default class Inspector extends Component {
 								alt={ containerImgAltMobile }
 							/>
 							{ isSelected ? (
-								<IconButton
+								<Button
 									className="lsx-container-inspector-media"
 									label={ __( 'Remove Mobile Image' ) }
 									icon="dismiss"
 									onClick={ onRemoveImageMobile }
 								>
 									{ __( 'Remove Mobile Image' ) }
-								</IconButton>
+								</Button>
 
 							) : null }
 						</p>

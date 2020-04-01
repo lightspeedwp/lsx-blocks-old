@@ -22,7 +22,7 @@ const {
 } = wp.blocks;
 
 // Register alignments
-const validAlignments = [ 'center', 'wide' ];
+const validAlignments = [ 'center', 'wide', 'full' ];
 
 export const name = 'core/latest-posts';
 

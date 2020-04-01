@@ -13,7 +13,7 @@ const {
 	ColorPalette,
 	PanelColorSettings,
 	MediaUpload,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Import Inspector components
 const {
@@ -24,7 +24,7 @@ const {
 	SelectControl,
 	TextControl,
 	ToggleControl,
-	IconButton,
+	Button,
 } = wp.components;
 
 // Create an Inspector Controls wrapper Component
@@ -156,24 +156,24 @@ export default class Inspector extends Component {
 							value={ bannerImgID }
 							render={ ( { open } ) => (
 								<div>
-									<IconButton
+									<Button
 										className="lsx-banner-inspector-media"
 										label={ __( 'Edit image' ) }
 										icon="format-image"
 										onClick={ open }
 									>
 										{ __( 'Select Image' ) }
-									</IconButton>
+									</Button>
 
 									{ bannerImgURL && !! bannerImgURL.length && (
-										<IconButton
+										<Button
 											className="lsx-banner-inspector-media"
 											label={ __( 'Remove Image' ) }
 											icon="dismiss"
 											onClick={ onRemoveImage }
 										>
 											{ __( 'Remove' ) }
-										</IconButton>
+										</Button>
 									) }
 								</div>
 							) }

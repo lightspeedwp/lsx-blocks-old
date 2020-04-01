@@ -12,7 +12,7 @@ import icons from './icons';
 // Import block components
 const {
 	MediaUpload,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Create an LogoColumn wrapper Component
 export default class LogoColumn extends Component {

@@ -12,7 +12,7 @@ import icons from './icons';
 // Import block components
 const {
 	MediaUpload,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Create an AvatarColumn wrapper Component
 export default class AvatarColumn extends Component {

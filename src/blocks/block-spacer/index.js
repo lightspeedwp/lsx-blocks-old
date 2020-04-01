@@ -28,13 +28,12 @@ const {
 	BlockControls,
 	BlockAlignmentToolbar,
 	UrlInput,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Register components
 const {
-	Button,
 	withFallbackStyles,
-	IconButton,
+	Button,
 	Dashicon,
 } = wp.components;
 

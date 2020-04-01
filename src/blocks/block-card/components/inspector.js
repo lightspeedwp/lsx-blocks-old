@@ -12,7 +12,7 @@ const {
 	BlockDescription,
 	ColorPalette,
   	PanelColorSettings,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Import Inspector components
 const {

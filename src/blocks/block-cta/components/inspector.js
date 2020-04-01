@@ -13,19 +13,18 @@ const {
   ColorPalette,
   PanelColorSettings,
   MediaUpload,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Import Inspector components
 const {
 	Toolbar,
-	Button,
 	PanelBody,
 	PanelRow,
 	FormToggle,
 	RangeControl,
 	SelectControl,
 	ToggleControl,
-	IconButton,
+	Button,
     TextControl,
 } = wp.components;
 
@@ -165,24 +164,24 @@ export default class Inspector extends Component {
 						value={ imgID }
 						render={ ( { open } ) => (
 							<div>
-								<IconButton
+								<Button
 									className="lsx-cta-inspector-media"
 									label={ __( 'Edit image' ) }
 									icon="format-image"
 									onClick={ open }
 								>
 									{ __( 'Select Image' ) }
-								</IconButton>
+								</Button>
 
 								{ imgURL && !! imgURL.length && (
-									<IconButton
+									<Button
 										className="lsx-cta-inspector-media"
 										label={ __( 'Remove Image' ) }
 										icon="dismiss"
 										onClick={ onRemoveImage }
 									>
 										{ __( 'Remove' ) }
-									</IconButton>
+									</Button>
 								) }
 							</div>
 						) }

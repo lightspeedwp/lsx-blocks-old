@@ -28,13 +28,12 @@ const {
 	MediaUpload,
 	RichText,
 	InnerBlocks,
-} = wp.editor;
+} = wp.blockEditor;
 
 // Register components
 const {
-	Button,
 	withFallbackStyles,
-	IconButton,
+	Button,
 	Dashicon,
 	withState,
 	Toolbar,
@@ -135,17 +134,6 @@ const blockAttributes = {
 
 class LSXContainerBlock extends Component {
 
-	constructor( props ) {
-		super( props );
-
-		this.keyCount = 0;
-		this.getKey = this.getKey.bind(this);
-	}
-
-	getKey(){
-		return this.keyCount++;
-	}
-
 	render() {
 
 		// Setup the attributes
@@ -183,7 +171,7 @@ class LSXContainerBlock extends Component {
 
 		return [
 			// Show the alignment toolbar on focus
-			<BlockControls key={this.getKey()}>
+			<BlockControls key="controls">
 				<BlockAlignmentToolbar
 					value={ containerWidth }
 					onChange={ containerWidth => setAttributes( { containerWidth } ) }
@@ -191,11 +179,11 @@ class LSXContainerBlock extends Component {
 				/>
 			</BlockControls>,
 			// Show the block controls on focus
-			<Inspector key={this.getKey()}
+			<Inspector key={ 'lsx-container-inspector-' + this.props.clientId }
 				{ ...{ setAttributes, ...this.props } }
 			/>,
 			// Show the container markup in the editor
-			<Container { ...this.props } key={this.getKey()} >
+			<Container key={ 'lsx-container-' + this.props.clientId } { ...this.props }>
 				<div className="lsx-container-inside">
 					{ containerImgURL && !! containerImgURL.length && (
 						<div className="lsx-container-image-wrap">
@@ -221,7 +209,7 @@ class LSXContainerBlock extends Component {
 							maxWidth: `${containerMaxWidth}px`,
 						} }
 					>
-						<InnerBlocks key={this.getKey()} />
+						<InnerBlocks/>
 					</div>
 				</div>
 			</Container>
