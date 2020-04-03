@@ -5,14 +5,14 @@
  * Description: The LSX Blocks plugin gives you a collection of Gutenberg blocks that you can use and customize. All the blocks are built to work with our powerful LSX theme.
  * Author: LightSpeed
  * Author URI: https://www.lsdev.biz/
- * Version: 1.1.0
+ * Version: 1.1.1
  * License: GPLv3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  *
  * @package LSX BLOCKS
  */
 
-define( 'LSX_BLOCKS_VER', '1.1.0' );
+define( 'LSX_BLOCKS_VER', '1.1.1' );
 define( 'LSX_BLOCKS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'LSX_BLOCKS_CORE', __FILE__ );
 define( 'LSX_BLOCKS_URL', plugin_dir_url( __FILE__ ) );

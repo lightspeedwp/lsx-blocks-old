@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased - 1.1.1
+## [[1.1.1]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.1.1) - 2020-04-03
 
 ### Fixed
 - Fixing issue `Warning: Each child in a list should have a unique "key" prop.`.
