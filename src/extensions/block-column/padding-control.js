@@ -1,3 +1,6 @@
+// Import CSS
+import './styles/style.scss';
+
 import assign from 'lodash.assign';
 
 const { createHigherOrderComponent } = wp.compose;
@@ -9,7 +12,7 @@ const { __ } = wp.i18n;
 
 // Enable spacing control on the following blocks
 const enablePaddingControlOnBlocks = [
-	'core/image',
+	'core/columns',
 ];
 
 // Available spacing control options
@@ -83,7 +86,7 @@ const withSpacingControl = createHigherOrderComponent( ( BlockEdit ) => {
 				<BlockEdit { ...props } />
 				<InspectorControls>
 					<PanelBody
-						title={ __( 'My Spacing Control' ) }
+						title={ __( 'Spacing Control' ) }
 						initialOpen={ true }
 					>
 						<SelectControl
@@ -128,7 +131,7 @@ const addSpacingExtraProps = ( saveElementProps, blockType, attributes ) => {
 
 	if ( attributes.spacing in margins ) {
 		// Use Lodash's assign to gracefully handle if attributes are undefined
-		assign( saveElementProps, { style: { 'margin-bottom': margins[ attributes.spacing ] } } );
+		assign( saveElementProps, { id: attributes.spacing } );
 	}
 
 	return saveElementProps;

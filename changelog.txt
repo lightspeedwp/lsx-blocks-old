@@ -1,5 +1,11 @@
 # Change log
 
+## [[1.1.2]] - In development
+
+### Added
+- Added spacing options for the columns default block.
+
+
 ## [[1.1.1]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.1.1) - 2020-04-03
 
 ### Fixed

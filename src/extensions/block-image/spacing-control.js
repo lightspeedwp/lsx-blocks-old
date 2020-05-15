@@ -83,7 +83,7 @@ const withSpacingControl = createHigherOrderComponent( ( BlockEdit ) => {
 				<BlockEdit { ...props } />
 				<InspectorControls>
 					<PanelBody
-						title={ __( 'My Spacing Control' ) }
+						title={ __( 'Spacing Control' ) }
 						initialOpen={ true }
 					>
 						<SelectControl
