@@ -1,9 +1,13 @@
 # Change log
 
-## [[1.1.2]] - In development
+## [[1.1.2]] - 2020-05-21
 
 ### Added
 - Added spacing options for the columns default block.
+
+### Security
+- General testing to ensure compatibility with latest WordPress version (5.4.1).
+- General testing to ensure compatibility with latest LSX Theme version (2.8).
 
 
 ## [[1.1.1]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.1.1) - 2020-04-03
