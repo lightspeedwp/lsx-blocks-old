@@ -22,3 +22,6 @@ import './extensions/block-button/background-control.js';
 import './extensions/block-group/group-control.js';
 import './extensions/block-heading/heading-control.js';
 import './extensions/block-cover/cover-control.js';
+
+//Panels
+import './panels/index.js';
