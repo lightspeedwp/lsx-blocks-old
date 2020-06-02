@@ -1,3 +1,4 @@
+
 const { TitlePanel } = wp.editPost;
 
 const PluginDocumentSettingPanelDemo = () => {

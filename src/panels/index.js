@@ -1,17 +1,25 @@
 /**
  * Get registerPlugin.
  */
-const { registerPlugin } = wp.plugins;
+console.log(wp);
+console.log(wp.plugins);
 
-import PluginDocumentSettingPanelDemo from './page-title';
+var { registerPlugin } = wp.plugins;
+var PluginDocumentSettingPanel = wp.editPost;
 
-const CombinedSlotFillsDemo = () => {
+var PluginDocumentSettingPanelDemo = () => {
 	return (
-		<PluginDocumentSettingPanelDemo />
+		<PluginDocumentSettingPanel
+			name={ 'my-custom-panel' }
+			title={ "Custom Panel Title" }
+			className={ "my-awesome-class" }
+		>
+			My Document Setting Panel content
+		</PluginDocumentSettingPanel>
 	);
 };
 
 /**
  * register the plugin.
  */
-registerPlugin( 'slotfill-and-filter-demos', { render: CombinedSlotFillsDemo } );
+registerPlugin( 'lsx_page_title_demo', { render: PluginDocumentSettingPanelDemo } );
