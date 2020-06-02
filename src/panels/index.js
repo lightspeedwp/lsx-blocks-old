@@ -1,18 +1,17 @@
 /**
  * Get registerPlugin.
  */
-console.log(wp);
-console.log(wp.plugins);
 
-var { registerPlugin } = wp.plugins;
-var PluginDocumentSettingPanel = wp.editPost;
+const { registerPlugin } = wp.plugins;
+const { PluginDocumentSettingPanel } = wp.editPost;
+console.log( wp.editPost );
 
-var PluginDocumentSettingPanelDemo = () => {
+const lsxPageTitlePanel = () => {
 	return (
 		<PluginDocumentSettingPanel
-			name={ 'my-custom-panel' }
-			title={ "Custom Panel Title" }
-			className={ "my-awesome-class" }
+			name={ 'lsx-page-title-panel' }
+			title={ "Page Title" }
+			className={ "lsx-page-title-panel" }
 		>
 			My Document Setting Panel content
 		</PluginDocumentSettingPanel>
@@ -22,4 +21,4 @@ var PluginDocumentSettingPanelDemo = () => {
 /**
  * register the plugin.
  */
-registerPlugin( 'lsx_page_title_demo', { render: PluginDocumentSettingPanelDemo } );
+registerPlugin( 'lsx-page-title-panel', { render: lsxPageTitlePanel } );
