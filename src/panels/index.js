@@ -2,16 +2,16 @@
  * Get registerPlugin.
  */
 
+const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
-console.log( wp.editPost );
 
 const lsxPageTitlePanel = () => {
 	return (
 		<PluginDocumentSettingPanel
 			name={ 'lsx-page-title-panel' }
-			title={ "Page Title" }
-			className={ "lsx-page-title-panel" }
+			title={ __( 'Page Title', 'lsx-blocks' ) }
+			className={ 'lsx-page-title-panel' }
 		>
 			My Document Setting Panel content
 		</PluginDocumentSettingPanel>
@@ -21,4 +21,4 @@ const lsxPageTitlePanel = () => {
 /**
  * register the plugin.
  */
-registerPlugin( 'lsx-page-title-panel', { render: lsxPageTitlePanel } );
+registerPlugin( 'lsx-page-title-panel', { render: lsxPageTitlePanel, icon: false } );
