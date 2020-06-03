@@ -24,4 +24,4 @@ import './extensions/block-heading/heading-control.js';
 import './extensions/block-cover/cover-control.js';*/
 
 //Panels
-import './panels/index.js';
+import './panels/page-title/index.js';

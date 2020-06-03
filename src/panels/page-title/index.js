@@ -1,16 +1,26 @@
+/**
+ * Get registerPlugin.
+ */
+console.log( wp );
+const { __ } = wp.i18n;
+const { registerPlugin } = wp.plugins;
+const { PluginDocumentSettingPanel } = wp.editPost;
 
-const { TitlePanel } = wp.editPost;
+import DisableTitle from './components/disable-title';
 
-const PluginDocumentSettingPanelDemo = () => {
+const lsxPageTitlePanel = () => {
 	return (
-		<TitlePanel
-			name={ 'my-custom-panel' }
-			title={ "Custom Panel Title" }
-			className={ "my-awesome-class" }
+		<PluginDocumentSettingPanel
+			name={ 'lsx-page-title-panel' }
+			title={ __( 'Page Title', 'lsx-blocks' ) }
+			className={ 'lsx-page-title-panel' }
 		>
-			My Document Setting Panel content
-		</TitlePanel>
+			<DisableTitle />
+		</PluginDocumentSettingPanel>
 	);
 };
 
-export default PluginDocumentSettingPanelDemo;
+/**
+ * register the plugin.
+ */
+registerPlugin( 'lsx-page-title-panel', { render: lsxPageTitlePanel, icon: false } );
