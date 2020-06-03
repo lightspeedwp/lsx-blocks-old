@@ -1,8 +1,6 @@
 /**
  * Get registerPlugin.
  */
-console.log( wp );
-const { __ } = wp.i18n;
 
 const {
 	Radio,
@@ -13,7 +11,7 @@ const {
 	useState,
 } = wp.element;
 
-const TitleAlignment = () => {
+const LSXTitleAlignment = () => {
 	const [ checked, setChecked ] = useState( '25' );
 	return (
 		<RadioGroup accessibilityLabel="Width" onChange={ setChecked } checked={ checked }>
@@ -25,4 +23,6 @@ const TitleAlignment = () => {
 	);
 };
 
-export default TitleAlignment;
+console.log(LSXTitleAlignment);
+
+export default LSXTitleAlignment;

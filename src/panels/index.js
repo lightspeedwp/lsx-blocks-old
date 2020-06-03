@@ -46,10 +46,8 @@ const lsxPageTitlePanel = () => {
 			title={ __( 'Page Title', 'lsx-blocks' ) }
 			className={ 'lsx-page-title-panel' }
 		>
-
-				<DisableTitle />
-
-				<TitleAlignment />
+			<DisableTitle />
+			<TitleAlignment />
 
 		</PluginDocumentSettingPanel>
 	);
