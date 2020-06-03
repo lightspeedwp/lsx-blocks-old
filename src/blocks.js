@@ -2,7 +2,7 @@
  * Import the blocks
  */
 
-import './blocks/block-author-profile/index.js';
+/*import './blocks/block-author-profile/index.js';
 import './blocks/block-button/index.js';
 import './blocks/block-spacer/index.js';
 import './blocks/block-accordion/index.js';
@@ -21,7 +21,7 @@ import './extensions/block-column/padding-control.js';
 import './extensions/block-button/background-control.js';
 import './extensions/block-group/group-control.js';
 import './extensions/block-heading/heading-control.js';
-import './extensions/block-cover/cover-control.js';
+import './extensions/block-cover/cover-control.js';*/
 
 //Panels
 import './panels/page-title/index.js';

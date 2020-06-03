@@ -33,8 +33,9 @@ class Admin {
 	 * @access private
 	 */
 	private function __construct() {
-		add_action( 'add_meta_boxes_post', array( $this, 'featured_meta' ) );
+		//add_action( 'add_meta_boxes_post', array( $this, 'featured_meta' ) );
 		add_action( 'save_post', array( $this, 'meta_save' ) );
+		add_action( 'init', array( $this, 'register_meta' ) );
 	}
 
 	/**
@@ -50,6 +51,21 @@ class Admin {
 			self::$instance = new self;
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Adds a meta box to the post editing screen
+	 */
+	public function register_meta() {
+		register_meta(
+			'post',
+			'lsx_disable_title',
+			array(
+				'type'         => 'string',
+				'single'       => true,
+				'show_in_rest' => true,
+			)
+		);
 	}
 
 	/**

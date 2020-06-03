@@ -6,38 +6,8 @@ const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
 
-const { withState } = wp.compose;
-
-const {
-	FormToggle,
-	Radio,
-	RadioGroup,
-} = wp.components;
-
-const {
-	useState,
-} = wp.element;
-
-const DisableTitle = withState( { checked: false } )( ( { checked, setState } ) => (
-	<FormToggle
-		id={ 'lsx-page-title-disable' }
-		label={ __( 'Disable', 'lsx-blocks' ) }
-		checked={ checked }
-		onChange={ () => setState( state => ( { checked: ! state.checked } ) ) }
-	/>
-) );
-
-const TitleAlignment = () => {
-	const [ checked, setChecked ] = useState( '25' );
-	return (
-		<RadioGroup accessibilityLabel="Width" onChange={ setChecked } checked={ checked }>
-			<Radio value="25">25%</Radio>
-			<Radio value="50">50%</Radio>
-			<Radio value="75">75%</Radio>
-			<Radio value="100">100%</Radio>
-		</RadioGroup>
-	);
-};
+import DisableTitle from './components/disable-title';
+import MyDropdown from './components/drop-down';
 
 const lsxPageTitlePanel = () => {
 	return (
@@ -46,8 +16,12 @@ const lsxPageTitlePanel = () => {
 			title={ __( 'Page Title', 'lsx-blocks' ) }
 			className={ 'lsx-page-title-panel' }
 		>
-			<DisableTitle />
-			<TitleAlignment />
+			<div>
+				<DisableTitle />  { __( 'Disable', 'lsx-blocks' ) }
+			</div>
+			<div>
+				<MyDropdown />
+			</div>
 		</PluginDocumentSettingPanel>
 	);
 };

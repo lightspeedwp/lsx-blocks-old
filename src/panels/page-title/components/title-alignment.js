@@ -23,6 +23,4 @@ const LSXTitleAlignment = () => {
 	);
 };
 
-console.log(LSXTitleAlignment);
-
 export default LSXTitleAlignment;
