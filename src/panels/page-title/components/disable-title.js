@@ -15,14 +15,21 @@ const {
 	useDispatch,
 } = wp.data;
 
+const DisableTitle = withState( { checked: false } )( ( { checked, setState } ) => {
+	// Here we grab the custom field value from the db or the posted meta.
+	const isDisabled = useSelect( select => {
+		return select( 'core/editor' ).getEditedPostAttribute( 'meta' ).lsx_disable_title;
+	}, [] );
 
-const DisableTitle = withState( { checked: false } )( ( { checked, setState } ) => (
-	<FormToggle
-		id={ 'lsx-page-title-disable' }
-		label={ __( 'Disable', 'lsx-blocks' ) }
-		checked={ checked }
-		onChange={ () => setState( state => ( { checked: ! state.checked } ) ) }
-	/>
-) );
+	return (
+		<FormToggle
+			id={ 'lsx-page-title-disable' }
+			label={ __( 'Disable', 'lsx-blocks' ) }
+			value={ isDisabled }
+			checked={ checked }
+			onChange={ () => setState( state => ( { checked: ! state.checked } ) ) }
+		/>
+	);
+} );
 
 export default DisableTitle;
