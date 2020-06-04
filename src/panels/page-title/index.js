@@ -5,11 +5,17 @@ console.log( wp );
 const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
+const { useSelect } = wp.data;
 
 import DisableTitle from './components/disable-title';
 import MyDropdown from './components/drop-down';
 
 const lsxPageTitlePanel = () => {
+	const postType = useSelect( select => select( 'core/editor' ).getCurrentPostType() );
+	if ( 'post' !== postType ) {
+		return null;
+	}
+
 	return (
 		<PluginDocumentSettingPanel
 			name={ 'lsx-page-title-panel' }

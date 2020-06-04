@@ -7,6 +7,15 @@ const {
 	FormToggle,
 } = wp.components;
 
+const {
+	useCallback,
+} = wp.element;
+const {
+	useSelect,
+	useDispatch,
+} = wp.data;
+
+
 const DisableTitle = withState( { checked: false } )( ( { checked, setState } ) => (
 	<FormToggle
 		id={ 'lsx-page-title-disable' }

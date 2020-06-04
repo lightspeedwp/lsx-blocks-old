@@ -25,3 +25,4 @@ import './extensions/block-cover/cover-control.js';*/
 
 //Panels
 import './panels/page-title/index.js';
+import './panels/custom-field/index.js';
