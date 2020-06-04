@@ -5,29 +5,36 @@
 
  .lsx-block-accordion {
 	margin-bottom: 2em;
-	background: #F5F5F5;
+	background: $graybg;
 	border: 1px solid #E0E0E0;
 	details {
 		summary {
 			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			transition: 0.3s;
+			~ * {
+				animation: sweep .5s ease-in-out;
+			}
 			&::-webkit-details-marker {
 				display: none
 			}
-			&:before {
+			&:after {
 				content: "+";
-				color: #418AD0;
-				float: left;
-				font-size: 1.5em;
+				color: $blue;
+				font-size: 25px;
 				font-weight: bold;
-				margin: -9px 10px 0 0;
+				line-height: 10px;
+			}
+			&:hover {
+				background-color: #E0E0E0;
 			}
 		}
 		&[open] {
 			summary {
-				&:before {
+				background-color: #E0E0E0;
+				&:after {
 					content: "-";
-					font-size: 2em;
-					margin: -17px 10px 0 0;
 				}
 			}
 		}
@@ -36,14 +43,23 @@
 	.lsx-accordion-title {
 		padding: 10px 15px;
 		font-weight: bold;
+		&:hover {
+			cursor: pointer;
+		}
 		p {
 			display: inline;
 		}
 	}
 
 	.lsx-accordion-text {
-		padding: 10px 15px 10px 40px;
-
+		padding: 10px 15px;
+		background-color: white;
+		> * {
+			margin-bottom: 10px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
 		a {
 			color: inherit;
 			box-shadow: 0 -1px 0 inset;
@@ -72,6 +88,11 @@
 		display: block;
 		left: 40%;
 	}
+}
+
+@keyframes sweep {
+	0%    {opacity: 0; margin-bottom: -10px}
+	100%  {opacity: 1; margin-bottom: 0px}
 }
 
 .lsx-block-accordion + .lsx-block-accordion {
