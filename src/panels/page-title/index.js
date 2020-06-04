@@ -7,8 +7,8 @@ const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
 const { useSelect } = wp.data;
 
-import DisableTitle from './components/disable-text';
-//import DisableTitle from './components/disable-title';
+//import DisableTitle from './components/disable-text';
+import DisableTitle from './components/disable-title';
 //import MyDropdown from './components/drop-down';
 
 const lsxPageTitlePanel = () => {

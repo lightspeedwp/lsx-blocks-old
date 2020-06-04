@@ -7,7 +7,28 @@ const {
 	FormToggle,
 } = wp.components;
 
+const {
+	useCallback,
+} = wp.element;
+const {
+	useSelect,
+	useDispatch,
+} = wp.data;
+
 const DisableTitle = withState( { checked: false } )( ( { checked, setState } ) => {
+	// Lets get the initial State of the toggle from the custom field / autosaves.
+	const rawChecked = useSelect( select => {
+		return select( 'core/editor' ).getEditedPostAttribute( 'meta' ).lsx_disable_title;
+	}, [] );
+
+	// Next lets map our yes / no to a true / false.
+	if ( 'yes' !== rawChecked ) {
+		checked = false;
+	} else {
+		checked = true;
+	}
+
+	const { editPost } = useDispatch( 'core/editor' );
 
 	return (
 		<FormToggle
@@ -15,7 +36,14 @@ const DisableTitle = withState( { checked: false } )( ( { checked, setState } ) 
 			label={ __( 'Disable', 'lsx-blocks' ) }
 			value={ 'yes' }
 			checked={ checked }
-			onClick={ () => setState( state => ( { checked: ! state.checked } ) ) }
+			onChange={ () => setState( state => {
+				let disabled = 'no';
+				if ( false === state.checked ) {
+					disabled = 'yes';
+				}
+				editPost( { meta: { lsx_disable_title: disabled } } );
+				return ( { checked: ! state.checked } );
+			} ) }
 		/>
 	);
 } );
