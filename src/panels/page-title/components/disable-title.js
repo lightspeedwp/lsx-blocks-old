@@ -8,9 +8,6 @@ const {
 } = wp.components;
 
 const {
-	useCallback,
-} = wp.element;
-const {
 	useSelect,
 	useDispatch,
 } = wp.data;
