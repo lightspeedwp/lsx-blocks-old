@@ -66,6 +66,15 @@ class Admin {
 				'show_in_rest' => true,
 			)
 		);
+		register_meta(
+			'post',
+			'lsx_title_alignment',
+			array(
+				'type'         => 'string',
+				'single'       => true,
+				'show_in_rest' => true,
+			)
+		);
 	}
 
 	/**
