@@ -34,7 +34,7 @@ class Admin {
 	 */
 	private function __construct() {
 		//add_action( 'add_meta_boxes_post', array( $this, 'featured_meta' ) );
-		add_action( 'save_post', array( $this, 'meta_save' ) );
+		//add_action( 'save_post', array( $this, 'meta_save' ) );
 		add_action( 'init', array( $this, 'register_meta' ) );
 	}
 
