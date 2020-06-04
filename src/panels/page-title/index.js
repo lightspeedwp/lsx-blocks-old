@@ -1,7 +1,6 @@
 /**
  * Get registerPlugin.
  */
-console.log( wp );
 const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
@@ -9,7 +8,7 @@ const { useSelect } = wp.data;
 
 //import DisableTitle from './components/disable-text';
 import DisableTitle from './components/disable-title';
-//import MyDropdown from './components/drop-down';
+import TitleAlignment from './components/title-alignment';
 
 const lsxPageTitlePanel = () => {
 	// Here we check what the post type is and if your panel should show.
@@ -27,6 +26,9 @@ const lsxPageTitlePanel = () => {
 		>
 			<div>
 				<DisableTitle />
+			</div>
+			<div>
+				<TitleAlignment />
 			</div>
 		</PluginDocumentSettingPanel>
 	);

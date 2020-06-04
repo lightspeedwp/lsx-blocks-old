@@ -30,7 +30,6 @@ const DisableTitle = withState( { checked: false } )( ( { checked, setState } ) 
 	return (
 		<FormToggle
 			id={ 'lsx-page-title-disable' }
-			label={ __( 'Disable', 'lsx-blocks' ) }
 			value={ 'yes' }
 			checked={ checked }
 			onChange={ () => setState( state => {

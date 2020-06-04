@@ -1,26 +1,28 @@
 /**
  * Get registerPlugin.
  */
+const { __ } = wp.i18n;
 
 const {
-	Radio,
-	RadioGroup,
+	RadioControl,
 } = wp.components;
 
 const {
-	useState,
-} = wp.element;
+	withState,
+} = wp.compose;
 
-const LSXTitleAlignment = () => {
-	const [ checked, setChecked ] = useState( '25' );
+const TitleAlignment = withState( {	option: 'center' } )( ( { option, setState } ) => {
 	return (
-		<RadioGroup accessibilityLabel="Width" onChange={ setChecked } checked={ checked }>
-			<Radio value="25">25%</Radio>
-			<Radio value="50">50%</Radio>
-			<Radio value="75">75%</Radio>
-			<Radio value="100">100%</Radio>
-		</RadioGroup>
+		<RadioControl
+			selected={ option }
+			options={ [
+				{ label: __( 'Left', 'lsx-blocks' ), value: 'left' },
+				{ label: __( 'Center', 'lsx-blocks' ), value: 'center' },
+				{ label: __( 'Right', 'lsx-blocks' ), value: 'right' },
+			] }
+			onChange={ ( option ) => { setState( { option } ) } }
+		/>
 	);
-};
+} );
 
-export default LSXTitleAlignment;
+export default TitleAlignment;
