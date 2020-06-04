@@ -11,10 +11,12 @@ import DisableTitle from './components/disable-title';
 import MyDropdown from './components/drop-down';
 
 const lsxPageTitlePanel = () => {
-	/*const postType = useSelect( select => select( 'core/editor' ).getCurrentPostType() );
-	if ( 'post' !== postType ) {
+
+	// Here we check what the post type is and if your panel should show.
+	const postType = useSelect( select => select( 'core/editor' ).getCurrentPostType() );
+	if ( 'post' !== postType && 'page' !== postType ) {
 		return null;
-	}*/
+	}
 
 	return (
 		<PluginDocumentSettingPanel
