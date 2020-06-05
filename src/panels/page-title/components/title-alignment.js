@@ -23,6 +23,8 @@ const TitleAlignment = withState( {	option: 'center' } )( ( { option, setState }
 	const rawChecked = useSelect( select => {
 		return select( 'core/editor' ).getEditedPostAttribute( 'meta' ).lsx_title_alignment;
 	}, [] );
+	console.log( 'alignment 3 ' + rawChecked );
+
 	// If you Custom field is not null then there is something saved in it.
 	if ( '' !== rawChecked && undefined !== rawChecked ) {
 		option = rawChecked;

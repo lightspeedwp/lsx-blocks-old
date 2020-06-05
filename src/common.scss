@@ -243,3 +243,20 @@ article {
 		}
 	}
 }
+
+.lsx-page-title-panel {
+	.lsx-panel-row {
+		&.background-colour {
+			.components-panel__body {
+				padding-left:0px;
+				border: 0;
+
+				.components-panel__body-title {
+					height: 1px;
+					overflow: hidden;
+					margin-top: 5px;
+				}
+			}
+		}
+	}
+}

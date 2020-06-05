@@ -2,10 +2,14 @@
  * Get registerPlugin.
  */
 const { __ } = wp.i18n;
-const { withState } = wp.compose;
+
 const {
 	FormToggle,
 } = wp.components;
+
+const {
+	withState,
+} = wp.compose;
 
 const {
 	useSelect,
