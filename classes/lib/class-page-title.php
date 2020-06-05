@@ -36,7 +36,7 @@ class Page_Title {
 	 * @access private
 	 */
 	private function __construct() {
-		add_action( 'init', array( $this, 'init' ), 999 );
+		add_action( 'wp_head', array( $this, 'init' ), 999 );
 	}
 
 	/**
@@ -64,12 +64,14 @@ class Page_Title {
 				return;
 			}
 			// Remove the legacy page title and entry meta.
-			remove_action( 'lsx_entry_top', 'lsx_post_header' );
-			remove_action( 'lsx_entry_top', 'lsx_add_entry_meta', 999 );
+			if ( function_exists( 'has_blocks' ) && has_blocks() ) {
+				remove_action( 'lsx_entry_top', 'lsx_post_header' );
+				remove_action( 'lsx_entry_top', 'lsx_add_entry_meta', 999 );
 
-			add_action( 'lsx_entry_top', array( $this, 'lsx_block_header' ) );
+				add_action( 'lsx_entry_top', array( $this, 'lsx_block_header' ) );
 
-			add_action( 'body_class', array( $this, 'body_class' ) );
+				add_action( 'body_class', array( $this, 'body_class' ) );
+			}
 		}
 	}
 
