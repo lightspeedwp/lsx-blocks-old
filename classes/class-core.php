@@ -39,6 +39,11 @@ class Core {
 	public $frontend;
 
 	/**
+	 * @var array hold the array of library classes.
+	 */
+	public $lib = array();
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 1.0.0
@@ -79,5 +84,8 @@ class Core {
 
 		require_once( LSX_BLOCKS_PATH . 'classes/class-frontend.php' );
 		$this->frontend = Frontend::get_instance();
+
+		require_once( LSX_BLOCKS_PATH . 'classes/lib/class-page-title.php' );
+		$this->lib['page_title'] = lib\Page_Title::get_instance();
 	}
 }
