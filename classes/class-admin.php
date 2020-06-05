@@ -57,33 +57,39 @@ class Admin {
 	 * Adds a meta box to the post editing screen
 	 */
 	public function register_meta() {
-		register_meta(
+		$available_post_types = array(
 			'post',
-			'lsx_disable_title',
-			array(
-				'type'         => 'string',
-				'single'       => true,
-				'show_in_rest' => true,
-			)
+			'page',
 		);
-		register_meta(
-			'post',
-			'lsx_title_alignment',
-			array(
-				'type'         => 'string',
-				'single'       => true,
-				'show_in_rest' => true,
-			)
-		);
-		register_meta(
-			'post',
-			'lsx_title_bg_colour',
-			array(
-				'type'         => 'string',
-				'single'       => true,
-				'show_in_rest' => true,
-			)
-		);
+		foreach ( $available_post_types as $pt ) {
+			register_meta(
+				$pt,
+				'lsx_disable_title',
+				array(
+					'type'         => 'string',
+					'single'       => true,
+					'show_in_rest' => true,
+				)
+			);
+			register_meta(
+				$pt,
+				'lsx_title_alignment',
+				array(
+					'type'         => 'string',
+					'single'       => true,
+					'show_in_rest' => true,
+				)
+			);
+			register_meta(
+				$pt,
+				'lsx_title_bg_colour',
+				array(
+					'type'         => 'string',
+					'single'       => true,
+					'show_in_rest' => true,
+				)
+			);
+		}
 	}
 
 	/**

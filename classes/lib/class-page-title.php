@@ -1,12 +1,15 @@
 <?php
-namespace lsx\blocks\classes\lib;
 /**
+ * Holds the Page Title Panel Settings.
+ *
  * @package   lsx\blocks\classes\lib
  * @author    LightSpeed
  * @license   GPL-3.0+
  * @link
  * @copyright 2019 LightSpeed
  */
+
+namespace lsx\blocks\classes\lib;
 
 /**
  * Setup plugin class.
@@ -65,7 +68,20 @@ class Page_Title {
 			remove_action( 'lsx_entry_top', 'lsx_add_entry_meta', 999 );
 
 			add_action( 'lsx_entry_top', array( $this, 'lsx_block_header' ) );
+
+			add_action( 'body_class', array( $this, 'body_class' ) );
 		}
+	}
+
+	/**
+	 * Adds our page title class to the body
+	 *
+	 * @param  array $classes
+	 * @return array
+	 */
+	public function body_class( $classes ) {
+		$classes[] = 'lsx-page-title';
+		return $classes;
 	}
 
 	/**
@@ -79,8 +95,9 @@ class Page_Title {
 		?>
 			<?php do_action( 'lsx_block_header_top' ); ?>
 
-			<div class="wp-block-group <?php $this->the_title_width(); ?> has-dark-green-background-color has-background">
+			<div class="wp-block-group <?php $this->the_title_width(); ?> <?php $this->the_title_bg_colour_class(); ?>" style="<?php $this->the_title_bg_colour_attr(); ?>">
 				<div class="wp-block-group__inner-container">
+					<div style="height:2.4rem" aria-hidden="true" class="wp-block-spacer"></div>
 					<?php $this->lsx_block_title(); ?>
 				</div>
 			</div>
@@ -104,32 +121,17 @@ class Page_Title {
 	 * @return string
 	 */
 	public function get_title_css() {
-		//$classes = 'has-dark-yellow-color has-text-color';
 		$classes = '';
-
 		$alignment = get_post_meta( get_the_ID(), 'lsx_title_alignment', true );
 		if ( '' === $alignment || false === $alignment ) {
 			$alignment = 'center';
 		}
 		$classes .= ' has-text-align-' . $alignment;
-
-		/*switch ( $alignment ) {
-			case 'left':
-			break;
-
-			case 'center':
-			default:
-				$classes .= ' has-text-align-center';
-			break;
-		}*/
-
 		return $classes;
 	}
 
 	/**
 	 * Gets the width you want for the parent group block .
-	 *
-	 * @return string
 	 */
 	public function the_title_width() {
 		$classes = '';
@@ -140,5 +142,33 @@ class Page_Title {
 		}
 		$classes .= ' ' . $width;
 		echo esc_attr( $classes );
+	}
+
+	/**
+	 * Gets the width you want for the parent group block .
+	 *
+	 * @return string
+	 */
+	public function the_title_bg_colour_class() {
+		$classes = '';
+		$colour  = get_post_meta( get_the_ID(), 'lsx_title_bg_colour', true );
+		if ( '' !== $colour && false !== $colour ) {
+			$classes = ' has-background';
+		}
+		echo esc_attr( $classes );
+	}
+
+	/**
+	 * Gets the width you want for the parent group block .
+	 *
+	 * @return string
+	 */
+	public function the_title_bg_colour_attr() {
+		$attr   = '';
+		$colour = get_post_meta( get_the_ID(), 'lsx_title_bg_colour', true );
+		if ( '' !== $colour && false !== $colour ) {
+			$attr = ' background-color:' . $colour . ';';
+		}
+		echo esc_attr( $attr );
 	}
 }
