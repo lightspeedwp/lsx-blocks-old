@@ -95,7 +95,7 @@ class Page_Title {
 		?>
 			<?php do_action( 'lsx_block_header_top' ); ?>
 
-			<div class="wp-block-group <?php $this->the_title_width(); ?> <?php $this->the_title_bg_colour_class(); ?>" style="<?php $this->the_title_bg_colour_attr(); ?>">
+			<div class="lsx-title-block wp-block-group <?php $this->the_title_width(); ?> <?php $this->the_title_bg_colour_class(); ?>" style="<?php $this->the_title_bg_colour_attr(); ?>">
 				<div class="wp-block-group__inner-container">
 					<div style="height:2.4rem" aria-hidden="true" class="wp-block-spacer"></div>
 					<?php $this->lsx_block_title(); ?>
@@ -135,12 +135,11 @@ class Page_Title {
 	 */
 	public function the_title_width() {
 		$classes = '';
-
-		$width = get_post_meta( get_the_ID(), 'lsx_title_width', true );
+		$width   = get_post_meta( get_the_ID(), 'lsx_title_width', true );
 		if ( '' === $width || false === $width ) {
-			$width = 'alignfull';
+			$width = 'content';
 		}
-		$classes .= ' ' . $width;
+		$classes = 'align' . $width;
 		echo esc_attr( $classes );
 	}
 
