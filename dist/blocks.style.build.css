@@ -1013,12 +1013,6 @@ article .lsx-button {
   border: 2px solid #E0E0E0;
   border-radius: 3px; }
   .lsx-block-accordion details summary {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: justify;
-        justify-content: space-between;
-    -ms-flex-align: center;
-        align-items: center;
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s; }
@@ -1032,7 +1026,8 @@ article .lsx-button {
       color: #418ad0;
       font-size: 25px;
       font-weight: bold;
-      line-height: 10px; }
+      line-height: 25px;
+      float: right; }
     .lsx-block-accordion details summary:hover {
       background-color: #E0E0E0; }
   .lsx-block-accordion details[open] summary {

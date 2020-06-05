@@ -10,9 +10,6 @@
     border-radius: 3px;
 	details {
 		summary {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
 			transition: 0.3s;
 			~ * {
 				animation: sweep .5s ease-in-out;
@@ -25,7 +22,8 @@
 				color: $blue;
 				font-size: 25px;
 				font-weight: bold;
-				line-height: 10px;
+				line-height: 25px;
+				float: right;
 			}
 			&:hover {
 				background-color: #E0E0E0;
