@@ -75,6 +75,15 @@ class Admin {
 				'show_in_rest' => true,
 			)
 		);
+		register_meta(
+			'post',
+			'lsx_title_bg_colour',
+			array(
+				'type'         => 'string',
+				'single'       => true,
+				'show_in_rest' => true,
+			)
+		);
 	}
 
 	/**

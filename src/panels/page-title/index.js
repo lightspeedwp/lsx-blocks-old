@@ -9,6 +9,7 @@ const { useSelect } = wp.data;
 //import DisableTitle from './components/disable-text';
 import DisableTitle from './components/disable-title';
 import TitleAlignment from './components/title-alignment';
+import BackgroundColour from './components/background-colour';
 
 const lsxPageTitlePanel = () => {
 	// Here we check what the post type is and if your panel should show.
@@ -29,6 +30,9 @@ const lsxPageTitlePanel = () => {
 			</div>
 			<div>
 				<TitleAlignment />
+			</div>
+			<div>
+				<BackgroundColour />
 			</div>
 		</PluginDocumentSettingPanel>
 	);
