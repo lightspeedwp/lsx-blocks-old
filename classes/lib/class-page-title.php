@@ -73,17 +73,19 @@ class Page_Title {
 	 */
 	public function lsx_block_header() {
 		$disable_title = get_post_meta( get_the_ID(), 'lsx_disable_title', true );
-		if ( 'yes' === $disable_title ) {
+		if ( 'yes' === $disable_title || ( ! is_singular( array( 'post', 'page' ) ) ) ) {
 			return;
 		}
 		?>
-			<div class="entry-header">
-				<?php do_action( 'lsx_block_header_top' ); ?>
+			<?php do_action( 'lsx_block_header_top' ); ?>
 
-				<?php $this->lsx_block_title(); ?>
-
-				<?php do_action( 'lsx_block_header_bottom' ); ?>
+			<div class="wp-block-group <?php $this->the_title_width(); ?> has-dark-green-background-color has-background">
+				<div class="wp-block-group__inner-container">
+					<?php $this->lsx_block_title(); ?>
+				</div>
 			</div>
+
+			<?php do_action( 'lsx_block_header_bottom' ); ?>
 		<?php
 	}
 
@@ -92,7 +94,51 @@ class Page_Title {
 	 */
 	public function lsx_block_title() {
 		$title = apply_filters( 'lsx_block_title', get_the_title() );
-		$title = '<h1>' . $title . '</h1>';
+		$title = '<h1 class="' . $this->get_title_css() . '" >' . $title . '</h1>';
 		echo wp_kses_post( $title );
+	}
+
+	/**
+	 * Gets the title css classes.
+	 *
+	 * @return string
+	 */
+	public function get_title_css() {
+		//$classes = 'has-dark-yellow-color has-text-color';
+		$classes = '';
+
+		$alignment = get_post_meta( get_the_ID(), 'lsx_title_alignment', true );
+		if ( '' === $alignment || false === $alignment ) {
+			$alignment = 'center';
+		}
+		$classes .= ' has-text-align-' . $alignment;
+
+		/*switch ( $alignment ) {
+			case 'left':
+			break;
+
+			case 'center':
+			default:
+				$classes .= ' has-text-align-center';
+			break;
+		}*/
+
+		return $classes;
+	}
+
+	/**
+	 * Gets the width you want for the parent group block .
+	 *
+	 * @return string
+	 */
+	public function the_title_width() {
+		$classes = '';
+
+		$width = get_post_meta( get_the_ID(), 'lsx_title_width', true );
+		if ( '' === $width || false === $width ) {
+			$width = 'alignfull';
+		}
+		$classes .= ' ' . $width;
+		echo esc_attr( $classes );
 	}
 }
