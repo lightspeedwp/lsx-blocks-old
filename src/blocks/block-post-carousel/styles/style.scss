@@ -156,6 +156,22 @@
 			}
 		}
 
+		&.columns-1 {
+			grid-template-columns: 1;
+
+			.slick-slide {
+				display: grid;
+				grid-template-columns: 25% 75%;
+				grid-template-rows: 1fr;
+				grid-gap: 0;
+
+				.lsx-block-post-grid-text {
+					margin-top: 0px;
+					padding-top: 15px;
+				}
+			}
+		}
+
 		.is-grid.columns-2 {
 			grid-template-columns: 1fr 1fr;
 		}
