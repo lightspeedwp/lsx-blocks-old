@@ -161,9 +161,9 @@
 
 			.slick-slide {
 				display: grid;
-				grid-template-columns: 25% 75%;
+				grid-template-columns: 33.3333% 1fr;
 				grid-template-rows: 1fr;
-				grid-gap: 0;
+				grid-gap: 0 1em;
 
 				.lsx-block-post-grid-text {
 					margin-top: 0px;
