@@ -14,12 +14,12 @@ const {
 	useDispatch,
 } = wp.data;
 
-const BackgroundColour = withState( {	color: false } )( ( { color, setState } ) => {
+const TextColour = withState( {	color: false } )( ( { color, setState } ) => {
 	const { editPost } = useDispatch( 'core/editor' );
 
 	// Lets get the initial State of the toggle from the custom field / autosaves.
 	const rawChecked = useSelect( select => {
-		return select( 'core/editor' ).getEditedPostAttribute( 'meta' ).lsx_title_bg_colour;
+		return select( 'core/editor' ).getEditedPostAttribute( 'meta' ).lsx_title_colour;
 	}, [] );
 
 	// If you Custom field is not null then there is something saved in it.
@@ -29,18 +29,18 @@ const BackgroundColour = withState( {	color: false } )( ( { color, setState } ) 
 
 	return (
 		<PanelColorSettings
-			title={ __( 'Background Color' ) }
+			title={ __( 'Text Color' ) }
 			initialOpen={ true }
 			colorSettings={ [ {
 				value: color,
-				label: __( 'Background Color' ),
-				onChange: ( selectedBgColour ) => {
-					editPost( { meta: { lsx_title_bg_colour: selectedBgColour } } );
-					return ( { selectedBgColour } );
+				label: __( 'Text Color' ),
+				onChange: ( selectedTextColour ) => {
+					editPost( { meta: { lsx_title_colour: selectedTextColour } } );
+					return ( { selectedTextColour } );
 				},
 			} ] }
 		/>
 	);
 } );
 
-export default BackgroundColour;
+export default TextColour;

@@ -111,7 +111,7 @@ class Page_Title {
 	 */
 	public function lsx_block_title() {
 		$title = apply_filters( 'lsx_block_title', get_the_title() );
-		$title = '<h1 class="' . $this->get_title_css() . '" >' . $title . '</h1>';
+		$title = '<h1 class="' . $this->get_title_css() . '" style="' . $this->get_title_colour_attr() . '">' . $title . '</h1>';
 		echo wp_kses_post( $title );
 	}
 
@@ -127,6 +127,12 @@ class Page_Title {
 			$alignment = 'center';
 		}
 		$classes .= ' has-text-align-' . $alignment;
+
+		$colour = get_post_meta( get_the_ID(), 'lsx_title_bg_colour', true );
+		if ( '' !== $colour && false !== $colour ) {
+			$classes .= ' has-text-color';
+		}
+
 		return $classes;
 	}
 
@@ -169,5 +175,19 @@ class Page_Title {
 			$attr = ' background-color:' . $colour . ';';
 		}
 		echo esc_attr( $attr );
+	}
+
+	/**
+	 * Gets the colour for the title text.
+	 *
+	 * @return string
+	 */
+	public function get_title_colour_attr() {
+		$attr   = '';
+		$colour = get_post_meta( get_the_ID(), 'lsx_title_colour', true );
+		if ( '' !== $colour && false !== $colour ) {
+			$attr = ' color:' . $colour . ';';
+		}
+		return $attr;
 	}
 }

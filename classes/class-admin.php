@@ -64,8 +64,9 @@ class Admin {
 		$rest_field           = array(
 			'lsx_disable_title'   => 'string',
 			'lsx_title_alignment' => 'string',
-			'lsx_title_bg_colour' => 'string',
 			'lsx_title_width'     => 'string',
+			'lsx_title_bg_colour' => 'string',
+			'lsx_title_colour' => 'string',
 		);
 		foreach ( $available_post_types as $pt ) {
 			foreach ( $rest_field as $meta_key => $type ) {

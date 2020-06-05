@@ -34,6 +34,7 @@ const DisableTitle = withState( { checked: false } )( ( { checked, setState } ) 
 	return (
 		<FormToggle
 			id={ 'lsx-page-title-disable' }
+			help={ __( 'Stop the title from showing, you will need to add it manually.', 'lsx-blocks' ) }
 			value={ 'yes' }
 			checked={ checked }
 			onChange={ () => setState( state => {

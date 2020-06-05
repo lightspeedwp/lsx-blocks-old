@@ -260,5 +260,14 @@ article {
 				}
 			}
 		}
+
+		.components-radio-control__option {
+			margin-right: 0.5rem !important;
+			margin-top: 1rem !important;
+
+			.components-radio-control__input::before {
+				display:none;
+			}
+		}
 	}
 }
