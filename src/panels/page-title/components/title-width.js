@@ -16,12 +16,12 @@ const {
 	useDispatch,
 } = wp.data;
 
-const TitleAlignment = withState( {	option: 'center' } )( ( { option, setState } ) => {
+const TitleWidth = withState( {	option: 'content' } )( ( { option, setState } ) => {
 	const { editPost } = useDispatch( 'core/editor' );
 
 	// Lets get the initial State of the toggle from the custom field / autosaves.
 	const rawChecked = useSelect( select => {
-		return select( 'core/editor' ).getEditedPostAttribute( 'meta' ).lsx_title_alignment;
+		return select( 'core/editor' ).getEditedPostAttribute( 'meta' ).lsx_title_width;
 	}, [] );
 
 	// If you Custom field is not null then there is something saved in it.
@@ -32,16 +32,16 @@ const TitleAlignment = withState( {	option: 'center' } )( ( { option, setState }
 		<RadioControl
 			selected={ option }
 			options={ [
-				{ label: __( 'Left', 'lsx-blocks' ), value: 'left' },
-				{ label: __( 'Center', 'lsx-blocks' ), value: 'center' },
-				{ label: __( 'Right', 'lsx-blocks' ), value: 'right' },
+				{ label: __( 'Content', 'lsx-blocks' ), value: 'content' },
+				{ label: __( 'Wide', 'lsx-blocks' ), value: 'wide' },
+				{ label: __( 'Full', 'lsx-blocks' ), value: 'full' },
 			] }
 			onChange={ ( selected ) => setState( () => {
-				editPost( { meta: { lsx_title_alignment: selected } } );
+				editPost( { meta: { lsx_title_width: selected } } );
 				return ( { selected } );
 			} ) }
 		/>
 	);
 } );
 
-export default TitleAlignment;
+export default TitleWidth;

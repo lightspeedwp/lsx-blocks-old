@@ -61,34 +61,24 @@ class Admin {
 			'post',
 			'page',
 		);
+		$rest_field           = array(
+			'lsx_disable_title'   => 'string',
+			'lsx_title_alignment' => 'string',
+			'lsx_title_bg_colour' => 'string',
+			'lsx_title_width'     => 'string',
+		);
 		foreach ( $available_post_types as $pt ) {
-			register_meta(
-				$pt,
-				'lsx_disable_title',
-				array(
-					'type'         => 'string',
-					'single'       => true,
-					'show_in_rest' => true,
-				)
-			);
-			register_meta(
-				$pt,
-				'lsx_title_alignment',
-				array(
-					'type'         => 'string',
-					'single'       => true,
-					'show_in_rest' => true,
-				)
-			);
-			register_meta(
-				$pt,
-				'lsx_title_bg_colour',
-				array(
-					'type'         => 'string',
-					'single'       => true,
-					'show_in_rest' => true,
-				)
-			);
+			foreach ( $rest_field as $meta_key => $type ) {
+				register_meta(
+					$pt,
+					$meta_key,
+					array(
+						'type'         => $type,
+						'single'       => true,
+						'show_in_rest' => true,
+					)
+				);
+			}
 		}
 	}
 
