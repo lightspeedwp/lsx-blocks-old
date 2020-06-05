@@ -35,9 +35,9 @@ const TitleAlignment = withState( {	option: 'center' } )( ( { option, setState }
 				{ label: __( 'Center', 'lsx-blocks' ), value: 'center' },
 				{ label: __( 'Right', 'lsx-blocks' ), value: 'right' },
 			] }
-			onChange={ ( option ) => setState( selected => {
-				editPost( { meta: { lsx_title_alignment: option } } );
-				return ( { option } );
+			onChange={ ( selected ) => setState( () => {
+				editPost( { meta: { lsx_title_alignment: selected } } );
+				return ( { selected } );
 			} ) }
 		/>
 	);
