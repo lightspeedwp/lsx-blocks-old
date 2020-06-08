@@ -1010,15 +1010,20 @@ article .lsx-button {
 .lsx-block-accordion {
   margin-bottom: 2em;
   background: #F6F6F6;
-  border: 2px solid #E0E0E0;
-  border-radius: 3px; }
+  border: 2px solid #e0e0e0;
+  border-radius: 3px;
+  color: #4a4a4a; }
   .lsx-block-accordion details summary {
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
-    transition: 0.3s; }
+    transition: 0.3s;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+        justify-content: space-between; }
     .lsx-block-accordion details summary ~ * {
-      -webkit-animation: sweep .5s ease-in-out;
-              animation: sweep .5s ease-in-out; }
+      -webkit-animation: sweep 0.5s ease-in-out;
+              animation: sweep 0.5s ease-in-out; }
     .lsx-block-accordion details summary::-webkit-details-marker {
       display: none; }
     .lsx-block-accordion details summary:after {
@@ -1027,11 +1032,13 @@ article .lsx-button {
       font-size: 25px;
       font-weight: bold;
       line-height: 25px;
-      float: right; }
+      float: right;
+      -ms-flex-item-align: center;
+          align-self: center; }
     .lsx-block-accordion details summary:hover {
-      background-color: #E0E0E0; }
+      background-color: #e0e0e0; }
   .lsx-block-accordion details[open] summary {
-    background-color: #E0E0E0; }
+    background-color: #e0e0e0; }
     .lsx-block-accordion details[open] summary:after {
       content: "-"; }
   .lsx-block-accordion .lsx-accordion-title {
@@ -1044,6 +1051,8 @@ article .lsx-button {
   .lsx-block-accordion .lsx-accordion-text {
     padding: 10px 15px;
     background-color: white; }
+    .lsx-block-accordion .lsx-accordion-text p:not(.has-text-color) {
+      color: #4a4a4a; }
     .lsx-block-accordion .lsx-accordion-text > * {
       margin-bottom: 10px; }
       .lsx-block-accordion .lsx-accordion-text > *:last-child {
@@ -1071,6 +1080,14 @@ article .lsx-button {
     display: block;
     left: 40%; }
 
+.editor-styles-wrapper .lsx-accordion-title {
+  margin: 0;
+  background: #e0e0e0; }
+
+.editor-styles-wrapper .lsx-accordion-text .wp-block,
+.editor-styles-wrapper .lsx-accordion-text .wp-block > * {
+  margin: 0; }
+
 @-webkit-keyframes sweep {
   0% {
     opacity: 0;
@@ -1088,7 +1105,7 @@ article .lsx-button {
     margin-bottom: 0px; } }
 
 .lsx-block-accordion + .lsx-block-accordion {
-  margin-top: -.6em; }
+  margin-top: -0.6em; }
 @charset "UTF-8";
 /**
  * Common styles
