@@ -65,6 +65,7 @@ class Admin {
 			'lsx_disable_title'   => 'string',
 			'lsx_title_alignment' => 'string',
 			'lsx_title_width'     => 'string',
+			'lsx_title_position'  => 'string',
 			'lsx_title_bg_colour' => 'string',
 			'lsx_title_colour'    => 'string',
 		);

@@ -67,11 +67,7 @@ class Page_Title {
 			if ( function_exists( 'has_blocks' ) && has_blocks() ) {
 				remove_action( 'lsx_entry_top', 'lsx_post_header' );
 				remove_action( 'lsx_entry_top', 'lsx_add_entry_meta', 999 );
-
-				add_action( 'lsx_entry_top', array( $this, 'lsx_block_header' ) );
-
 				add_action( 'body_class', array( $this, 'body_class' ) );
-
 				$this->position_title();
 			}
 		}
@@ -84,12 +80,16 @@ class Page_Title {
 	 * @return array
 	 */
 	public function position_title() {
-		$position = 'hero-banner';
-
+		$position = 'in-banner';
+		$position = apply_filters( 'lsx_hero_banner_block_position', $position );
 		switch ( $position ) {
-			case 'hero-banner':
+			case 'below-banner':
+				add_action( 'lsx_entry_top', array( $this, 'lsx_block_header' ) );
+				break;
+
+			case 'in-banner':
 			default:
-				add_action( 'lsx_hero_banner', array( $this, 'lsx_block_title' ) );
+				add_action( 'lsx_hero_banner', array( $this, 'lsx_block_header' ) );
 				break;
 		}
 		$classes[] = 'lsx-page-title';

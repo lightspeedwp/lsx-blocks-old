@@ -14,7 +14,7 @@ const {
 	useDispatch,
 } = wp.data;
 
-const TextColour = withState( {	color: false } )( ( { color, setState } ) => {
+const TextColour = withState( {	color: undefined } )( ( { color, setState } ) => {
 	const { editPost } = useDispatch( 'core/editor' );
 
 	// Lets get the initial State of the toggle from the custom field / autosaves.
@@ -23,7 +23,9 @@ const TextColour = withState( {	color: false } )( ( { color, setState } ) => {
 	}, [] );
 
 	// If you Custom field is not null then there is something saved in it.
-	if ( '' !== rawChecked && undefined !== rawChecked ) {
+	if ( '' === rawChecked || 'transparent' === rawChecked ) {
+		color = undefined;
+	} else {
 		color = rawChecked;
 	}
 
@@ -35,7 +37,11 @@ const TextColour = withState( {	color: false } )( ( { color, setState } ) => {
 				value: color,
 				label: __( 'Text Color' ),
 				onChange: ( selectedTextColour ) => {
-					editPost( { meta: { lsx_title_colour: selectedTextColour } } );
+					let saveValue = selectedTextColour;
+					if ( undefined === selectedTextColour ) {
+						saveValue = 'inherit';
+					}
+					editPost( { meta: { lsx_title_colour: saveValue } } );
 					return ( { selectedTextColour } );
 				},
 			} ] }

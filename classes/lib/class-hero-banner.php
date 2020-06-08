@@ -264,16 +264,13 @@ class Hero_Banner {
 		$background_image_attr = apply_filters( 'lsx_hero_banner_style_attr', $background_image_attr );
 		$background_width_attr = apply_filters( 'lsx_hero_banner_width_attr', '' );
 		?>
-		<div class="lsx-hero-banner lsx-full-width">
+		<div class="lsx-hero-banner-block">
 			<div class="wp-block-cover <?php echo esc_attr( $background_width_attr ); ?> has-background-dim <?php echo esc_attr( $css_classes ); ?>" style="<?php echo esc_attr( $background_image_attr ); ?>">
 				<div class="wp-block-cover__inner-container">
-					<?php if ( '' !== $args['title'] && false !== $args['title'] ) { ?>
-						<h1 class="has-text-align-center archive-title"><?php echo esc_html( $args['title'] ); ?></h1>
-					<?php } ?>
+					<?php do_action( 'lsx_hero_banner', 'lsx-blocks' ); ?>
 					<?php if ( '' !== $args['subtitle'] && false !== $args['subtitle'] ) { ?>
 						<p class="has-text-align-center"><?php echo esc_html( $args['subtitle'] ); ?></p>
 					<?php } ?>
-					<?php do_action( 'lsx_hero_banner', 'lsx-blocks' ); ?>
 				</div>
 			</div>
 		</div>
