@@ -4,8 +4,8 @@
 const { __ } = wp.i18n;
 
 const {
-	RadioControl,
-} = wp.components;
+	AlignmentToolbar,
+} = wp.editor;
 
 const {
 	withState,
@@ -16,7 +16,7 @@ const {
 	useDispatch,
 } = wp.data;
 
-const TitleAlignment = withState( {	option: 'center' } )( ( { option, setState } ) => {
+const TitleAlignment = withState( {	alignment: 'center' } )( ( { option } ) => {
 	const { editPost } = useDispatch( 'core/editor' );
 
 	// Lets get the initial State of the toggle from the custom field / autosaves.
@@ -28,18 +28,15 @@ const TitleAlignment = withState( {	option: 'center' } )( ( { option, setState }
 	if ( '' !== rawChecked && undefined !== rawChecked ) {
 		option = rawChecked;
 	}
+
+	const onChangeAlignment = ( updatedAlignment ) => {
+		editPost( { meta: { lsx_title_alignment: updatedAlignment } } );
+	};
+
 	return (
-		<RadioControl
-			selected={ option }
-			options={ [
-				{ label: __( 'Left', 'lsx-blocks' ), value: 'left' },
-				{ label: __( 'Center', 'lsx-blocks' ), value: 'center' },
-				{ label: __( 'Right', 'lsx-blocks' ), value: 'right' },
-			] }
-			onChange={ ( selected ) => setState( () => {
-				editPost( { meta: { lsx_title_alignment: selected } } );
-				return ( { selected } );
-			} ) }
+		<AlignmentToolbar
+			value={ option }
+			onChange={ onChangeAlignment }
 		/>
 	);
 } );

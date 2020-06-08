@@ -248,6 +248,25 @@ article {
 	.lsx-panel-row {
 		margin-bottom: 15px;
 
+		.lsx-col-3 {
+			display: inline-block;
+			width: 32%;
+			vertical-align: middle;
+			text-align: center;
+
+			&:first-child {
+				text-align: start;
+			}
+
+			&:last-child {
+				text-align: end;
+			}
+
+			.components-toolbar {
+				border: 0px solid #e2e4e7;
+			}
+		}
+
 		&.background-colour {
 			.components-panel__body {
 				padding-left:0px;

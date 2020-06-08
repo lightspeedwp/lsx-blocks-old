@@ -6,13 +6,11 @@ const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
 const { useSelect } = wp.data;
 
-//import DisableTitle from './components/disable-text';
 import DisableTitle from './components/disable-title';
 import TitleAlignment from './components/title-alignment';
 import TitleWidth from './components/title-width';
 import TextColour from './components/text-colour';
 import BackgroundColour from './components/background-colour';
-
 
 const lsxPageTitlePanel = () => {
 	// Here we check what the post type is and if your panel should show.
@@ -30,17 +28,18 @@ const lsxPageTitlePanel = () => {
 		>
 			<div className={ 'lsx-panel-row' }
 			>
-				<DisableTitle /> { __( 'Disable', 'lsx-blocks' ) }
-			</div>
-			<div className={ 'lsx-panel-row' }
-			>
-				{ __( 'Alignment', 'lsx-blocks' ) }
-				<TitleAlignment />
-			</div>
-			<div className={ 'lsx-panel-row' }
-			>
-				{ __( 'Width', 'lsx-blocks' ) }
-				<TitleWidth />
+				<div className={ 'lsx-col-3' }
+				>
+					<DisableTitle />
+				</div>
+				<div className={ 'lsx-col-3' }
+				>
+					<TitleAlignment />
+				</div>
+				<div className={ 'lsx-col-3' }
+				>
+					<TitleWidth />
+				</div>
 			</div>
 			<div className={ 'lsx-panel-row background-colour' }
 			>
