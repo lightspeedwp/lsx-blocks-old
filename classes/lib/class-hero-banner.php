@@ -64,9 +64,10 @@ class Hero_Banner {
 			add_filter( 'lsx_page_banner_disable', array( $this, 'disable_banner' ), 100, 1 );
 
 			add_filter( 'body_class', array( $this, 'banner_class' ), 10, 1 );
-			add_action( 'lsx_header_wrap_after', array( $this, 'maybe_display_banner' ) );
+			add_action( 'lsx_entry_top', array( $this, 'maybe_display_banner' ) );
 
 			// These can be removed if an action is run later in the `wp_head`.
+			add_filter( 'lsx_hero_banner_title', array( $this, 'default_banner_title' ), 10, 1 );
 			add_filter( 'lsx_hero_banner_colour', array( $this, 'default_banner_colour' ), 10, 1 );
 		}
 	}
@@ -168,11 +169,16 @@ class Hero_Banner {
 	 */
 	public function single_banner() {
 		$disable = get_post_meta( get_the_ID(), 'lsx_hero_banner_disable', true );
+		if ( ! is_singular( array( 'post', 'page' ) ) ) {
+			return;
+		}
 		if ( true !== $disable && 'on' !== $disable ) {
 			$item_id = get_the_ID();
 			$args = array(
 				'image'    => apply_filters( 'lsx_hero_banner_image', get_post_meta( $item_id, 'lsx_hero_banner', true ) ),
 				'colour'   => apply_filters( 'lsx_hero_banner_colour', get_post_meta( $item_id, 'lsx_hero_banner_colour', true ) ),
+				'title'    => apply_filters( 'lsx_hero_banner_title', get_post_meta( $item_id, 'lsx_hero_banner_title', true ) ),
+				'subtitle' => apply_filters( 'lsx_hero_banner_subtitle', get_post_meta( $item_id, 'lsx_hero_banner_subtitle', true ) ),
 			);
 			$this->do_banner( $args );
 		}
@@ -189,6 +195,8 @@ class Hero_Banner {
 			$args = array(
 				'image'    => apply_filters( 'lsx_hero_banner_image', get_option( 'archive_banner' ) ),
 				'colour'   => apply_filters( 'lsx_hero_banner_colour', get_option( 'archive_banner_colour' ) ),
+				'title'    => apply_filters( 'lsx_hero_banner_title', get_option( 'archive_banner_title' ) ),
+				'subtitle' => apply_filters( 'lsx_hero_banner_subtitle', get_option( 'archive_banner_subtitle' ) ),
 			);
 			$this->do_banner( $args );
 		}
@@ -205,6 +213,8 @@ class Hero_Banner {
 			$args = array(
 				'image'    => apply_filters( 'lsx_hero_banner_image', get_term_meta( get_queried_object_id(), 'lsx_hero_banner', true ) ),
 				'colour'   => apply_filters( 'lsx_hero_banner_colour', get_term_meta( get_queried_object_id(), 'lsx_hero_banner_colour', true ) ),
+				'title'    => apply_filters( 'lsx_hero_banner_title', get_term_meta( get_queried_object_id(), 'lsx_hero_banner_title', true ) ),
+				'subtitle' => apply_filters( 'lsx_hero_banner_subtitle', get_term_meta( get_queried_object_id(), 'lsx_hero_banner_subtitle', true ) ),
 			);
 			$this->do_banner( $args );
 		}
@@ -221,6 +231,8 @@ class Hero_Banner {
 			$args = array(
 				'image'    => apply_filters( 'lsx_hero_banner_image', get_option( 'engine_banner' ) ),
 				'colour'   => apply_filters( 'lsx_hero_banner_colour', get_option( 'engine_banner_colour' ) ),
+				'title'    => apply_filters( 'lsx_hero_banner_title', get_option( 'engine_banner_title' ) ),
+				'subtitle' => apply_filters( 'lsx_hero_banner_subtitle', get_option( 'engine_banner_subtitle' ) ),
 			);
 			$this->do_banner( $args );
 		}
@@ -236,6 +248,8 @@ class Hero_Banner {
 		$defaults = array(
 			'image'    => false,
 			'colour'   => '#2b3640',
+			'title'    => '',
+			'subtitle' => '',
 		);
 		$args     = wp_parse_args( $args, $defaults );
 		// Generate the background atts.
@@ -253,13 +267,44 @@ class Hero_Banner {
 		<div class="lsx-hero-banner lsx-full-width">
 			<div class="wp-block-cover <?php echo esc_attr( $background_width_attr ); ?> has-background-dim <?php echo esc_attr( $css_classes ); ?>" style="<?php echo esc_attr( $background_image_attr ); ?>">
 				<div class="wp-block-cover__inner-container">
-					<?php do_action( '', 'lsx-blocks' ); ?>
+					<?php if ( '' !== $args['title'] && false !== $args['title'] ) { ?>
+						<h1 class="has-text-align-center archive-title"><?php echo esc_html( $args['title'] ); ?></h1>
+					<?php } ?>
+					<?php if ( '' !== $args['subtitle'] && false !== $args['subtitle'] ) { ?>
+						<p class="has-text-align-center"><?php echo esc_html( $args['subtitle'] ); ?></p>
+					<?php } ?>
+					<?php do_action( 'lsx_hero_banner', 'lsx-blocks' ); ?>
 				</div>
 			</div>
 		</div>
 		<?php
 	}
 
+	/**
+	 * Adds default title to the banner if there is none.
+	 *
+	 * @param string $title
+	 * @return void
+	 */
+	public function default_banner_title( $title ) {
+		if ( '' === $title || false === $title ) {
+			switch ( $this->screen ) {
+				case 'single':
+					$title = get_the_title();
+					break;
+				case 'archive':
+				case 'taxonomy':
+					$title = get_the_archive_title();
+					break;
+				case 'search':
+					$title = __( 'Search Results for: ', 'lsx-business-directory' ) . get_query_var( 's' );
+					break;
+				default:
+					break;
+			}
+		}
+		return $title;
+	}
 	/**
 	 * Adds the default banner colour if there is none
 	 *
@@ -271,5 +316,16 @@ class Hero_Banner {
 			$colour = '#2b3640';
 		}
 		return $colour;
+	}
+
+	/**
+	 * Changes the single business listing title to an H2.
+	 *
+	 * @param string $title The listing title wrapped in an <h1>.
+	 * @return string
+	 */
+	public function change_single_business_listing_tag( $title ) {
+		$title = '<h2 class="entry-title">' . get_the_title() . '</h2>';
+		return $title;
 	}
 }

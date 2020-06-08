@@ -71,8 +71,29 @@ class Page_Title {
 				add_action( 'lsx_entry_top', array( $this, 'lsx_block_header' ) );
 
 				add_action( 'body_class', array( $this, 'body_class' ) );
+
+				$this->position_title();
 			}
 		}
+	}
+
+	/**
+	 * Adds our page title class to the body
+	 *
+	 * @param  array $classes
+	 * @return array
+	 */
+	public function position_title() {
+		$position = 'hero-banner';
+
+		switch ( $position ) {
+			case 'hero-banner':
+			default:
+				add_action( 'lsx_hero_banner', array( $this, 'lsx_block_title' ) );
+				break;
+		}
+		$classes[] = 'lsx-page-title';
+		return $classes;
 	}
 
 	/**
