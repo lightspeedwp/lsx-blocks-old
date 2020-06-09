@@ -9,6 +9,7 @@ const { useSelect } = wp.data;
 import DisableTitle from './components/disable-title';
 import TitleAlignment from './components/title-alignment';
 import TitleWidth from './components/title-width';
+import TitlePosition from './components/title-position';
 import TextColour from './components/text-colour';
 import BackgroundColour from './components/background-colour';
 
@@ -40,6 +41,10 @@ const lsxPageTitlePanel = () => {
 				>
 					<TitleWidth />
 				</div>
+			</div>
+			<div className={ 'lsx-panel-row is-list' }
+			>
+				<TitlePosition />
 			</div>
 			<div className={ 'lsx-panel-row background-colour' }
 			>

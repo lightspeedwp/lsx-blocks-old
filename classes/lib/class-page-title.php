@@ -64,7 +64,7 @@ class Page_Title {
 				return;
 			}
 			// Remove the legacy page title and entry meta.
-			if ( function_exists( 'has_blocks' ) && has_blocks() ) {
+			if ( function_exists( 'has_blocks' ) && ( has_blocks() || true === apply_filters( 'override_title_display', false ) ) ) {
 				remove_action( 'lsx_entry_top', 'lsx_post_header' );
 				remove_action( 'lsx_entry_top', 'lsx_add_entry_meta', 999 );
 				add_action( 'body_class', array( $this, 'body_class' ) );
@@ -80,7 +80,7 @@ class Page_Title {
 	 * @return array
 	 */
 	public function position_title() {
-		$position = 'in-banner';
+		$position = get_post_meta( get_the_ID(), 'lsx_title_position', true );
 		$position = apply_filters( 'lsx_hero_banner_block_position', $position );
 		switch ( $position ) {
 			case 'below-banner':

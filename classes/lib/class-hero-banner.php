@@ -81,7 +81,7 @@ class Hero_Banner {
 		$post_types = array( 'post', 'page' );
 		$taxonomies = array( 'industry', 'location' );
 
-		if ( is_singular( $post_types ) ) {
+		if ( is_singular( $post_types ) && function_exists( 'has_blocks' ) && has_blocks() ) {
 			$this->screen = 'single';
 		} elseif ( is_post_type_archive( $post_types ) ) {
 			$this->screen = 'archive';
@@ -264,14 +264,12 @@ class Hero_Banner {
 		$background_image_attr = apply_filters( 'lsx_hero_banner_style_attr', $background_image_attr );
 		$background_width_attr = apply_filters( 'lsx_hero_banner_width_attr', '' );
 		?>
-		<div class="lsx-hero-banner-block">
-			<div class="wp-block-cover <?php echo esc_attr( $background_width_attr ); ?> has-background-dim <?php echo esc_attr( $css_classes ); ?>" style="<?php echo esc_attr( $background_image_attr ); ?>">
-				<div class="wp-block-cover__inner-container">
-					<?php do_action( 'lsx_hero_banner', 'lsx-blocks' ); ?>
-					<?php if ( '' !== $args['subtitle'] && false !== $args['subtitle'] ) { ?>
-						<p class="has-text-align-center"><?php echo esc_html( $args['subtitle'] ); ?></p>
-					<?php } ?>
-				</div>
+		<div class="lsx-hero-banner-block wp-block-cover <?php echo esc_attr( $background_width_attr ); ?> has-background-dim <?php echo esc_attr( $css_classes ); ?>" style="<?php echo esc_attr( $background_image_attr ); ?>">
+			<div class="wp-block-cover__inner-container">
+				<?php $this->banner_content(); ?>
+				<?php if ( '' !== $args['subtitle'] && false !== $args['subtitle'] ) { ?>
+					<p class="has-text-align-center"><?php echo esc_html( $args['subtitle'] ); ?></p>
+				<?php } ?>
 			</div>
 		</div>
 		<?php
@@ -313,6 +311,22 @@ class Hero_Banner {
 			$colour = '#2b3640';
 		}
 		return $colour;
+	}
+
+	/**
+	 * Outputs the banner content.
+	 *
+	 * @return void
+	 */
+	public function banner_content() {
+		$content = '';
+		ob_start();
+		do_action( 'lsx_hero_banner', 'lsx-blocks' );
+		$content = ob_get_clean();
+		if ( empty( $content ) ) {
+			$content = '<div style="height:100px;" aria-hidden="true" class="wp-block-spacer"></div>';
+		}
+		echo wp_kses_post( $content );
 	}
 
 	/**
