@@ -64,7 +64,7 @@ class Hero_Banner {
 			add_filter( 'lsx_page_banner_disable', array( $this, 'disable_banner' ), 100, 1 );
 
 			add_filter( 'body_class', array( $this, 'banner_class' ), 10, 1 );
-			add_action( 'lsx_entry_top', array( $this, 'maybe_display_banner' ) );
+			add_action( 'lsx_content_top', array( $this, 'maybe_display_banner' ) );
 
 			// These can be removed if an action is run later in the `wp_head`.
 			add_filter( 'lsx_hero_banner_title', array( $this, 'default_banner_title' ), 10, 1 );
