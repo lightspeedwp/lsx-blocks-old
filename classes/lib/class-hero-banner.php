@@ -250,6 +250,7 @@ class Hero_Banner {
 			'colour'   => '#2b3640',
 			'title'    => '',
 			'subtitle' => '',
+			'width'    => apply_filters( 'lsx_hero_banner_default_width_attr', 'alignfull' ),
 		);
 		$args     = wp_parse_args( $args, $defaults );
 		// Generate the background atts.
@@ -262,7 +263,7 @@ class Hero_Banner {
 			$css_classes           = apply_filters( 'lsx_hero_banner_css_class', 'has-background-img' );
 		}
 		$background_image_attr = apply_filters( 'lsx_hero_banner_style_attr', $background_image_attr );
-		$background_width_attr = apply_filters( 'lsx_hero_banner_width_attr', '' );
+		$background_width_attr = apply_filters( 'lsx_hero_banner_width_attr', $args['width'] );
 		?>
 		<div class="lsx-hero-banner-block wp-block-cover <?php echo esc_attr( $background_width_attr ); ?> has-background-dim <?php echo esc_attr( $css_classes ); ?>" style="<?php echo esc_attr( $background_image_attr ); ?>">
 			<div class="wp-block-cover__inner-container">
