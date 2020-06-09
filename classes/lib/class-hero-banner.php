@@ -93,6 +93,8 @@ class Hero_Banner {
 		} else {
 			$this->screen = '';
 		}
+
+		$this->screen = apply_filters( 'lsx_hero_banner_override', $this->screen );
 	}
 
 	/**
@@ -246,10 +248,10 @@ class Hero_Banner {
 	 */
 	public function do_banner( $args = array() ) {
 		$defaults = array(
-			'image'    => false,
-			'colour'   => '#2b3640',
-			'title'    => '',
-			'subtitle' => '',
+			'image'    => apply_filters( 'lsx_hero_banner_default_image_attr', false ),
+			'colour'   => apply_filters( 'lsx_hero_banner_default_colour', '#2b3640' ),
+			'title'    => apply_filters( 'lsx_hero_banner_default_title', '' ),
+			'subtitle' => apply_filters( 'lsx_hero_banner_default_subtitle', '' ),
 			'width'    => apply_filters( 'lsx_hero_banner_default_width_attr', 'alignfull' ),
 		);
 		$args     = wp_parse_args( $args, $defaults );
