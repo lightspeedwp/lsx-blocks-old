@@ -15,6 +15,25 @@
 		display:none;
 		padding-right: 10px;
 	}
+
+	&.columns-1 {
+		grid-template-columns: 1;
+		article {
+			width: 100%;
+			display: block;
+
+			display: grid;
+			grid-template-columns: 30% 1fr;
+			grid-template-rows: 1fr;
+			grid-gap: 0 1em;
+
+			.lsx-block-post-grid-text {
+				margin-top: 0px;
+				padding-top: 15px;
+			}
+		}
+	}
+
 	&.columns-2 {
 		article {
 			width: 50%;

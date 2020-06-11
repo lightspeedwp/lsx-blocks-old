@@ -3,8 +3,10 @@
 ## [1.3.0]
 
 ### Added
-- Added more styling and better layout for the Accordeon block.
+- Added more styling and better layout for the Accordion block.
 
+### Fixed
+- Allowing the Post Carousel to use a 1 column layout for the post carousel block.
 
 ## [[1.1.2]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.1.2) - 2020-05-21
 

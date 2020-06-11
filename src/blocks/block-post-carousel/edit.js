@@ -210,7 +210,7 @@ class LatestPostsBlockCarousel extends Component {
 						label={ __( 'Columns' ) }
 						value={ columnsCarousel }
 						onChange={ ( value ) => setAttributes( { columnsCarousel: value } ) }
-						min={ 2 }
+						min={ 1 }
 						max={ ! hasPosts ? MAX_POSTS_COLUMNS_CAROUSEL : Math.min( MAX_POSTS_COLUMNS_CAROUSEL, latestPosts.length ) }
 					/>
 					<ToggleControl
