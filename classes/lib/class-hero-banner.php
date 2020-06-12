@@ -83,14 +83,14 @@ class Hero_Banner {
 
 		if ( is_singular( $post_types ) && function_exists( 'has_blocks' ) && has_blocks() ) {
 			$this->screen = 'single';
-		} elseif ( is_post_type_archive( $post_types ) ) {
+		} /* elseif ( is_post_type_archive( $post_types ) ) {
 			$this->screen = 'archive';
 		} elseif ( is_tax( $taxonomies ) ) {
 			$this->screen = 'taxonomy';
 		} elseif ( is_search() ) {
 			$engine       = get_query_var( 'engine' );
 			$this->screen = 'search';
-		} else {
+		}*/ else {
 			$this->screen = '';
 		}
 
