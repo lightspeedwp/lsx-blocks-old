@@ -81,7 +81,7 @@ class Hero_Banner {
 		$post_types = array( 'post', 'page' );
 		$taxonomies = array( 'industry', 'location' );
 
-		if ( is_singular( $post_types ) && function_exists( 'has_blocks' ) && has_blocks() ) {
+		if ( is_singular( $post_types ) && function_exists( 'has_blocks' ) && has_blocks() && ! is_front_page() && ! is_home() ) {
 			$this->screen = 'single';
 		} /* elseif ( is_post_type_archive( $post_types ) ) {
 			$this->screen = 'archive';
