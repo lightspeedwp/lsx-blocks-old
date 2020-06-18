@@ -120,7 +120,6 @@ class Page_Title {
 
 			<div class="lsx-title-block wp-block-group <?php $this->the_title_width(); ?> <?php $this->the_title_bg_colour_class(); ?>" style="<?php $this->the_title_bg_colour_attr(); ?>">
 				<div class="wp-block-group__inner-container">
-					<div style="height:2.4rem" aria-hidden="true" class="wp-block-spacer"></div>
 					<?php $this->lsx_block_title(); ?>
 				</div>
 			</div>

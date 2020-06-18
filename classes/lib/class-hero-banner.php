@@ -324,9 +324,6 @@ class Hero_Banner {
 		ob_start();
 		do_action( 'lsx_hero_banner', 'lsx-blocks' );
 		$content = ob_get_clean();
-		if ( empty( $content ) ) {
-			$content = '<div style="height:100px;" aria-hidden="true" class="wp-block-spacer"></div>';
-		}
 		echo wp_kses_post( $content );
 	}
 
