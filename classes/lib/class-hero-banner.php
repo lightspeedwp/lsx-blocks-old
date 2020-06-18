@@ -57,15 +57,13 @@ class Hero_Banner {
 	 */
 	public function wp_head() {
 		$this->set_screen();
-		if ( '' !== $this->screen ) {
+		if ( '' !== $this->screen && function_exists( 'has_blocks' ) && has_blocks() ) {
 			remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
 			add_filter( 'lsx_banner_disable', array( $this, 'disable_banner' ), 100, 1 );
 			add_filter( 'lsx_global_header_disable', array( $this, 'disable_banner' ), 100, 1 );
 			add_filter( 'lsx_page_banner_disable', array( $this, 'disable_banner' ), 100, 1 );
-
 			add_filter( 'body_class', array( $this, 'banner_class' ), 10, 1 );
 			add_action( 'lsx_content_top', array( $this, 'maybe_display_banner' ) );
-
 			// These can be removed if an action is run later in the `wp_head`.
 			add_filter( 'lsx_hero_banner_title', array( $this, 'default_banner_title' ), 10, 1 );
 			add_filter( 'lsx_hero_banner_colour', array( $this, 'default_banner_colour' ), 10, 1 );
