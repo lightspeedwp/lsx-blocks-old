@@ -66,7 +66,6 @@ class Hero_Banner {
 			add_action( 'lsx_content_top', array( $this, 'maybe_display_banner' ) );
 			// These can be removed if an action is run later in the `wp_head`.
 			add_filter( 'lsx_hero_banner_title', array( $this, 'default_banner_title' ), 10, 1 );
-			add_filter( 'lsx_hero_banner_colour', array( $this, 'default_banner_colour' ), 10, 1 );
 		}
 	}
 
@@ -250,22 +249,21 @@ class Hero_Banner {
 			'colour'   => apply_filters( 'lsx_hero_banner_default_colour', '#2b3640' ),
 			'title'    => apply_filters( 'lsx_hero_banner_default_title', '' ),
 			'subtitle' => apply_filters( 'lsx_hero_banner_default_subtitle', '' ),
-			'width'    => apply_filters( 'lsx_hero_banner_default_width_attr', 'alignfull' ),
+			'width'    => apply_filters( 'lsx_hero_banner_default_width_attr', $this->get_width() ),
 		);
 		$args     = wp_parse_args( $args, $defaults );
 		// Generate the background atts.
 		$background_image_attr = '';
 		$css_classes           = '';
-		if ( '' === $args['image'] || false === $args['image'] ) {
-			$background_image_attr = 'background-color:' . $args['colour'];
-		} else {
+
+		if ( '' !== $args['image'] && false !== $args['image'] ) {
 			$background_image_attr = 'background-image:url(' . $args['image'] . ')';
 			$css_classes           = apply_filters( 'lsx_hero_banner_css_class', 'has-background-img' );
 		}
 		$background_image_attr = apply_filters( 'lsx_hero_banner_style_attr', $background_image_attr );
 		$background_width_attr = apply_filters( 'lsx_hero_banner_width_attr', $args['width'] );
 		?>
-		<div class="lsx-hero-banner-block wp-block-cover <?php echo esc_attr( $background_width_attr ); ?> has-background-dim <?php echo esc_attr( $css_classes ); ?>" style="<?php echo esc_attr( $background_image_attr ); ?>">
+		<div class="lsx-hero-banner-block wp-block-cover <?php $this->the_bg_colour_class(); ?> <?php echo esc_attr( $background_width_attr ); ?> has-background-dim <?php echo esc_attr( $css_classes ); ?>" style="<?php echo esc_attr( $background_image_attr ); ?><?php $this->the_bg_colour_attr(); ?>">
 			<div class="wp-block-cover__inner-container">
 				<?php $this->banner_content(); ?>
 				<?php if ( '' !== $args['subtitle'] && false !== $args['subtitle'] ) { ?>
@@ -301,18 +299,6 @@ class Hero_Banner {
 		}
 		return $title;
 	}
-	/**
-	 * Adds the default banner colour if there is none
-	 *
-	 * @param string $colour
-	 * @return void
-	 */
-	public function default_banner_colour( $colour ) {
-		if ( false === $colour || '' === $colour ) {
-			$colour = '#2b3640';
-		}
-		return $colour;
-	}
 
 	/**
 	 * Outputs the banner content.
@@ -336,5 +322,76 @@ class Hero_Banner {
 	public function change_single_business_listing_tag( $title ) {
 		$title = '<h2 class="entry-title">' . get_the_title() . '</h2>';
 		return $title;
+	}
+
+	/**
+	 * Gets the title css classes.
+	 *
+	 * @return string
+	 */
+	public function get_css() {
+		$classes = '';
+		$colour  = get_post_meta( get_the_ID(), 'lsx_banner_bg_colour', true );
+		if ( '' !== $colour && false !== $colour ) {
+			$classes .= ' has-text-color';
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Gets the width you want for the parent group block .
+	 */
+	public function get_width() {
+		$classes = '';
+		$width   = get_post_meta( get_the_ID(), 'lsx_banner_width', true );
+		if ( '' === $width || false === $width ) {
+			$width = 'content';
+		}
+		$classes = 'align' . $width;
+		return $classes;
+	}
+
+	/**
+	 * Gets the width you want for the parent group block .
+	 *
+	 * @return string
+	 */
+	public function the_bg_colour_class() {
+		$classes = '';
+		$colour  = get_post_meta( get_the_ID(), 'lsx_banner_bg_colour', true );
+		if ( '' !== $colour && false !== $colour ) {
+			$classes = ' has-background';
+		}
+		echo esc_attr( $classes );
+	}
+
+	/**
+	 * Gets the width you want for the parent group block .
+	 *
+	 * @return string
+	 */
+	public function the_bg_colour_attr() {
+		$attr   = '';
+		$colour = get_post_meta( get_the_ID(), 'lsx_banner_bg_colour', true );
+		if ( '' === $colour || false === $colour ) {
+			$colour = '#2b3640';
+		}
+		$attr = ' background-color:' . $colour . ';';
+		echo esc_attr( $attr );
+	}
+
+	/**
+	 * Gets the colour for the title text.
+	 *
+	 * @return string
+	 */
+	public function get_colour_attr() {
+		$attr   = '';
+		$colour = get_post_meta( get_the_ID(), 'lsx_banner_colour', true );
+		if ( '' !== $colour && false !== $colour ) {
+			$attr = ' color:' . $colour . ';';
+		}
+		return $attr;
 	}
 }

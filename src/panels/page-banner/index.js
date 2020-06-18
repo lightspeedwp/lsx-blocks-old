@@ -38,10 +38,6 @@ const lsxPageBannerPanel = () => {
 			</div>
 			<div className={ 'lsx-panel-row background-colour' }
 			>
-				<TextColour />
-			</div>
-			<div className={ 'lsx-panel-row background-colour' }
-			>
 				<BackgroundColour />
 			</div>
 		</PluginDocumentSettingPanel>
