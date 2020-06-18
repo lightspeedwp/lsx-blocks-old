@@ -244,16 +244,27 @@ article {
 	}
 }
 
-.lsx-page-title-panel {
+.lsx-page-title-panel,
+.lsx-page-banner-panel {
 	.lsx-panel-row {
 		margin-bottom: 15px;
+
+		.lsx-col-2 {
+			width: 49%;
+			display: inline-block;
+			vertical-align: middle;
+			text-align: center;
+		}
 
 		.lsx-col-3 {
 			display: inline-block;
 			width: 32%;
 			vertical-align: middle;
 			text-align: center;
+		}
 
+		.lsx-col-2,
+		.lsx-col-3 {
 			&:first-child {
 				text-align: start;
 			}
