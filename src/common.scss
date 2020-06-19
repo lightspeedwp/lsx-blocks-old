@@ -299,5 +299,32 @@ article {
 				display:none;
 			}
 		}
+
+		.button {
+			&.media-button {
+				border: 1px dashed #a2aab2;
+				background-color: #edeff0;
+				min-height: 90px;
+				line-height: 20px;
+				padding: 8px 0;
+				text-align: center;
+				width: 100%;
+				color:#1e1e1e;
+			}
+			&.media-button-remove {
+				padding: 0;
+				border: 0px dashed #a2aab2;
+				min-height: auto;
+				height: auto;
+				border-radius: 0px;
+				color:#d94f4f;
+				background-color: white;
+				text-decoration: underline;
+
+				&:hover {
+					color:#00a0d2;
+				}
+			}
+		}
 	}
 }

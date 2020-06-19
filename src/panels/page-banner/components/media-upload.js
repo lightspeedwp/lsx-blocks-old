@@ -26,18 +26,21 @@ const LSXImageUploadPanel = withState( { media: undefined } )( ( { media, setSta
 	}, [] );
 
 	let displayCss = true;
-	let uploadCss = false;
+	let uploadCss = '';
 	let url = '';
+
+	console.log('SAVED');
+	console.log(rawChecked);
 
 	// If you Custom field is not null then there is something saved in it.
 	if ( '' === rawChecked || 'transparent' === rawChecked || undefined === rawChecked ) {
 		media = undefined;
 	} else {
-		let rawCheckedArray = rawChecked.split( '|' );
-		media = rawCheckedArray[0];
-		url = rawCheckedArray[1];
+		const rawCheckedArray = rawChecked.split( '|' );
+		media = rawCheckedArray[ 0 ];
+		url = rawCheckedArray[ 1 ];
 		displayCss = false;
-		uploadCss = true;
+		uploadCss = 'hidden';
 	}
 
 	return (
@@ -46,9 +49,8 @@ const LSXImageUploadPanel = withState( { media: undefined } )( ( { media, setSta
 				onSelect={
 					( mediaSelected ) => {
 						if ( undefined !== mediaSelected ) {
-							let saveValue = mediaSelected.id + '|' + mediaSelected.url;
+							const saveValue = mediaSelected.id + '|' + mediaSelected.url;
 							editPost( { meta: { lsx_banner_image: saveValue } } );
-							console.log(saveValue);
 						}
 						return ( { mediaSelected } );
 					}
@@ -56,13 +58,27 @@ const LSXImageUploadPanel = withState( { media: undefined } )( ( { media, setSta
 				allowedTypes={ ALLOWED_MEDIA_TYPES }
 				value={ media }
 				render={ ( { open } ) => (
-					<Button hidden={ uploadCss } onClick={ open }>
+					<Button className={ 'button media-button ' + uploadCss } onClick={ open }>
 						{ __( 'Select an image', 'lsx-blocks' ) }
 					</Button>
 				) }
 			/>
 			<p hidden={ displayCss }>
-				<img src={ url } alt={ __( 'Banner Preview', 'lsx-blocks' ) } ></img>
+				<img
+					src={ url }
+					alt={ __( 'Banner Preview', 'lsx-blocks' ) }
+				>
+				</img>
+				<Button
+					className={ 'button media-button-remove' }
+					onClick={
+						() => {
+							editPost( { meta: { lsx_banner_image: '' } } );
+						}
+					}
+				>
+					{ __( 'Remove image', 'lsx-blocks' ) }
+				</Button>
 			</p>
 		</MediaUploadCheck>
 	);

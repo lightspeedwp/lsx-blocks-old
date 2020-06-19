@@ -172,14 +172,7 @@ class Hero_Banner {
 			return;
 		}
 		if ( true !== $disable && 'on' !== $disable ) {
-			$item_id = get_the_ID();
-			$args = array(
-				'image'    => apply_filters( 'lsx_hero_banner_image', get_post_meta( $item_id, 'lsx_hero_banner', true ) ),
-				'colour'   => apply_filters( 'lsx_hero_banner_colour', get_post_meta( $item_id, 'lsx_hero_banner_colour', true ) ),
-				'title'    => apply_filters( 'lsx_hero_banner_title', get_post_meta( $item_id, 'lsx_hero_banner_title', true ) ),
-				'subtitle' => apply_filters( 'lsx_hero_banner_subtitle', get_post_meta( $item_id, 'lsx_hero_banner_subtitle', true ) ),
-			);
-			$this->do_banner( $args );
+			$this->do_banner();
 		}
 	}
 
@@ -245,7 +238,7 @@ class Hero_Banner {
 	 */
 	public function do_banner( $args = array() ) {
 		$defaults = array(
-			'image'    => apply_filters( 'lsx_hero_banner_default_image_attr', false ),
+			'image'    => apply_filters( 'lsx_hero_banner_default_image_attr', $this->get_image_attr() ),
 			'colour'   => apply_filters( 'lsx_hero_banner_default_colour', '#2b3640' ),
 			'title'    => apply_filters( 'lsx_hero_banner_default_title', '' ),
 			'subtitle' => apply_filters( 'lsx_hero_banner_default_subtitle', '' ),
@@ -257,8 +250,8 @@ class Hero_Banner {
 		$css_classes           = '';
 
 		if ( '' !== $args['image'] && false !== $args['image'] ) {
-			$background_image_attr = 'background-image:url(' . $args['image'] . ')';
-			$css_classes           = apply_filters( 'lsx_hero_banner_css_class', 'has-background-img' );
+			$background_image_attr = 'background-image:url(' . $args['image'] . ');';
+			$css_classes           = 'has-background-img';
 		}
 		$background_image_attr = apply_filters( 'lsx_hero_banner_style_attr', $background_image_attr );
 		$background_width_attr = apply_filters( 'lsx_hero_banner_width_attr', $args['width'] );
@@ -391,6 +384,22 @@ class Hero_Banner {
 		$colour = get_post_meta( get_the_ID(), 'lsx_banner_colour', true );
 		if ( '' !== $colour && false !== $colour ) {
 			$attr = ' color:' . $colour . ';';
+		}
+		return $attr;
+	}
+
+	/**
+	 * Gets the image for the title text.
+	 *
+	 * @return string
+	 */
+	public function get_image_attr() {
+		$attr  = '';
+		$image = get_post_meta( get_the_ID(), 'lsx_banner_image', true );
+
+		if ( '' !== $image && false !== $image ) {
+			$image = explode( '|', $image );
+			$attr  = $image[1];
 		}
 		return $attr;
 	}
