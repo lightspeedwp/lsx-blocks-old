@@ -20,19 +20,24 @@ const {
 const LSXImageUploadPanel = withState( { media: undefined } )( ( { media, setState } ) => {
 	const { editPost } = useDispatch( 'core/editor' );
 
-	console.log('MEDIA');
-	console.log(media);
-
 	// Lets get the initial State of the toggle from the custom field / autosaves.
 	const rawChecked = useSelect( select => {
 		return select( 'core/editor' ).getEditedPostAttribute( 'meta' ).lsx_banner_image;
 	}, [] );
 
+	let displayCss = true;
+	let uploadCss = false;
+	let url = '';
+
 	// If you Custom field is not null then there is something saved in it.
-	if ( '' === rawChecked || 'transparent' === rawChecked ) {
+	if ( '' === rawChecked || 'transparent' === rawChecked || undefined === rawChecked ) {
 		media = undefined;
 	} else {
-		media = rawChecked;
+		let rawCheckedArray = rawChecked.split( '|' );
+		media = rawCheckedArray[0];
+		url = rawCheckedArray[1];
+		displayCss = false;
+		uploadCss = true;
 	}
 
 	return (
@@ -41,7 +46,9 @@ const LSXImageUploadPanel = withState( { media: undefined } )( ( { media, setSta
 				onSelect={
 					( mediaSelected ) => {
 						if ( undefined !== mediaSelected ) {
-							editPost( { meta: { lsx_banner_image: [ mediaSelected.id, mediaSelected.url ] } } );
+							let saveValue = mediaSelected.id + '|' + mediaSelected.url;
+							editPost( { meta: { lsx_banner_image: saveValue } } );
+							console.log(saveValue);
 						}
 						return ( { mediaSelected } );
 					}
@@ -49,11 +56,14 @@ const LSXImageUploadPanel = withState( { media: undefined } )( ( { media, setSta
 				allowedTypes={ ALLOWED_MEDIA_TYPES }
 				value={ media }
 				render={ ( { open } ) => (
-					<Button onClick={ open }>
-						{ __( 'Select and Image', 'lsx-blocks' ) }
+					<Button hidden={ uploadCss } onClick={ open }>
+						{ __( 'Select an image', 'lsx-blocks' ) }
 					</Button>
 				) }
 			/>
+			<p hidden={ displayCss }>
+				<img src={ url } alt={ __( 'Banner Preview', 'lsx-blocks' ) } ></img>
+			</p>
 		</MediaUploadCheck>
 	);
 } );
