@@ -33,8 +33,9 @@ class Admin {
 	 * @access private
 	 */
 	private function __construct() {
-		add_action( 'add_meta_boxes_post', array( $this, 'featured_meta' ) );
-		add_action( 'save_post', array( $this, 'meta_save' ) );
+		//add_action( 'add_meta_boxes_post', array( $this, 'featured_meta' ) );
+		//add_action( 'save_post', array( $this, 'meta_save' ) );
+		add_action( 'init', array( $this, 'register_meta' ) );
 	}
 
 	/**
@@ -50,6 +51,42 @@ class Admin {
 			self::$instance = new self;
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Adds a meta box to the post editing screen
+	 */
+	public function register_meta() {
+		$available_post_types = array(
+			'post',
+			'page',
+		);
+		$rest_field           = array(
+			'lsx_disable_title'    => 'string',
+			'lsx_title_alignment'  => 'string',
+			'lsx_title_width'      => 'string',
+			'lsx_title_position'   => 'string',
+			'lsx_title_bg_colour'  => 'string',
+			'lsx_title_colour'     => 'string',
+			'lsx_disable_banner'   => 'string',
+			'lsx_banner_width'     => 'string',
+			'lsx_banner_bg_colour' => 'string',
+			'lsx_banner_colour'    => 'string',
+			'lsx_banner_image'     => 'string',
+		);
+		foreach ( $available_post_types as $pt ) {
+			foreach ( $rest_field as $meta_key => $type ) {
+				register_meta(
+					$pt,
+					$meta_key,
+					array(
+						'type'         => $type,
+						'single'       => true,
+						'show_in_rest' => true,
+					)
+				);
+			}
+		}
 	}
 
 	/**

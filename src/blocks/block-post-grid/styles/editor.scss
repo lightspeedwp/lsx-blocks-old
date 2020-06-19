@@ -7,6 +7,16 @@
 	h2 a {
 		text-decoration: none;
 	}
+
+	&.columns-1 {
+		article {
+			width: 50%;
+			&:nth-child(1), &:nth-child(2) {
+				display: inline-block;
+			}
+		}
+	}
+
 	&.columns-2 {
 		article {
 			width: 50%;
