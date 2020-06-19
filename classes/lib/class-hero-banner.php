@@ -339,7 +339,7 @@ class Hero_Banner {
 		$classes = '';
 		$width   = get_post_meta( get_the_ID(), 'lsx_banner_width', true );
 		if ( '' === $width || false === $width ) {
-			$width = 'content';
+			$width = 'full';
 		}
 		$classes = 'align' . $width;
 		return $classes;
