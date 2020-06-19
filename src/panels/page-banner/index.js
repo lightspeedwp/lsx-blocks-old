@@ -5,11 +5,13 @@ const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
 const { useSelect } = wp.data;
+const { PostFeaturedImage } = wp.editor;
 
 import DisableBanner from './components/disable-banner';
 import BannerWidth from './components/banner-width';
 import TextColour from './components/text-colour';
 import BackgroundColour from './components/background-colour';
+import LSXImageUploadPanel from './components/media-upload';
 
 const lsxPageBannerPanel = () => {
 	// Here we check what the post type is and if your panel should show.
@@ -39,6 +41,10 @@ const lsxPageBannerPanel = () => {
 			<div className={ 'lsx-panel-row background-colour' }
 			>
 				<BackgroundColour />
+			</div>
+			<div className={ 'lsx-panel-row' }
+			>
+				<LSXImageUploadPanel />
 			</div>
 		</PluginDocumentSettingPanel>
 	);

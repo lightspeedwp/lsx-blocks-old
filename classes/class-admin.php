@@ -72,6 +72,7 @@ class Admin {
 			'lsx_banner_width'     => 'string',
 			'lsx_banner_bg_colour' => 'string',
 			'lsx_banner_colour'    => 'string',
+			'lsx_banner_image'     => 'string',
 		);
 		foreach ( $available_post_types as $pt ) {
 			foreach ( $rest_field as $meta_key => $type ) {

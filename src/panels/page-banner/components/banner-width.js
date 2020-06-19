@@ -5,7 +5,7 @@ const { __ } = wp.i18n;
 
 const {
 	BlockAlignmentToolbar,
-} = wp.editor;
+} = wp.blockEditor;
 
 const {
 	withState,
