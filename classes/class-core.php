@@ -44,6 +44,11 @@ class Core {
 	public $lib = array();
 
 	/**
+	 * @var array holds the LSX options
+	 */
+	public $options = array();
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 1.0.0
@@ -51,6 +56,7 @@ class Core {
 	 * @access private
 	 */
 	private function __construct() {
+		$this->load_options();
 		$this->load_classes();
 	}
 
@@ -73,6 +79,22 @@ class Core {
 	}
 
 	/**
+	 * Loads the LSX Options.
+	 *
+	 * @return void
+	 */
+	public function load_options() {
+		if ( function_exists( 'tour_operator' ) ) {
+			$this->options = get_option( '_lsx-to_settings', false );
+		} else {
+			$this->options = get_option( '_lsx_settings', false );
+			if ( false === $this->options ) {
+				$this->options = get_option( '_lsx_lsx-settings', false );
+			}
+		}
+	}
+
+	/**
 	 * Loads the variable classes and the static classes.
 	 */
 	private function load_classes() {
@@ -85,10 +107,12 @@ class Core {
 		require_once( LSX_BLOCKS_PATH . 'classes/class-frontend.php' );
 		$this->frontend = Frontend::get_instance();
 
-		require_once( LSX_BLOCKS_PATH . 'classes/lib/class-page-title.php' );
-		$this->lib['page_title'] = lib\Page_Title::get_instance();
+		if ( ! empty( $this->options ) && isset( $this->options['display'] ) && isset( $this->options['display']['title_enhancements'] ) && 'on' === $this->options['display']['title_enhancements'] ) {
+			require_once( LSX_BLOCKS_PATH . 'classes/lib/class-page-title.php' );
+			$this->lib['page_title'] = lib\Page_Title::get_instance();
 
-		require_once( LSX_BLOCKS_PATH . 'classes/lib/class-hero-banner.php' );
-		$this->lib['hero_banner'] = lib\Hero_Banner::get_instance();
+			require_once( LSX_BLOCKS_PATH . 'classes/lib/class-hero-banner.php' );
+			$this->lib['hero_banner'] = lib\Hero_Banner::get_instance();
+		}
 	}
 }
