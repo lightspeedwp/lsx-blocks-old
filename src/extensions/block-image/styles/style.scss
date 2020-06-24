@@ -1,0 +1,21 @@
+.gutenberg-compatible-template.using-gutenberg {
+	@media (min-width: 600px) {
+		.wp-block-image {
+			&.has-spacing-small {
+				img {
+					margin: 1rem;
+				}
+			}
+			&.has-spacing-medium {
+				img {
+					margin: 3rem;
+				}
+			}
+			&.has-spacing-large {
+				img {
+					margin: 5rem;
+				}
+			}
+		}
+	}
+}
