@@ -1,4 +1,7 @@
-import assign from 'lodash.assign';
+// Import CSS
+import "./styles/style.scss";
+
+import assign from "lodash.assign";
 
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
@@ -8,28 +11,26 @@ const { addFilter } = wp.hooks;
 const { __ } = wp.i18n;
 
 // Enable spacing control on the following blocks
-const enableSpacingControlOnBlocks = [
-	'core/image',
-];
+const enableSpacingControlOnBlocks = ["core/image"];
 
 // Available spacing control options
 const spacingControlOptions = [
 	{
-		label: __( 'None' ),
-		value: '',
+		label: __("None"),
+		value: ""
 	},
 	{
-		label: __( 'Small' ),
-		value: 'small',
+		label: __("Small"),
+		value: "small"
 	},
 	{
-		label: __( 'Medium' ),
-		value: 'medium',
+		label: __("Medium"),
+		value: "medium"
 	},
 	{
-		label: __( 'Large' ),
-		value: 'large',
-	},
+		label: __("Large"),
+		value: "large"
+	}
 ];
 
 /**
@@ -40,70 +41,73 @@ const spacingControlOptions = [
  *
  * @returns {object} Modified block settings.
  */
-const addSpacingControlAttribute = ( settings, name ) => {
+const addSpacingControlAttribute = (settings, name) => {
 	// Do nothing if it's another block than our defined ones.
-	if ( ! enableSpacingControlOnBlocks.includes( name ) ) {
+	if (!enableSpacingControlOnBlocks.includes(name)) {
 		return settings;
 	}
 
 	// Use Lodash's assign to gracefully handle if attributes are undefined
-	settings.attributes = assign( settings.attributes, {
+	settings.attributes = assign(settings.attributes, {
 		spacing: {
-			type: 'string',
-			default: spacingControlOptions[ 0 ].value,
-		},
-	} );
+			type: "string",
+			default: spacingControlOptions[0].value
+		}
+	});
 
 	return settings;
 };
 
-addFilter( 'blocks.registerBlockType', 'extend-block-example/attribute/spacing', addSpacingControlAttribute );
+addFilter(
+	"blocks.registerBlockType",
+	"extend-block-example/attribute/spacing",
+	addSpacingControlAttribute
+);
 
 /**
  * Create HOC to add spacing control to inspector controls of block.
  */
-const withSpacingControl = createHigherOrderComponent( ( BlockEdit ) => {
-	return ( props ) => {
+const withSpacingControl = createHigherOrderComponent(BlockEdit => {
+	return props => {
 		// Do nothing if it's another block than our defined ones.
-		if ( ! enableSpacingControlOnBlocks.includes( props.name ) ) {
-			return (
-				<BlockEdit { ...props } />
-			);
+		if (!enableSpacingControlOnBlocks.includes(props.name)) {
+			return <BlockEdit {...props} />;
 		}
 
 		const { spacing } = props.attributes;
 
 		// add has-spacing-xy class to block
-		if ( spacing ) {
-			props.attributes.className = `has-spacing-${ spacing }`;
+		if (spacing) {
+			props.attributes.className = `has-spacing-${spacing}`;
 		}
 
 		return (
 			<Fragment>
-				<BlockEdit { ...props } />
+				<BlockEdit {...props} />
 				<InspectorControls>
-					<PanelBody
-						title={ __( 'Spacing Control' ) }
-						initialOpen={ true }
-					>
+					<PanelBody title={__("Spacing Control")} initialOpen={true}>
 						<SelectControl
-							label={ __( 'Spacing' ) }
-							value={ spacing }
-							options={ spacingControlOptions }
-							onChange={ ( selectedSpacingOption ) => {
-								props.setAttributes( {
-									spacing: selectedSpacingOption,
-								} );
-							} }
+							label={__("Spacing")}
+							value={spacing}
+							options={spacingControlOptions}
+							onChange={selectedSpacingOption => {
+								props.setAttributes({
+									spacing: selectedSpacingOption
+								});
+							}}
 						/>
 					</PanelBody>
 				</InspectorControls>
 			</Fragment>
 		);
 	};
-}, 'withSpacingControl' );
+}, "withSpacingControl");
 
-addFilter( 'editor.BlockEdit', 'extend-block-example/with-spacing-control', withSpacingControl );
+addFilter(
+	"editor.BlockEdit",
+	"extend-block-example/with-spacing-control",
+	withSpacingControl
+);
 
 /**
  * Add margin style attribute to save element of block.
@@ -114,24 +118,30 @@ addFilter( 'editor.BlockEdit', 'extend-block-example/with-spacing-control', with
  *
  * @returns {object} Modified props of save element.
  */
-const addSpacingExtraProps = ( saveElementProps, blockType, attributes ) => {
+const addSpacingExtraProps = (saveElementProps, blockType, attributes) => {
 	// Do nothing if it's another block than our defined ones.
-	if ( ! enableSpacingControlOnBlocks.includes( blockType.name ) ) {
+	if (!enableSpacingControlOnBlocks.includes(blockType.name)) {
 		return saveElementProps;
 	}
 
 	const margins = {
-		small: '5px',
-		medium: '15px',
-		large: '30px',
+		small: "5px",
+		medium: "15px",
+		large: "30px"
 	};
 
-	if ( attributes.spacing in margins ) {
+	if (attributes.spacing in margins) {
 		// Use Lodash's assign to gracefully handle if attributes are undefined
-		assign( saveElementProps, { style: { 'margin-bottom': margins[ attributes.spacing ] } } );
+		assign(saveElementProps, {
+			style: { "margin-bottom": margins[attributes.spacing] }
+		});
 	}
 
 	return saveElementProps;
 };
 
-addFilter( 'blocks.getSaveContent.extraProps', 'extend-block-example/get-save-content/extra-props', addSpacingExtraProps );
+addFilter(
+	"blocks.getSaveContent.extraProps",
+	"extend-block-example/get-save-content/extra-props",
+	addSpacingExtraProps
+);
