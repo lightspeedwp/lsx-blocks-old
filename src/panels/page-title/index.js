@@ -4,6 +4,7 @@
 const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
+const { useSelect } = wp.data;
 
 import DisableTitle from './components/disable-title';
 import TitleAlignment from './components/title-alignment';

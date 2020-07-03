@@ -60,11 +60,7 @@ class Admin {
 	 * Adds a meta box to the post editing screen
 	 */
 	public function register_meta() {
-		$available_post_types = array(
-			'post',
-			'page',
-		);
-		$rest_field           = array(
+		$rest_field = array(
 			'lsx_disable_title'    => 'string',
 			'lsx_title_alignment'  => 'string',
 			'lsx_title_width'      => 'string',
@@ -77,18 +73,16 @@ class Admin {
 			'lsx_banner_colour'    => 'string',
 			'lsx_banner_image'     => 'string',
 		);
-		foreach ( $available_post_types as $pt ) {
-			foreach ( $rest_field as $meta_key => $type ) {
-				register_meta(
-					$pt,
-					$meta_key,
-					array(
-						'type'         => $type,
-						'single'       => true,
-						'show_in_rest' => true,
-					)
-				);
-			}
+		foreach ( $rest_field as $meta_key => $type ) {
+			register_meta(
+				'post',
+				$meta_key,
+				array(
+					'type'         => $type,
+					'single'       => true,
+					'show_in_rest' => true,
+				)
+			);
 		}
 	}
 

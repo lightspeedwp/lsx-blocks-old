@@ -4,6 +4,7 @@
 const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
+const { useSelect } = wp.data;
 const { PostFeaturedImage } = wp.editor;
 
 import DisableBanner from './components/disable-banner';
@@ -13,6 +14,7 @@ import BackgroundColour from './components/background-colour';
 import LSXImageUploadPanel from './components/media-upload';
 
 const lsxPageBannerPanel = () => {
+
 	// Return the output of the Plugin Setting Panel.
 	return (
 		<PluginDocumentSettingPanel
