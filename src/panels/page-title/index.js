@@ -4,7 +4,6 @@
 const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
-const { useSelect } = wp.data;
 
 import DisableTitle from './components/disable-title';
 import TitleAlignment from './components/title-alignment';
@@ -14,12 +13,6 @@ import TextColour from './components/text-colour';
 import BackgroundColour from './components/background-colour';
 
 const lsxPageTitlePanel = () => {
-	// Here we check what the post type is and if your panel should show.
-	const postType = useSelect( select => select( 'core/editor' ).getCurrentPostType() );
-	if ( 'post' !== postType && 'page' !== postType ) {
-		return null;
-	}
-
 	// Return the output of the Plugin Setting Panel.
 	return (
 		<PluginDocumentSettingPanel

@@ -112,7 +112,7 @@ class Page_Title {
 	 */
 	public function lsx_block_header() {
 		$disable_title = get_post_meta( get_the_ID(), 'lsx_disable_title', true );
-		if ( 'yes' === $disable_title || ( ! is_singular( array( 'post', 'page' ) ) ) ) {
+		if ( 'yes' === $disable_title || ( ! is_singular() ) ) {
 			return;
 		}
 		?>

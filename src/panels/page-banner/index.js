@@ -4,7 +4,6 @@
 const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
-const { useSelect } = wp.data;
 const { PostFeaturedImage } = wp.editor;
 
 import DisableBanner from './components/disable-banner';
@@ -14,12 +13,6 @@ import BackgroundColour from './components/background-colour';
 import LSXImageUploadPanel from './components/media-upload';
 
 const lsxPageBannerPanel = () => {
-	// Here we check what the post type is and if your panel should show.
-	const postType = useSelect( select => select( 'core/editor' ).getCurrentPostType() );
-	if ( 'post' !== postType && 'page' !== postType ) {
-		return null;
-	}
-
 	// Return the output of the Plugin Setting Panel.
 	return (
 		<PluginDocumentSettingPanel

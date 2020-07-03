@@ -75,7 +75,7 @@ class Hero_Banner {
 	 * @return void
 	 */
 	public function set_screen() {
-		$post_types = array( 'post', 'page' );
+		$post_types = array();
 		$taxonomies = array( 'industry', 'location' );
 
 		if ( is_singular( $post_types ) && function_exists( 'has_blocks' ) && has_blocks() && ! is_front_page() && ! is_home() ) {
@@ -168,7 +168,7 @@ class Hero_Banner {
 	 */
 	public function single_banner() {
 		$disable = get_post_meta( get_the_ID(), 'lsx_hero_banner_disable', true );
-		if ( ! is_singular( array( 'post', 'page' ) ) ) {
+		if ( ! is_singular() ) {
 			return;
 		}
 		if ( true !== $disable && 'on' !== $disable ) {
