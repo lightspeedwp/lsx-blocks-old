@@ -84,6 +84,10 @@ class Page_Title {
 		$position = apply_filters( 'lsx_hero_banner_block_position', $position );
 		switch ( $position ) {
 			case 'below-banner':
+				add_action( 'lsx_content_top', array( $this, 'lsx_block_header' ) );
+				break;
+
+			case 'above-content':
 				add_action( 'lsx_entry_top', array( $this, 'lsx_block_header' ) );
 				break;
 
