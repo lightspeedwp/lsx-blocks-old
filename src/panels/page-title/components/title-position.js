@@ -23,7 +23,6 @@ const TitlePosition = withState( {	option: 'in-banner' } )( ( { option, setState
 	const rawChecked = useSelect( select => {
 		return select( 'core/editor' ).getEditedPostAttribute( 'meta' ).lsx_title_position;
 	}, [] );
-	console.log( 'alignment 3 ' + rawChecked );
 
 	// If you Custom field is not null then there is something saved in it.
 	if ( '' !== rawChecked && undefined !== rawChecked ) {
@@ -37,6 +36,7 @@ const TitlePosition = withState( {	option: 'in-banner' } )( ( { option, setState
 			options={ [
 				{ value: __( 'in-banner', 'lsx-blocks' ), label: __( 'In Hero Banner', 'lsx-blocks' ) },
 				{ value: __( 'below-banner', 'lsx-blocks' ), label: __( 'Below Hero Banner', 'lsx-blocks' ) },
+				{ value: __( 'above-content', 'lsx-blocks' ), label: __( 'Above the content', 'lsx-blocks' ) },
 			] }
 			onChange={ ( selected ) => setState( () => {
 				editPost( { meta: { lsx_title_position: selected } } );
