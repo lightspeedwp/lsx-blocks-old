@@ -161,7 +161,7 @@ class Admin {
 			</th>
 			<td>
 				<input type="checkbox" {{#if title_enhancements}} checked="checked" {{/if}} name="title_enhancements" />
-				<small><?php esc_html_e( 'Enables the LSX Blocks - Page Title and Page Enhancements', 'lsx-search' ); ?></small>
+				<small><?php esc_html_e( 'Enables the LSX Blocks - Page Banner and Title Enhancements', 'lsx-search' ); ?></small>
 			</td>
 		</tr>
 		<?php
