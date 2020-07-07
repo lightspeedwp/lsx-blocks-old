@@ -5,6 +5,7 @@
 ### Added
 
 - Added more styling and better layout for the Accordeon block.
+- Reducing the left and right Padding on LSX Buttons from 40px to 15px.
 
 ### Fixed
 
