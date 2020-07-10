@@ -107,12 +107,10 @@ class Core {
 		require_once( LSX_BLOCKS_PATH . 'classes/class-frontend.php' );
 		$this->frontend = Frontend::get_instance();
 
-		if ( ! empty( $this->options ) && isset( $this->options['display'] ) && isset( $this->options['display']['title_enhancements'] ) && 'on' === $this->options['display']['title_enhancements'] ) {
-			require_once( LSX_BLOCKS_PATH . 'classes/lib/class-page-title.php' );
-			$this->lib['page_title'] = lib\Page_Title::get_instance();
+		require_once( LSX_BLOCKS_PATH . 'classes/lib/class-page-title.php' );
+		$this->lib['page_title'] = lib\Page_Title::get_instance();
 
-			require_once( LSX_BLOCKS_PATH . 'classes/lib/class-hero-banner.php' );
-			$this->lib['hero_banner'] = lib\Hero_Banner::get_instance();
-		}
+		require_once( LSX_BLOCKS_PATH . 'classes/lib/class-hero-banner.php' );
+		$this->lib['hero_banner'] = lib\Hero_Banner::get_instance();
 	}
 }

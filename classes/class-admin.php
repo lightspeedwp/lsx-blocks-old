@@ -34,11 +34,6 @@ class Admin {
 	 */
 	private function __construct() {
 		add_action( 'init', array( $this, 'register_meta' ) );
-		if ( function_exists( 'tour_operator' ) ) {
-			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'enable_title_enhancements' ), 35 );
-		} else {
-			add_action( 'lsx_framework_display_tab_content', array( $this, 'enable_title_enhancements' ), 35 );
-		}
 	}
 
 	/**
@@ -146,24 +141,5 @@ class Admin {
 		} else {
 			update_post_meta( $post_id, 'lsx_disable_title', 'no' );
 		}
-	}
-
-	/**
-	 * Outputs the flag position field.
-	 *
-	 * @since 1.1.0
-	 */
-	public function enable_title_enhancements() {
-		?>
-		<tr class="form-field">
-			<th scope="row">
-				<label><?php esc_html_e( 'Enable Block Titles', 'lsx-search' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if title_enhancements}} checked="checked" {{/if}} name="title_enhancements" />
-				<small><?php esc_html_e( 'Enables the LSX Blocks - Page Banner and Title Enhancements', 'lsx-search' ); ?></small>
-			</td>
-		</tr>
-		<?php
 	}
 }
