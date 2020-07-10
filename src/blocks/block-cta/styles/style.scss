@@ -3,10 +3,10 @@
  * Loads on front end and back end
  */
 
- .lsx-block-cta {
+.lsx-block-cta {
 	position: relative;
 	background: #f2f2f2;
-    color: #293038;
+	color: #293038;
 	border-radius: 5px;
 	box-shadow: none !important;
 	.components-autocomplete {
@@ -59,13 +59,13 @@
 		object-fit: cover;
 		height: 100%;
 		width: 100%;
-		transition: .3s ease;
+		transition: 0.3s ease;
 	}
 
 	.lsx-cta-title {
 		display: inline-block;
 		width: 100%;
-		margin-bottom: .5em;
+		margin-bottom: 0.5em;
 		line-height: 1.2;
 		max-width: 100%;
 	}
@@ -108,7 +108,7 @@
 		font-weight: 700;
 		letter-spacing: 0.54px;
 		line-height: 1.25;
-		padding: 15px 40px;
+		padding: 15px;
 		transition: all 100ms ease;
 		@media only screen and (max-width: 600px) {
 			width: 100%;
@@ -144,12 +144,12 @@
 
 	.lsx-button-size-large {
 		font-size: 22px;
-		padding: .8em 1.2em;
+		padding: 0.8em 1.2em;
 	}
 
 	.lsx-button-size-extralarge {
 		font-size: 30px;
-		padding: .8em 1.2em;
+		padding: 0.8em 1.2em;
 	}
 
 	.lsx-font-size-24.lsx-cta-title {
@@ -237,43 +237,43 @@
 	}
 
 	.has-background-dim {
-		opacity: .5;
+		opacity: 0.5;
 	}
 
 	.has-background-dim-10 {
-		opacity: .1;
+		opacity: 0.1;
 	}
 
 	.has-background-dim-20 {
-		opacity: .2;
+		opacity: 0.2;
 	}
 
 	.has-background-dim-30 {
-		opacity: .3;
+		opacity: 0.3;
 	}
 
 	.has-background-dim-40 {
-		opacity: .4;
+		opacity: 0.4;
 	}
 
 	.has-background-dim-50 {
-		opacity: .5;
+		opacity: 0.5;
 	}
 
 	.has-background-dim-60 {
-		opacity: .6;
+		opacity: 0.6;
 	}
 
 	.has-background-dim-70 {
-		opacity: .7;
+		opacity: 0.7;
 	}
 
 	.has-background-dim-80 {
-		opacity: .8;
+		opacity: 0.8;
 	}
 
 	.has-background-dim-90 {
-		opacity: .9;
+		opacity: 0.9;
 	}
 
 	.has-background-dim-100 {

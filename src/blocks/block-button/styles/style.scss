@@ -3,7 +3,7 @@
  * Loads on front end and back end
  */
 
- .lsx-block-button {
+.lsx-block-button {
 	margin: 0 0 1em 0;
 	position: relative;
 
@@ -30,7 +30,7 @@
 		font-weight: 700;
 		letter-spacing: 0.54px;
 		line-height: 1.25;
-		padding: 15px 40px;
+		padding: 15px;
 		transition: all 100ms ease;
 		@media only screen and (max-width: 600px) {
 			width: 100%;
@@ -51,7 +51,7 @@
 
 	.lsx-button-size-small {
 		font-size: 10px;
-		font-family: 'Source Sans Pro', sans-serif;
+		font-family: "Source Sans Pro", sans-serif;
 	}
 
 	.lsx-button-size-medium {
@@ -60,12 +60,12 @@
 
 	.lsx-button-size-large {
 		font-size: 22px;
-		padding: .8em 1.2em;
+		padding: 0.8em 1.2em;
 	}
 
 	.lsx-button-size-extralarge {
 		font-size: 30px;
-		padding: .8em 1.2em;
+		padding: 0.8em 1.2em;
 	}
 
 	.lsx-button-no-border {
@@ -88,15 +88,16 @@
 	a {
 		display: inline-block;
 		position: relative;
-		&:before, &:after {
-			content: '';
+		&:before,
+		&:after {
+			content: "";
 			display: block;
 			height: 2px;
 			position: absolute;
 			top: 50%;
 			transform: translateY(-50%);
 			width: 25vw;
-			background-color: #DADDDF;
+			background-color: #dadddf;
 		}
 		&:before {
 			right: 120%;
@@ -105,7 +106,6 @@
 			left: 120%;
 		}
 	}
-
 }
 
 .lsx-button-right {

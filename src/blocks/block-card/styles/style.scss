@@ -3,7 +3,7 @@
  * Loads on front end and back end
  */
 
- .lsx-block-card {
+.lsx-block-card {
 	background: #f2f2f2;
 	color: #293038;
 	margin: 0 auto;
@@ -27,12 +27,14 @@
 		}
 	}
 	&.left {
-		.lsx-card-title, .lsx-card-subtitle {
+		.lsx-card-title,
+		.lsx-card-subtitle {
 			text-align: left;
 		}
 	}
 	&.right {
-		.lsx-card-title, .lsx-card-subtitle {
+		.lsx-card-title,
+		.lsx-card-subtitle {
 			text-align: right;
 		}
 	}
@@ -76,7 +78,7 @@
 			line-height: 1.6;
 
 			&:last-child {
-			margin-bottom: 0;
+				margin-bottom: 0;
 			}
 		}
 	}
@@ -92,7 +94,7 @@
 
 	.lsx-card-subtitle {
 		text-align: center;
-		opacity: .8;
+		opacity: 0.8;
 		padding-top: 5px;
 		margin-bottom: 0;
 	}
@@ -110,12 +112,13 @@
 				max-width: 90px;
 				padding-top: 30px;
 				max-height: 110px;
-    			object-fit: contain;
+				object-fit: contain;
 			}
 		}
 	}
 
-	.lsx-block-card.lsx-card-columns:empty, .lsx-card-text:empty,
+	.lsx-block-card.lsx-card-columns:empty,
+	.lsx-card-text:empty,
 	.lsx-card-text p:empty {
 		margin: 0;
 		padding: 0;
@@ -159,22 +162,20 @@
 		img {
 			object-fit: cover;
 			height: auto;
-    		width: 100%;
+			width: 100%;
 			position: relative;
 			z-index: 5;
 		}
 	}
-
 }
 
 #editor .lsx-has-avatar {
-
 	.lsx-card-image-square {
 		&:hover {
 			cursor: pointer;
 
 			img {
-				opacity: .7 !important;
+				opacity: 0.7 !important;
 			}
 		}
 
@@ -192,15 +193,13 @@
 			text-align: center;
 		}
 	}
-
 }
 
 /**
  * Button styles
  */
 
- .lsx-block-card {
-
+.lsx-block-card {
 	// .blocks-rich-text {
 	// 	display: inline-flex;
 	// }
@@ -227,7 +226,7 @@
 		font-size: 14px;
 		letter-spacing: 0.6px;
 		line-height: 1.25;
-		padding: 15px 40px;
+		padding: 15px;
 		transition: all 100ms ease;
 		@media only screen and (max-width: 600px) {
 			width: 100%;
@@ -256,12 +255,12 @@
 
 	.lsx-button-size-large {
 		font-size: 23px;
-		padding: .8em 1.2em;
+		padding: 0.8em 1.2em;
 	}
 
 	.lsx-button-size-extralarge {
 		font-size: 31px;
-		padding: .8em 1.2em;
+		padding: 0.8em 1.2em;
 	}
 
 	.lsx-button-no-border {
