@@ -170,6 +170,18 @@
 					padding-top: 15px;
 				}
 			}
+			@media (max-width:1023px) {
+				.slick-slide {
+					display: block;
+					grid-template-columns: none;
+					grid-template-rows: none;
+					grid-gap: inherit;
+
+					.lsx-block-post-grid-image, .lsx-block-post-grid-text {
+						width: 100%;
+					}
+				}
+			}
 		}
 
 		.is-grid.columns-2 {

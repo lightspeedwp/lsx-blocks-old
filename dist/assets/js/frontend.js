@@ -25,24 +25,35 @@ var LSX_BLOCKS = Object.create( null );
         LSX_BLOCKS.sliders.element.each( function() {
 
             var slidesToShow = 3;
-            var slidesToScroll = 3;
-            var slickData = $(this).attr('data-slick');
+			var slidesToScroll = 3;
+            var mediumSlidesToShow = 2;
+            var mediumSlidesToScroll = 2;
+			var slickData = $(this).attr('data-slick');
+			
             if ( undefined !== slickData) {
 
+				slickData = JSON.parse( slickData );
+				console.log(slickData);
                 if ( undefined !== slickData.slidesToShow ) {
-                    slidesToShow = slickData.slidesToShow;
+					slidesToShow = slickData.slidesToShow;
+					if ( 1 === slidesToShow ) {
+						mediumSlidesToShow = slidesToShow;
+					}
                 }
                 if ( undefined !== slickData.slidesToScroll ) {
-                    slidesToScroll = slickData.slidesToScroll;
+					slidesToScroll = slickData.slidesToScroll;
+					if ( 1 === slidesToScroll ) {
+						mediumSlidesToScroll = slidesToScroll;
+					}
                 }
-            }
+			}
 
             $(this).slick({
                 dots: true,
                 infinite: false,
                 speed: 300,
-                slidesToShow: 3,
-                slidesToScroll: 3,
+                slidesToShow: slidesToShow,
+                slidesToScroll: slidesToScroll,
                 responsive: [
                     {
                         breakpoint: 1024,
@@ -56,8 +67,8 @@ var LSX_BLOCKS = Object.create( null );
                     {
                         breakpoint: 600,
                         settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2
+                            slidesToShow: mediumSlidesToShow,
+                            slidesToScroll: mediumSlidesToScroll
                         }
                     },
                     {

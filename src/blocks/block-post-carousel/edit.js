@@ -207,7 +207,7 @@ class LatestPostsBlockCarousel extends Component {
 						/>
 					}
 					<RangeControl
-						label={ __( 'Columns' ) }
+						label={ __( 'Items per Slide' ) }
 						value={ columnsCarousel }
 						onChange={ ( value ) => setAttributes( { columnsCarousel: value } ) }
 						min={ 1 }

@@ -4,12 +4,14 @@
 
 ### Added
 
-- Added more styling and better layout for the Accordeon block.
+- Added more styling and better layout for the Accordion block.
 
 ### Fixed
-
 - Improvements on the container block.
 - Improvements on the image block.
+- Added more styling and better layout for the Accordion block.
+- Allowing the Post Carousel to use a 1 column layout for the post carousel block.
+- Changed the LSX Post Carousel "Carousel" to "Items per Slide".
 
 ## [[1.1.2]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.1.2) - 2020-05-21
 
