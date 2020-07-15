@@ -1,12 +1,14 @@
 # Change log
 
-## [1.3.0]
+## [1.2.0]
 
 ### Added
+
 - Added more styling and better layout for the Accordion block.
 - Reducing the left and right Padding on LSX Buttons from 40px to 15px.
 
 ### Fixed
+
 - Improvements on the container block.
 - Improvements on the image block.
 - Added more styling and better layout for the Accordion block.
