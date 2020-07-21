@@ -110,23 +110,8 @@ class Page_Title {
 		if ( 'yes' !== $disable_title || ( ! is_singular() ) ) {
 			return $classes;
 		}
-
-		$position = get_post_meta( get_the_ID(), 'lsx_title_position', true );
-		$position = apply_filters( 'lsx_hero_banner_block_position', $position );
-		switch ( $position ) {
-			case 'below-banner':
-				add_action( 'lsx_content_top', array( $this, 'lsx_block_header' ) );
-				break;
-
-			case 'above-content':
-				add_action( 'lsx_entry_top', array( $this, 'lsx_block_header' ) );
-				break;
-
-			case 'in-banner':
-			default:
-				add_action( 'lsx_hero_banner', array( $this, 'lsx_block_header' ) );
-				break;
-		}
+		$position  = get_post_meta( get_the_ID(), 'lsx_title_position', true );
+		$position  = apply_filters( 'lsx_hero_banner_block_position', $position );
 		$classes[] = 'lsx-title-' . $position;
 		$classes[] = 'lsx-page-title';
 		return $classes;
@@ -151,6 +136,7 @@ class Page_Title {
 
 			<?php do_action( 'lsx_block_header_bottom' ); ?>
 		<?php
+		remove_action( 'lsx_entry_top', array( $this, 'lsx_block_header' ) );
 	}
 
 	/**

@@ -161,6 +161,7 @@ class Hero_Banner {
 			default:
 				break;
 		}
+		remove_action( 'lsx_content_top', array( $this, 'maybe_display_banner' ) );
 	}
 
 	/**
@@ -267,6 +268,7 @@ class Hero_Banner {
 			</div>
 		</div>
 		<?php
+		remove_action(  );
 	}
 
 	/**
