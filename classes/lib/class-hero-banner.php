@@ -268,7 +268,7 @@ class Hero_Banner {
 			</div>
 		</div>
 		<?php
-		remove_action(  );
+		remove_action();
 	}
 
 	/**
