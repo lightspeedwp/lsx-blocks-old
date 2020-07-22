@@ -15,6 +15,10 @@
 - Allowing the Post Carousel to use a 1 column layout for the post carousel block.
 - Changed the LSX Post Carousel "Carousel" to "Items per Slide".
 
+### Deprecated
+
+- Removing unused core blocks.
+
 ## [[1.1.2]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.1.2) - 2020-05-21
 
 ### Added

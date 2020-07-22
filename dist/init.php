@@ -50,7 +50,7 @@ function lsx_blocks_editor_assets() {
 
 	$postfix = ( SCRIPT_DEBUG === true ) ? '' : '.min';
 
-	// Load the FontAwesome icon library
+	// Load the FontAwesome icon library.
 	wp_enqueue_style(
 		'lsx-blocks-fontawesome',
 		plugins_url( 'dist/assets/fontawesome/css/all' . $postfix . '.css', dirname( __FILE__ ) ),
@@ -58,7 +58,15 @@ function lsx_blocks_editor_assets() {
 		filemtime( plugin_dir_path( __FILE__ ) . 'assets/fontawesome/css/all.css' )
 	);
 
-	// Load the compiled blocks into the editor
+	// Load the js to remove unused core blocks.
+	wp_enqueue_script(
+		'theme-editor',
+		plugins_url( '/dist/assets/js/editor.js', dirname( __FILE__ ) ),
+		array( 'wp-blocks', 'wp-dom' ),
+		filemtime( plugin_dir_path( __FILE__ ) . 'editor.js' )
+	);
+
+	// Load the compiled blocks into the editor.
 	wp_enqueue_script(
 		'lsx-blocks-block-js',
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ),
@@ -66,7 +74,7 @@ function lsx_blocks_editor_assets() {
 		filemtime( plugin_dir_path( __FILE__ ) . 'blocks.build.js' )
 	);
 
-	// Load the compiled styles into the editor
+	// Load the compiled styles into the editor.
 	wp_enqueue_style(
 		'lsx-blocks-block-editor-css',
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ),
@@ -74,7 +82,7 @@ function lsx_blocks_editor_assets() {
 		filemtime( plugin_dir_path( __FILE__ ) . 'blocks.editor.build.css' )
 	);
 
-	// Pass in REST URL
+	// Pass in REST URL.
 	wp_localize_script(
 		'lsx-blocks-block-js',
 		'lsx_globals',
