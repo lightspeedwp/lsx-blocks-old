@@ -116,11 +116,14 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 
 			// Get the post author.
 			if ( isset( $attributes['displayPostAuthorCarousel'] ) && $attributes['displayPostAuthorCarousel'] ) {
-				$list_items_markup .= sprintf(
+
+				$meta_markup = sprintf(
 					'<div class="lsx-block-post-grid-author"><a class="lsx-text-link" href="%2$s">%1$s</a>,</div>',
 					esc_html( get_the_author_meta( 'display_name', $post->post_author ) ),
 					esc_html( get_author_posts_url( $post->post_author ) )
 				);
+				$meta_markup        = apply_filters( 'lsx_blocks_latest_posts_carousel_meta', $meta_markup, $post );
+				$list_items_markup .= $meta_markup;
 			}
 
 			// Get the post date.

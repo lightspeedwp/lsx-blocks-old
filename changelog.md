@@ -6,6 +6,7 @@
 
 - Added more styling and better layout for the Accordion block.
 - Reducing the left and right Padding on LSX Buttons from 40px to 15px.
+- A `lsx_blocks_latest_posts_carousel_meta` to allow you to filter the meta
 
 ### Fixed
 
