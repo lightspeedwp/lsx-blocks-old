@@ -1,5 +1,5 @@
 === LSX Blocks Plugin ===
-Contributors: feedmymedia
+Contributors: feedmymedia, lightspeedwp, eleshar, krugazul, virginialsdev, deon80, jaab1985, jacquesvdh, ignusvermaak, garthlsdev
 Donate link: https://donate.lsdev.biz/
 Tags: lsx, Gutenberg blocks plugin, page builder, block editor
 Requires at least: 5.1.1
