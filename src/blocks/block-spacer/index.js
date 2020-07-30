@@ -3,14 +3,14 @@
  */
 
 // Import block dependencies and components
-import classnames from 'classnames';
-import Inspector from './components/inspector';
-import Spacer from './components/spacer';
-import Resizable from 're-resizable';
+import classnames from "classnames";
+import Inspector from "./components/inspector";
+import Spacer from "./components/spacer";
+import Resizable from "re-resizable";
 
 // Import CSS
-import './styles/style.scss';
-import './styles/editor.scss';
+import "./styles/style.scss";
+import "./styles/editor.scss";
 
 // Components
 const { __ } = wp.i18n;
@@ -26,114 +26,138 @@ const {
 	RichText,
 	AlignmentToolbar,
 	BlockControls,
-	BlockAlignmentToolbar,
-	UrlInput,
+	BlockAlignmentToolbar
 } = wp.blockEditor;
 
 // Register components
-const {
-	withFallbackStyles,
-	Button,
-	Dashicon,
-} = wp.components;
+const { withFallbackStyles, Button, Dashicon } = wp.components;
 
 class LSXSpacerBlock extends Component {
-
 	render() {
 		// Setup the attributes
-		const { attributes: { spacerHeight, spacerDivider, spacerDividerStyle, spacerDividerColor }, isSelected, className, setAttributes, toggleSelection, spacerDividerWidth, spacerDividerHeight } = this.props;
+		const {
+			attributes: {
+				spacerHeight,
+				spacerDivider,
+				spacerDividerStyle,
+				spacerDividerColor
+			},
+			isSelected,
+			className,
+			setAttributes,
+			toggleSelection,
+			spacerDividerWidth,
+			spacerDividerHeight
+		} = this.props;
 
 		return [
 			// Show the block controls on focus
-			<Inspector key="inspector"
-				{ ...this.props }
-			/>,
+			<Inspector key="inspector" {...this.props} />,
 			// Show the button markup in the editor
-			<Spacer key="spacer" { ...this.props }>
+			<Spacer key="spacer" {...this.props}>
 				<Resizable
-					className={ classnames( className, 'lsx-spacer-handle' ) }
-					style={ {
-						color: spacerDividerColor,
-					} }
-					size={ {
-						width: '100%',
-						height: spacerHeight,
-					} }
-					minWidth={ '100%' }
-					maxWidth={ '100%' }
-					minHeight={ '100%' }
-					handleClasses={ {
-						bottomLeft: 'lsx-spacer-control__resize-handle',
-					} }
-					enable={ { top: false, right: false, bottom: true, left: false, topRight: false, bottomRight: false, bottomLeft: true, topLeft: false } }
-					onResizeStart={ () => {
-						toggleSelection( false );
-					} }
-					onResizeStop={ ( event, direction, elt, delta ) => {
-						setAttributes( {
-							spacerHeight: parseInt( spacerHeight + delta.height, 10 ),
-						} );
-						toggleSelection( true );
-					} }
-				>
-				</Resizable>
-			</Spacer>,
+					className={classnames(className, "lsx-spacer-handle")}
+					style={{
+						color: spacerDividerColor
+					}}
+					size={{
+						width: "100%",
+						height: spacerHeight
+					}}
+					minWidth={"100%"}
+					maxWidth={"100%"}
+					minHeight={"100%"}
+					handleClasses={{
+						bottomLeft: "lsx-spacer-control__resize-handle"
+					}}
+					enable={{
+						top: false,
+						right: false,
+						bottom: true,
+						left: false,
+						topRight: false,
+						bottomRight: false,
+						bottomLeft: true,
+						topLeft: false
+					}}
+					onResizeStart={() => {
+						toggleSelection(false);
+					}}
+					onResizeStop={(event, direction, elt, delta) => {
+						setAttributes({
+							spacerHeight: parseInt(spacerHeight + delta.height, 10)
+						});
+						toggleSelection(true);
+					}}
+				/>
+			</Spacer>
 		];
 	}
 }
 
 // Register the block
-registerBlockType( 'lsx-blocks/lsx-spacer', {
-	title: __( 'LSX Divider', 'lsx-blocks' ),
-	description: __( 'Add a spacer and divider between your blocks.', 'lsx-blocks' ),
-	icon: 'image-flip-vertical',
-	category: 'lsx-blocks',
+registerBlockType("lsx-blocks/lsx-spacer", {
+	title: __("LSX Divider", "lsx-blocks"),
+	description: __(
+		"Add a spacer and divider between your blocks.",
+		"lsx-blocks"
+	),
+	icon: "image-flip-vertical",
+	category: "lsx-blocks",
 	keywords: [
-		__( 'spacer', 'lsx-blocks' ),
-		__( 'divider', 'lsx-blocks' ),
-		__( 'lsx', 'lsx-blocks' ),
+		__("spacer", "lsx-blocks"),
+		__("divider", "lsx-blocks"),
+		__("lsx", "lsx-blocks")
 	],
 	attributes: {
 		spacerHeight: {
-			type: 'number',
-			default: 30,
+			type: "number",
+			default: 30
 		},
 		spacerDividerWidth: {
-			type: 'number',
-			default: 10,
+			type: "number",
+			default: 10
 		},
 		spacerDivider: {
-			type: 'boolean',
-			default: false,
+			type: "boolean",
+			default: false
 		},
 		spacerDividerStyle: {
-			type: 'string',
-			default: 'lsx-divider-solid',
+			type: "string",
+			default: "lsx-divider-solid"
 		},
 		spacerDividerColor: {
-			type: 'string',
-			default: '#ddd',
+			type: "string",
+			default: "#ddd"
 		},
 		spacerDividerHeight: {
-			type: 'number',
-			default: 1,
-		},
+			type: "number",
+			default: 1
+		}
 	},
 
 	// Render the block components
 	edit: LSXSpacerBlock,
 
 	// Save the attributes and markup
-	save: function( props ) {
-
+	save: function(props) {
 		// Setup the attributes
-		const { spacerHeight, spacerDivider, spacerDividerStyle, spacerDividerColor, spacerDividerWidth, spacerDividerHeight } = props.attributes;
+		const {
+			spacerHeight,
+			spacerDivider,
+			spacerDividerStyle,
+			spacerDividerColor,
+			spacerDividerWidth,
+			spacerDividerHeight
+		} = props.attributes;
 
 		// Save the block markup for the front end
 		return (
-			<Spacer { ...props }>
-				<hr style={ { height: spacerHeight ? spacerHeight + 'px' : undefined } }></hr>
+			<Spacer {...props}>
+				<hr
+					style={{ height: spacerHeight ? spacerHeight + "px" : undefined }}
+				/>
 			</Spacer>
 		);
-	},
-} );
+	}
+});
