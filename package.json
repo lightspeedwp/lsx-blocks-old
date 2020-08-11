@@ -36,7 +36,7 @@
     "react": "16.13.1",
     "react-lazy-load": "^3.1.13",
     "react-lazyload": "^3.0.0",
-    "react-slick": "^0.27.5",
+    "react-slick": "^0.27.6",
     "slick-carousel": "^1.8.1",
     "sshpk": "^1.16.1",
     "styled-components": "^5.1.1"
