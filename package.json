@@ -32,7 +32,7 @@
     "node-sass": "^4.10.0",
     "querystringify": "^2.1.0",
     "randomatic": "^3.1.1",
-    "re-resizable": "^4.9.3",
+    "re-resizable": "^6.5.4",
     "react": "16.13.1",
     "react-lazy-load": "^3.1.13",
     "react-lazyload": "^3.0.0",
