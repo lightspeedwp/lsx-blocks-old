@@ -12,7 +12,7 @@
     "@wordpress/api-fetch": "^3.18.0",
     "@wordpress/block-library": "^2.22.6",
     "@wordpress/data": "^4.22.3",
-    "@wordpress/edit-post": "^3.18.0",
+    "@wordpress/edit-post": "^3.21.6",
     "@wordpress/element": "^2.16.0",
     "@wordpress/html-entities": "^2.8.0",
     "@wordpress/i18n": "^3.14.0",
