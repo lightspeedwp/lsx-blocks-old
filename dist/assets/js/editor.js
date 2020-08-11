@@ -4,7 +4,7 @@ wp.domReady(() => {
 	wp.blocks.unregisterBlockType("core/pullquote");
 	wp.blocks.unregisterBlockType("core/verse");
 	wp.blocks.unregisterBlockType("core/archives");
-	wp.blocks.unregisterBlockType("core/latest-comments");
+	//wp.blocks.unregisterBlockType("core/latest-comments");
 
 	wp.blocks.unregisterBlockType("core-embed/soundcloud");
 	wp.blocks.unregisterBlockType("core-embed/spotify");
@@ -15,7 +15,7 @@ wp.domReady(() => {
 	wp.blocks.unregisterBlockType("core-embed/collegehumor");
 	wp.blocks.unregisterBlockType("core-embed/dailymotion");
 	//wp.blocks.unregisterBlockType("core-embed/funnyordie");
-	wp.blocks.unregisterBlockType("core-embed/hulu");
+	//wp.blocks.unregisterBlockType("core-embed/hulu");
 	wp.blocks.unregisterBlockType("core-embed/imgur");
 	wp.blocks.unregisterBlockType("core-embed/issuu");
 	wp.blocks.unregisterBlockType("core-embed/kickstarter");
