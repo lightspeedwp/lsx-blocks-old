@@ -6,7 +6,9 @@
     "start": "cgb-scripts start",
     "build": "cgb-scripts build",
     "eject": "cgb-scripts eject",
-    "makepot": "wp i18n make-pot . languages/lsx-blocks.pot --include=src,dist/getting-started"
+    "makepot": "wp i18n make-pot . languages/lsx-blocks.pot --include=src,dist/getting-started",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "@wordpress/api-fetch": "^3.18.0",
@@ -39,7 +41,8 @@
     "react-slick": "^0.27.6",
     "slick-carousel": "^1.8.1",
     "sshpk": "^1.16.1",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "snyk": "^1.373.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
@@ -49,5 +52,6 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
     "grunt-wp-i18n": "^1.0.3"
-  }
+  },
+  "snyk": true
 }
