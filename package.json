@@ -30,7 +30,7 @@
     "md5": "^2.3.0",
     "moment": "^2.27.0",
     "node-sass": "^4.14.1",
-    "querystringify": "^2.1.1",
+    "querystringify": "^2.2.0",
     "randomatic": "^3.1.1",
     "re-resizable": "^6.5.4",
     "react": "16.13.1",
