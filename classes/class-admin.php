@@ -1,5 +1,6 @@
 <?php
 namespace lsx\blocks\classes;
+
 /**
  * @package   lsx\blocks\classes
  * @author    LightSpeed
