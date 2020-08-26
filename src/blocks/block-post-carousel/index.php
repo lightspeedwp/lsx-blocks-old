@@ -2,7 +2,7 @@
 /**
  * Server-side rendering for the post carousel block
  *
- * @since 	1.1.7
+ * @since   1.1.7
  * @package LSX BLOCKS
  */
 
