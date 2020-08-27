@@ -29,9 +29,6 @@ const LSXImageUploadPanel = withState( { media: undefined } )( ( { media, setSta
 	let uploadCss = '';
 	let url = '';
 
-	console.log('SAVED');
-	console.log(rawChecked);
-
 	// If you Custom field is not null then there is something saved in it.
 	if ( '' === rawChecked || 'transparent' === rawChecked || undefined === rawChecked ) {
 		media = undefined;

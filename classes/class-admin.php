@@ -76,6 +76,7 @@ class Admin {
 					'type'         => $type,
 					'single'       => true,
 					'show_in_rest' => true,
+					'default'      => '0',
 				)
 			);
 		}
