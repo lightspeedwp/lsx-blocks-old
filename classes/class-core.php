@@ -1,5 +1,6 @@
 <?php
 namespace lsx\blocks\classes;
+
 /**
  * @package   lsx\blocks\classes
  * @author    LightSpeed
@@ -71,7 +72,7 @@ class Core {
 
 		// If the single instance hasn't been set, set it now.
 		if ( null == self::$instance ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
