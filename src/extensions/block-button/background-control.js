@@ -216,8 +216,21 @@ const addHoverExtraProps = ( saveElementProps, blockType, attributes ) => {
 		return saveElementProps;
 	}
 
+	if ( undefined !== element.props.children ) {
+		str = element.props.children.props.style;
+		savedElement = element.props.children;
+	} else if ( undefined !== element.props.style ) {
+		str = element.props.style;
+		savedElement = element;
+	}
+	
+	console.log('addHoverExtraProps');
+	console.log(saveElementProps);
+	console.log(attributes);
 	assign( saveElementProps, { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } );
-
+	console.log('addHoverExtraProps');
+	console.log(saveElementProps);
+	console.log(attributes);
 	return saveElementProps;
 };
 
@@ -244,29 +257,39 @@ const addExtraClassesButton = ( element, block, attributes ) => {
 	}
 
 	if ( block.name === 'core/button' ) {
-		let str = '';
+		let str = undefined;
 		let style = '';
 		var obj2 = { 'boxShadow': boxShadowStyle };
-		str = element.props.children.props.style;
-
-		style = { ...str, ...obj2 };
+		var savedElement = undefined;
 
 
-		let dataToggle = attributes.buttonDataToggle;
-		let dataTarget = attributes.buttonDataTarget;
+		if ( undefined !== element.props.children ) {
+			str = element.props.children.props.style;
+			savedElement = element.props.children;
+		} else if ( undefined !== element.props.style ) {
+			str = element.props.style;
+			savedElement = element;
+		}
 
-		return wp.element.cloneElement(
-			element,
-			{},
-			wp.element.cloneElement(
-				element.props.children,
-				{
-					style,
-					'data-target': dataTarget,
-					'data-toggle': dataToggle,
-				},
-			),
-		);
+		if ( undefined !== str && undefined !== savedElement ) {
+			style = { ...str, ...obj2 };
+
+			let dataToggle = attributes.buttonDataToggle;
+			let dataTarget = attributes.buttonDataTarget;
+
+			return wp.element.cloneElement(
+				element,
+				{},
+				wp.element.cloneElement(
+					savedElement,
+					{
+						style,
+						'data-target': dataTarget,
+						'data-toggle': dataToggle,
+					},
+				),
+			);
+		}
 	}
 
 	return element;

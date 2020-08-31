@@ -19,11 +19,11 @@ import './blocks/block-post-carousel/index.js';
 import './extensions/block-image/spacing-control.js';
 import './extensions/block-column/padding-control.js';
 import './extensions/block-button/background-control.js';
-import './extensions/block-group/group-control.js';
+/*import './extensions/block-group/group-control.js';
 import './extensions/block-heading/heading-control.js';
-import './extensions/block-cover/cover-control.js';
+import './extensions/block-cover/cover-control.js';*/
 
 //Panels
 import './panels/page-banner/index.js';
-import './panels/page-title/index.js';
+//import './panels/page-title/index.js';
 //import './panels/custom-field/index.js';
