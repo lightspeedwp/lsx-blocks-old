@@ -212,25 +212,28 @@ addFilter(
  */
 const addHoverExtraProps = ( saveElementProps, blockType, attributes ) => {
 	// Do nothing if it's another block than our defined ones.
+	console.log(blockType.name);
 	if ( ! enableCustomButton.includes( blockType.name ) ) {
 		return saveElementProps;
 	}
 
-	if ( undefined !== element.props.children ) {
-		str = element.props.children.props.style;
-		savedElement = element.props.children;
-	} else if ( undefined !== element.props.style ) {
-		str = element.props.style;
-		savedElement = element;
+	console.log('addHoverExtraProps');
+	console.log(saveElementProps);
+
+	if ( undefined !== saveElementProps.children ) {
+		if ( undefined !== saveElementProps.children.props ) {
+			assign( saveElementProps.children.props, { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } );
+		} else {
+			assign( saveElementProps.children, { props: { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } } );
+		}
+	} else if ( undefined !== saveElementProps.props ) {
+		assign( saveElementProps.props, { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } );
+	} else {
+		assign( saveElementProps, { props: { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } } );
 	}
-	
-	console.log('addHoverExtraProps');
+
+	console.log('saveElementProps');
 	console.log(saveElementProps);
-	console.log(attributes);
-	assign( saveElementProps, { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } );
-	console.log('addHoverExtraProps');
-	console.log(saveElementProps);
-	console.log(attributes);
 	return saveElementProps;
 };
 

@@ -12,10 +12,13 @@ var LSX_BLOCKS = Object.create( null );
      * Start the JS Class
      */
     LSX_BLOCKS.init = function() {
-        LSX_BLOCKS.sliders.element = jQuery('.lsx-block-post-carousel .slick-slider');
-        if ( 0 <  LSX_BLOCKS.sliders.element.length ) {
-            LSX_BLOCKS.sliders.init();
-        }
+		if ( $.isFunction( $.fn.slick ) ) {
+			LSX_BLOCKS.sliders.element = jQuery( '.lsx-block-post-carousel .slick-slider' );
+			if ( 0 <  LSX_BLOCKS.sliders.element.length ) {
+				LSX_BLOCKS.sliders.init();
+			}
+		}
+
     };
 
     /**
@@ -104,8 +107,10 @@ var LSX_BLOCKS = Object.create( null );
 			var prevtexthover = this.style.color;
 			var prevshadowhover = this.style.boxShadow;
 
+			console.log($(this));
+
 			if ($(this).parent().hasClass('has-hover-color')) {
-				var bghover = this.parentNode.getAttribute('bghover');
+				var bghover = this.getAttribute('bghover');
 			}
 			if ($(this).parent().hasClass('has-hover-text-color')) {
 				var texthover = this.parentNode.getAttribute('texthover');

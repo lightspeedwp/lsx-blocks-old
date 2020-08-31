@@ -85,7 +85,7 @@ class Frontend {
 	 */
 	public function scripts() {
 		if ( function_exists( 'has_blocks' ) && has_blocks() ) {
-			wp_enqueue_script( 'lsx_blocks_script', LSX_BLOCKS_URL . '/dist/assets/js/frontend.js', array( 'jquery', 'slick' ), LSX_BLOCKS_VER, true );
+			wp_enqueue_script( 'lsx_blocks_script', LSX_BLOCKS_URL . '/dist/assets/js/frontend.js', array( 'jquery' ), LSX_BLOCKS_VER, true );
 		}
 	}
 
