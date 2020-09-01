@@ -212,13 +212,9 @@ addFilter(
  */
 const addHoverExtraProps = ( saveElementProps, blockType, attributes ) => {
 	// Do nothing if it's another block than our defined ones.
-	console.log(blockType.name);
 	if ( ! enableCustomButton.includes( blockType.name ) ) {
 		return saveElementProps;
 	}
-
-	console.log('addHoverExtraProps');
-	console.log(saveElementProps);
 
 	if ( undefined !== saveElementProps.children ) {
 		if ( undefined !== saveElementProps.children.props ) {
@@ -231,9 +227,6 @@ const addHoverExtraProps = ( saveElementProps, blockType, attributes ) => {
 	} else {
 		assign( saveElementProps, { props: { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } } );
 	}
-
-	console.log('saveElementProps');
-	console.log(saveElementProps);
 	return saveElementProps;
 };
 
