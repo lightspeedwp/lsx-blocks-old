@@ -229,7 +229,6 @@ const addExtraPropsCover = ( saveElementProps, blockType, attributes ) => {
 
 		style = { ...str, ...obj2 };
 
-
 		// console.log(saveElementProps);
 		// console.log(attributes);
 

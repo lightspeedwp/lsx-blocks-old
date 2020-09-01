@@ -216,8 +216,17 @@ const addHoverExtraProps = ( saveElementProps, blockType, attributes ) => {
 		return saveElementProps;
 	}
 
-	assign( saveElementProps, { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } );
-
+	if ( undefined !== saveElementProps.children ) {
+		if ( undefined !== saveElementProps.children.props ) {
+			assign( saveElementProps.children.props, { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } );
+		} else {
+			assign( saveElementProps.children, { props: { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } } );
+		}
+	} else if ( undefined !== saveElementProps.props ) {
+		assign( saveElementProps.props, { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } );
+	} else {
+		assign( saveElementProps, { props: { bghover: attributes.buttonHoverColor, texthover: attributes.buttonHoverTextColor, shadowhover: attributes.buttonHoverShadowColor } } );
+	}
 	return saveElementProps;
 };
 
@@ -244,29 +253,39 @@ const addExtraClassesButton = ( element, block, attributes ) => {
 	}
 
 	if ( block.name === 'core/button' ) {
-		let str = '';
+		let str = undefined;
 		let style = '';
 		var obj2 = { 'boxShadow': boxShadowStyle };
-		str = element.props.children.props.style;
-
-		style = { ...str, ...obj2 };
+		var savedElement = undefined;
 
 
-		let dataToggle = attributes.buttonDataToggle;
-		let dataTarget = attributes.buttonDataTarget;
+		if ( undefined !== element.props.children ) {
+			str = element.props.children.props.style;
+			savedElement = element.props.children;
+		} else if ( undefined !== element.props.style ) {
+			str = element.props.style;
+			savedElement = element;
+		}
 
-		return wp.element.cloneElement(
-			element,
-			{},
-			wp.element.cloneElement(
-				element.props.children,
-				{
-					style,
-					'data-target': dataTarget,
-					'data-toggle': dataToggle,
-				},
-			),
-		);
+		if ( undefined !== str && undefined !== savedElement ) {
+			style = { ...str, ...obj2 };
+
+			let dataToggle = attributes.buttonDataToggle;
+			let dataTarget = attributes.buttonDataTarget;
+
+			return wp.element.cloneElement(
+				element,
+				{},
+				wp.element.cloneElement(
+					savedElement,
+					{
+						style,
+						'data-target': dataTarget,
+						'data-toggle': dataToggle,
+					},
+				),
+			);
+		}
 	}
 
 	return element;
