@@ -37,6 +37,7 @@ class Setup {
 		add_action( 'plugins_loaded', array( $this, 'blocks_loader' ) );
 		add_action( 'after_setup_theme', array( $this, 'blocks_image_sizes' ) );
 		add_action( 'init', array( $this, 'blocks_init' ) );
+		remove_theme_support( 'core-block-patterns' );
 	}
 
 	/**
