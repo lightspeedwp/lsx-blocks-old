@@ -288,15 +288,17 @@ const addChildrenStyles = (element, block, attributes) => {
 		maxWidth = attributes.containerMaxWidth + "px";
 	}
 
-	if (block.name === "core/cover") {
+	if (
+		block.name === "core/cover" &&
+		undefined !== attributes.containerMaxWidth
+	) {
+		console.log(attributes.containerMaxWidth);
 		let style = "";
 		var obj2 = { maxWidth: maxWidth };
 		var savedElement = undefined;
 
 		if (undefined !== element.props.children) {
 			savedElement = element.props.children[2];
-		} else if (undefined !== element.props.style) {
-			savedElement = element;
 		}
 
 		//console.log(savedElement);
