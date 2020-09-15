@@ -3696,8 +3696,6 @@ article .lsx-button {
     margin: 0 auto 2rem;
     width: 170px;
     height: 170px;
-    min-width: 170px;
-    min-height: 170px;
     overflow: hidden;
     -o-object-fit: cover;
        object-fit: cover;
@@ -3799,7 +3797,7 @@ article .lsx-button {
         .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta > *:before {
           color: inherit;
           display: inline-block;
-          font-family: 'FontAwesome';
+          font-family: "FontAwesome";
           font-size: inherit;
           left: -2rem;
           position: absolute;
@@ -3816,7 +3814,7 @@ article .lsx-button {
             margin-left: 2rem; } }
         .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-to-meta-data-key:before,
         .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-to-meta-data-key:before {
-          content: '\f0c0'; }
+          content: "\f0c0"; }
       .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-job-title,
       .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-job-title {
         margin-top: 0; }
@@ -3826,7 +3824,7 @@ article .lsx-button {
           margin-left: 2rem; } }
       .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-email:before,
       .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-email:before {
-        content: '\f0e0'; }
+        content: "\f0e0"; }
       .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-socials,
       .lsx-team-block.block-template-list .lsx-team-slot .entry-layout-wrapper .entry-layout-meta .lsx-team-socials {
         margin-left: -2rem;
@@ -3950,8 +3948,14 @@ article .lsx-button {
       margin: 5px 0; }
 
 @media (min-width: 768px) {
-  .gutenberg-compatible-template.using-gutenberg .alignwide figure.lsx-team-avatar img,
-  .gutenberg-compatible-template.using-gutenberg .alignfull figure.lsx-team-avatar img {
+  .gutenberg-compatible-template.using-gutenberg
+.alignwide
+figure.lsx-team-avatar
+img,
+  .gutenberg-compatible-template.using-gutenberg
+.alignfull
+figure.lsx-team-avatar
+img {
     height: 170px;
     width: 170px; } }
 
@@ -3964,7 +3968,7 @@ article .lsx-button {
     .components-base-control.components-radio-control .components-base-control__field .components-radio-control__option .components-radio-control__input {
       position: relative; }
       .components-base-control.components-radio-control .components-base-control__field .components-radio-control__option .components-radio-control__input:before {
-        content: '';
+        content: "";
         position: absolute;
         left: 0px;
         top: -3.5rem;

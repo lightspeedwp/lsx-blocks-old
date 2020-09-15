@@ -1,8 +1,8 @@
 .wp-block-lsx-blocks-lsx-team,
 .lsx-team-block {
 	.spinner {
-	  float: none;
-	  margin: 6px 2px 10px 0;
+		float: none;
+		margin: 6px 2px 10px 0;
 	}
 	> .row {
 		display: flex;
@@ -20,8 +20,6 @@
 				margin: 0 auto 2rem;
 				width: 170px;
 				height: 170px;
-				min-width: 170px;
-				min-height: 170px;
 				overflow: hidden;
 				object-fit: cover;
 				border: none;
@@ -46,16 +44,16 @@
 	&.block-template-list {
 		.lsx-team-slot {
 			width: 100%;
-			@media (min-width:968px) {
+			@media (min-width: 968px) {
 				display: flex;
 			}
-			@media (max-width:967px) {
+			@media (max-width: 967px) {
 				max-width: 400px;
 				margin-left: auto;
 				margin-right: auto;
 			}
 			.lsx-team-avatar {
-				@media (min-width:968px) {
+				@media (min-width: 968px) {
 					flex-grow: 2;
 					width: 30%;
 				}
@@ -70,7 +68,7 @@
 					}
 				}
 				&.circle {
-					@media (max-width:967px) {
+					@media (max-width: 967px) {
 						padding-top: 1rem;
 					}
 					background: white;
@@ -84,14 +82,14 @@
 				text-align: left;
 				padding-left: 4rem;
 				word-break: break-word;
-				@media (min-width:968px) {
+				@media (min-width: 968px) {
 					flex-grow: 5;
 					width: 70%;
 					display: flex;
 					padding-left: 2.4rem;
 				}
 				.entry-layout-content {
-					@media (min-width:968px) {
+					@media (min-width: 968px) {
 						flex-grow: 5;
 						width: 70%;
 					}
@@ -107,7 +105,7 @@
 						&:before {
 							color: inherit;
 							display: inline-block;
-							font-family: 'FontAwesome';
+							font-family: "FontAwesome";
 							font-size: inherit;
 							left: -2rem;
 							position: absolute;
@@ -117,28 +115,28 @@
 						}
 					}
 					.lsx-to-meta-data-key {
-						@media (max-width:967px) {
+						@media (max-width: 967px) {
 							margin-left: 2rem;
 						}
 						font-size: 13px;
 						font-weight: 600;
 						&:before {
-							content: '\f0c0';
+							content: "\f0c0";
 						}
 					}
 					.lsx-team-job-title {
 						margin-top: 0;
 					}
 					.lsx-team-email {
-						@media (max-width:967px) {
+						@media (max-width: 967px) {
 							margin-left: 2rem;
 						}
 						&:before {
-							content: '\f0e0';
+							content: "\f0e0";
 						}
 					}
 					.lsx-team-socials {
-						@media (max-width:967px) {
+						@media (max-width: 967px) {
 							margin-left: 2rem;
 						}
 						margin-left: -2rem;
@@ -150,7 +148,6 @@
 					}
 				}
 			}
-
 		}
 	}
 }
@@ -265,12 +262,12 @@
 			margin-bottom: 4rem;
 			&.has-thumb,
 			&.no-thumb {
-				@media (min-width:968px) {
+				@media (min-width: 968px) {
 					display: flex;
 				}
 				.lsx-block-post-grid-image {
 					margin-right: 2rem;
-					@media (min-width:968px) {
+					@media (min-width: 968px) {
 						flex-grow: 2;
 						width: 30%;
 					}
@@ -287,7 +284,7 @@
 				.lsx-block-post-grid-text {
 					text-align: left;
 					margin-top: 0;
-					@media (min-width:968px) {
+					@media (min-width: 968px) {
 						width: 70%;
 						flex-grow: 5;
 					}
@@ -300,9 +297,15 @@
 	}
 }
 
-@media (min-width:768px) {
-	.gutenberg-compatible-template.using-gutenberg .alignwide figure.lsx-team-avatar img,
-	.gutenberg-compatible-template.using-gutenberg .alignfull figure.lsx-team-avatar img {
+@media (min-width: 768px) {
+	.gutenberg-compatible-template.using-gutenberg
+		.alignwide
+		figure.lsx-team-avatar
+		img,
+	.gutenberg-compatible-template.using-gutenberg
+		.alignfull
+		figure.lsx-team-avatar
+		img {
 		height: 170px;
 		width: 170px;
 	}
@@ -317,7 +320,7 @@
 			.components-radio-control__input {
 				position: relative;
 				&:before {
-					content: '';
+					content: "";
 					position: absolute;
 					left: 0px;
 					top: -3.5rem;
