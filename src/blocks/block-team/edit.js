@@ -27,7 +27,7 @@ const {
 	ToggleControl
 } = wp.components;
 
-const { InspectorControls } = wp.blockEditor;
+const { InspectorControls, PanelColorSettings } = wp.blockEditor;
 
 class TeamBlock extends Component {
 	constructor() {
@@ -74,6 +74,8 @@ class TeamBlock extends Component {
 			columns,
 			displayCarousel,
 			imageShape,
+			itemFontColor,
+			itemBackgroundColor,
 			displayPostImage,
 			displayPostExcerpt,
 			displayPostLink,
@@ -116,6 +118,11 @@ class TeamBlock extends Component {
 			{ value: "none", label: __("No Content") }
 		];
 
+		const onChangeItemFontColor = value =>
+			setAttributes({ itemFontColor: value });
+		const onChangeItemBackgroundColor = value =>
+			setAttributes({ itemBackgroundColor: value });
+
 		const inspectorControls = (
 			<InspectorControls>
 				<PanelBody title={__("Layout Settings")}>
@@ -153,6 +160,24 @@ class TeamBlock extends Component {
 						onChange={value => {
 							this.props.setAttributes({ imageShape: value });
 						}}
+					/>
+					<PanelColorSettings
+						colorSettings={[
+							{
+								value: itemBackgroundColor,
+								onChange: onChangeItemBackgroundColor,
+								label: __("Items Background Color")
+							}
+						]}
+					/>
+					<PanelColorSettings
+						colorSettings={[
+							{
+								value: itemFontColor,
+								onChange: onChangeItemFontColor,
+								label: __("Items Font Color")
+							}
+						]}
 					/>
 				</PanelBody>
 				<PanelBody title={__("Display Settings")}>
@@ -253,6 +278,9 @@ class TeamBlock extends Component {
 										: "no-thumb",
 									"lsx-team-slot"
 								)}
+								style={{
+									background: itemBackgroundColor
+								}}
 							>
 								{displayPostImage &&
 								undefined !== post.featured_media &&
@@ -304,7 +332,12 @@ class TeamBlock extends Component {
 												{post.additional_meta.job_title}
 											</small>
 										)}
-									<div className="lsx-block-post-grid-excerpt">
+									<div
+										className="lsx-block-post-grid-excerpt"
+										style={{
+											color: itemFontColor
+										}}
+									>
 										{displayPostExcerpt === "excerpt" && post.excerpt && (
 											<div
 												dangerouslySetInnerHTML={{
