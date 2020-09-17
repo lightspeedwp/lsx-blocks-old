@@ -9,6 +9,7 @@
 - A `lsx_blocks_latest_posts_carousel_meta` to allow you to filter the meta.
 - Adding compatibility with WordPress 5.5.
 - Added color options for the Team block.
+- Added Cover Block inner width settings.
 
 ### Fixed
 
