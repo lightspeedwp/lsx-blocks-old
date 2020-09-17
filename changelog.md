@@ -17,6 +17,7 @@
 - Added more styling and better layout for the Accordion block.
 - Allowing the Post Carousel to use a 1 column layout for the post carousel block.
 - Changed the LSX Post Carousel "Carousel" to "Items per Slide".
+- Fixed the hover issues for buttons.
 
 ### Deprecated
 
@@ -26,7 +27,7 @@
 
 - Updating dependencies to prevent vulnerabilities.
 - Updating PHPCS options for better code.
-- General testing to ensure compatibility with latest WordPress version (5.5).
+- General testing to ensure compatibility with latest WordPress version (5.5.1).
 - General testing to ensure compatibility with latest LSX Theme version (2.9).
 
 ## [[1.1.2]](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.1.2) - 2020-05-21
