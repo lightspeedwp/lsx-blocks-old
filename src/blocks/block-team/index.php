@@ -95,6 +95,14 @@ function register_dynamic_block() {
 				'type'    => 'string',
 				'default' => '',
 			),
+			'itemBackgroundColor' => array(
+				'type'    => 'string',
+				'default' => '#ffffff',
+			),
+			'itemFontColor' => array(
+				'type'    => 'string',
+				'default' => '#4a4a4a',
+			),
 			'imageShape'          => array(
 				'type'    => 'string',
 				'default' => 'circle',
@@ -211,9 +219,12 @@ function render_dynamic_team_block( $attributes ) {
 
 		$block_width = $attributes['align'];
 
-		$carousel    = $attributes['displayCarousel'];
-		$post_layout = $attributes['postLayout'];
-		$image_shape = $attributes['imageShape'];
+		$carousel      = $attributes['displayCarousel'];
+		$post_layout   = $attributes['postLayout'];
+		$image_shape   = $attributes['imageShape'];
+		$itemBgColor   = $attributes['itemBackgroundColor'];
+		$itemFontColor = $attributes['itemFontColor'];
+
 
 		$show_link      = $attributes['displayPostLink'];
 		$show_roles     = $attributes['displayTeamRole'];
@@ -258,6 +269,15 @@ function render_dynamic_team_block( $attributes ) {
 			} else {
 				$member_name = '<h5 class="lsx-team-name">' . $member_name . '</h5>';
 			}
+			// Member job title.
+			if ( true === $show_job_title || 'true' === $show_job_title ) {
+				$job_title        = get_post_meta( $post->ID, 'lsx_job_title', true );
+				$job_title_key = '';
+				if ( 'list' === $post_layout ) {
+					$job_title_key = '<span class="lsx-to-meta-data-key">Role:</span>';
+				}
+				$member_job_title = ! empty( $job_title ) ? $job_title_key . "<small class='lsx-team-job-title'>$job_title</small>" : '';
+			}
 
 			// Member roles.
 			if ( true === $show_roles || 'true' === $show_roles ) {
@@ -277,16 +297,6 @@ function render_dynamic_team_block( $attributes ) {
 				$member_roles = '' !== $roles ? "<small class='lsx-team-roles'>$roles</small>" : '';
 			}
 
-			// Member job title.
-			if ( true === $show_job_title || 'true' === $show_job_title ) {
-				$job_title        = get_post_meta( $post->ID, 'lsx_job_title', true );
-				$job_title_key = '';
-				if ( 'list' === $post_layout ) {
-					$job_title_key = '<span class="lsx-to-meta-data-key">Role:</span>';
-				}
-				$member_job_title = ! empty( $job_title ) ? $job_title_key . "<small class='lsx-team-job-title'>$job_title</small>" : '';
-			}
-
 			// Member description.
 			if ( 'none' !== $show_desc ) {
 				if ( 'full' === $show_desc ) {
@@ -302,7 +312,7 @@ function render_dynamic_team_block( $attributes ) {
 						$member_description = apply_filters( 'the_excerpt', get_the_excerpt() );
 					}
 				}
-				$member_description = ! empty( $member_description ) ? "<div class='lsx-team-description'>$member_description</div>" : '';
+				$member_description = ! empty( $member_description ) ? "<div class='lsx-team-description' style='color:" . $itemFontColor . "'>$member_description</div>" : '';
 			}
 
 			// Member avatar.
@@ -348,17 +358,17 @@ function render_dynamic_team_block( $attributes ) {
 
 			if ( 'list' === $post_layout ) {
 				$output .= "
-				<article class='lsx-team-slot'>
+				<article class='lsx-team-slot' style='background-color:" . $itemBgColor . "'>
 					$member_avatar
 					<div class='entry-layout-wrapper'>
 						<div class='entry-layout-content'>
 							$member_name
+							$member_job_title
+							$member_roles
 							$member_description
 							$bottom_link
 						</div>
 						<div class='entry-layout-meta'>
-							$member_job_title
-							$member_roles
 							$member_socials
 						</div>
 					</div>
@@ -366,7 +376,7 @@ function render_dynamic_team_block( $attributes ) {
 			";
 			} else {
 				$output .= "
-				<article class='lsx-team-slot'>
+				<article class='lsx-team-slot' style='background-color:" . $itemBgColor . "'>
 					$member_avatar
 					$member_name
 					$member_job_title
