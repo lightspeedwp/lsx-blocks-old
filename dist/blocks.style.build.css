@@ -3683,38 +3683,39 @@ article .lsx-button {
   -ms-flex-flow: wrap;
       flex-flow: wrap; }
 
-.wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar,
-.lsx-team-block .lsx-team-slot .lsx-team-avatar {
-  height: auto;
-  width: auto;
-  border-radius: initial; }
-  .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar img,
-  .lsx-team-block .lsx-team-slot .lsx-team-avatar img {
-    border-radius: 50%;
-    display: block;
+.wp-block-lsx-blocks-lsx-team .lsx-team-slot,
+.lsx-team-block .lsx-team-slot {
+  padding: 15px; }
+  .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar,
+  .lsx-team-block .lsx-team-slot .lsx-team-avatar {
     height: auto;
-    margin: 0 auto 2rem;
-    width: 170px;
-    height: 170px;
-    overflow: hidden;
-    -o-object-fit: cover;
-       object-fit: cover;
-    border: none;
-    background-color: transparent; }
-  .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar.square,
-  .lsx-team-block .lsx-team-slot .lsx-team-avatar.square {
-    border-radius: 0; }
-    .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar.square img,
-    .lsx-team-block .lsx-team-slot .lsx-team-avatar.square img {
+    width: auto;
+    border-radius: initial; }
+    .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar img,
+    .lsx-team-block .lsx-team-slot .lsx-team-avatar img {
+      border-radius: 50%;
+      display: block;
+      height: auto;
+      margin: 0 auto 2rem;
+      width: 170px;
+      height: 170px;
+      overflow: hidden;
+      -o-object-fit: cover;
+         object-fit: cover;
+      border: none;
+      background-color: transparent; }
+    .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar.square,
+    .lsx-team-block .lsx-team-slot .lsx-team-avatar.square {
       border-radius: 0; }
-
-.wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-description .moretag,
-.lsx-team-block .lsx-team-slot .lsx-team-description .moretag {
-  display: none; }
-
-.wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-email,
-.lsx-team-block .lsx-team-slot .lsx-team-email {
-  display: block; }
+      .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-avatar.square img,
+      .lsx-team-block .lsx-team-slot .lsx-team-avatar.square img {
+        border-radius: 0; }
+  .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-description .moretag,
+  .lsx-team-block .lsx-team-slot .lsx-team-description .moretag {
+    display: none; }
+  .wp-block-lsx-blocks-lsx-team .lsx-team-slot .lsx-team-email,
+  .lsx-team-block .lsx-team-slot .lsx-team-email {
+    display: block; }
 
 .wp-block-lsx-blocks-lsx-team.block-template-list .lsx-team-slot,
 .lsx-team-block.block-template-list .lsx-team-slot {

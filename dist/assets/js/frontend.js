@@ -4,6 +4,7 @@ const LSX_BLOCKS = Object.create(null);
 	"use strict";
 
 	LSX_BLOCKS.document = $(document);
+	LSX_BLOCKS.window = $(window);
 
 	//Holds the slider function
 	LSX_BLOCKS.sliders = Object.create(null);
@@ -85,11 +86,87 @@ const LSX_BLOCKS = Object.create(null);
 	};
 
 	//Adding Hover states for Core Button Block Extended
+	LSX_BLOCKS.coreButtonHover = function() {
+		$(".wp-block-button").each(function() {
+			const prevbghover = $(this)
+				.children()
+				.css("backgroundColor");
+			const prevbggradienthover = $(this)
+				.children()
+				.css("background");
+			const prevtexthover = $(this)
+				.children()
+				.css("color");
+			const prevshadowhover = $(this)
+				.children()
+				.css("boxShadow");
+
+			if ($(this).is('[class*="has-hover-color-"]')) {
+				var thisclass = $(this).attr("class");
+				var hoverColorClass = thisclass
+					.split("has-hover-color-#")
+					.pop()
+					.substring(0, 6);
+				$(this).mouseover(function() {
+					$(this)
+						.children()
+						.css("background-color", "#" + hoverColorClass);
+					$(this)
+						.children()
+						.css("background", "#" + hoverColorClass);
+				});
+				$(this).mouseout(function() {
+					$(this)
+						.children()
+						.css("background-color", prevbghover);
+					$(this)
+						.children()
+						.css("background", prevbggradienthover);
+				});
+			}
+			if ($(this).is('[class*="has-hover-text-color-"]')) {
+				var thisclass = $(this).attr("class");
+				var textColorClass = thisclass
+					.split("has-hover-text-color-#")
+					.pop()
+					.substring(0, 6);
+				$(this).mouseover(function() {
+					$(this)
+						.children()
+						.css("color", "#" + textColorClass);
+				});
+				$(this).mouseout(function() {
+					$(this)
+						.children()
+						.css("color", prevtexthover);
+				});
+			}
+			if ($(this).is('[class*="has-shadow-hover-color-"]')) {
+				var thisclass = $(this).attr("class");
+				var shadowColorClass = thisclass
+					.split("has-shadow-hover-color-#")
+					.pop()
+					.substring(0, 6);
+				$(this).mouseover(function() {
+					$(this)
+						.children()
+						.css("box-shadow", "#" + shadowColorClass + " 2px 2px 0px 0px");
+				});
+				$(this).mouseout(function() {
+					$(this)
+						.children()
+						.css("box-shadow", prevshadowhover);
+				});
+			}
+		});
+	};
+
+	//Adding Hover states for Core Button Block Extended
 	LSX_BLOCKS.coreButton = function() {
 		$(".wp-block-button a").each(function() {
 			//if btn is gradient
 			$('[class$="gradient-background"]').addClass("btn-has-gradient");
-			console.log(this);
+
 			//if btn is outline
 			if (
 				$(this)
@@ -106,98 +183,6 @@ const LSX_BLOCKS = Object.create(null);
 			) {
 				$(this).addClass("btn-has-shadow-hover");
 			}
-
-			//Get colors
-			const prevbghover = this.style.backgroundColor;
-			const prevtexthover = this.style.color;
-			const prevshadowhover = this.style.boxShadow;
-			let bghover = undefined;
-			let texthover = undefined;
-			let shadowhover = undefined;
-			let shadowhovercolor = undefined;
-
-			// Get the button hover colour.
-			if (
-				$(this)
-					.parent()
-					.hasClass("has-hover-color")
-			) {
-				if (this.parentNode.hasAttribute("bghover")) {
-					bghover = this.parentNode.getAttribute("bghover");
-				} else if (this.hasAttribute("bghover")) {
-					bghover = this.getAttribute("bghover");
-				}
-			}
-
-			// Get the button hover text colour.
-			if (
-				$(this)
-					.parent()
-					.hasClass("has-hover-text-color")
-			) {
-				if (this.parentNode.hasAttribute("texthover")) {
-					texthover = this.parentNode.getAttribute("texthover");
-				} else if (this.hasAttribute("texthover")) {
-					texthover = this.getAttribute("texthover");
-				}
-			}
-
-			// Get the button shadow hover text colour.
-			if (
-				$(this)
-					.parent()
-					.hasClass("has-shadow-hover-color")
-			) {
-				if (this.parentNode.hasAttribute("shadowhover")) {
-					shadowhovercolor = this.parentNode.getAttribute("shadowhover");
-				} else if (this.hasAttribute("shadowhover")) {
-					shadowhovercolor = this.getAttribute("shadowhover");
-				}
-				shadowhover = shadowhovercolor + " 2px 2px 0px 0px";
-			}
-
-			$(this).mouseenter(function() {
-				$(this).css({
-					backgroundColor: bghover,
-					color: texthover
-				});
-				if ($(this).hasClass("btn-has-outline")) {
-					$(this).css({
-						borderColor: bghover
-					});
-				}
-				if ($(this).hasClass("btn-has-gradient")) {
-					$(this).css({
-						background: bghover
-					});
-				}
-				if ($(this).hasClass("btn-has-shadow-hover")) {
-					$(this).css({
-						"box-shadow": shadowhover
-					});
-				}
-			});
-			$(this).mouseleave(function() {
-				$(this).css({
-					backgroundColor: prevbghover,
-					color: prevtexthover
-				});
-				if ($(this).hasClass("btn-has-outline")) {
-					$(this).css({
-						borderColor: prevbghover
-					});
-				}
-				if ($(this).hasClass("btn-has-gradient")) {
-					$(this).css({
-						background: prevbghover
-					});
-				}
-				if ($(this).hasClass("btn-has-shadow-hover")) {
-					$(this).css({
-						"box-shadow": prevshadowhover
-					});
-				}
-			});
 		});
 	};
 
@@ -211,5 +196,6 @@ const LSX_BLOCKS = Object.create(null);
 		LSX_BLOCKS.init();
 
 		LSX_BLOCKS.coreButton();
+		LSX_BLOCKS.coreButtonHover();
 	});
 })(jQuery, window, document);
