@@ -273,9 +273,7 @@ function render_dynamic_team_block( $attributes ) {
 			if ( true === $show_job_title || 'true' === $show_job_title ) {
 				$job_title        = get_post_meta( $post->ID, 'lsx_job_title', true );
 				$job_title_key = '';
-				if ( 'list' === $post_layout ) {
-					$job_title_key = '<span class="lsx-to-meta-data-key">Role:</span>';
-				}
+
 				$member_job_title = ! empty( $job_title ) ? $job_title_key . "<small class='lsx-team-job-title'>$job_title</small>" : '';
 			}
 
@@ -359,7 +357,10 @@ function render_dynamic_team_block( $attributes ) {
 			if ( 'list' === $post_layout ) {
 				$output .= "
 				<article class='lsx-team-slot' style='background-color:" . $itemBgColor . "'>
-					$member_avatar
+					<div class='entry-profile-wrapper'>
+						$member_avatar
+						$member_socials
+					</div>
 					<div class='entry-layout-wrapper'>
 						<div class='entry-layout-content'>
 							$member_name
@@ -367,9 +368,6 @@ function render_dynamic_team_block( $attributes ) {
 							$member_roles
 							$member_description
 							$bottom_link
-						</div>
-						<div class='entry-layout-meta'>
-							$member_socials
 						</div>
 					</div>
 				</article>
