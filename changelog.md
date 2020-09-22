@@ -19,6 +19,7 @@
 - Allowing the Post Carousel to use a 1 column layout for the post carousel block.
 - Changed the LSX Post Carousel "Carousel" to "Items per Slide".
 - Fixed the hover issues for buttons.
+- The Title and Banner editor block will only be for posts and pages.
 
 ### Deprecated
 

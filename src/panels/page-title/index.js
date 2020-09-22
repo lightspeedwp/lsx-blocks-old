@@ -4,48 +4,48 @@
 const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
-const { useSelect } = wp.data;
+const { useSelect, select } = wp.data;
 
-import DisableTitle from './components/disable-title';
-import TitleAlignment from './components/title-alignment';
-import TitleWidth from './components/title-width';
-import TitlePosition from './components/title-position';
-import TextColour from './components/text-colour';
-import BackgroundColour from './components/background-colour';
+import includes from "lodash/includes";
+import DisableTitle from "./components/disable-title";
+import TitleAlignment from "./components/title-alignment";
+import TitleWidth from "./components/title-width";
+import TitlePosition from "./components/title-position";
+import TextColour from "./components/text-colour";
+import BackgroundColour from "./components/background-colour";
 
 const lsxPageTitlePanel = () => {
+	const postType = select("core/editor").getCurrentPostType();
+
+	if (!includes(["post", "page"], postType)) {
+		return null;
+	}
+
 	// Return the output of the Plugin Setting Panel.
 	return (
 		<PluginDocumentSettingPanel
-			name={ 'lsx_page_title_panel' }
-			title={ __( 'Page Title', 'lsx-blocks' ) }
-			className={ 'lsx-page-title-panel' }
+			name={"lsx_page_title_panel"}
+			title={__("Page Title", "lsx-blocks")}
+			className={"lsx-page-title-panel"}
 		>
-			<div className={ 'lsx-panel-row' }
-			>
-				<div className={ 'lsx-col-3' }
-				>
+			<div className={"lsx-panel-row"}>
+				<div className={"lsx-col-3"}>
 					<DisableTitle />
 				</div>
-				<div className={ 'lsx-col-3' }
-				>
+				<div className={"lsx-col-3"}>
 					<TitleAlignment />
 				</div>
-				<div className={ 'lsx-col-3' }
-				>
+				<div className={"lsx-col-3"}>
 					<TitleWidth />
 				</div>
 			</div>
-			<div className={ 'lsx-panel-row is-list' }
-			>
+			<div className={"lsx-panel-row is-list"}>
 				<TitlePosition />
 			</div>
-			<div className={ 'lsx-panel-row background-colour' }
-			>
+			<div className={"lsx-panel-row background-colour"}>
 				<TextColour />
 			</div>
-			<div className={ 'lsx-panel-row background-colour' }
-			>
+			<div className={"lsx-panel-row background-colour"}>
 				<BackgroundColour />
 			</div>
 		</PluginDocumentSettingPanel>
@@ -55,4 +55,7 @@ const lsxPageTitlePanel = () => {
 /**
  * register the plugin.
  */
-registerPlugin( 'lsx-page-title-panel', { render: lsxPageTitlePanel, icon: false } );
+registerPlugin("lsx-page-title-panel", {
+	render: lsxPageTitlePanel,
+	icon: false
+});
