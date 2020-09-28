@@ -79,7 +79,7 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 				}
 
 				if ( ( 'lsx-placeholder' === $post_thumb_id ) || ( 0 === $post_thumb_id ) ) {
-					$thumbnail = '<img class="attachment-responsive wp-post-image lsx-responsive" src="https://place-hold.it/750x350/cccccc/969696.jpeg&amp;text=750x350&amp;bold&amp;fontsize=16">';
+					$thumbnail = '<img class="attachment-responsive wp-post-image lsx-responsive" src="/wp-content/plugins/lsx-blocks/dist/assets/images/placeholder-350x230.jpg">';
 				} else {
 					$thumbnail = wp_get_attachment_image( $post_thumb_id, $post_thumb_size );
 				}

@@ -25,6 +25,10 @@
 
 - Removing unused core blocks.
 
+### Changed
+
+- Removing the 'place-holdit' calls for placeholders on the post block and adding a default placeholder.
+
 ### Security
 
 - Updating dependencies to prevent vulnerabilities.
