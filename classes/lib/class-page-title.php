@@ -99,7 +99,7 @@ class Page_Title {
 		$this->set_screen();
 		add_action( 'body_class', array( $this, 'body_class' ) );
 
-		if ( function_exists( 'has_blocks' ) && has_blocks() ) {
+		if ( function_exists( 'has_blocks' ) && has_blocks() && ( is_page() || is_single() ) ) {
 			remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
 			add_filter( 'lsx_banner_disable', array( $this, 'disable_banner' ), 100, 1 );
 			add_filter( 'lsx_global_header_disable', array( $this, 'disable_banner' ), 100, 1 );
@@ -107,7 +107,7 @@ class Page_Title {
 		}
 
 		// Add the title if it is not disabled.
-		if ( '' !== $this->screen && function_exists( 'has_blocks' ) && has_blocks() ) {
+		if ( '' !== $this->screen && function_exists( 'has_blocks' ) && has_blocks() && ( is_page() || is_single() ) ) {
 			remove_action( 'lsx_entry_top', 'lsx_post_header' );
 			remove_action( 'lsx_entry_top', 'lsx_add_entry_meta', 999 );
 			add_action( 'lsx_entry_top', array( $this, 'lsx_block_header' ) );
