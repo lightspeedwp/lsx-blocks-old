@@ -10,6 +10,7 @@
 - Adding compatibility with WordPress 5.5.
 - Added color options for the Team block.
 - Added Cover Block inner width settings.
+- Added a default cover block as a page title, which can be disabled.
 
 ### Fixed
 
