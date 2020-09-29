@@ -325,3 +325,34 @@ article {
 		}
 	}
 }
+
+.lsx-panel-row {
+	.lsx-page-title-label {
+		margin-left: 10px;
+		vertical-align: bottom;
+	}
+}
+
+.lsx-hero-banner-block {
+	background-color: #2B3840;
+	.lsx-title-block {
+		h1 {
+			margin-bottom: 0;
+		}
+	}
+}
+
+body.banner-disabled {
+	&.single {
+		#primary.content-area {
+			margin-top: 50px;
+		}
+
+		article {
+			.entry-content {
+				margin-top: 0px;
+				padding-top: 0px;
+			}
+		}
+	}
+}

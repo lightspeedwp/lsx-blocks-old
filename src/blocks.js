@@ -22,8 +22,4 @@ import './extensions/block-button/background-control.js';
 import './extensions/block-group/group-control.js';
 import './extensions/block-heading/heading-control.js';
 import './extensions/block-cover/cover-control.js';
-
-//Panels
-import './panels/page-banner/index.js';
-import './panels/page-title/index.js';
-//import './panels/custom-field/index.js';
+import './extensions/document/index.js';

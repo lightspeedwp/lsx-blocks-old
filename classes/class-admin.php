@@ -58,16 +58,6 @@ class Admin {
 	public function register_meta() {
 		$rest_field = array(
 			'lsx_disable_title'    => 'string',
-			'lsx_title_alignment'  => 'string',
-			'lsx_title_width'      => 'string',
-			'lsx_title_position'   => 'string',
-			'lsx_title_bg_colour'  => 'string',
-			'lsx_title_colour'     => 'string',
-			'lsx_disable_banner'   => 'string',
-			'lsx_banner_width'     => 'string',
-			'lsx_banner_bg_colour' => 'string',
-			'lsx_banner_colour'    => 'string',
-			'lsx_banner_image'     => 'string',
 		);
 		foreach ( $rest_field as $meta_key => $type ) {
 			register_meta(

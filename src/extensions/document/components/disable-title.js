@@ -32,20 +32,25 @@ const DisableTitle = withState( { checked: false } )( ( { checked, setState } ) 
 	const { editPost } = useDispatch( 'core/editor' );
 
 	return (
-		<FormToggle
-			id={ 'lsx-page-title-disable' }
-			help={ __( 'Stop the title from showing, you will need to add it manually.', 'lsx-blocks' ) }
-			value={ 'yes' }
-			checked={ checked }
-			onChange={ () => setState( state => {
-				let disabled = 'no';
-				if ( false === state.checked ) {
-					disabled = 'yes';
-				}
-				editPost( { meta: { lsx_disable_title: disabled } } );
-				return ( { checked: ! state.checked } );
-			} ) }
-		/>
+		<div className={"lsx-panel-row"}>
+			<FormToggle
+				id={ 'lsx-page-title-disable' }
+				help={ __( 'Stop the title from showing, you will need to add it manually.', 'lsx-blocks' ) }
+				value={ 'yes' }
+				checked={ checked }
+				onChange={ () => setState( state => {
+					let disabled = 'no';
+					if ( false === state.checked ) {
+						disabled = 'yes';
+					}
+					editPost( { meta: { lsx_disable_title: disabled } } );
+					return ( { checked: ! state.checked } );
+				} ) }
+			/>
+			<label className={ 'lsx-page-title-label' } htmlFor="hide-page-title-toggle">
+				{ __( 'Hide page title', 'go' ) }
+			</label>
+		</div>
 	);
 } );
 
