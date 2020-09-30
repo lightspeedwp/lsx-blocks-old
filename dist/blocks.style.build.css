@@ -6286,27 +6286,27 @@ body.banner-disabled.single article .entry-content {
   margin-top: 0px;
   padding-top: 0px; }
 
-.wp-block-group.is-style-lsx-group-style {
+.wp-block-group.is-style-lsx-group-style-subheading {
   padding-top: 4.25rem;
   padding-bottom: 4.25rem;
   text-align: center; }
-  .wp-block-group.is-style-lsx-group-style h2 {
+  .wp-block-group.is-style-lsx-group-style-subheading h2 {
     font-size: 48px;
     line-height: 50px;
     margin-bottom: 1.5rem; }
-  .wp-block-group.is-style-lsx-group-style p {
+  .wp-block-group.is-style-lsx-group-style-subheading p {
     font-size: 28px;
     line-height: 38px; }
-    .wp-block-group.is-style-lsx-group-style p:last-child:after {
+    .wp-block-group.is-style-lsx-group-style-subheading p:last-child:after {
       content: "";
       display: block;
       height: 2px;
       margin: 1.5rem auto 0;
       width: 80px;
       background-color: #dadddf; }
-    .wp-block-group.is-style-lsx-group-style p:last-child.has-text-align-left:after {
+    .wp-block-group.is-style-lsx-group-style-subheading p:last-child.has-text-align-left:after {
       margin-left: 0; }
-    .wp-block-group.is-style-lsx-group-style p:last-child.has-text-align-right:after {
+    .wp-block-group.is-style-lsx-group-style-subheading p:last-child.has-text-align-right:after {
       margin-right: 0; }
 
 .wp-block-group.lsx-group-style-card {
