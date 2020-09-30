@@ -89,6 +89,9 @@ class Page_Title {
 
 			// Add the filter necessary for the singles.
 			add_filter( 'lsx_hero_banner_override', 'lsx_wc_disable_lsx_banner' );
+			add_filter( 'lsx_hero_banner_override', 'lsx_wc_disable_lsx_banner_plugin' );
+			add_filter( 'lsx_hero_banner_override', array( $this, 'disable_wc_banner' ) );
+
 			if ( class_exists( 'LSX_Sensei' ) ) {
 				add_filter( 'lsx_hero_banner_override', array( 'LSX_Sensei', 'lsx_sensei_disable_lsx_banner' ) );
 			}
@@ -182,6 +185,29 @@ class Page_Title {
 	 */
 	public function disable_banner( $disable ) {
 		$disable = true;
+		return $disable;
+	}
+
+	public function disable_wc_banner( $disable ) {
+		// Cart and Checkout won't have banners of any kind.
+		if ( function_exists( 'is_woocommerce' ) && ( is_checkout() || is_cart() ) ) {
+			$disable = true;
+		}
+
+		// Product pages have their own banner function 'lsx_page_banner()'.
+		if ( function_exists( 'is_woocommerce' ) && ( is_product() ) ) {
+			$disable = true;
+		}
+
+		// Cart and Checkout won't have banners of any kind.
+		if ( function_exists( 'tribe_is_event' ) && tribe_is_event() ) {
+			$disable = true;
+		}
+
+		if ( function_exists( 'lsx_is_rest_api_request' ) && lsx_is_rest_api_request() ) {
+			$disable = true;
+		}
+
 		return $disable;
 	}
 }
