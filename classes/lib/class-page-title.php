@@ -155,8 +155,8 @@ class Page_Title {
 
 			<div class="lsx-hero-banner-block wp-block-cover has-background alignfull">
 				<div class="wp-block-cover__inner-container">
-					<div class="lsx-title-block wp-block-group aligncontent">
-						<div class="wp-block-group__inner-container">
+					<div class="lsx-title-block wp-block-group">
+						<div class="wp-block-group__inner-container aligncontent">
 							<?php $this->lsx_block_title(); ?>
 						</div>
 					</div>
