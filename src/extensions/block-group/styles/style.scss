@@ -12,7 +12,9 @@
 		p {
 			font-size: 28px;
 			line-height: 38px;
-			&:last-child {
+			color: $text_light;
+			&:last-child,
+			&.block-editor-block-list__block {
 				&:after {
 					content: "";
 					display: block;
@@ -20,6 +22,7 @@
 					margin: 1.5rem auto 0;
 					width: 80px;
 					background-color: #dadddf;
+					position: relative;
 				}
 				&.has-text-align-left {
 					&:after {

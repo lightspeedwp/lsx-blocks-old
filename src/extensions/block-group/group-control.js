@@ -277,7 +277,7 @@ const addChildrenStyles = (element, block, attributes) => {
 			savedElement = element.props.children;
 		}
 
-		console.log(savedElement);
+		//console.log(savedElement);
 		if (undefined !== savedElement) {
 			style = { ...obj2 };
 

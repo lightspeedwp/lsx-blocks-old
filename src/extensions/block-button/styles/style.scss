@@ -7,6 +7,20 @@
 	text-transform: uppercase;
 	padding: 15px;
 }
+.button-full-width-true {
+	width: 100%;
+	a {
+		width: 100%;
+	}
+	.wp-block-buttons & {
+		&.wp-block.block-editor-block-list__block {
+			width: 100%;
+			.wp-block-button__link {
+				width: 100%;
+			}
+		}
+	}
+}
 .wp-block-button {
 	a {
 		margin: 0 0 1em 0;

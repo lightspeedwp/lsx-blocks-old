@@ -47,6 +47,10 @@ function addHoverControlAttribute(settings, name) {
 		borderRadius: {
 			default: 3
 		},
+		buttonFullWidth: {
+			type: "boolean",
+			default: false
+		},
 		buttonModal: {
 			type: "boolean",
 			default: false
@@ -86,11 +90,17 @@ const withHoverControl = createHigherOrderComponent(BlockEdit => {
 			buttonShadowColor,
 			buttonHoverShadowColor,
 			buttonHoverTextColor,
+			buttonFullWidth,
 			buttonModal,
 			buttonDataTarget,
 			buttonDataToggle
 		} = props.attributes;
 
+		if (buttonFullWidth === true) {
+			var buttonFullWidthClass = "button-full-width-true";
+		} else {
+			var buttonFullWidthClass = "button-full-width-false";
+		}
 		// add has-hover class to block
 		if (buttonHoverColor) {
 			var buttonHoverClass = `has-hover-color-` + buttonHoverColor;
@@ -109,20 +119,52 @@ const withHoverControl = createHigherOrderComponent(BlockEdit => {
 		// add has-shadow class to block
 		props.attributes.className = classnames(
 			props.attributes.className,
+			buttonFullWidthClass,
 			buttonHoverClass,
 			buttonShadowClass,
 			buttonHoverShadowClass,
 			buttonHoverTextClass
 		);
+		//console.log(props.attributes.className);
+
+		var myWord = "button-full-width-true";
+		var myPattern = new RegExp("(\\w*" + myWord + "\\w*)", "gi");
+
+		var matches = props.attributes.className.match(myPattern);
+
 		props.attributes.className = props.attributes.className.split(" ");
 		props.attributes.className = props.attributes.className.filter(onlyUnique);
 		props.attributes.className = props.attributes.className.join(" ");
+
+		if (matches != undefined) {
+			//console.log(matches[0]);
+			if (buttonFullWidth === true) {
+				props.attributes.className = props.attributes.className.replace(
+					"button-full-width-false",
+					""
+				);
+				//console.log(props.attributes.className);
+			} else {
+				props.attributes.className = props.attributes.className.replace(
+					"button-full-width-true",
+					""
+				);
+				//console.log(props.attributes.className);
+			}
+		}
 
 		return (
 			<Fragment>
 				<BlockEdit {...props} />
 				<InspectorControls>
 					<PanelBody title={__("Additional LSX Settings")} initialOpen={true}>
+						<ToggleControl
+							label={__("Display fullwidth")}
+							checked={buttonFullWidth}
+							onChange={() =>
+								props.setAttributes({ buttonFullWidth: !buttonFullWidth })
+							}
+						/>
 						<PanelColorSettings
 							title={__("Button Hover Color")}
 							initialOpen={true}
