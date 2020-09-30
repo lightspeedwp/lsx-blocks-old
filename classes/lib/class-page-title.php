@@ -38,6 +38,15 @@ class Page_Title {
 	public $screen = '';
 
 	/**
+	 * Holds body CSS classes.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var string
+	 */
+	public $body_css = '';
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 1.0.0
@@ -75,7 +84,11 @@ class Page_Title {
 			$disable_title = get_post_meta( get_the_ID(), 'lsx_disable_title', true );
 			if ( '' === $disable_title || false === $disable_title || 'no' === $disable_title ) {
 				$this->screen = 'single';
+				$this->body_css = 'lsx-page-title lsx-hero-banner-init';
+			} else {
+				$this->body_css = 'banner-disabled';
 			}
+
 		} /* elseif ( is_post_type_archive( $post_types ) ) {
 			$this->screen = 'archive';
 		} elseif ( is_tax( $taxonomies ) ) {
@@ -121,11 +134,8 @@ class Page_Title {
 	 * @return array
 	 */
 	public function body_class( $classes ) {
-		if ( '' !== $this->screen && function_exists( 'has_blocks' ) && has_blocks() ) {
-			$classes[] = 'lsx-page-title';
-			$classes[] = 'lsx-hero-banner-init';
-		} else {
-			$classes[] = 'banner-disabled';
+		if ( '' !== $this->screen ) {
+			$classes[] = $this->body_css;
 		}
 		return $classes;
 	}
