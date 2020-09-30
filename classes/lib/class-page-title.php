@@ -78,17 +78,20 @@ class Page_Title {
 	 * @return void
 	 */
 	public function set_screen() {
-		$post_types = array();
-		$taxonomies = array( 'industry', 'location' );
 		if ( is_singular( array( 'post', 'page' ) ) && function_exists( 'has_blocks' ) && has_blocks() && ! is_front_page() && ! is_home() ) {
 			$disable_title = get_post_meta( get_the_ID(), 'lsx_disable_title', true );
-			if ( '' === $disable_title || false === $disable_title || 'no' === $disable_title ) {
+			if ( '' === $disable_title || false === $disable_title || 'no' === $disable_title || '0' === $disable_title || 0 === $disable_title ) {
 				$this->screen = 'single';
 				$this->body_css = 'lsx-page-title lsx-hero-banner-init';
 			} else {
 				$this->body_css = 'banner-disabled';
 			}
 
+			// Add the filter necessary for the singles.
+			add_filter( 'lsx_hero_banner_override', 'lsx_wc_disable_lsx_banner' );
+			if ( class_exists( 'LSX_Sensei' ) ) {
+				add_filter( 'lsx_hero_banner_override', array( 'LSX_Sensei', 'lsx_sensei_disable_lsx_banner' ) );
+			}
 		} /* elseif ( is_post_type_archive( $post_types ) ) {
 			$this->screen = 'archive';
 		} elseif ( is_tax( $taxonomies ) ) {
@@ -100,7 +103,10 @@ class Page_Title {
 			$this->screen = '';
 		}
 
-		$this->screen = apply_filters( 'lsx_hero_banner_override', $this->screen );
+		$override = apply_filters( 'lsx_hero_banner_override', false );
+		if ( false !== $override ) {
+			$this->screen = '';
+		}
 	}
 
 	/**
@@ -112,15 +118,12 @@ class Page_Title {
 		$this->set_screen();
 		add_action( 'body_class', array( $this, 'body_class' ) );
 
-		if ( function_exists( 'has_blocks' ) && has_blocks() && ( is_page() || is_single() ) ) {
+		if ( '' !== $this->screen ) {
 			remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
 			add_filter( 'lsx_banner_disable', array( $this, 'disable_banner' ), 100, 1 );
 			add_filter( 'lsx_global_header_disable', array( $this, 'disable_banner' ), 100, 1 );
 			add_filter( 'lsx_page_banner_disable', array( $this, 'disable_banner' ), 100, 1 );
-		}
 
-		// Add the title if it is not disabled.
-		if ( '' !== $this->screen && function_exists( 'has_blocks' ) && has_blocks() && ( is_page() || is_single() ) ) {
 			remove_action( 'lsx_entry_top', 'lsx_post_header' );
 			remove_action( 'lsx_entry_top', 'lsx_add_entry_meta', 999 );
 			add_action( 'lsx_entry_top', array( $this, 'lsx_block_header' ) );
