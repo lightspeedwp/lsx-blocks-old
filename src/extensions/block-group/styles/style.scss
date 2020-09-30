@@ -1,6 +1,40 @@
 //Group Block extension
 .wp-block-group {
 	&.is-style-lsx-group-style {
+		padding-top: $lsx-medium-gap;
+		padding-bottom: $lsx-medium-gap;
+		text-align: center;
+		h2 {
+			font-size: 48px;
+			line-height: 50px;
+			margin-bottom: 1.5rem;
+		}
+		p {
+			font-size: 28px;
+			line-height: 38px;
+			&:last-child {
+				&:after {
+					content: "";
+					display: block;
+					height: 2px;
+					margin: 1.5rem auto 0;
+					width: 80px;
+					background-color: #dadddf;
+				}
+				&.has-text-align-left {
+					&:after {
+						margin-left: 0;
+					}
+				}
+				&.has-text-align-right {
+					&:after {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+	}
+	&.lsx-group-style-card {
 		background: $groupbg;
 		margin: 0 auto 2.4em;
 		display: flex;
@@ -15,11 +49,16 @@
 			width: 100%;
 		}
 		.wp-block-group__inner-container {
-			>*:not(.wp-block-image) {
+			> *:not(.wp-block-image) {
 				padding-left: 1.5rem;
 				padding-right: 1.5rem;
 			}
-			h1, h2, h3, h4, h5, h6 {
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
 				margin-bottom: 0;
 			}
 			h2 {
@@ -39,6 +78,5 @@
 				margin-bottom: 2rem;
 			}
 		}
-
 	}
 }

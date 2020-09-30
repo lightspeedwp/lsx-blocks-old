@@ -292,7 +292,7 @@ const addChildrenStyles = (element, block, attributes) => {
 		block.name === "core/cover" &&
 		undefined !== attributes.containerMaxWidth
 	) {
-		console.log(attributes.containerMaxWidth);
+		//console.log(attributes.containerMaxWidth);
 		let style = "";
 		var obj2 = { maxWidth: maxWidth };
 		var savedElement = undefined;

@@ -19,9 +19,16 @@ if ( function_exists( 'register_block_style' ) ) {
 		register_block_style(
 			'core/group',
 			array(
-				'name'         => 'lsx-group-style',
+				'name'         => 'lsx-group-style-card',
 				'label'        => 'Card',
-				'isDefault'    => false,
+				'style_handle' => 'lsx-blocks-style-css',
+			)
+		);
+		register_block_style(
+			'core/group',
+			array(
+				'name'         => 'lsx-group-style-subheading',
+				'label'        => 'Subheading',
 				'style_handle' => 'lsx-blocks-style-css',
 			)
 		);
