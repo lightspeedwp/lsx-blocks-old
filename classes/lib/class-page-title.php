@@ -95,14 +95,19 @@ class Page_Title {
 			if ( class_exists( 'LSX_Sensei' ) ) {
 				add_filter( 'lsx_hero_banner_override', array( 'LSX_Sensei', 'lsx_sensei_disable_lsx_banner' ) );
 			}
-		} /* elseif ( is_post_type_archive( $post_types ) ) {
-			$this->screen = 'archive';
-		} elseif ( is_tax( $taxonomies ) ) {
+		} elseif ( is_singular( 'team' ) ) {
+			$this->screen = '';
+			remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
+			add_filter( 'lsx_banner_disable', array( $this, 'disable_banner' ), 100, 1 );
+			add_filter( 'lsx_global_header_disable', array( $this, 'disable_banner' ), 100, 1 );
+			add_filter( 'lsx_page_banner_disable', array( $this, 'disable_banner' ), 100, 1 );
+			
+		/*} elseif ( is_tax( $taxonomies ) ) {
 			$this->screen = 'taxonomy';
 		} elseif ( is_search() ) {
 			$engine       = get_query_var( 'engine' );
-			$this->screen = 'search';
-		}*/ else {
+			$this->screen = 'search';*/
+		} else {
 			$this->screen = '';
 		}
 
@@ -205,6 +210,11 @@ class Page_Title {
 		}
 
 		if ( function_exists( 'lsx_is_rest_api_request' ) && lsx_is_rest_api_request() ) {
+			$disable = true;
+		}
+
+		// LSX Team Doesnt use a banner.
+		if ( function_exists( 'is_woocommerce' ) && ( is_product() ) ) {
 			$disable = true;
 		}
 
