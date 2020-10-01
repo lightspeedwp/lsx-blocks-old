@@ -11,7 +11,7 @@ const { addFilter } = wp.hooks;
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
 const { InspectorControls } = wp.blockEditor;
-const { PanelBody, RangeControl } = wp.components;
+const { PanelBody, RangeControl, TextControl } = wp.components;
 
 // Enable spacing control on the following blocks
 const enableCustomCover = ["core/cover"];
@@ -36,31 +36,31 @@ function addCoverControlAttributes(settings, name) {
 			default: 0
 		},
 		containerMaxWidth: {
-			type: "number"
+			type: "text"
 		},
 		coverPaddingTop: {
-			type: "number"
+			type: "text"
 		},
 		coverPaddingBottom: {
-			type: "number"
+			type: "text"
 		},
 		coverPaddingLeft: {
-			type: "number"
+			type: "text"
 		},
 		coverPaddingRight: {
-			type: "number"
+			type: "text"
 		},
 		coverMarginTop: {
-			type: "number"
+			type: "text"
 		},
 		coverMarginBottom: {
-			type: "number"
+			type: "text"
 		},
 		coverMarginLeft: {
-			type: "number"
+			type: "text"
 		},
 		coverMarginRight: {
-			type: "number"
+			type: "text"
 		}
 	});
 
@@ -99,93 +99,75 @@ const coverSettingsControl = createHigherOrderComponent(BlockEdit => {
 				<BlockEdit {...props} />
 				<InspectorControls>
 					<PanelBody title={__("Additional LSX Settings")} initialOpen={true}>
-						<RangeControl
+						<TextControl
 							label={__("Container Max width (px)")}
+							type="text"
 							value={containerMaxWidth}
 							onChange={value =>
 								props.setAttributes({ containerMaxWidth: value })
 							}
-							min={10}
-							max={1170}
-							step={1}
 						/>
-						<RangeControl
+						<TextControl
 							label={__("Cover Padding Top (px)")}
+							type="text"
 							value={coverPaddingTop}
 							onChange={value =>
 								props.setAttributes({ coverPaddingTop: value })
 							}
-							min={0}
-							max={100}
-							step={1}
 						/>
-						<RangeControl
+						<TextControl
 							label={__("Cover Padding Bottom (px)")}
+							type="text"
 							value={coverPaddingBottom}
 							onChange={value =>
 								props.setAttributes({ coverPaddingBottom: value })
 							}
-							min={0}
-							max={100}
-							step={1}
 						/>
-						<RangeControl
+						<TextControl
 							label={__("Cover Padding Left (px)")}
+							type="text"
 							value={coverPaddingLeft}
 							onChange={value =>
 								props.setAttributes({ coverPaddingLeft: value })
 							}
-							min={0}
-							max={100}
-							step={1}
 						/>
-						<RangeControl
-							label={__("Cover Padding Right (px)")}
+						<TextControl
+							label={__("Cover Padding Right:  (px)")}
+							type="text"
 							value={coverPaddingRight}
 							onChange={value =>
 								props.setAttributes({ coverPaddingRight: value })
 							}
-							min={0}
-							max={100}
-							step={1}
 						/>
-						<RangeControl
-							label={__("Cover Margin Top (px)")}
+						<TextControl
+							label={__("Cover Padding Top:  (px)")}
+							type="text"
 							value={coverMarginTop}
 							onChange={value => props.setAttributes({ coverMarginTop: value })}
-							min={0}
-							max={100}
-							step={1}
 						/>
-						<RangeControl
-							label={__("Cover Margin Bottom (px)")}
+						<TextControl
+							label={__("Cover Margin Bottom:  (px)")}
+							type="text"
 							value={coverMarginBottom}
 							onChange={value =>
 								props.setAttributes({ coverMarginBottom: value })
 							}
-							min={0}
-							max={100}
-							step={1}
 						/>
-						<RangeControl
-							label={__("Cover Margin Left (px)")}
+						<TextControl
+							label={__("Cover Margin Left:  (px)")}
+							type="text"
 							value={coverMarginLeft}
 							onChange={value =>
 								props.setAttributes({ coverMarginLeft: value })
 							}
-							min={0}
-							max={100}
-							step={1}
 						/>
-						<RangeControl
-							label={__("Cover Margin Right (px)")}
+						<TextControl
+							label={__("Cover Margin Right:  (px)")}
+							type="text"
 							value={coverMarginRight}
 							onChange={value =>
 								props.setAttributes({ coverMarginRight: value })
 							}
-							min={0}
-							max={100}
-							step={1}
 						/>
 					</PanelBody>
 				</InspectorControls>
