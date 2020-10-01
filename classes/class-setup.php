@@ -98,9 +98,9 @@ class Setup {
 		require_once LSX_BLOCKS_PATH . 'src/extensions/block-cover/index.php';
 
 		/**
-		 * Load Gutenberg Pullquote Block Styles
+		 * Load Gutenberg Button Block Styles
 		 */
-		//require_once LSX_BLOCKS_PATH . 'src/extensions/block-pullquote/index.php';
+		require_once LSX_BLOCKS_PATH . 'src/extensions/block-button/index.php';
 
 		/**
 		 * Load Team Block

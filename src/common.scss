@@ -10,9 +10,14 @@ $blue: #418ad0;
 $accent: #27639e;
 $lightgray: #626e81;
 $textgray: #919191;
+$text_light: #777777;
 $orange: #f7ae00;
 $graybg: #f6f6f6;
 $groupbg: #f2f2f2;
+
+$lsx-gap: 2.4rem;
+$lsx-medium-gap: 4.25rem;
+$lsx-large-gap: 8.5rem;
 
 /* Font size styles */
 @media only screen and (min-width: 600px) {
@@ -336,9 +341,9 @@ article {
 .lsx-hero-banner-block {
 	background-color: #2b3840;
 	margin-bottom: 4.25rem;
-	.gutenberg-compatible-template.using-gutenberg & {
-		margin-bottom: 4.25rem;
-	}
+	// .gutenberg-compatible-template.using-gutenberg & {
+	// 	margin-bottom: 4.25rem;
+	// }
 	.lsx-title-block {
 		h1 {
 			margin-bottom: 0;

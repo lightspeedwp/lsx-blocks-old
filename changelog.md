@@ -11,6 +11,10 @@
 - Added color options for the Team block.
 - Added Cover Block inner width settings.
 - Added a default cover block as a page title, which can be disabled.
+- Added full width options to the buttons.
+- Added more button block styles options.
+- Added options for small and large button.
+- Added min height and max width to the group block.
 
 ### Fixed
 
