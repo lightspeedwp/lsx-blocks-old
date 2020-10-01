@@ -165,6 +165,15 @@ class Page_Title {
 							<?php $this->lsx_block_title(); ?>
 						</div>
 					</div>
+					<?php
+					if ( is_singular( 'post' ) ) {
+						?>
+							<div class="entry-meta">
+								<?php lsx_post_meta_single_top(); ?>
+							</div><!-- .entry-meta -->
+						<?php
+					}
+					?>
 				</div>
 			</div>
 
