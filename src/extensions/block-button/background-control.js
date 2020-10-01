@@ -12,7 +12,7 @@ const { addFilter } = wp.hooks;
 const { createHigherOrderComponent } = wp.compose;
 const { Fragment } = wp.element;
 const { InspectorControls, PanelColorSettings } = wp.blockEditor;
-const { PanelBody, ToggleControl, TextControl } = wp.components;
+const { PanelBody, ToggleControl, TextControl, SelectControl } = wp.components;
 
 // Enable spacing control on the following blocks
 const enableCustomButton = ["core/button"];
@@ -50,6 +50,14 @@ function addHoverControlAttribute(settings, name) {
 		buttonFullWidth: {
 			type: "boolean",
 			default: false
+		},
+		buttonDepth: {
+			type: "boolean",
+			default: false
+		},
+		buttonSize: {
+			type: "string",
+			default: ""
 		},
 		buttonModal: {
 			type: "boolean",
@@ -91,15 +99,33 @@ const withHoverControl = createHigherOrderComponent(BlockEdit => {
 			buttonHoverShadowColor,
 			buttonHoverTextColor,
 			buttonFullWidth,
+			buttonDepth,
+			buttonSize,
 			buttonModal,
 			buttonDataTarget,
 			buttonDataToggle
 		} = props.attributes;
 
+		// Button size values
+		const buttonSizeOptions = [
+			{ value: "lsx-button-size-small", label: __("Small") },
+			{ value: "", label: __("Medium") },
+			{ value: "lsx-button-size-large", label: __("Large") },
+			{ value: "lsx-button-size-extralarge", label: __("Extra Large") }
+		];
+
 		if (buttonFullWidth === true) {
 			var buttonFullWidthClass = "button-full-width-true";
 		} else {
 			var buttonFullWidthClass = "button-full-width-false";
+		}
+		if (buttonDepth === true) {
+			var buttonDepthClass = "button-3d-true";
+		} else {
+			var buttonDepthClass = "button-3d-false";
+		}
+		if (buttonSize) {
+			var buttonSizeClass = buttonSize;
 		}
 		// add has-hover class to block
 		if (buttonHoverColor) {
@@ -120,17 +146,22 @@ const withHoverControl = createHigherOrderComponent(BlockEdit => {
 		props.attributes.className = classnames(
 			props.attributes.className,
 			buttonFullWidthClass,
+			buttonDepthClass,
 			buttonHoverClass,
+			buttonSizeClass,
 			buttonShadowClass,
 			buttonHoverShadowClass,
 			buttonHoverTextClass
 		);
 		//console.log(props.attributes.className);
 
-		var myWord = "button-full-width-true";
-		var myPattern = new RegExp("(\\w*" + myWord + "\\w*)", "gi");
+		var checkWidth = "button-full-width-true";
+		var checkDepth = "button-3d-true";
+		var myPatternWidth = new RegExp("(\\w*" + checkWidth + "\\w*)", "gi");
+		var myPatternDepth = new RegExp("(\\w*" + checkDepth + "\\w*)", "gi");
 
-		var matches = props.attributes.className.match(myPattern);
+		var matches = props.attributes.className.match(myPatternWidth);
+		var matchesDepth = props.attributes.className.match(myPatternDepth);
 
 		props.attributes.className = props.attributes.className.split(" ");
 		props.attributes.className = props.attributes.className.filter(onlyUnique);
@@ -152,6 +183,19 @@ const withHoverControl = createHigherOrderComponent(BlockEdit => {
 				//console.log(props.attributes.className);
 			}
 		}
+		if (matchesDepth != undefined) {
+			if (buttonDepth === true) {
+				props.attributes.className = props.attributes.className.replace(
+					"button-3d-false",
+					""
+				);
+			} else {
+				props.attributes.className = props.attributes.className.replace(
+					"button-3d-true",
+					""
+				);
+			}
+		}
 
 		return (
 			<Fragment>
@@ -164,6 +208,24 @@ const withHoverControl = createHigherOrderComponent(BlockEdit => {
 							onChange={() =>
 								props.setAttributes({ buttonFullWidth: !buttonFullWidth })
 							}
+						/>
+						<ToggleControl
+							label={__("3D Button")}
+							checked={buttonDepth}
+							onChange={() =>
+								props.setAttributes({ buttonDepth: !buttonDepth })
+							}
+						/>
+						<SelectControl
+							label={__("Button Size")}
+							value={buttonSize}
+							options={buttonSizeOptions.map(({ value, label }) => ({
+								value: value,
+								label: label
+							}))}
+							onChange={value => {
+								props.setAttributes({ buttonSize: value });
+							}}
 						/>
 						<PanelColorSettings
 							title={__("Button Hover Color")}
@@ -327,6 +389,9 @@ addFilter(
  */
 const addExtraClassesButton = (element, block, attributes) => {
 	let boxShadowStyle = "none";
+	if (attributes.buttonDepth === true) {
+		boxShadowStyle = "2px 2px 0 0 black";
+	}
 	if (attributes.buttonShadowColor) {
 		boxShadowStyle = "2px 2px 0 0 " + attributes.buttonShadowColor;
 	}
