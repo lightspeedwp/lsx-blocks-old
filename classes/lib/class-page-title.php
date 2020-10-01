@@ -95,7 +95,7 @@ class Page_Title {
 			if ( class_exists( 'LSX_Sensei' ) ) {
 				add_filter( 'lsx_hero_banner_override', array( 'LSX_Sensei', 'lsx_sensei_disable_lsx_banner' ) );
 			}
-		} elseif ( is_singular( 'team' ) ) {
+		} elseif ( is_singular( array( 'team', 'testimonial' ) ) ) {
 			$this->screen = '';
 			remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
 			add_filter( 'lsx_banner_disable', array( $this, 'disable_banner' ), 100, 1 );
