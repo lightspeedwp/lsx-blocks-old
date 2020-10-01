@@ -5996,15 +5996,13 @@ body.banner-disabled.single article .entry-content {
   -webkit-box-shadow: 2px 2px 0 0 #293038;
           box-shadow: 2px 2px 0 0 #293038; }
 
-.lsx-button-size-small a {
+.lsx-button-size-small a,
+.lsx-button-size-small .wp-block-button__link {
   font-size: 11px; }
 
-.lsx-button-size-large a {
+.lsx-button-size-large a,
+.lsx-button-size-large .wp-block-button__link {
   font-size: 23px;
-  padding: 0.8em 1.2em; }
-
-.lsx-button-size-extralarge a {
-  font-size: 31px;
   padding: 0.8em 1.2em; }
 
 .wp-block-button a {

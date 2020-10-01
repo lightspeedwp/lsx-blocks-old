@@ -34,24 +34,20 @@
 	}
 }
 .lsx-button-size-small {
-	a {
+	a,
+	.wp-block-button__link {
 		font-size: 11px;
 	}
 }
 
 .lsx-button-size-large {
-	a {
+	a,
+	.wp-block-button__link {
 		font-size: 23px;
 		padding: 0.8em 1.2em;
 	}
 }
 
-.lsx-button-size-extralarge {
-	a {
-		font-size: 31px;
-		padding: 0.8em 1.2em;
-	}
-}
 .wp-block-button {
 	//Click
 	a {

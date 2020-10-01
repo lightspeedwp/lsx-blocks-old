@@ -110,8 +110,7 @@ const withHoverControl = createHigherOrderComponent(BlockEdit => {
 		const buttonSizeOptions = [
 			{ value: "lsx-button-size-small", label: __("Small") },
 			{ value: "", label: __("Medium") },
-			{ value: "lsx-button-size-large", label: __("Large") },
-			{ value: "lsx-button-size-extralarge", label: __("Extra Large") }
+			{ value: "lsx-button-size-large", label: __("Large") }
 		];
 
 		if (buttonFullWidth === true) {
@@ -195,6 +194,19 @@ const withHoverControl = createHigherOrderComponent(BlockEdit => {
 					""
 				);
 			}
+		}
+
+		if (buttonSize !== "lsx-button-size-small") {
+			props.attributes.className = props.attributes.className.replace(
+				"lsx-button-size-small",
+				""
+			);
+		}
+		if (buttonSize !== "lsx-button-size-large") {
+			props.attributes.className = props.attributes.className.replace(
+				"lsx-button-size-large",
+				""
+			);
 		}
 
 		return (
