@@ -56,10 +56,13 @@ class Admin {
 	 * Adds a meta box to the post editing screen
 	 */
 	public function register_meta() {
+
 		$rest_field = array(
-			'lsx_disable_title'    => 'string',
+			'lsx_disable_title' => 'string',
 		);
+
 		foreach ( $rest_field as $meta_key => $type ) {
+
 			register_meta(
 				'post',
 				$meta_key,
@@ -67,7 +70,7 @@ class Admin {
 					'type'         => $type,
 					'single'       => true,
 					'show_in_rest' => true,
-					'default'      => '0',
+					'default'      => "yes",
 				)
 			);
 		}

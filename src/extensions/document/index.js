@@ -12,7 +12,7 @@ import DisableTitle from "./components/disable-title";
 const lsxPageTitlePanel = () => {
 	const postType = select("core/editor").getCurrentPostType();
 
-	if ( ! includes( [ "post", "page" ], postType ) ) {
+	if (!includes(["post", "page"], postType)) {
 		return null;
 	}
 

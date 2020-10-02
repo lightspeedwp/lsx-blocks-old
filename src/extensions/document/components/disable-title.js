@@ -9,7 +9,7 @@ const { withState } = wp.compose;
 
 const { useSelect, useDispatch } = wp.data;
 
-const DisableTitle = withState({ checked: false })(({ checked, setState }) => {
+const DisableTitle = withState({ checked: true })(({ checked, setState }) => {
 	// Lets get the initial State of the toggle from the custom field / autosaves.
 	const rawChecked = useSelect(select => {
 		return select("core/editor").getEditedPostAttribute("meta")
@@ -24,7 +24,7 @@ const DisableTitle = withState({ checked: false })(({ checked, setState }) => {
 	}
 
 	const { editPost } = useDispatch("core/editor");
-
+	//console.log(checked);
 	return (
 		<div className={"lsx-panel-row"}>
 			<FormToggle

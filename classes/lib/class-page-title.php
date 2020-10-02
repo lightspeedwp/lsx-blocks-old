@@ -101,7 +101,7 @@ class Page_Title {
 			add_filter( 'lsx_banner_disable', array( $this, 'disable_banner' ), 100, 1 );
 			add_filter( 'lsx_global_header_disable', array( $this, 'disable_banner' ), 100, 1 );
 			add_filter( 'lsx_page_banner_disable', array( $this, 'disable_banner' ), 100, 1 );
-			
+
 		/*} elseif ( is_tax( $taxonomies ) ) {
 			$this->screen = 'taxonomy';
 		} elseif ( is_search() ) {
