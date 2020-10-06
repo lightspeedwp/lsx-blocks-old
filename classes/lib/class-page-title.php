@@ -55,6 +55,7 @@ class Page_Title {
 	 */
 	private function __construct() {
 		add_action( 'wp_head', array( $this, 'wp_head' ), 999 );
+		add_filter( 'lsx_layout_customizer_controls', array( $this, 'customizer_controls' ), 10, 1 );
 	}
 
 	/**
@@ -70,6 +71,33 @@ class Page_Title {
 			self::$instance = new self();
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Detects what screen it is and saves it.
+	 *
+	 * @return void
+	 */
+	public function customizer_controls( $lsx_controls ) {
+
+		$post_type = array(
+			'post',
+			'page',
+		);
+		foreach ( $post_type as $post_type ) {
+			$lsx_controls['settings'][ 'lsx' . $post_type . '_title_disable' ] = array(
+				'default'           => false,
+				'sanitize_callback' => 'lsx_sanitize_checkbox',
+				'transport'         => 'postMessage',
+			);
+
+			$lsx_controls['fields'][ 'lsx' . $post_type . '_title_disable' ] = array(
+				'label'   => esc_html__( sprintf( 'Disable %s titles by default', $post_type ), 'lsx' ),
+				'section' => 'lsx-layout',
+				'type'    => 'checkbox',
+			);
+		}
+		return $lsx_controls;
 	}
 
 	/**
