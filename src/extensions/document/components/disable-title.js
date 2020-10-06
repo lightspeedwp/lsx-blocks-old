@@ -16,8 +16,17 @@ const DisableTitle = withState({ checked: 'no' })(({ checked, setState }) => {
 			.lsx_disable_title;
 	}, []);
 
-	console.log(checked);
-	console.log(rawChecked);
+	const postType = useSelect(select => {
+		return select("core/editor").getCurrentPostType();
+	}, []);
+
+	// If its a post, the title is enabled, else its a page, then its disabled.
+	if ( 'post' === postType ) {
+		checked = false;
+	} else {
+		checked = true;
+	}
+
 	// Next lets map our yes / no to a true / false.
 	if ( 0 !== rawChecked && '0' !== rawChecked ) {
 		if ( "yes" !== rawChecked ) {
@@ -25,11 +34,7 @@ const DisableTitle = withState({ checked: 'no' })(({ checked, setState }) => {
 		} else {
 			checked = true;
 		}
-	} else {
-		checked = true;
 	}
-	console.log('after');
-	console.log(checked);
 
 	const { editPost } = useDispatch("core/editor");
 	//console.log(checked);
