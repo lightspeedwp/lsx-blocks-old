@@ -9,7 +9,7 @@ const { withState } = wp.compose;
 
 const { useSelect, useDispatch } = wp.data;
 
-const DisableTitle = withState({ checked: 'yes' })(({ checked, setState }) => {
+const DisableTitle = withState({ checked: 'no' })(({ checked, setState }) => {
 	// Lets get the initial State of the toggle from the custom field / autosaves.
 	const rawChecked = useSelect(select => {
 		return select("core/editor").getEditedPostAttribute("meta")
