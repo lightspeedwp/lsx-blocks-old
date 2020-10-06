@@ -9,19 +9,27 @@ const { withState } = wp.compose;
 
 const { useSelect, useDispatch } = wp.data;
 
-const DisableTitle = withState({ checked: true })(({ checked, setState }) => {
+const DisableTitle = withState({ checked: 'yes' })(({ checked, setState }) => {
 	// Lets get the initial State of the toggle from the custom field / autosaves.
 	const rawChecked = useSelect(select => {
 		return select("core/editor").getEditedPostAttribute("meta")
 			.lsx_disable_title;
 	}, []);
 
+	console.log(checked);
+	console.log(rawChecked);
 	// Next lets map our yes / no to a true / false.
-	if ("yes" !== rawChecked) {
-		checked = false;
+	if ( 0 !== rawChecked && '0' !== rawChecked ) {
+		if ( "yes" !== rawChecked ) {
+			checked = false;
+		} else {
+			checked = true;
+		}
 	} else {
 		checked = true;
 	}
+	console.log('after');
+	console.log(checked);
 
 	const { editPost } = useDispatch("core/editor");
 	//console.log(checked);
@@ -38,7 +46,7 @@ const DisableTitle = withState({ checked: true })(({ checked, setState }) => {
 				onChange={() =>
 					setState(state => {
 						let disabled = "no";
-						if (false === state.checked) {
+						if (false === state.checked ) {
 							disabled = "yes";
 						}
 						editPost({ meta: { lsx_disable_title: disabled } });
