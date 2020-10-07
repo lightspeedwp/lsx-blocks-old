@@ -109,7 +109,6 @@ class Page_Title {
 	public function set_screen() {
 		if ( is_singular( array( 'post', 'page' ) ) && function_exists( 'has_blocks' ) && has_blocks() && ! is_front_page() && ! is_home() ) {
 			$disable_title = get_post_meta( get_the_ID(), 'lsx_disable_title', true );
-			var_dump($disable_title);
 			if ( '' === $disable_title || false === $disable_title || 'no' === $disable_title || '0' === $disable_title || 0 === $disable_title ) {
 				$this->screen = 'single';
 				$this->body_css = 'lsx-page-title lsx-hero-banner-init';
