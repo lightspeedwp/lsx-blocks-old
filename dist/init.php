@@ -85,9 +85,9 @@ function lsx_blocks_editor_assets() {
 
 	if ( in_array( get_post_type(), array( 'post', 'page' ) ) ) {
 		if ( 'post' === get_post_type() ) {
-			$title_disabled = true;
-		} else {
 			$title_disabled = false;
+		} else {
+			$title_disabled = true;
 		}
 		$title_disabled = apply_filters( 'lsx_' . get_post_type() . '_title_disable', $title_disabled );
 	}
