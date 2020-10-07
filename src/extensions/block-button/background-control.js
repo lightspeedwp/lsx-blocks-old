@@ -402,7 +402,7 @@ addFilter(
 const addExtraClassesButton = (element, block, attributes) => {
 	let boxShadowStyle = "none";
 	if (attributes.buttonDepth === true) {
-		boxShadowStyle = "2px 2px 0 0 black";
+		boxShadowStyle = "2px 2px 0 0 #27639d";
 	}
 	if (attributes.buttonShadowColor) {
 		boxShadowStyle = "2px 2px 0 0 " + attributes.buttonShadowColor;

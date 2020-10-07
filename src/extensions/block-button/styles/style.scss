@@ -23,12 +23,12 @@
 }
 .button-3d-true {
 	a {
-		box-shadow: 2px 2px 0 0 $black;
+		box-shadow: 2px 2px 0 0 $accent;
 	}
 	.wp-block-buttons & {
 		&.wp-block.block-editor-block-list__block {
 			.wp-block-button__link {
-				box-shadow: 2px 2px 0 0 $black;
+				box-shadow: 2px 2px 0 0 $accent;
 			}
 		}
 	}
