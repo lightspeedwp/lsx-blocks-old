@@ -3,11 +3,11 @@
  * Loads on front end and back end
  */
 
- .lsx-block-post-grid {
+.lsx-block-post-grid {
 	margin: 0 0 1.2em 0;
 	position: relative;
 	word-break: break-all;
-	@media (min-width:900px) {
+	@media (min-width: 900px) {
 		padding: 4rem;
 	}
 	.is-grid {
@@ -20,6 +20,16 @@
 			margin-bottom: 2.5em;
 			background-color: #fff;
 			word-break: break-word;
+			&:not(.disable-shadow) {
+				box-shadow: 1px 1px 5px rgba(155, 155, 155, 0.7);
+			}
+			&.no-placeholder {
+				> .lsx-block-post-grid-text {
+					> .lsx-block-post-grid-title {
+						padding-top: 10px;
+					}
+				}
+			}
 		}
 	}
 
@@ -63,7 +73,7 @@
 		a {
 			color: $blue;
 			box-shadow: none;
-			transition: .3s ease;
+			transition: 0.3s ease;
 			font-size: 20px;
 			&:hover {
 				color: $orange !important;
@@ -77,6 +87,9 @@
 		margin-bottom: 15px;
 		padding-left: 15px;
 		padding-right: 15px;
+		&:empty {
+			margin: 0;
+		}
 		.lsx-block-post-avatar {
 			position: relative;
 			top: -4em;
@@ -85,7 +98,7 @@
 				border-radius: 50%;
 				width: 75px !important;
 				margin-bottom: 1em;
-				border: 2px solid #FFF;
+				border: 2px solid #fff;
 				margin-left: auto;
 				margin-right: auto;
 			}
@@ -133,7 +146,7 @@
 	.lsx-block-post-grid-link {
 		display: inline-block;
 		box-shadow: none;
-		transition: .3s ease;
+		transition: 0.3s ease;
 		font-weight: bold;
 		color: $black;
 		text-transform: uppercase;
@@ -154,7 +167,8 @@
 		div + p {
 			margin-top: 15px;
 		}
-		p, a {
+		p,
+		a {
 			font-size: 15px;
 			font-weight: normal;
 		}
@@ -171,8 +185,11 @@
 			display: grid;
 			grid-template-columns: 30% 1fr;
 			grid-template-rows: 1fr;
-      grid-gap: 0 1em;
+			grid-gap: 0 1em;
 			word-break: break-word;
+			&:not(.disable-shadow) {
+				box-shadow: 1px 1px 5px rgba(155, 155, 155, 0.7);
+			}
 			&:not(:last-child) {
 				margin-bottom: 5%;
 				padding-bottom: 5%;
@@ -202,6 +219,7 @@
 
 		.lsx-block-post-grid-title {
 			display: flex;
+			padding-top: 15px;
 			@media only screen and (min-width: 600px) {
 				font-size: 34px;
 			}

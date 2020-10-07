@@ -57,14 +57,22 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 
 			if ( $post_thumb_id && isset( $attributes['displayPostImage'] ) && $attributes['displayPostImage'] ) {
 				$post_thumb_class = 'has-thumb';
-			} else {
+			} elseif ( isset( $attributes['displayPostImage'] ) && $attributes['displayPostImage'] ) {
 				$post_thumb_class = 'placeholder-thumb';
+			} else {
+				$post_thumb_class = 'no-placeholder';
+			}
+
+			if ( isset( $attributes['displayPostShadow'] ) && $attributes['displayPostShadow'] ) {
+				$shadow_class = 'disable-shadow';
+			} else {
+				$shadow_class = '';
 			}
 
 			// Start the markup for the post.
 			$list_items_markup[] = sprintf(
-				'<article class="%1$s">',
-				esc_attr( $post_thumb_class )
+				'<article class="%1$s %2$s">',
+				esc_attr( $post_thumb_class ), esc_attr( $shadow_class )
 			);
 
 			// Get the featured image.
@@ -103,7 +111,7 @@ function lsx_blocks_render_block_core_latest_posts( $attributes ) {
 			$list_items_markup[] = sprintf(
 				'<h2 class="lsx-block-post-grid-title"><a href="%1$s" rel="bookmark">%2$s</a></h2>',
 				esc_url( get_permalink( $post_id ) ),
-				esc_html( $title )
+				wp_kses_post( $title )
 			);
 
 			// Wrap the byline content.
@@ -254,6 +262,10 @@ function lsx_blocks_register_block_core_latest_posts() {
 			'displayPostImage'     => array(
 				'type'    => 'boolean',
 				'default' => true,
+			),
+			'displayPostShadow'    => array(
+				'type'    => 'boolean',
+				'default' => false,
 			),
 			'displayPostLink'      => array(
 				'type'    => 'boolean',

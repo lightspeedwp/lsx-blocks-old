@@ -151,3 +151,38 @@ if ( in_array( 'lsx-testimonials/lsx-testimonials.php', apply_filters( 'active_p
 		);
 	}, 10, 2 );
 }
+
+/**
+ * Creates the Additional Meta the REST API responses.
+ *
+ * @param [type] $object post.
+ * @param [type] $field_name name.
+ * @param [type] $request request.
+ */
+function lsx_post_get_additional_meta( $object, $field_name, $request ) {
+	$category_title = get_the_category();
+	$tag_title      = get_the_tags();
+
+	return array(
+		'category_title' => $category_title,
+		'tag_title'      => $tag_title,
+	);
+}
+
+/**
+ * Modify REST API responses to get better social urls for the blocks.
+ *
+ * @return void
+ */
+function lsx_post_register_additional_meta() {
+	register_rest_field(
+		'post',
+		'additional_meta',
+		array(
+			'get_callback'    => 'lsx_post_get_additional_meta',
+			'update_callback' => null,
+			'schema'          => null,
+		)
+	);
+}
+add_action( 'rest_api_init', 'lsx_post_register_additional_meta' );

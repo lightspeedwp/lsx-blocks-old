@@ -56,6 +56,7 @@ class LatestPostsBlock extends Component {
 		this.toggleDisplayPostExcerpt = this.toggleDisplayPostExcerpt.bind(this);
 		this.toggleDisplayPostAuthor = this.toggleDisplayPostAuthor.bind(this);
 		this.toggleDisplayPostImage = this.toggleDisplayPostImage.bind(this);
+		this.toggleDisplayPostShadow = this.toggleDisplayPostShadow.bind(this);
 		this.toggleDisplayPostLink = this.toggleDisplayPostLink.bind(this);
 	}
 
@@ -126,6 +127,13 @@ class LatestPostsBlock extends Component {
 		setAttributes({ displayPostImage: !displayPostImage });
 	}
 
+	toggleDisplayPostShadow() {
+		const { displayPostShadow } = this.props.attributes;
+		const { setAttributes } = this.props;
+
+		setAttributes({ displayPostShadow: !displayPostShadow });
+	}
+
 	toggleDisplayPostLink() {
 		const { displayPostLink } = this.props.attributes;
 		const { setAttributes } = this.props;
@@ -147,6 +155,7 @@ class LatestPostsBlock extends Component {
 			displayPostExcerpt,
 			displayPostAuthor,
 			displayPostImage,
+			displayPostShadow,
 			displayPostLink,
 			align,
 			postLayout,
@@ -172,6 +181,8 @@ class LatestPostsBlock extends Component {
 		];
 		const isLandscape = imageCrop === "landscape";
 
+		let theCategories = "";
+
 		//Create category
 		const categoriesListObject = [];
 		if (categoriesList && categoriesList.length) {
@@ -183,6 +194,8 @@ class LatestPostsBlock extends Component {
 			}
 			categoriesListObject.unshift({ value: "", label: __("All") });
 		}
+
+		//console.log(categoriesListObject);
 
 		//Create taglist
 		const tagsListObject = [];
@@ -285,6 +298,11 @@ class LatestPostsBlock extends Component {
 						]}
 					/>
 					<ToggleControl
+						label={__("Remove Posts Shadow")}
+						checked={displayPostShadow}
+						onChange={this.toggleDisplayPostShadow}
+					/>
+					<ToggleControl
 						label={__("Display Continue Reading Link")}
 						checked={displayPostLink}
 						onChange={this.toggleDisplayPostLink}
@@ -369,10 +387,12 @@ class LatestPostsBlock extends Component {
 					>
 						{displayPosts &&
 							displayPosts.map((post, i) => {
+								//console.log(post);
 								return (
 									<article
 										key={i}
 										className={classnames(
+											displayPostShadow ? "disable-shadow" : "",
 											post.featured_image_src && displayPostImage
 												? "has-thumb"
 												: "no-thumb"
@@ -397,20 +417,21 @@ class LatestPostsBlock extends Component {
 												</a>
 											</div>
 										) : (
-											<div className="lsx-block-post-grid-image">
-												<a href={post.link} target="_blank" rel="bookmark">
-													<img
-														classnames="attachment-responsive wp-post-image lsx-responsive"
-														src="/wp-content/plugins/lsx-blocks/dist/assets/images/placeholder-350x230.jpg"
-														alt={
-															decodeEntities(post.title.rendered.trim()) ||
-															__("(Untitled)")
-														}
-													/>
-												</a>
-											</div>
+											displayPostImage && (
+												<div className="lsx-block-post-grid-image">
+													<a href={post.link} target="_blank" rel="bookmark">
+														<img
+															classnames="attachment-responsive wp-post-image lsx-responsive"
+															src="/wp-content/plugins/lsx-blocks/dist/assets/images/placeholder-350x230.jpg"
+															alt={
+																decodeEntities(post.title.rendered.trim()) ||
+																__("(Untitled)")
+															}
+														/>
+													</a>
+												</div>
+											)
 										)}
-
 										<div className="lsx-block-post-grid-text">
 											<h2 className="entry-title">
 												<a href={post.link} target="_blank" rel="bookmark">
@@ -484,6 +505,20 @@ class LatestPostsBlock extends Component {
 													</p>
 												)}
 											</div>
+											{undefined !== post.additional_meta &&
+												undefined !== post.additional_meta.category_title &&
+												((theCategories = post.additional_meta.category_title),
+												(
+													//console.log(theCategories),
+													<div className="post-tags-wrapper">
+														<div className="post-tags">
+															<span>{__("Categories")} </span>
+															{theCategories.map((cat, i) => {
+																return <span key={i}>{cat.cat_name}</span>;
+															})}
+														</div>
+													</div>
+												))}
 										</div>
 									</article>
 								);
