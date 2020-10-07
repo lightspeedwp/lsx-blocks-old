@@ -27,6 +27,8 @@ const DisableTitle = withState({ checked: 'no' })(({ checked, setState }) => {
 		checked = true;
 	}
 
+	console.log( lsx_globals );
+
 	// Next lets map our yes / no to a true / false.
 	if ( 0 !== rawChecked && '0' !== rawChecked ) {
 		if ( "yes" !== rawChecked ) {

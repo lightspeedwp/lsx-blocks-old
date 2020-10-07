@@ -55,7 +55,7 @@ class Page_Title {
 	 */
 	private function __construct() {
 		add_action( 'wp_head', array( $this, 'wp_head' ), 999 );
-		add_filter( 'lsx_layout_customizer_controls', array( $this, 'customizer_controls' ), 10, 1 );
+		//add_filter( 'lsx_layout_customizer_controls', array( $this, 'customizer_controls' ), 10, 1 );
 	}
 
 	/**
@@ -85,13 +85,14 @@ class Page_Title {
 			'page',
 		);
 		foreach ( $post_type as $post_type ) {
-			$lsx_controls['settings'][ 'lsx' . $post_type . '_title_disable' ] = array(
+			$lsx_controls['settings'][ 'lsx_' . $post_type . '_title_disable' ] = array(
 				'default'           => false,
 				'sanitize_callback' => 'lsx_sanitize_checkbox',
 				'transport'         => 'postMessage',
+				'type'              => 'option',
 			);
 
-			$lsx_controls['fields'][ 'lsx' . $post_type . '_title_disable' ] = array(
+			$lsx_controls['fields'][ 'lsx_' . $post_type . '_title_disable' ] = array(
 				'label'   => esc_html__( sprintf( 'Disable %s titles by default', $post_type ), 'lsx' ),
 				'section' => 'lsx-layout',
 				'type'    => 'checkbox',
@@ -108,6 +109,7 @@ class Page_Title {
 	public function set_screen() {
 		if ( is_singular( array( 'post', 'page' ) ) && function_exists( 'has_blocks' ) && has_blocks() && ! is_front_page() && ! is_home() ) {
 			$disable_title = get_post_meta( get_the_ID(), 'lsx_disable_title', true );
+			var_dump($disable_title);
 			if ( '' === $disable_title || false === $disable_title || 'no' === $disable_title || '0' === $disable_title || 0 === $disable_title ) {
 				$this->screen = 'single';
 				$this->body_css = 'lsx-page-title lsx-hero-banner-init';

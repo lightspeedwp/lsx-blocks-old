@@ -82,12 +82,23 @@ function lsx_blocks_editor_assets() {
 		filemtime( plugin_dir_path( __FILE__ ) . 'blocks.editor.build.css' )
 	);
 
+
+	if ( in_array( get_post_type(), array( 'post', 'page' ) ) ) {
+		if ( 'post' === get_post_type() ) {
+			$title_disabled = true;
+		} else {
+			$title_disabled = false;
+		}
+		$title_disabled = apply_filters( 'lsx_' . get_post_type() . '_title_disable', $title_disabled );
+	}
+
 	// Pass in REST URL.
 	wp_localize_script(
 		'lsx-blocks-block-js',
 		'lsx_globals',
 		array(
 			'rest_url' => esc_url( rest_url() ),
+			'title_disabled' => $title_disabled,
 		)
 	);
 }
