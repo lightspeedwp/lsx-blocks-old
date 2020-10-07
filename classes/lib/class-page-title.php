@@ -109,7 +109,17 @@ class Page_Title {
 	public function set_screen() {
 		if ( is_singular( array( 'post', 'page' ) ) && function_exists( 'has_blocks' ) && has_blocks() && ! is_front_page() && ! is_home() ) {
 			$disable_title = get_post_meta( get_the_ID(), 'lsx_disable_title', true );
-			if ( '' === $disable_title || false === $disable_title || 'no' === $disable_title || '0' === $disable_title || 0 === $disable_title ) {
+			// If the post meta is empty, then default to what is set via the customizer.
+			if ( 0 === $disable_title || '0' === $disable_title ) {
+				if ( 'post' === get_post_type() ) {
+					$disable_title = false;
+				} else {
+					$disable_title = true;
+				}
+				$disable_title = apply_filters( 'lsx_' . get_post_type() . '_title_disable', $disable_title );
+			}
+
+			if ( '' === $disable_title || false === $disable_title || 'no' === $disable_title ) {
 				$this->screen = 'single';
 				$this->body_css = 'lsx-page-title lsx-hero-banner-init';
 			} else {
