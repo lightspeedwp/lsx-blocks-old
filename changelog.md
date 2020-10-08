@@ -15,6 +15,7 @@
 - Added more button block styles options.
 - Added options for small and large button.
 - Added min height and max width to the group block.
+- Added options for categories and tgs for the Carousel and Grid posts blocks.
 
 ### Fixed
 
