@@ -2944,8 +2944,7 @@ body.banner-disabled.single article .entry-content {
   text-decoration: none; }
 
 .lsx-block-post-carousel article {
-  display: none;
-  padding-right: 10px; }
+  display: none; }
 
 .lsx-block-post-carousel.columns-1 article:nth-child(1) {
   display: block;
@@ -2953,7 +2952,8 @@ body.banner-disabled.single article .entry-content {
   grid-template-rows: none;
   grid-gap: inherit;
   width: 100%; }
-  .lsx-block-post-carousel.columns-1 article:nth-child(1) .lsx-block-post-grid-image, .lsx-block-post-carousel.columns-1 article:nth-child(1) .lsx-block-post-grid-text {
+  .lsx-block-post-carousel.columns-1 article:nth-child(1) .lsx-block-post-grid-image,
+  .lsx-block-post-carousel.columns-1 article:nth-child(1) .lsx-block-post-grid-text {
     width: 100%; }
   .lsx-block-post-carousel.columns-1 article:nth-child(1) .lsx-block-post-grid-text {
     margin-top: 0px;

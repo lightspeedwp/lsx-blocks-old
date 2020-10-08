@@ -55,6 +55,9 @@ class LatestPostsBlockCarousel extends Component {
 		this.toggledisplayPostDateCarousel = this.toggledisplayPostDateCarousel.bind(
 			this
 		);
+		this.toggleDisplayPostCategoriesCarousel = this.toggleDisplayPostCategoriesCarousel.bind(
+			this
+		);
 		this.toggledisplayPostExcerptCarousel = this.toggledisplayPostExcerptCarousel.bind(
 			this
 		);
@@ -68,6 +71,9 @@ class LatestPostsBlockCarousel extends Component {
 			this
 		);
 		this.toggledisplayPostLinkCarousel = this.toggledisplayPostLinkCarousel.bind(
+			this
+		);
+		this.toggleDisplayPostTagsCarousel = this.toggleDisplayPostTagsCarousel.bind(
 			this
 		);
 	}
@@ -117,6 +123,15 @@ class LatestPostsBlockCarousel extends Component {
 		setAttributes({ displayPostDateCarousel: !displayPostDateCarousel });
 	}
 
+	toggleDisplayPostCategoriesCarousel() {
+		const { displayPostCategoriesCarousel } = this.props.attributes;
+		const { setAttributes } = this.props;
+
+		setAttributes({
+			displayPostCategoriesCarousel: !displayPostCategoriesCarousel
+		});
+	}
+
 	toggledisplayPostExcerptCarousel() {
 		const { displayPostExcerptCarousel } = this.props.attributes;
 		const { setAttributes } = this.props;
@@ -152,6 +167,13 @@ class LatestPostsBlockCarousel extends Component {
 		setAttributes({ displayPostShadowCarousel: !displayPostShadowCarousel });
 	}
 
+	toggleDisplayPostTagsCarousel() {
+		const { displayPostTagsCarousel } = this.props.attributes;
+		const { setAttributes } = this.props;
+
+		setAttributes({ displayPostTagsCarousel: !displayPostTagsCarousel });
+	}
+
 	customizeReadMoreText() {
 		const { readMoreText } = this.props.attributes;
 		const { setAttributes } = this.props;
@@ -165,11 +187,13 @@ class LatestPostsBlockCarousel extends Component {
 			customTaxonomy,
 			customTermID,
 			displayPostDateCarousel,
+			displayPostCategoriesCarousel,
 			displayPostExcerptCarousel,
 			displayPostAuthorCarousel,
 			displayPostImageCarousel,
 			displayPostLinkCarousel,
 			displayPostShadowCarousel,
+			displayPostTagsCarousel,
 			alignCarousel,
 			columnsCarousel,
 			orderCarousel,
@@ -192,6 +216,9 @@ class LatestPostsBlockCarousel extends Component {
 		];
 
 		const isLandscape = imageCrop === "landscape";
+
+		let theCategories = "";
+		let theTags = "";
 
 		//Create category
 		const categoriesListObject = [];
@@ -288,9 +315,19 @@ class LatestPostsBlockCarousel extends Component {
 						onChange={this.toggledisplayPostDateCarousel}
 					/>
 					<ToggleControl
+						label={__("Display Post Categories")}
+						checked={displayPostCategoriesCarousel}
+						onChange={this.toggleDisplayPostCategoriesCarousel}
+					/>
+					<ToggleControl
 						label={__("Display Post Excerpt")}
 						checked={displayPostExcerptCarousel}
 						onChange={this.toggledisplayPostExcerptCarousel}
+					/>
+					<ToggleControl
+						label={__("Display Post Tags")}
+						checked={displayPostTagsCarousel}
+						onChange={this.toggleDisplayPostTagsCarousel}
 					/>
 					<PanelColorSettings
 						title={__("Grid Background Color")}
@@ -479,7 +516,24 @@ class LatestPostsBlockCarousel extends Component {
 												</time>
 											)}
 										</div>
-
+										{displayPostCategoriesCarousel &&
+											undefined !== post.additional_meta &&
+											undefined !== post.additional_meta.category_title &&
+											false !== post.additional_meta.category_title &&
+											((theCategories = post.additional_meta.category_title),
+											(
+												//console.log(theCategories),
+												<div id="post-meta-categories">
+													<div className="post-tags">
+														<span className="cat-title">
+															{__("Categories: ")}{" "}
+														</span>
+														{theCategories.map((cat, i) => {
+															return <span key={i}>{cat.cat_name}</span>;
+														})}
+													</div>
+												</div>
+											))}
 										<div className="lsx-block-post-grid-excerpt">
 											{displayPostExcerptCarousel && post.excerpt && (
 												<div
@@ -515,6 +569,24 @@ class LatestPostsBlockCarousel extends Component {
 													</a>
 												</p>
 											)}
+											{displayPostTagsCarousel &&
+												undefined !== post.additional_meta &&
+												undefined !== post.additional_meta.tag_title &&
+												false !== post.additional_meta.tag_title &&
+												((theTags = post.additional_meta.tag_title),
+												(
+													//console.log(theTags),
+													<div id="post-tags">
+														<div className="post-tags">
+															<span className="tags-title">
+																{__("Tags: ")}{" "}
+															</span>
+															{theTags.map((term, i) => {
+																return <span key={i}>{term.name}</span>;
+															})}
+														</div>
+													</div>
+												))}
 										</div>
 									</div>
 								</article>

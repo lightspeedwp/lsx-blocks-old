@@ -5109,6 +5109,37 @@ body.banner-disabled.single article .entry-content {
   .lsx-block-post-carousel article:not(.disable-shadow) {
     -webkit-box-shadow: 1px 1px 5px rgba(155, 155, 155, 0.7);
             box-shadow: 1px 1px 5px rgba(155, 155, 155, 0.7); }
+  .lsx-block-post-carousel #post-meta-categories,
+  .lsx-block-post-carousel #post-tags {
+    font-size: 13px;
+    color: #919191;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px; }
+    .lsx-block-post-carousel #post-meta-categories a,
+    .lsx-block-post-carousel #post-tags a {
+      color: #919191; }
+      .lsx-block-post-carousel #post-meta-categories a:hover,
+      .lsx-block-post-carousel #post-tags a:hover {
+        color: #f7ae00; }
+  .lsx-block-post-carousel #post-meta-categories {
+    margin-bottom: 20px;
+    display: block; }
+    .lsx-block-post-carousel #post-meta-categories span:not(.cat-title):after {
+      content: ", "; }
+    .lsx-block-post-carousel #post-meta-categories span:not(.cat-title):last-child:after {
+      content: ""; }
+  .lsx-block-post-carousel #post-tags {
+    border-top: 2px solid #d8d8d8;
+    margin: 0 15px 15px;
+    padding: 10px 0;
+    font-style: italic; }
+    .lsx-block-post-carousel #post-tags a:after,
+    .lsx-block-post-carousel #post-tags span:not(.tags-title):after {
+      content: ", "; }
+    .lsx-block-post-carousel #post-tags a:last-child:after,
+    .lsx-block-post-carousel #post-tags span:not(.tags-title):last-child:after {
+      content: ""; }
   .lsx-block-post-carousel .lsx-post-carousel-items {
     margin: 0 0 1.2em 0;
     position: relative; }
@@ -5248,6 +5279,27 @@ body.banner-disabled.single article .entry-content {
         padding-bottom: 1px; }
   .lsx-block-post-carousel.gray-bg .has-thumb.slick-slide .lsx-block-post-grid-text {
     background: #f6f6f6; }
+
+.edit-post-visual-editor .lsx-block-post-carousel article:not(.disable-shadow) {
+  margin: 10px; }
+
+.edit-post-visual-editor .lsx-block-post-carousel #post-tags {
+  margin: 15px 0; }
+
+.edit-post-visual-editor .lsx-block-post-carousel .slick-arrow {
+  display: block;
+  width: 40px;
+  height: 40px; }
+  .edit-post-visual-editor .lsx-block-post-carousel .slick-arrow.slick-next {
+    right: -30px; }
+    .edit-post-visual-editor .lsx-block-post-carousel .slick-arrow.slick-next:before {
+      left: 15px;
+      font-size: 30px; }
+  .edit-post-visual-editor .lsx-block-post-carousel .slick-arrow.slick-prev {
+    left: -30px; }
+    .edit-post-visual-editor .lsx-block-post-carousel .slick-arrow.slick-prev:before {
+      left: 10px;
+      font-size: 30px; }
 @charset "UTF-8";
 /**
  * Common styles

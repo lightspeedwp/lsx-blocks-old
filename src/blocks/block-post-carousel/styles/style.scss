@@ -222,6 +222,54 @@
 		}
 	}
 
+	#post-meta-categories,
+	#post-tags {
+		font-size: 13px;
+		color: $textgray;
+		margin-bottom: 15px;
+		padding-left: 15px;
+		padding-right: 15px;
+		a {
+			color: $textgray;
+			&:hover {
+				color: $orange;
+			}
+		}
+	}
+
+	#post-meta-categories {
+		margin-bottom: 20px;
+		display: block;
+		span:not(.cat-title) {
+			&:after {
+				content: ", ";
+			}
+			&:last-child {
+				&:after {
+					content: "";
+				}
+			}
+		}
+	}
+
+	#post-tags {
+		border-top: 2px solid #d8d8d8;
+		margin: 0 15px 15px;
+		padding: 10px 0;
+		font-style: italic;
+		a,
+		span:not(.tags-title) {
+			&:after {
+				content: ", ";
+			}
+			&:last-child {
+				&:after {
+					content: "";
+				}
+			}
+		}
+	}
+
 	//Post Carousel Styling
 	.lsx-post-carousel-items {
 		margin: 0 0 1.2em 0;
@@ -430,6 +478,38 @@
 		.has-thumb.slick-slide {
 			.lsx-block-post-grid-text {
 				background: $graybg;
+			}
+		}
+	}
+}
+
+.edit-post-visual-editor {
+	.lsx-block-post-carousel {
+		article {
+			&:not(.disable-shadow) {
+				margin: 10px;
+			}
+		}
+		#post-tags {
+			margin: 15px 0;
+		}
+		.slick-arrow {
+			display: block;
+			width: 40px;
+			height: 40px;
+			&.slick-next {
+				right: -30px;
+				&:before {
+					left: 15px;
+					font-size: 30px;
+				}
+			}
+			&.slick-prev {
+				left: -30px;
+				&:before {
+					left: 10px;
+					font-size: 30px;
+				}
 			}
 		}
 	}
