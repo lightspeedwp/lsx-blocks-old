@@ -4967,7 +4967,8 @@ body.banner-disabled.single article .entry-content {
   .lsx-block-post-carousel .slick-list.dragging {
     cursor: pointer;
     cursor: hand; }
-  .lsx-block-post-carousel .slick-slider .slick-track, .lsx-block-post-carousel .slick-slider .slick-list {
+  .lsx-block-post-carousel .slick-slider .slick-track,
+  .lsx-block-post-carousel .slick-slider .slick-list {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); }
   .lsx-block-post-carousel .slick-track {
@@ -4975,7 +4976,8 @@ body.banner-disabled.single article .entry-content {
     left: 0;
     top: 0;
     display: block; }
-  .lsx-block-post-carousel .slick-track:before, .lsx-block-post-carousel .slick-track:after {
+  .lsx-block-post-carousel .slick-track:before,
+  .lsx-block-post-carousel .slick-track:after {
     content: "";
     display: table; }
   .lsx-block-post-carousel .slick-track:after {
@@ -5029,7 +5031,7 @@ body.banner-disabled.single article .entry-content {
     border-color: #374750; }
     .lsx-block-post-carousel .slick-arrow:before {
       display: block;
-      font-family: 'FontAwesome';
+      font-family: "FontAwesome";
       font-size: 3rem;
       line-height: 1;
       position: absolute;
@@ -5049,10 +5051,10 @@ body.banner-disabled.single article .entry-content {
     .lsx-block-post-carousel .slick-arrow.slick-disabled {
       cursor: not-allowed; }
     .lsx-block-post-carousel .slick-arrow.slick-prev:before {
-      content: '\f104';
+      content: "\f104";
       left: 1.1rem; }
     .lsx-block-post-carousel .slick-arrow.slick-next:before {
-      content: '\f105';
+      content: "\f105";
       left: 1.5rem; }
   .lsx-block-post-carousel .slick-dots:not(.dropdown-menu) {
     -ms-flex-align: center;
@@ -5083,9 +5085,13 @@ body.banner-disabled.single article .entry-content {
         @media (min-width: 992px) {
           .lsx-block-post-carousel .slick-dots:not(.dropdown-menu) > li > button {
             height: 6px; } }
-  .lsx-block-post-carousel .slick-dots > li > button, .lsx-block-post-carousel .lsx-blog-customizer-posts-slider .slick-dots > li > button, .lsx-block-post-carousel .lsx-blog-customizer-terms-slider .slick-dots > li > button {
+  .lsx-block-post-carousel .slick-dots > li > button,
+  .lsx-block-post-carousel .lsx-blog-customizer-posts-slider .slick-dots > li > button,
+  .lsx-block-post-carousel .lsx-blog-customizer-terms-slider .slick-dots > li > button {
     border-color: #4a4a4a; }
-  .lsx-block-post-carousel .slick-dots > li.slick-active > button, .lsx-block-post-carousel .lsx-blog-customizer-posts-slider .slick-dots > li.slick-active > button, .lsx-block-post-carousel .lsx-blog-customizer-terms-slider .slick-dots > li.slick-active > button {
+  .lsx-block-post-carousel .slick-dots > li.slick-active > button,
+  .lsx-block-post-carousel .lsx-blog-customizer-posts-slider .slick-dots > li.slick-active > button,
+  .lsx-block-post-carousel .lsx-blog-customizer-terms-slider .slick-dots > li.slick-active > button {
     background-color: #4a4a4a;
     border-color: #4a4a4a; }
   .lsx-block-post-carousel .slick-arrow.slick-prev {
@@ -5100,6 +5106,9 @@ body.banner-disabled.single article .entry-content {
     .lsx-block-post-carousel .lsx-post-carousel-items .slick-slider:not(.slick-initialized) > div {
       width: 33%;
       display: block; }
+  .lsx-block-post-carousel article:not(.disable-shadow) {
+    -webkit-box-shadow: 1px 1px 5px rgba(155, 155, 155, 0.7);
+            box-shadow: 1px 1px 5px rgba(155, 155, 155, 0.7); }
   .lsx-block-post-carousel .lsx-post-carousel-items {
     margin: 0 0 1.2em 0;
     position: relative; }
@@ -5125,7 +5134,8 @@ body.banner-disabled.single article .entry-content {
           grid-template-columns: none;
           grid-template-rows: none;
           grid-gap: inherit; }
-          .lsx-block-post-carousel .lsx-post-carousel-items.columns-1 .slick-slide .lsx-block-post-grid-image, .lsx-block-post-carousel .lsx-post-carousel-items.columns-1 .slick-slide .lsx-block-post-grid-text {
+          .lsx-block-post-carousel .lsx-post-carousel-items.columns-1 .slick-slide .lsx-block-post-grid-image,
+          .lsx-block-post-carousel .lsx-post-carousel-items.columns-1 .slick-slide .lsx-block-post-grid-text {
             width: 100%; } }
     .lsx-block-post-carousel .lsx-post-carousel-items .is-grid.columns-2 {
       grid-template-columns: 1fr 1fr; }
@@ -5157,9 +5167,9 @@ body.banner-disabled.single article .entry-content {
         color: #418ad0;
         -webkit-box-shadow: none;
                 box-shadow: none;
-        -webkit-transition: .3s ease;
-        -o-transition: .3s ease;
-        transition: .3s ease;
+        -webkit-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
         font-size: 20px; }
         .lsx-block-post-carousel .lsx-post-carousel-items h2 a:hover {
           color: #f7ae00 !important; }
@@ -5177,7 +5187,7 @@ body.banner-disabled.single article .entry-content {
           border-radius: 50%;
           width: 75px !important;
           margin-bottom: 1em;
-          border: 2px solid #FFF;
+          border: 2px solid #fff;
           margin-left: auto;
           margin-right: auto; }
         .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-byline .lsx-block-post-avatar + time.lsx-block-post-grid-date {
@@ -5212,9 +5222,9 @@ body.banner-disabled.single article .entry-content {
       display: inline-block;
       -webkit-box-shadow: none;
               box-shadow: none;
-      -webkit-transition: .3s ease;
-      -o-transition: .3s ease;
-      transition: .3s ease;
+      -webkit-transition: 0.3s ease;
+      -o-transition: 0.3s ease;
+      transition: 0.3s ease;
       font-weight: bold;
       color: #293038;
       text-transform: uppercase; }
@@ -5228,7 +5238,8 @@ body.banner-disabled.single article .entry-content {
       font-weight: normal; }
       .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-excerpt div + p {
         margin-top: 15px; }
-      .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-excerpt p, .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-excerpt a {
+      .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-excerpt p,
+      .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-excerpt a {
         font-size: 15px;
         font-weight: normal; }
       .lsx-block-post-carousel .lsx-post-carousel-items .lsx-block-post-grid-excerpt .moretag {

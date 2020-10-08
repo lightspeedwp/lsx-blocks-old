@@ -562,8 +562,8 @@ class LatestPostsBlock extends Component {
 												undefined !== post.additional_meta.tag_title &&
 												false !== post.additional_meta.tag_title &&
 												((theTags = post.additional_meta.tag_title),
-												console.log(theTags),
 												(
+													//console.log(theTags),
 													<div id="post-tags">
 														<div className="post-tags">
 															<span className="tags-title">

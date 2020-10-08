@@ -64,6 +64,9 @@ class LatestPostsBlockCarousel extends Component {
 		this.toggledisplayPostImageCarousel = this.toggledisplayPostImageCarousel.bind(
 			this
 		);
+		this.toggleDisplayPostShadowCarousel = this.toggleDisplayPostShadowCarousel.bind(
+			this
+		);
 		this.toggledisplayPostLinkCarousel = this.toggledisplayPostLinkCarousel.bind(
 			this
 		);
@@ -142,6 +145,13 @@ class LatestPostsBlockCarousel extends Component {
 		setAttributes({ displayPostLinkCarousel: !displayPostLinkCarousel });
 	}
 
+	toggleDisplayPostShadowCarousel() {
+		const { displayPostShadowCarousel } = this.props.attributes;
+		const { setAttributes } = this.props;
+
+		setAttributes({ displayPostShadowCarousel: !displayPostShadowCarousel });
+	}
+
 	customizeReadMoreText() {
 		const { readMoreText } = this.props.attributes;
 		const { setAttributes } = this.props;
@@ -159,6 +169,7 @@ class LatestPostsBlockCarousel extends Component {
 			displayPostAuthorCarousel,
 			displayPostImageCarousel,
 			displayPostLinkCarousel,
+			displayPostShadowCarousel,
 			alignCarousel,
 			columnsCarousel,
 			orderCarousel,
@@ -293,6 +304,11 @@ class LatestPostsBlockCarousel extends Component {
 						]}
 					/>
 					<ToggleControl
+						label={__("Remove Posts Shadow")}
+						checked={displayPostShadowCarousel}
+						onChange={this.toggleDisplayPostShadowCarousel}
+					/>
+					<ToggleControl
 						label={__("Display Continue Reading Link")}
 						checked={displayPostLinkCarousel}
 						onChange={this.toggledisplayPostLinkCarousel}
@@ -389,6 +405,7 @@ class LatestPostsBlockCarousel extends Component {
 								<article
 									key={i}
 									className={classnames(
+										displayPostShadowCarousel ? "disable-shadow" : "",
 										post.featured_image_src && displayPostImageCarousel
 											? "has-thumb"
 											: "no-thumb"

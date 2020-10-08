@@ -70,6 +70,18 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 				esc_attr( $post_thumb_class )
 			);
 
+			if ( isset( $attributes['displayPostShadowCarousel'] ) && $attributes['displayPostShadowCarousel'] ) {
+				$shadow_class = ' class=disable-shadow';
+			} else {
+				$shadow_class = '';
+			}
+
+			// Start the markup for the post.
+			$list_items_markup .= sprintf(
+				'<article %1$s>',
+				esc_attr( $shadow_class )
+			);
+
 			// Get the featured image.
 			if ( isset( $attributes['displayPostImageCarousel'] ) && $attributes['displayPostImageCarousel'] ) {
 				if ( 'landscape' === $attributes['imageCrop'] ) {
@@ -178,6 +190,7 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 				'</div>'
 			);
 
+			$list_items_markup .= '</article>';
 			// Close the markup for the post.
 			$list_items_markup .= "</div>\n";
 		}
@@ -227,78 +240,82 @@ function lsx_blocks_register_block_core_latest_posts_carousel() {
 
 	register_block_type( 'lsx-blocks/lsx-post-carousel', array(
 		'attributes'      => array(
-			'categories'                 => array(
+			'categories'                   => array(
 				'type'    => 'string',
 				'default' => '',
 			),
-			'selectedTag'                => array(
+			'selectedTag'                  => array(
 				'type'    => 'string',
 				'default' => '',
 			),
-			'className'                  => array(
+			'className'                    => array(
 				'type' => 'string',
 			),
-			'postsToShowCarousel'        => array(
+			'postsToShowCarousel'          => array(
 				'type'    => 'number',
 				'default' => 6,
 			),
-			'displayPostDateCarousel'    => array(
+			'displayPostDateCarousel'      => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'displayPostExcerptCarousel' => array(
+			'displayPostExcerptCarousel'   => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'displayPostAuthorCarousel'  => array(
+			'displayPostAuthorCarousel'    => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'displayPostImageCarousel'   => array(
+			'displayPostImageCarousel'     => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'displayPostLinkCarousel'    => array(
+			'displayPostShadowCarousel'    => array(
+				'type'    => 'boolean',
+				'default' => false,
+			),
+			'displayPostLinkCarousel'      => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'columnsCarousel'            => array(
+			'columnsCarousel'              => array(
 				'type'    => 'number',
 				'default' => 3,
 			),
-			'alignCarousel'              => array(
+			'alignCarousel'                => array(
 				'type'    => 'string',
 				'default' => 'center',
 			),
-			'width'                      => array(
+			'width'                        => array(
 				'type'    => 'string',
 				'default' => 'wide',
 			),
-			'orderCarousel'              => array(
+			'orderCarousel'                => array(
 				'type'    => 'string',
 				'default' => 'desc',
 			),
-			'orderByCarousel'            => array(
+			'orderByCarousel'              => array(
 				'type'    => 'string',
 				'default' => 'date',
 			),
-			'imageCrop'                  => array(
+			'imageCrop'                    => array(
 				'type'    => 'string',
 				'default' => 'landscape',
 			),
-			'readMoreText'               => array(
+			'readMoreText'                 => array(
 				'type'    => 'string',
 				'default' => 'Continue Reading',
 			),
-			'postsBackgroundColorCarousel'       => array(
+			'postsBackgroundColorCarousel' => array(
 				'type'    => 'string',
 				'default' => 'transparent',
 			),
-			'customTaxonomy'             => array(
+			'customTaxonomy'               => array(
 				'type'    => 'string',
 				'default' => '',
 			),
-			'customTermID'               => array(
+			'customTermID'                 => array(
 				'type'    => 'string',
 				'default' => '',
 			),
