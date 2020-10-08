@@ -53,7 +53,11 @@ class LatestPostsBlock extends Component {
 		this.stillMountedTag = false;
 
 		this.toggleDisplayPostDate = this.toggleDisplayPostDate.bind(this);
+		this.toggleDisplayPostCategories = this.toggleDisplayPostCategories.bind(
+			this
+		);
 		this.toggleDisplayPostExcerpt = this.toggleDisplayPostExcerpt.bind(this);
+		this.toggleDisplayPostTags = this.toggleDisplayPostTags.bind(this);
 		this.toggleDisplayPostAuthor = this.toggleDisplayPostAuthor.bind(this);
 		this.toggleDisplayPostImage = this.toggleDisplayPostImage.bind(this);
 		this.toggleDisplayPostShadow = this.toggleDisplayPostShadow.bind(this);
@@ -106,11 +110,25 @@ class LatestPostsBlock extends Component {
 		setAttributes({ displayPostDate: !displayPostDate });
 	}
 
+	toggleDisplayPostCategories() {
+		const { displayPostCategories } = this.props.attributes;
+		const { setAttributes } = this.props;
+
+		setAttributes({ displayPostCategories: !displayPostCategories });
+	}
+
 	toggleDisplayPostExcerpt() {
 		const { displayPostExcerpt } = this.props.attributes;
 		const { setAttributes } = this.props;
 
 		setAttributes({ displayPostExcerpt: !displayPostExcerpt });
+	}
+
+	toggleDisplayPostTags() {
+		const { displayPostTags } = this.props.attributes;
+		const { setAttributes } = this.props;
+
+		setAttributes({ displayPostTags: !displayPostTags });
 	}
 
 	toggleDisplayPostAuthor() {
@@ -152,7 +170,9 @@ class LatestPostsBlock extends Component {
 		const { attributes, setAttributes, latestPosts } = this.props;
 		const {
 			displayPostDate,
+			displayPostCategories,
 			displayPostExcerpt,
+			displayPostTags,
 			displayPostAuthor,
 			displayPostImage,
 			displayPostShadow,
@@ -182,6 +202,7 @@ class LatestPostsBlock extends Component {
 		const isLandscape = imageCrop === "landscape";
 
 		let theCategories = "";
+		let theTags = "";
 
 		//Create category
 		const categoriesListObject = [];
@@ -282,9 +303,19 @@ class LatestPostsBlock extends Component {
 						onChange={this.toggleDisplayPostDate}
 					/>
 					<ToggleControl
+						label={__("Display Post Categories")}
+						checked={displayPostCategories}
+						onChange={this.toggleDisplayPostCategories}
+					/>
+					<ToggleControl
 						label={__("Display Post Excerpt")}
 						checked={displayPostExcerpt}
 						onChange={this.toggleDisplayPostExcerpt}
+					/>
+					<ToggleControl
+						label={__("Display Post Tags")}
+						checked={displayPostTags}
+						onChange={this.toggleDisplayPostTags}
 					/>
 					<PanelColorSettings
 						title={__("Grid Background Color")}
@@ -395,7 +426,10 @@ class LatestPostsBlock extends Component {
 											displayPostShadow ? "disable-shadow" : "",
 											post.featured_image_src && displayPostImage
 												? "has-thumb"
-												: "no-thumb"
+												: "no-thumb",
+											!post.featured_image_src && displayPostImage
+												? "placeholder-thumb"
+												: ""
 										)}
 									>
 										{displayPostImage &&
@@ -466,7 +500,24 @@ class LatestPostsBlock extends Component {
 													</time>
 												)}
 											</div>
-
+											{displayPostCategories &&
+												undefined !== post.additional_meta &&
+												undefined !== post.additional_meta.category_title &&
+												false !== post.additional_meta.category_title &&
+												((theCategories = post.additional_meta.category_title),
+												(
+													//console.log(theCategories),
+													<div id="post-meta-categories">
+														<div className="post-tags">
+															<span className="cat-title">
+																{__("Categories: ")}{" "}
+															</span>
+															{theCategories.map((cat, i) => {
+																return <span key={i}>{cat.cat_name}</span>;
+															})}
+														</div>
+													</div>
+												))}
 											<div className="lsx-block-post-grid-excerpt">
 												{displayPostExcerpt && post.excerpt && (
 													<div
@@ -505,16 +556,21 @@ class LatestPostsBlock extends Component {
 													</p>
 												)}
 											</div>
-											{undefined !== post.additional_meta &&
-												undefined !== post.additional_meta.category_title &&
-												((theCategories = post.additional_meta.category_title),
+
+											{displayPostTags &&
+												undefined !== post.additional_meta &&
+												undefined !== post.additional_meta.tag_title &&
+												false !== post.additional_meta.tag_title &&
+												((theTags = post.additional_meta.tag_title),
+												console.log(theTags),
 												(
-													//console.log(theCategories),
-													<div className="post-tags-wrapper">
+													<div id="post-tags">
 														<div className="post-tags">
-															<span>{__("Categories")} </span>
-															{theCategories.map((cat, i) => {
-																return <span key={i}>{cat.cat_name}</span>;
+															<span className="tags-title">
+																{__("Tags: ")}{" "}
+															</span>
+															{theTags.map((term, i) => {
+																return <span key={i}>{term.name}</span>;
 															})}
 														</div>
 													</div>

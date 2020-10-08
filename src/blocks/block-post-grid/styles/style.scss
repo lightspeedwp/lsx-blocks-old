@@ -63,7 +63,10 @@
 	.lsx-block-post-grid-text {
 		text-align: left;
 	}
-
+	.editor-styles-wrapper h2.entry-title {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 	h2 {
 		margin-top: 0;
 		margin-bottom: 0;
@@ -84,7 +87,7 @@
 	.lsx-block-post-grid-byline {
 		font-size: 13px;
 		color: $textgray;
-		margin-bottom: 15px;
+		margin-bottom: 5px;
 		padding-left: 15px;
 		padding-right: 15px;
 		&:empty {
@@ -104,6 +107,54 @@
 			}
 			+ time.lsx-block-post-grid-date {
 				padding-top: 0;
+			}
+		}
+	}
+
+	#post-meta-categories,
+	#post-tags {
+		font-size: 13px;
+		color: $textgray;
+		margin-bottom: 15px;
+		padding-left: 15px;
+		padding-right: 15px;
+		a {
+			color: $textgray;
+			&:hover {
+				color: $orange;
+			}
+		}
+	}
+
+	#post-meta-categories {
+		margin-bottom: 20px;
+		display: block;
+		span:not(.cat-title) {
+			&:after {
+				content: ", ";
+			}
+			&:last-child {
+				&:after {
+					content: "";
+				}
+			}
+		}
+	}
+
+	#post-tags {
+		border-top: 2px solid #d8d8d8;
+		margin: 0 15px 15px;
+		padding: 10px 0 0;
+		font-style: italic;
+		a,
+		span:not(.tags-title) {
+			&:after {
+				content: ", ";
+			}
+			&:last-child {
+				&:after {
+					content: "";
+				}
 			}
 		}
 	}
@@ -161,7 +212,7 @@
 	}
 
 	.lsx-block-post-grid-excerpt {
-		padding: 0 15px 2.4rem 15px;
+		padding: 0 15px 15px 15px;
 		font-size: 15px;
 		font-weight: normal;
 		div + p {
@@ -225,8 +276,10 @@
 			}
 		}
 
-		.no-thumb .lsx-block-post-grid-text {
-			grid-column: span 2;
+		.no-thumb:not(.placeholder-thumb) {
+			.lsx-block-post-grid-text {
+				grid-column: span 2;
+			}
 		}
 	}
 	//Gray BG
