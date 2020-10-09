@@ -7,6 +7,13 @@
 	margin: 0 0 1.2em 0;
 	position: relative;
 	word-break: break-all;
+	.gutenberg-compatible-template.using-gutenberg.page-template-default & {
+		&.alignwide {
+			width: initial;
+			max-width: initial;
+		}
+	}
+
 	@media (min-width: 900px) {
 		padding: 4rem;
 	}

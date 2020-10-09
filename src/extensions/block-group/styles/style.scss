@@ -1,17 +1,17 @@
 //Group Block extension
 .wp-block-group {
 	&.is-style-lsx-group-style-subheading {
-		padding-top: $lsx-medium-gap;
-		padding-bottom: $lsx-medium-gap;
+		padding-top: $lsx-medium-gap / 2;
+		padding-bottom: $lsx-medium-gap / 2;
 		text-align: center;
 		h2 {
 			font-size: 48px;
-			line-height: 50px;
+			line-height: 61px;
 			margin-bottom: 1.5rem;
 		}
 		p {
 			font-size: 28px;
-			line-height: 38px;
+			line-height: 24px;
 			color: $text_light;
 			&:last-child,
 			&.block-editor-block-list__block {
