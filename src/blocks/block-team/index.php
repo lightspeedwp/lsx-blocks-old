@@ -286,7 +286,8 @@ function render_dynamic_team_block( $attributes ) {
 					$roles = array();
 
 					foreach ( $terms as $term ) {
-						$roles[] = $term->name;
+						//print( '<pre>' . print_r( $term, true ) . '</pre>' );
+						$roles[] = '<a href="/team-role/' . $term->slug . '/">' . $term->name . '</a>';
 					}
 
 					$roles = join( ', ', $roles );

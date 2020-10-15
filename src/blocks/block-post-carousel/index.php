@@ -76,19 +76,23 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 				$shadow_class = '';
 			}
 
+			$bgcolor = $attributes['postsBackgroundColorCarousel'];
+			if ( isset( $bgcolor ) && $bgcolor ) {
+				$bgcolor_style = 'style=background-color:' . $bgcolor . ';';
+			} else {
+				$bgcolor_style = '';
+			}
+
 			// Start the markup for the post.
 			$list_items_markup .= sprintf(
-				'<article %1$s>',
-				esc_attr( $shadow_class )
+				'<article %1$s %2$s>',
+				esc_attr( $shadow_class ),
+				esc_attr( $bgcolor_style )
 			);
 
 			// Get the featured image.
 			if ( isset( $attributes['displayPostImageCarousel'] ) && $attributes['displayPostImageCarousel'] ) {
-				if ( 'landscape' === $attributes['imageCrop'] ) {
-					$post_thumb_size = 'lsx-block-post-grid-landscape';
-				} else {
-					$post_thumb_size = 'lsx-block-post-grid-square';
-				}
+				$post_thumb_size = 'lsx-block-post-grid-landscape';
 
 				if ( ( 'lsx-placeholder' === $post_thumb_id ) || ( 0 === $post_thumb_id ) ) {
 					$thumbnail = '<img class="attachment-responsive wp-post-image lsx-responsive" src="/wp-content/plugins/lsx-blocks/dist/assets/images/placeholder-350x230.jpg">';
@@ -141,16 +145,11 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 			// Get the post date.
 			if ( isset( $attributes['displayPostDateCarousel'] ) && $attributes['displayPostDateCarousel'] ) {
 				$list_items_markup .= sprintf(
-					'<time datetime="%1$s" class="lsx-block-post-grid-date">%2$s</time>',
+					'<time datetime="%1$s" class="lsx-block-post-grid-date">%2$s.</time>',
 					esc_attr( get_the_date( 'c', $post_id ) ),
 					esc_html( get_the_date( '', $post_id ) )
 				);
 			}
-
-			// Close the byline content.
-			$list_items_markup .= sprintf(
-				'</div>'
-			);
 
 			// Get the post Categories.
 			if ( isset( $attributes['displayPostCategoriesCarousel'] ) && $attributes['displayPostCategoriesCarousel'] ) {
@@ -170,6 +169,11 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 
 				}
 			}
+
+			// Close the byline content.
+			$list_items_markup .= sprintf(
+				'</div>'
+			);
 
 			// Wrap the excerpt content.
 			$list_items_markup .= sprintf(
@@ -243,12 +247,9 @@ function lsx_blocks_render_block_core_latest_posts_carousel( $attributes ) {
 	$interval         = 'data-interval="false"';
 	$slick_internal   = "data-slick='{ \"slidesToShow\": {$slides_to_show}, \"slidesToScroll\": {$slides_to_scroll} }'";
 
-	$bgcolor = $attributes['postsBackgroundColorCarousel'];
-
 	// Output the post markup.
 	$block_content = sprintf(
-		'<div style="background-color:%1$s" class="%2$s"><div class="%3$s"' . $slick_internal . $interval . '>%4$s</div></div>',
-		esc_attr( $bgcolor ),
+		'<div class="%1$s"><div class="%2$s"' . $slick_internal . $interval . '>%3$s</div></div>',
 		esc_attr( $class ),
 		esc_attr( $grid_class ),
 		$list_items_markup
@@ -380,15 +381,15 @@ function lsx_blocks_register_rest_fields_carousel() {
 	);
 
 	// Add square featured image source.
-	register_rest_field(
-		'post',
-		'featured_image_src_square',
-		array(
-			'get_callback' => 'lsx_blocks_get_image_src_square_carousel',
-			'update_callback' => null,
-			'schema' => null,
-		)
-	);
+	// register_rest_field(
+	// 	'post',
+	// 	'featured_image_src_square',
+	// 	array(
+	// 		'get_callback' => 'lsx_blocks_get_image_src_square_carousel',
+	// 		'update_callback' => null,
+	// 		'schema' => null,
+	// 	)
+	// );
 
 	// Add author info
 	register_rest_field(
@@ -419,14 +420,14 @@ function lsx_blocks_get_image_src_landscape_carousel( $object, $field_name, $req
 /**
  * Get square featured image source for the rest field
  */
-function lsx_blocks_get_image_src_square_carousel( $object, $field_name, $request ) {
-	$feat_img_array = wp_get_attachment_image_src(
-		$object['featured_media'],
-		'lsx-block-post-grid-square',
-		false
-	);
-	return $feat_img_array[0];
-}
+// function lsx_blocks_get_image_src_square_carousel( $object, $field_name, $request ) {
+// 	$feat_img_array = wp_get_attachment_image_src(
+// 		$object['featured_media'],
+// 		'lsx-block-post-grid-square',
+// 		false
+// 	);
+// 	return $feat_img_array[0];
+// }
 
 /**
  * Get author info for the rest field

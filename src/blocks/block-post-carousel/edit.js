@@ -209,14 +209,6 @@ class LatestPostsBlockCarousel extends Component {
 
 		const { categoriesList, tagsList } = this.state;
 
-		// Thumbnail options
-		const imageCropOptions = [
-			{ value: "landscape", label: __("Landscape") },
-			{ value: "square", label: __("Square") }
-		];
-
-		const isLandscape = imageCrop === "landscape";
-
 		let theCategories = "";
 		let theTags = "";
 
@@ -296,14 +288,6 @@ class LatestPostsBlockCarousel extends Component {
 						checked={displayPostImageCarousel}
 						onChange={this.toggledisplayPostImageCarousel}
 					/>
-					{displayPostImageCarousel && (
-						<SelectControl
-							label={__("Featured Image Style")}
-							options={imageCropOptions}
-							value={imageCrop}
-							onChange={value => this.props.setAttributes({ imageCrop: value })}
-						/>
-					)}
 					<ToggleControl
 						label={__("Display Post Author")}
 						checked={displayPostAuthorCarousel}
@@ -330,13 +314,13 @@ class LatestPostsBlockCarousel extends Component {
 						onChange={this.toggleDisplayPostTagsCarousel}
 					/>
 					<PanelColorSettings
-						title={__("Grid Background Color")}
+						title={__("Grid Background Colour")}
 						initialOpen={true}
 						colorSettings={[
 							{
 								value: postsBackgroundColorCarousel,
 								onChange: onChangeBackgroundColorCarousel,
-								label: __("Grid Background Color", "lsx-blocks")
+								label: __("Grid Background Colour", "lsx-blocks")
 							}
 						]}
 					/>
@@ -420,9 +404,6 @@ class LatestPostsBlockCarousel extends Component {
 						"lsx-block-post-carousel",
 						[`columns-${columnsCarousel}`]
 					)}
-					style={{
-						backgroundColor: postsBackgroundColorCarousel
-					}}
 				>
 					<div
 						className={classnames(
@@ -447,6 +428,9 @@ class LatestPostsBlockCarousel extends Component {
 											? "has-thumb"
 											: "no-thumb"
 									)}
+									style={{
+										backgroundColor: postsBackgroundColorCarousel
+									}}
 								>
 									{displayPostImageCarousel &&
 									post.featured_image_src !== undefined &&
@@ -454,11 +438,7 @@ class LatestPostsBlockCarousel extends Component {
 										<div className="lsx-block-post-grid-image">
 											<a href={post.link} target="_blank" rel="bookmark">
 												<img
-													src={
-														isLandscape
-															? post.featured_image_src
-															: post.featured_image_src_square
-													}
+													src={post.featured_image_src}
 													alt={
 														decodeEntities(post.title.rendered.trim()) ||
 														__("(Untitled)")
@@ -467,18 +447,20 @@ class LatestPostsBlockCarousel extends Component {
 											</a>
 										</div>
 									) : (
-										<div className="lsx-block-post-grid-image">
-											<a href={post.link} target="_blank" rel="bookmark">
-												<img
-													classnames="attachment-responsive wp-post-image lsx-responsive"
-													src="/wp-content/plugins/lsx-blocks/dist/assets/images/placeholder-350x230.jpg"
-													alt={
-														decodeEntities(post.title.rendered.trim()) ||
-														__("(Untitled)")
-													}
-												/>
-											</a>
-										</div>
+										displayPostImageCarousel && (
+											<div className="lsx-block-post-grid-image">
+												<a href={post.link} target="_blank" rel="bookmark">
+													<img
+														classnames="attachment-responsive wp-post-image lsx-responsive"
+														src="/wp-content/plugins/lsx-blocks/dist/assets/images/placeholder-350x230.jpg"
+														alt={
+															decodeEntities(post.title.rendered.trim()) ||
+															__("(Untitled)")
+														}
+													/>
+												</a>
+											</div>
+										)
 									)}
 
 									<div className="lsx-block-post-grid-text">
@@ -515,25 +497,26 @@ class LatestPostsBlockCarousel extends Component {
 														.format("MMMM DD, Y")}
 												</time>
 											)}
-										</div>
-										{displayPostCategoriesCarousel &&
-											undefined !== post.additional_meta &&
-											undefined !== post.additional_meta.category_title &&
-											false !== post.additional_meta.category_title &&
-											((theCategories = post.additional_meta.category_title),
-											(
-												//console.log(theCategories),
-												<div id="post-meta-categories">
-													<div className="post-tags">
-														<span className="cat-title">
-															{__("Categories: ")}{" "}
-														</span>
-														{theCategories.map((cat, i) => {
-															return <span key={i}>{cat.cat_name}</span>;
-														})}
+											{displayPostCategoriesCarousel &&
+												undefined !== post.additional_meta &&
+												undefined !== post.additional_meta.category_title &&
+												false !== post.additional_meta.category_title &&
+												((theCategories = post.additional_meta.category_title),
+												(
+													//console.log(theCategories),
+													<div id="post-meta-categories">
+														<div className="post-tags">
+															<span className="cat-title">
+																{__("Categories: ")}{" "}
+															</span>
+															{theCategories.map((cat, i) => {
+																return <span key={i}>{cat.cat_name}</span>;
+															})}
+														</div>
 													</div>
-												</div>
-											))}
+												))}
+										</div>
+
 										<div className="lsx-block-post-grid-excerpt">
 											{displayPostExcerptCarousel && post.excerpt && (
 												<div

@@ -228,8 +228,11 @@
 					text-decoration: none;
 				}
 			}
-			.lsx-team-job-title {
+			.lsx-team-job-title, .lsx-team-team-role {
 				color: $textgray;
+			}
+			.lsx-team-team-role {
+				display: block;
 			}
 			.lsx-block-post-grid-excerpt {
 				p {
@@ -366,5 +369,11 @@
 				}
 			}
 		}
+	}
+}
+
+div[data-type="lsx-blocks/lsx-team"] {
+	.wp-block[data-align="full"] {
+		max-width: initial;
 	}
 }

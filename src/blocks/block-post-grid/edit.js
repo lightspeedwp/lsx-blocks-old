@@ -194,13 +194,6 @@ class LatestPostsBlock extends Component {
 
 		const { categoriesList, tagsList } = this.state;
 
-		// Thumbnail options
-		const imageCropOptions = [
-			{ value: "landscape", label: __("Landscape") },
-			{ value: "square", label: __("Square") }
-		];
-		const isLandscape = imageCrop === "landscape";
-
 		let theCategories = "";
 		let theTags = "";
 
@@ -284,14 +277,6 @@ class LatestPostsBlock extends Component {
 						checked={displayPostImage}
 						onChange={this.toggleDisplayPostImage}
 					/>
-					{displayPostImage && (
-						<SelectControl
-							label={__("Featured Image Style")}
-							options={imageCropOptions}
-							value={imageCrop}
-							onChange={value => this.props.setAttributes({ imageCrop: value })}
-						/>
-					)}
 					<ToggleControl
 						label={__("Display Post Author")}
 						checked={displayPostAuthor}
@@ -318,13 +303,13 @@ class LatestPostsBlock extends Component {
 						onChange={this.toggleDisplayPostTags}
 					/>
 					<PanelColorSettings
-						title={__("Grid Background Color")}
+						title={__("Grid Background Colour")}
 						initialOpen={true}
 						colorSettings={[
 							{
 								value: postsBackgroundColor,
 								onChange: onChangeBackgroundColor,
-								label: __("Grid Background Color", "lsx-blocks")
+								label: __("Grid Background Colour", "lsx-blocks")
 							}
 						]}
 					/>
@@ -404,9 +389,6 @@ class LatestPostsBlock extends Component {
 						"lsx-block-post-grid",
 						align
 					)}
-					style={{
-						backgroundColor: postsBackgroundColor
-					}}
 				>
 					<div
 						className={classnames({
@@ -431,6 +413,9 @@ class LatestPostsBlock extends Component {
 												? "placeholder-thumb"
 												: ""
 										)}
+										style={{
+											backgroundColor: postsBackgroundColor
+										}}
 									>
 										{displayPostImage &&
 										post.featured_image_src !== undefined &&
@@ -438,11 +423,7 @@ class LatestPostsBlock extends Component {
 											<div className="lsx-block-post-grid-image">
 												<a href={post.link} target="_blank" rel="bookmark">
 													<img
-														src={
-															isLandscape
-																? post.featured_image_src
-																: post.featured_image_src_square
-														}
+														src={post.featured_image_src}
 														alt={
 															decodeEntities(post.title.rendered.trim()) ||
 															__("(Untitled)")
@@ -499,25 +480,27 @@ class LatestPostsBlock extends Component {
 															.format("MMMM DD, Y")}
 													</time>
 												)}
-											</div>
-											{displayPostCategories &&
-												undefined !== post.additional_meta &&
-												undefined !== post.additional_meta.category_title &&
-												false !== post.additional_meta.category_title &&
-												((theCategories = post.additional_meta.category_title),
-												(
-													//console.log(theCategories),
-													<div id="post-meta-categories">
-														<div className="post-tags">
-															<span className="cat-title">
-																{__("Categories: ")}{" "}
-															</span>
-															{theCategories.map((cat, i) => {
-																return <span key={i}>{cat.cat_name}</span>;
-															})}
+												{displayPostCategories &&
+													undefined !== post.additional_meta &&
+													undefined !== post.additional_meta.category_title &&
+													false !== post.additional_meta.category_title &&
+													((theCategories =
+														post.additional_meta.category_title),
+													(
+														//console.log(theCategories),
+														<div id="post-meta-categories">
+															<div className="post-tags">
+																<span className="cat-title">
+																	{__("Categories: ")}{" "}
+																</span>
+																{theCategories.map((cat, i) => {
+																	return <span key={i}>{cat.cat_name}</span>;
+																})}
+															</div>
 														</div>
-													</div>
-												))}
+													))}
+											</div>
+
 											<div className="lsx-block-post-grid-excerpt">
 												{displayPostExcerpt && post.excerpt && (
 													<div

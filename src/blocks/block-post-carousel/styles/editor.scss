@@ -16,11 +16,21 @@
 
 	&.columns-1 {
 		article:nth-child(1) {
-			display: block;
-			grid-template-columns: none;
-			grid-template-rows: none;
-			grid-gap: inherit;
-			width: 100%;
+			@media (min-width: 600px) {
+				display: flex;
+				width: 100%;
+				.lsx-block-post-grid-image {
+					padding-bottom: 0;
+					width: 35%;
+					img {
+						height: 100%;
+						object-fit: cover;}
+				}
+				.lsx-block-post-grid-text {
+					margin-top: 0;
+					width: 65%;
+				}
+			}
 
 			.lsx-block-post-grid-image,
 			.lsx-block-post-grid-text {

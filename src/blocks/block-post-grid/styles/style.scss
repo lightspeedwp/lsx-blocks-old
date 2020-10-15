@@ -135,7 +135,7 @@
 
 	#post-meta-categories {
 		margin-bottom: 20px;
-		display: block;
+		padding: 0;
 		span:not(.cat-title) {
 			&:after {
 				content: ", ";
@@ -250,7 +250,6 @@
 			}
 			&:not(:last-child) {
 				margin-bottom: 5%;
-				padding-bottom: 5%;
 			}
 
 			@media only screen and (min-width: 600px) {

@@ -86,6 +86,9 @@ class TeamBlock extends Component {
 		} = attributes;
 
 		const { categoriesList } = this.state;
+
+		let theRoles = "";
+
 		//console.log(categoriesList);
 		if (!posts) {
 			return (
@@ -166,7 +169,7 @@ class TeamBlock extends Component {
 							{
 								value: itemBackgroundColor,
 								onChange: onChangeItemBackgroundColor,
-								label: __("Items Background Color")
+								label: __("Items Background Colour")
 							}
 						]}
 					/>
@@ -269,6 +272,7 @@ class TeamBlock extends Component {
 					)}
 				>
 					{posts.map((post, i) => {
+						//console.log(post.additional_meta.role);
 						return (
 							<article
 								key={i}
@@ -332,6 +336,18 @@ class TeamBlock extends Component {
 												{post.additional_meta.job_title}
 											</small>
 										)}
+									{displayTeamRole &&
+										undefined !== post.additional_meta &&
+										undefined !== post.additional_meta.role &&
+										1 >= post.additional_meta.role.length &&
+										((theRoles = post.additional_meta.role), //console.log(theRoles),
+										undefined !== theRoles && (
+											<small className="lsx-team-team-role">
+												{theRoles.map((role, i) => {
+													return <span key={i}>{role.name}</span>;
+												})}
+											</small>
+										))}
 									<div
 										className="lsx-block-post-grid-excerpt"
 										style={{
