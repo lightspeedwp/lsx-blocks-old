@@ -34,7 +34,7 @@
     "querystringify": "^2.2.0",
     "randomatic": "^3.1.1",
     "re-resizable": "^6.5.4",
-    "react": "16.13.1",
+    "react": "16.14.0",
     "react-lazy-load": "^3.1.13",
     "react-lazyload": "^3.0.0",
     "react-slick": "^0.27.9",
