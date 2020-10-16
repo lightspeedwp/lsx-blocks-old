@@ -7,7 +7,12 @@
 	> .row {
 		display: flex;
 		flex-flow: wrap;
+		&.slick-slide {
+			display: flex;
+			flex-wrap: wrap;
+		}
 	}
+
 	.lsx-team-slot {
 		padding: 15px;
 		.lsx-team-avatar {
@@ -53,6 +58,10 @@
 				margin-left: auto;
 				margin-right: auto;
 			}
+			.entry-profile-wrapper {
+				padding: 2.4rem;
+			}
+
 			.lsx-team-avatar {
 				@media (min-width: 968px) {
 					flex-grow: 2;
@@ -94,6 +103,9 @@
 					}
 					min-height: 170px;
 					padding-right: 4rem;
+					* {
+						max-width: 100%;
+					}
 				}
 				.lsx-team-job-title {
 					display: inline;
