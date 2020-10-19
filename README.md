@@ -1,4 +1,4 @@
-<p align="center"><a target="_blank" href="https://lsdev.biz/lsx/"><img width="100px;" src="https://lsx.lsdev.biz/wp-content/uploads/2019/02/icon-blocks-usp1.svg" alt="LSX Blog Customizer"></a>
+<p align="center"><a target="_blank" href="https://lsdev.biz/lsx/"><img src="https://www.lsdev.biz/lsx/wp-content/uploads/2020/10/lsx-blocks-banner-1544x500-1.jpg" alt="LSX Blog Customizer"></a>
 </p>
 <h1 align="center">LSX Blocks</h1>
 
@@ -7,9 +7,10 @@
 	<a href="https://lsdev.biz/lsx/"><img src="https://www.lsdev.biz/lsx/wp-content/uploads/2019/06/Designed-for-LSX-Theme-blue.png" alt="Made for LSX Theme"></a>
 	<a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://poser.pugx.org/woocommerce/woocommerce/license" alt="license"></a>
 	<a href="http://gulpjs.com/"><img src="https://img.shields.io/badge/built%20with-gulp.js-green.svg" alt="Built with gulp.js"></a> 
-	<a href="https://travis-ci.org/github/lightspeeddevelopment/lsx-blocks/"><img src="https://travis-ci.org/lightspeeddevelopment/lsx-blocks.svg?branch=master" alt="Build Status"></a>
-	<a href="https://lsx.lsdev.biz/"><img src="https://lsx.lsdev.biz/wp-content/uploads/2019/06/Designed-for-LSX-Theme-blue.png" alt="Made for LSX"></a>
+    <a href="https://scrutinizer-ci.com/g/lightspeeddevelopment/lsx-blocks/?branch=master"><img src="https://scrutinizer-ci.com/g/lightspeeddevelopment/lsx-blocks/badges/quality-score.png?b=master" alt="Scrutinizer"></a>
+    <a href="https://travis-ci.org/github/lightspeeddevelopment/lsx-blocks/"><img src="https://travis-ci.org/lightspeeddevelopment/lsx-blocks.svg?branch=master" alt="Build Status"></a>
 </p>
+<br>
 
 The new Gutenberg editor is here, and with it comes the new block-based page builder. 
 
