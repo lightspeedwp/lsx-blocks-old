@@ -140,7 +140,7 @@ const coverSettingsControl = createHigherOrderComponent(BlockEdit => {
 							}
 						/>
 						<TextControl
-							label={__("Cover Padding Top:  (px)")}
+							label={__("Cover Margin Top:  (px)")}
 							type="text"
 							value={coverMarginTop}
 							onChange={value => props.setAttributes({ coverMarginTop: value })}
