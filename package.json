@@ -30,7 +30,7 @@
     "lodash.assign": "^4.2.0",
     "md5": "^2.3.0",
     "moment": "^2.27.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^5.0.0",
     "querystringify": "^2.2.0",
     "randomatic": "^3.1.1",
     "re-resizable": "^6.5.4",
