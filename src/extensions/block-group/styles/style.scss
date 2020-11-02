@@ -6,8 +6,10 @@
 		text-align: center;
 		h2 {
 			font-size: 48px;
-			line-height: 61px;
 			margin-bottom: 1.5rem;
+			@media (min-width: 1200px) {
+				line-height: 61px;
+			}
 		}
 		p {
 			font-size: 28px;
