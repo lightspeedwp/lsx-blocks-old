@@ -1,7 +1,7 @@
-=== LSX Blocks ===
+=== LSX Blocks Plugin ===
 Contributors: feedmymedia, lightspeedwp, eleshar, krugazul, jacquesvdh, ignusvermaak
 Donate link: https://lsdev.biz/lsx/donate/
-Tags: lsx, blocks, gutenberg, block editor, page builder
+Tags: lsx, blocks, gutenberg, block editor, page builder, wordpress blocks
 Requires at least: 5.0
 Tested up to: 5.5.3
 Requires PHP: 7.0
@@ -9,49 +9,51 @@ Stable tag: 1.2.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-LSX Blocks adds a suite of blocks with which to build your WordPress website using the LSX theme.
+This plugin extends the LSX Theme to support the latest block editor features.
 
 == Description ==
 
-LightSpeed has developed the following blocks to allow increased flexibility when building pages with the LSX theme:
+We have built these content blocks so you can simply drag and drop them into your editor, configure to your wishes and you are done!
 
-* Post Carousel Block - [Block Demo](https://lsx.lsdev.biz/blocks/post-carousel-block/)
-* Container Block - [Block Demo](https://lsx.lsdev.biz/blocks/container-block/)
-* Accordion Block - [Block Demo](https://lsx.lsdev.biz/blocks/accordion-block/)
-* Call-To-Action Block - [Block Demo](https://lsx.lsdev.biz/blocks/cta-block/)
-* Button Block - [Block Demo](https://lsx.lsdev.biz/blocks/button-block/)
-* Divider Block - [Block Demo](https://lsx.lsdev.biz/blocks/divider-block/)
-* Author Profile Block - [Block Demo](https://lsx.lsdev.biz/blocks/author-profile/)
-* Card Block - [Block Demo](https://lsx.lsdev.biz/blocks/card-block/)
-* Hero Image (Banner) - [Block Demo](https://lsx.lsdev.biz/blocks/hero-block/)
-* Testimonials Block - [Block Demo](https://lsx.lsdev.biz/blocks/testimonial-block/)
-* Team Block - [Block Demo](https://lsx.lsdev.biz/blocks/team-block/)
-* Post Grid - [Block Demo](https://lsx.lsdev.biz/blocks/post-grid/)
+LSX Blocks is a collection of page building blocks for the new block editor. Building pages with the block editor and LSX Blocks gives you more control to quickly create and launch any kind of site you want!
 
+Installing this plugin provides you with site-building blocks to help you customize page layouts, increase engagement, and get results for your business. 
 
-The following core WordPress blocks have also been extended for the LSX theme:
+= LSX Blocks =
 
-*Buttons block
-*Column block
-*Cover block
-*Group block
-*Heading block
-*Image block
-*Pullquote block
+* Post Grid - [Block Demo](https://lsdev.biz/lsx/blocks/post-grid-block/)
+* Post Carousel Block - [Block Demo](https://lsdev.biz/lsx/blocks/post-carousel-block/)
+* Container Block - [Block Demo](https://lsdev.biz/lsx/blocks/container-block/ )
+* Accordion Block - [Block Demo](https://lsdev.biz/lsx/blocks/accordion-block/)
+* Testimonials Block - [Block Demo](https://lsdev.biz/lsx/blocks/testimonial-block/)
+* Team Block - [Block Demo](https://lsdev.biz/lsx/blocks/team-block/)
 
+= WordPress Core Blocks extended via LSX Blocks =
 
+* Buttons Block 
+* Columns Block
+* Headings Profile Block
+* Cover Block 
+* Group Block
+* Image block
+* Pullquote block
 
-If you are using the [LSX Customizer plugin](https://www.lsdev.biz/lsx/extensions/site-customizer/) you have the ability to set the default colours for your block settings in the WordPress Customizer.
-
-== Yoast SEO Compatibility ==
+= Yoast SEO Compatibility =
 If you’re using the Yoast SEO plugin the LSX Blocks plugin adds LSX compatibility for the Yoast FAQ and How To blocks.
 
-== Credit ==
-The LSX Blocks plugin was developed with the use of [Atomic Blocks](https://atomicblocks.com).
+= Support =
 
-== Documentation ==
-If your question has not been answered in the FAQ please consult the 
-[LSX Blocks Documentation](https://lsdev.biz/lsx/documentation/blocks/).
+Contact the [LightSpeed](https://lsdev.biz/) for assistance via the [LSX support form](https://www.lsdev.biz/lsx/support/).
+
+If you are experiencing issues with the LSX Blocks Plugin, please log any bug issues you are having on the [Github Issues](https://github.com/lightspeeddevelopment/lsx-blocks/issues/) page.
+
+= Contributing to the LSX Blocks plugin =
+
+If you're a developer who's spotted a bug issue and have a fix, or simply have functionality you think would extend our core plugin, we are always happy to accept your contribution! Visit the [LSX Blocks Plugin on Github](https://github.com/lightspeeddevelopment/lsx-blocks/) and submit a Pull Request with your updates.
+
+= Documentation =
+
+Looking for more information on setting up your individual blocks? Check out our [Block Documentation](https://lsdev.biz/lsx/documentation/blocks/) for a full breakdown on using the blocks.
 
 = Support =
 
@@ -59,7 +61,7 @@ If you are experiencing issues with the LSX Tour Operator Plugin, please log any
 
 = Contributing =
 
-If you're a developer who's spotted a bug issue and have a fix, or simply have functionality you think would extend our plugin, we are always happy to accept your contribution! Visit the [Tour Operator Plugin on Github](https://github.com/lightspeeddevelopment/lsx-blocks/) and submit a Pull Request with your updates..
+If you're a developer who's spotted a bug issue and have a fix, or simply have functionality you think would extend our plugin, we are always happy to accept your contribution! Visit the [Tour Operator Plugin on Github](https://github.com/lightspeeddevelopment/lsx-blocks/) and submit a Pull Request with your updates.
 
 == Installation ==
 
@@ -72,7 +74,7 @@ If you're a developer who's spotted a bug issue and have a fix, or simply have f
 
 = Download from WordPress.org:= 
 
-*Go to the [plugin page](https://wordpress.org/plugins/lsx-blocks/) or use this [direct download link](https://downloads.wordpress.org/plugin/lsx -blocks.zip).
+*Go to the [plugin page](https://wordpress.org/plugins/lsx-blocks/) or use this [direct download link](https://downloads.wordpress.org/plugin/lsx-blocks.zip).
 *Click the *Download* button to download the zip file.
 *Log into your WordPress admin dashboard and go to *Plugins > Add new*.
 *Then click *Upload* plugin.
@@ -83,7 +85,7 @@ If you're a developer who's spotted a bug issue and have a fix, or simply have f
 = Do I have to use the LSX theme with this plugin?
 Yes, this plugin is designed specifically for LSX theme, and has not been tested with other themes.
 
-= Is this plugin free?
+= Is this plugin free? =
 We believe in open source – that’s why the LSX Blocks plugin is free, and that won’t change. This plugin is actively maintained and updated.
 
 = I’ve installed this plugin, what is the next step? =
@@ -92,13 +94,13 @@ Login to your WordPress dashboard, and create a new post or page.  Click the plu
 = Do I need to use Separator blocks to build my pages with LSX Blocks?
 This is not necessary as the Group and Cover blocks have controls for internal padding and margins.
 
-= How can I control the width of a block?
+= How can I control the width of a block? =
 If a block (like the post grid or carousel) is in a container, it will take the width of the container itself.  If these blocks are outside of a container, they will take the width that is assigned to that block.  Blocks that don't have width options (like the shortcode block) will take the width of the container block.  If these blocks are outside of a container, they will take the width that is assigned to that block.
 
-= Why are my custom font sizes not working as expected for headings and paragraph blocks?
+= Why are my custom font sizes not working as expected for headings and paragraph blocks? = 
 If you use the group block with a heading and a paragraph inside, and select the block style 'lsx subheading' the font sizes of this style will override the set custom sizes.
 
-= I’m struggling to get the layout I desire, what am I doing wrong?
+= I’m struggling to get the layout I desire, what am I doing wrong? =
 Avoid nesting too many groups or cover blocks if possible.
 
 == Screenshots ==
@@ -111,7 +113,7 @@ Avoid nesting too many groups or cover blocks if possible.
 6. Card block
 7. Buttons block
 
-== Changelog =
+== Changelog ==
 
 Full changelog found on [Github](https://github.com/lightspeeddevelopment/lsx-blocks/blob/master/changelog.md)
 
@@ -146,3 +148,5 @@ Updating dependencies to prevent vulnerabilities.
 Updating PHPCS options for better code.
 General testing to ensure compatibility with latest WordPress version (5.5.1).
 General testing to ensure compatibility with latest LSX Theme version (2.9).
+
+
