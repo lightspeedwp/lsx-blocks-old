@@ -1,7 +1,7 @@
-=== LSX Blocks Plugin ===
+=== LSX Blocks ===
 Contributors: feedmymedia, lightspeedwp, eleshar, krugazul, jacquesvdh, ignusvermaak
 Donate link: https://lsdev.biz/lsx/donate/
-Tags: lsx, blocks, gutenberg, block editor, page builder, wordpress blocks
+Tags: lsx, blocks, gutenberg, block editor, page builder
 Requires at least: 5.0
 Tested up to: 5.5.1
 Requires PHP: 7.0
