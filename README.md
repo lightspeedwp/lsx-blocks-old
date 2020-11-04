@@ -1,4 +1,4 @@
-<p align="center"><a target="_blank" href="https://lsdev.biz/lsx/"><img src="https://www.lsdev.biz/wp-content/uploads/2020/11/banner_1544x500.jpg" alt="LSX Blog Customizer"></a>
+<p align="center"><a target="_blank" href="https://lsdev.biz/lsx/"><img src="https://www.lsdev.biz/wp-content/uploads/2020/11/banner-1544x500-1.jpg" alt="LSX Blog Customizer"></a>
 </p>
 <h1 align="center">LSX Blocks</h1>
 
