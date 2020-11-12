@@ -251,7 +251,7 @@ class LSXBannerBlock extends Component {
 			<BannerBox key="banner" {...this.props}>
 				<ImageColumn {...this.props}>
 					{bannerImgURL && (
-						<picture className="lazyload">
+						<picture>
 							<source
 								data-srcset={
 									bannerImgURL + "?crop=1.00xw:0.887xh;0,0.108xh&resize=2048:*"
@@ -282,7 +282,6 @@ class LSXBannerBlock extends Component {
 							<img
 								id="bg-image"
 								title={bannerName}
-								className="lazyload"
 								data-src={
 									bannerImgURL + "?crop=0.851xw:1.00xh;0.0753xw,0&resize=640:*"
 								}
@@ -459,7 +458,7 @@ registerBlockType("lsx-blocks/lsx-banner-box", {
 			<BannerBox {...props}>
 				<ImageColumn {...props}>
 					{bannerImgURL && (
-						<picture className="lazyload">
+						<picture>
 							<source
 								data-srcset={
 									bannerImgURL + "?crop=1.00xw:0.887xh;0,0.108xh&resize=2048:*"
@@ -490,7 +489,6 @@ registerBlockType("lsx-blocks/lsx-banner-box", {
 							<img
 								id="bg-image"
 								title={bannerName}
-								className="lazyload"
 								data-src={
 									bannerImgURL + "?crop=0.851xw:1.00xh;0.0753xw,0&resize=640:*"
 								}
