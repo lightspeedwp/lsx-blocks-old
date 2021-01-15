@@ -1,5 +1,16 @@
 # Change log
 
+## [1.2.1]
+
+### Updated
+- Documentation and support links.
+
+### Removed
+- The built in lazy loading support.
+
+### Security
+- General testing to ensure compatibility with latest WordPress version (5.6).
+
 ## [1.2.0]
 
 ### Added
