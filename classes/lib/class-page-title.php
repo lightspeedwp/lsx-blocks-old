@@ -127,9 +127,15 @@ class Page_Title {
 			}
 
 			// Add the filter necessary for the singles.
-			add_filter( 'lsx_hero_banner_override', 'lsx_wc_disable_lsx_banner' );
-			add_filter( 'lsx_hero_banner_override', 'lsx_wc_disable_lsx_banner_plugin' );
-			add_filter( 'lsx_hero_banner_override', array( $this, 'disable_wc_banner' ) );
+			if ( function_exists( 'lsx_wc_disable_lsx_banner' ) ) {
+				add_filter( 'lsx_hero_banner_override', 'lsx_wc_disable_lsx_banner' );
+			}
+			if ( function_exists( 'lsx_wc_disable_lsx_banner_plugin' ) ) {
+				add_filter( 'lsx_hero_banner_override', 'lsx_wc_disable_lsx_banner_plugin' );
+			}
+			if ( function_exists( 'disable_wc_banner' ) ) {
+				add_filter( 'lsx_hero_banner_override', array( $this, 'disable_wc_banner' ) );
+			}
 
 			if ( class_exists( 'LSX_Sensei' ) ) {
 				add_filter( 'lsx_hero_banner_override', array( 'LSX_Sensei', 'lsx_sensei_disable_lsx_banner' ) );
