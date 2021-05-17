@@ -11,7 +11,7 @@
   "dependencies": {
     "@wordpress/api-fetch": "^5.0.0",
     "@wordpress/block-library": "^3.0.0",
-    "@wordpress/data": "^4.22.3",
+    "@wordpress/data": "^5.0.0",
     "@wordpress/edit-post": "^4.0.0",
     "@wordpress/element": "^2.16.0",
     "@wordpress/html-entities": "^3.0.0",
