@@ -1,6 +1,6 @@
 # Change log
 
-## [1.2.2](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.2.2) - IN DEVELOPMENT
+## [1.2.2](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.2.2) - 26-05-2021
 
 ### Fixed
 
