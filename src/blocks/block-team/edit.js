@@ -39,7 +39,7 @@ class TeamBlock extends Component {
 	componentDidMount() {
 		this.stillMounted = true;
 		this.fetchRequest = apiFetch({
-			path: addQueryArgs("/wp/v2/teamrole", { per_page: -1 })
+			path: addQueryArgs("/wp/v2/team_role", { per_page: -1 })
 		})
 			.then(categoriesList => {
 				if (this.stillMounted) {
@@ -454,7 +454,7 @@ export default compose([
 			teamrole
 		} = props.attributes;
 		const latestPostsQuery = pickBy({
-			teamrole,
+			team_role: teamrole,
 			order,
 			orderby: orderBy,
 			per_page: postsToShow,
