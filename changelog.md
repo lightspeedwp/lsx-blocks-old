@@ -1,5 +1,11 @@
 # Change log
 
+## [1.2.2](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.2.2) - IN DEVELOPMENT
+
+### Fixed
+
+- Fixed the Role selection for the LSX Team Block.
+
 ## [1.2.1]
 
 ### Updated
