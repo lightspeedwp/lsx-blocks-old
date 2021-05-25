@@ -579,15 +579,23 @@ export default withSelect((select, props) => {
 	} = props.attributes;
 	const { getEntityRecords } = select("core");
 
+	let args = {
+		order: order,
+		orderby: orderBy,
+		per_page: postsToShow,
+		exclude: [wp.data.select("core/editor").getCurrentPostId()]
+	};
+
+	if ( '' !== selectedTag && false !== selectedTag ) {
+		args.tags = selectedTag;
+	}
+
+	if ( '' !== categories && false !== categories ) {
+		args.categories = categories;
+	}
+
 	const latestPostsQuery = pickBy(
-		{
-			categories,
-			tags: selectedTag,
-			order,
-			orderby: orderBy,
-			per_page: postsToShow,
-			exclude: [wp.data.select("core/editor").getCurrentPostId()]
-		},
+		args,
 		value => !isUndefined(value)
 	);
 

@@ -613,17 +613,26 @@ export default withSelect((select, props) => {
 		categories,
 		selectedTag
 	} = props.attributes;
+
 	const { getEntityRecords } = select("core");
 
+	let args = {
+		order: orderCarousel,
+		orderby: orderByCarousel,
+		per_page: postsToShowCarousel,
+		exclude: [wp.data.select("core/editor").getCurrentPostId()]
+	};
+
+	if ( '' !== selectedTag && false !== selectedTag ) {
+		args.tags = selectedTag;
+	}
+
+	if ( '' !== categories && false !== categories ) {
+		args.categories = categories;
+	}
+
 	const latestPostsQueryCarousel = pickBy(
-		{
-			categories,
-			tags: selectedTag,
-			order: orderCarousel,
-			orderby: orderByCarousel,
-			per_page: postsToShowCarousel,
-			exclude: [wp.data.select("core/editor").getCurrentPostId()]
-		},
+		args,
 		value => !isUndefined(value)
 	);
 	return {

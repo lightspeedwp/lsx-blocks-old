@@ -5,6 +5,7 @@
 ### Fixed
 
 - Fixed the Role selection for the LSX Team Block.
+- Fixed the empty [category and tag error](https://github.com/lightspeeddevelopment/lsx-blocks/issues/149) with the LSX Post Carousel and LSX Grid Block
 
 ## [1.2.1]
 
