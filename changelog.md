@@ -1,5 +1,11 @@
 # Change log
 
+## [1.2.3](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.2.3) - DEV
+
+### Fixed
+
+- PHP error with the static call to an LSX Sensei function. Causing the cart not to display.
+
 ## [1.2.2](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.2.2) - 26-05-2021
 
 ### Fixed
