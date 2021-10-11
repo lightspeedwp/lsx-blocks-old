@@ -5,7 +5,7 @@ Tags: lsx, blocks, gutenberg, block editor, page builder, wordpress blocks
 Requires at least: 5.0
 Tested up to: 5.8
 Requires PHP: 7.0
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
