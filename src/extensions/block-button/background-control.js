@@ -408,7 +408,7 @@ const addExtraClassesButton = (element, block, attributes) => {
 		boxShadowStyle = "2px 2px 0 0 " + attributes.buttonShadowColor;
 	}
 
-	if (block.name === "core/button") {
+	if (block.name === "core/button" && null !== element ) {
 		let str = undefined;
 		let style = "";
 		var obj2 = { boxShadow: boxShadowStyle };

@@ -279,7 +279,7 @@ const addChildrenStyles = (element, block, attributes) => {
 		minHeight = attributes.groupMinHeight + "px";
 	}
 
-	if (block.name === "core/group" && undefined !== attributes.groupMaxWidth) {
+	if (block.name === "core/group" && null !== element && undefined !== attributes.groupMaxWidth) {
 		//console.log(attributes.groupMaxWidth);
 		let style = "";
 		var obj2 = { marginLeft: "auto", marginRight: "auto" };

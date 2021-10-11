@@ -272,7 +272,8 @@ const addChildrenStyles = (element, block, attributes) => {
 
 	if (
 		block.name === "core/cover" &&
-		undefined !== attributes.containerMaxWidth
+		undefined !== attributes.containerMaxWidth &&
+		null !== element
 	) {
 		//console.log(attributes.containerMaxWidth);
 		let style = "";

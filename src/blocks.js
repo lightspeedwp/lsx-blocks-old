@@ -18,8 +18,8 @@ import './blocks/block-post-carousel/index.js';
 //Extensions
 import './extensions/block-image/spacing-control.js';
 import './extensions/block-column/padding-control.js';
-import './extensions/block-button/background-control.js';
-import './extensions/block-group/group-control.js';
+import './extensions/block-button/background-control.js'; //Problem
+import './extensions/block-group/group-control.js'; //Problem
 import './extensions/block-heading/heading-control.js';
 import './extensions/block-cover/cover-control.js';
 import './extensions/document/index.js';
