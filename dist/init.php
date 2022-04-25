@@ -27,7 +27,7 @@ function lsx_blocks_block_assets() {
 		'lsx-blocks-style-css',
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ),
 		array(),
-		filemtime( plugin_dir_path( __FILE__ ) . 'blocks.style.build.css' )
+		LSX_BLOCKS_VER
 	);
 
 	// Load the FontAwesome icon library
@@ -35,7 +35,7 @@ function lsx_blocks_block_assets() {
 		'lsx-blocks-fontawesome',
 		plugins_url( 'dist/assets/fontawesome/css/all' . $postfix . '.css', dirname( __FILE__ ) ),
 		array(),
-		filemtime( plugin_dir_path( __FILE__ ) . 'assets/fontawesome/css/all.css' )
+		LSX_BLOCKS_VER
 	);
 }
 add_action( 'init', 'lsx_blocks_block_assets' );
@@ -55,7 +55,7 @@ function lsx_blocks_editor_assets() {
 		'lsx-blocks-fontawesome',
 		plugins_url( 'dist/assets/fontawesome/css/all' . $postfix . '.css', dirname( __FILE__ ) ),
 		array(),
-		filemtime( plugin_dir_path( __FILE__ ) . 'assets/fontawesome/css/all.css' )
+		LSX_BLOCKS_VER
 	);
 
 	// Load the js to remove unused core blocks.
@@ -63,7 +63,7 @@ function lsx_blocks_editor_assets() {
 		'theme-editor',
 		plugins_url( '/dist/assets/js/editor.js', dirname( __FILE__ ) ),
 		array( 'wp-blocks', 'wp-dom' ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'editor.js' )
+		LSX_BLOCKS_VER
 	);
 
 	// Load the compiled blocks into the editor.
@@ -71,7 +71,7 @@ function lsx_blocks_editor_assets() {
 		'lsx-blocks-block-js',
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ),
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor', 'wp-edit-post', 'wp-plugins' ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'blocks.build.js' )
+		LSX_BLOCKS_VER
 	);
 
 	// Load the compiled styles into the editor.
@@ -79,7 +79,7 @@ function lsx_blocks_editor_assets() {
 		'lsx-blocks-block-editor-css',
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ),
 		array( 'wp-edit-blocks' ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'blocks.editor.build.css' )
+		LSX_BLOCKS_VER
 	);
 
 
