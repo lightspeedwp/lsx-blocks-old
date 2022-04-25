@@ -4,6 +4,7 @@
 
 ### Fixed
 - A compatability error with Download Manager.
+- Changed the "filetime()" references to the plugin version number.
 
 ### Security
 - General testing to ensure compatibility with latest WordPress version (5.9.3).
