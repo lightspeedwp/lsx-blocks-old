@@ -231,7 +231,7 @@ function render_dynamic_testimonial_block( $attributes ) {
 			$count++;
 			$count_global++;
 
-			$member_name = apply_filters( 'the_title', $post->post_title );
+			$member_name = wp_kses_post( $post->post_title );
 
 			// Link.
 			$link_open  = '';
