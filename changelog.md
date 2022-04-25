@@ -1,5 +1,13 @@
 # Change log
 
+## [1.2.4](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.2.4) - ?
+
+### Fixed
+- A compatability error with Download Manager.
+
+### Security
+- General testing to ensure compatibility with latest WordPress version (5.9.3).
+
 ## [1.2.3](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.2.3) - 11-10-2021
 
 ### Fixed
