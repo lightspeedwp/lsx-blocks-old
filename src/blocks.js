@@ -16,3 +16,7 @@ import './extensions/block-group/group-control.js'; //Problem
 import './extensions/block-heading/heading-control.js';
 import './extensions/block-cover/cover-control.js';
 import './extensions/document/index.js';
+
+
+// Styles
+import "./styles/deprecated.scss";

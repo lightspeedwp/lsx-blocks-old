@@ -1,0 +1,141 @@
+/**
+ * Container styles
+ * Loads on front end and back end
+ */
+.lsx-block-container {
+  margin: 0 0 1.2em 0;
+  position: relative;
+  padding: 0;
+}
+@media only screen and (max-width: 900px) {
+  .lsx-block-container.alignfull .lsx-container-content {
+    padding: 1em 3em;
+  }
+}
+.lsx-block-container .wp-block-media-text .wp-block-media-text__content {
+  padding: 0 6% 0 6%;
+}
+.lsx-block-container.alignfull .editor-block-list__block,
+.lsx-block-container.alignfull .block-editor-block-list__block {
+  max-width: 100%;
+}
+@media only screen and (min-width: 768px) {
+  .lsx-block-container.alignfull .lsx-container-inside, .lsx-block-container.alignfull .lsx-container-inside {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .lsx-block-container.alignwide .lsx-container-inside, .lsx-block-container.alignwide .lsx-container-inside {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+.lsx-block-container .lsx-container-image-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  z-index: 0;
+  background-size: 0;
+}
+@media (max-width: 767px) {
+  .lsx-block-container .lsx-container-image-wrap.has-background-mobile {
+    background-size: auto;
+  }
+  .lsx-block-container .lsx-container-image-wrap.has-background-mobile img {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .lsx-block-container .lsx-container-image-wrap.has-background-mobile {
+    background-size: 0 !important;
+  }
+}
+.lsx-block-container .lsx-container-image {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  transition: 0.3s ease;
+}
+.lsx-block-container .lsx-container-content {
+  margin: 0 auto;
+  position: relative;
+}
+@media only screen and (max-width: 900px) {
+  .lsx-block-container .lsx-container-content .lsx-block-container .lsx-container-content {
+    padding: 15px;
+  }
+}
+.lsx-block-container .lsx-container-image:not(.has-background-dim) {
+  opacity: 0;
+}
+.lsx-block-container .has-background-dim {
+  opacity: 0.5;
+}
+.lsx-block-container .has-background-dim-10 {
+  opacity: 0.1;
+}
+.lsx-block-container .has-background-dim-20 {
+  opacity: 0.2;
+}
+.lsx-block-container .has-background-dim-30 {
+  opacity: 0.3;
+}
+.lsx-block-container .has-background-dim-40 {
+  opacity: 0.4;
+}
+.lsx-block-container .has-background-dim-50 {
+  opacity: 0.5;
+}
+.lsx-block-container .has-background-dim-60 {
+  opacity: 0.6;
+}
+.lsx-block-container .has-background-dim-70 {
+  opacity: 0.7;
+}
+.lsx-block-container .has-background-dim-80 {
+  opacity: 0.8;
+}
+.lsx-block-container .has-background-dim-90 {
+  opacity: 0.9;
+}
+.lsx-block-container .has-background-dim-100 {
+  opacity: 1;
+}
+.lsx-block-container .lsx-container-left-top {
+  object-position: left top;
+}
+.lsx-block-container .lsx-container-left-center {
+  object-position: left center;
+}
+.lsx-block-container .lsx-container-left-bottom {
+  object-position: left bottom;
+}
+.lsx-block-container .lsx-container-center-left {
+  object-position: center left;
+}
+.lsx-block-container .lsx-container-center-center {
+  object-position: center center;
+}
+.lsx-block-container .lsx-container-center-right {
+  object-position: center right;
+}
+.lsx-block-container .lsx-container-right-top {
+  object-position: right top;
+}
+.lsx-block-container .lsx-container-right-center {
+  object-position: right center;
+}
+.lsx-block-container .lsx-container-right-bottom {
+  object-position: right bottom;
+}
+.lsx-block-container .lsx-container-parallax {
+  object-position: parallax;
+}
+.lsx-block-container .lsx-container-fit {
+  object-fit: contain;
+}
+
+/*# sourceMappingURL=deprecated.css.map */

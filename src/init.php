@@ -62,3 +62,19 @@ function block_lsx_editor_assets() {
 
 // Hook: Editor assets.
 add_action( 'enqueue_block_editor_assets', 'block_lsx_editor_assets' );
+
+
+/**
+ * Enqueue the deprecated frontend styles.
+ * @since 1.3.0
+ */
+function lsx_blocks_deprecated_assets() {
+	// Styles.
+	wp_enqueue_style(
+		'lsx-blocks-deprecated-css', // Handle.
+		plugins_url( 'dist/deprecated.css', dirname( __FILE__ ) ), // Block style CSS.
+		array( 'wp-blocks' ) // Dependency to include the CSS after it.
+	);
+} // End function lsx_blocks_deprecated_assets().
+
+add_action( 'wp_enqueue_scripts', 'lsx_blocks_deprecated_assets' );

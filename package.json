@@ -6,7 +6,8 @@
 		"start": "cgb-scripts start",
 		"build": "cgb-scripts build",
 		"eject": "cgb-scripts eject",
-		"makepot": "wp i18n make-pot . languages/lsx-blocks.pot --include=src,dist/getting-started"
+		"makepot": "wp i18n make-pot . languages/lsx-blocks.pot --include=src,dist/getting-started",
+		"compile:css": "sass src/styles/deprecated.scss dist/deprecated.css"
 	},
 	"dependencies": {
 		"@wordpress/api-fetch": "^6.0.0",
@@ -49,6 +50,7 @@
 		"babel-plugin-lodash": "^3.3.4",
 		"babel-preset-env": "^1.7.0",
 		"babel-preset-stage-2": "^6.24.1",
-		"grunt-wp-i18n": "^1.0.3"
+		"grunt-wp-i18n": "^1.0.3",
+		"sass": "^1.51.0"
 	}
 }
