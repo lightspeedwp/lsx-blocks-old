@@ -37,17 +37,7 @@ Looking for more information on setting up your individual blocks? Check out our
 ## LSX Blocks currently includes the following blocks:
 
 * Post Carousel Block - [Block Demo](https://lsx.lsdev.biz/blocks/lsx-post-carousel-block/)
-* Container Block - [Block Demo](https://lsx.lsdev.biz/blocks/container-block/)
-* Inline Notice Block - [Block Demo](https://lsx.lsdev.biz/blocks/inline-notice/)
 * Accordion Block - [Block Demo](https://lsx.lsdev.biz/blocks/accordion-block/)
-* Sharing Block - [Block Demo](https://lsx.lsdev.biz/blocks/sharing-block/)
-* Call-To-Action Block - [Block Demo](https://lsx.lsdev.biz/blocks/cta-block/)
-* Button Block - [Block Demo](https://lsx.lsdev.biz/blocks/button-block/)
-* Divider Block - [Block Demo](https://lsx.lsdev.biz/blocks/divider-block/)
-* Author Profile Block - [Block Demo](https://lsx.lsdev.biz/blocks/author-profile/)
-* Drop Cap Block - [Block Demo](https://lsx.lsdev.biz/blocks/drop-cap-block/)
-* Card Block - [Block Demo](https://lsx.lsdev.biz/blocks/card-block/)
-* Hero Image (Banner) - [Block Demo](https://lsx.lsdev.biz/blocks/hero-block/)
 
 ## LSX Blocks Help & Support  
 
