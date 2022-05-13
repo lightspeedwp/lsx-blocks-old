@@ -2,6 +2,15 @@
 
 ## [1.3.0](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.3.0)
 
+### Removed Blocks
+- LSX Divider
+- LSX Button
+- LSX Banner
+- LSX Container
+- LSX Card Box
+- LSX Call to Action
+- LSX Author Block
+
 ### Security
 - General testing to ensure compatibility with latest WordPress version (6.0).
 
