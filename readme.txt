@@ -23,7 +23,6 @@ Installing this plugin provides you with site-building blocks to help you custom
 
 * Post Grid - [Block Demo](https://lsdev.biz/lsx/blocks/post-grid-block/)
 * Post Carousel Block - [Block Demo](https://lsdev.biz/lsx/blocks/post-carousel-block/)
-* Container Block - [Block Demo](https://lsdev.biz/lsx/blocks/container-block/ )
 * Accordion Block - [Block Demo](https://lsdev.biz/lsx/blocks/accordion-block/)
 * Testimonials Block - [Block Demo](https://lsdev.biz/lsx/blocks/testimonial-block/)
 * Team Block - [Block Demo](https://lsdev.biz/lsx/blocks/team-block/)
@@ -110,8 +109,6 @@ Avoid nesting too many groups or cover blocks if possible.
 3. Accordion block
 4. Blog post carousel block
 5. Blog post grid block
-6. Card block
-7. Buttons block
 
 == Changelog ==
 
