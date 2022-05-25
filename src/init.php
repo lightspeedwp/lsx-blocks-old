@@ -62,3 +62,4 @@ function block_lsx_editor_assets() {
 
 // Hook: Editor assets.
 add_action( 'enqueue_block_editor_assets', 'block_lsx_editor_assets' );
+
