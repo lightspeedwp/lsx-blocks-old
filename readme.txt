@@ -1,11 +1,11 @@
 === LSX Blocks ===
-Contributors: feedmymedia, lightspeedwp, eleshar, krugazul, jacquesvdh, ignusvermaak
+Contributors: feedmymedia, lightspeedwp, eleshar, krugazul, jacquesvdh, ignusvermaak, justinabes
 Donate link: https://lsdev.biz/lsx/donate/
 Tags: lsx, blocks, gutenberg, block editor, page builder, wordpress blocks
 Requires at least: 5.0
-Tested up to: 5.9.3
-Requires PHP: 7.0
-Stable tag: 1.2.4
+Tested up to: 6.0
+Requires PHP: 8.0
+Stable tag: 1.2.5
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -17,7 +17,7 @@ We have built these content blocks so you can simply drag and drop them into you
 
 LSX Blocks is a collection of page building blocks for the new block editor. Building pages with the block editor and LSX Blocks gives you more control to quickly create and launch any kind of site you want!
 
-Installing this plugin provides you with site-building blocks to help you customize page layouts, increase engagement, and get results for your business. 
+Installing this plugin provides you with site-building blocks to help you customize page layouts, increase engagement, and get results for your business.
 
 = LSX Blocks =
 
@@ -30,10 +30,10 @@ Installing this plugin provides you with site-building blocks to help you custom
 
 = WordPress Core Blocks extended via LSX Blocks =
 
-* Buttons Block 
+* Buttons Block
 * Columns Block
 * Headings Profile Block
-* Cover Block 
+* Cover Block
 * Group Block
 * Image block
 * Pullquote block
@@ -72,7 +72,7 @@ If you're a developer who's spotted a bug issue and have a fix, or simply have f
 * Click *Install Now* when you find the plugin
 * Click *Activate* once the installation is complete
 
-= Download from WordPress.org:= 
+= Download from WordPress.org:=
 
 *Go to the [plugin page](https://wordpress.org/plugins/lsx-blocks/) or use this [direct download link](https://downloads.wordpress.org/plugin/lsx-blocks.zip).
 *Click the *Download* button to download the zip file.
@@ -97,7 +97,7 @@ This is not necessary as the Group and Cover blocks have controls for internal p
 = How can I control the width of a block? =
 If a block (like the post grid or carousel) is in a container, it will take the width of the container itself.  If these blocks are outside of a container, they will take the width that is assigned to that block.  Blocks that don't have width options (like the shortcode block) will take the width of the container block.  If these blocks are outside of a container, they will take the width that is assigned to that block.
 
-= Why are my custom font sizes not working as expected for headings and paragraph blocks? = 
+= Why are my custom font sizes not working as expected for headings and paragraph blocks? =
 If you use the group block with a heading and a paragraph inside, and select the block style 'lsx subheading' the font sizes of this style will override the set custom sizes.
 
 = I’m struggling to get the layout I desire, what am I doing wrong? =
@@ -105,8 +105,8 @@ Avoid nesting too many groups or cover blocks if possible.
 
 == Screenshots ==
 
-1. Team block 
-2. Testimonials block 
+1. Team block
+2. Testimonials block
 3. Accordion block
 4. Blog post carousel block
 5. Blog post grid block
@@ -148,5 +148,3 @@ Updating dependencies to prevent vulnerabilities.
 Updating PHPCS options for better code.
 General testing to ensure compatibility with latest WordPress version (5.5.1).
 General testing to ensure compatibility with latest LSX Theme version (2.9).
-
-

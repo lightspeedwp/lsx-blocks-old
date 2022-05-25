@@ -12,7 +12,7 @@
  * @package LSX BLOCKS
  */
 
-define( 'LSX_BLOCKS_VER', '1.2.4' );
+define( 'LSX_BLOCKS_VER', '1.2.5' );
 define( 'LSX_BLOCKS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'LSX_BLOCKS_CORE', __FILE__ );
 define( 'LSX_BLOCKS_URL', plugin_dir_url( __FILE__ ) );
