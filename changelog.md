@@ -1,6 +1,6 @@
 # Change log
 
-## [1.2.5](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.2.5) - 25-04-2022
+## [1.2.5](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.2.5) - 25-05-2022
 
 ### Security
 - General testing to ensure compatibility with latest WordPress version (6.0).
