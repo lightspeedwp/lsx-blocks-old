@@ -7,6 +7,7 @@ import './blocks/block-post-grid/index.js';
 import './blocks/block-team/index.js';
 import './blocks/block-testimonials/index.js';
 import './blocks/block-post-carousel/index.js';
+import './blocks/block-container/index.js';
 
 //Extensions
 import './extensions/block-image/spacing-control.js';
@@ -19,4 +20,4 @@ import './extensions/document/index.js';
 
 
 // Styles
-import "./styles/deprecated.scss";
+//import "./styles/deprecated.scss";

@@ -7,10 +7,6 @@ import classnames from "classnames";
 import Inspector from "./components/inspector";
 import Container from "./components/container";
 
-// Import CSS
-import "./styles/style.scss";
-import "./styles/editor.scss";
-
 // Components
 const { __ } = wp.i18n;
 
