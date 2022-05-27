@@ -1,6 +1,12 @@
 # Change log
 
-## [1.3.0](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.3.0)
+## [1.3.1](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.3.1) - 27-05-2022
+
+### Added
+- Re added the LSX Container block to allow for page degrading.
+
+
+## [1.3.0](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.3.0) - 25-05-2022
 
 ### Removed Blocks
 - LSX Divider
