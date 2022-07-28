@@ -1,5 +1,10 @@
 # Change log
 
+## [1.3.2](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.3.2) - In Development
+
+### Added
+- Added in the Block transformation for the LSX Container block to a Group Block.
+
 ## [1.3.1](https://github.com/lightspeeddevelopment/lsx-blocks/releases/tag/1.3.1) - 27-05-2022
 
 ### Added

@@ -14,7 +14,10 @@ const { __ } = wp.i18n;
 const { Component } = wp.element;
 
 // Register block
-const { registerBlockType } = wp.blocks;
+const {
+	registerBlockType,
+	createBlock,
+} = wp.blocks;
 
 // Register editor components
 const {
@@ -463,5 +466,20 @@ registerBlockType("lsx-blocks/lsx-container", {
 				);
 			}
 		}
-	]
+	],
+	transforms: {
+		to: [
+			{
+				type: 'block',
+				blocks: [ 'core/group' ],
+				transform: ( attributes, innerBlocks ) => {
+					return createBlock(
+						'core/group',
+						attributes,
+						innerBlocks
+					);
+				},
+			}
+		],
+	}
 });
