@@ -36,7 +36,7 @@
 		"randomatic": "^3.1.1",
 		"re-resizable": "^6.5.4",
 		"react": "17.0.2",
-		"react-lazy-load": "^3.1.13",
+		"react-lazy-load": "^4.0.0",
 		"react-lazyload": "^3.0.0",
 		"react-slick": "^0.29.0",
 		"slick-carousel": "^1.8.1",
