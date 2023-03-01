@@ -46,30 +46,9 @@ class Setup {
 		require_once LSX_BLOCKS_PATH . 'dist/init.php';
 
 		/**
-		 * Load Post Carousel PHP
-		 */
-		require_once LSX_BLOCKS_PATH . 'src/blocks/block-post-carousel/index.php';
-
-		/**
 		 * Load Gutenberg testimonial Block.
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/blocks/block-testimonials/index.php';
-
-		/**
-		 * Load Gutenberg Group Block Styles
-		 */
-		require_once LSX_BLOCKS_PATH . 'src/extensions/block-group/index.php';
-		require_once LSX_BLOCKS_PATH . 'src/extensions/block-heading/index.php';
-
-		/**
-		 * Load Gutenberg Cover Block Styles
-		 */
-		require_once LSX_BLOCKS_PATH . 'src/extensions/block-cover/index.php';
-
-		/**
-		 * Load Gutenberg Button Block Styles
-		 */
-		require_once LSX_BLOCKS_PATH . 'src/extensions/block-button/index.php';
 
 		/**
 		 * Load Team Block

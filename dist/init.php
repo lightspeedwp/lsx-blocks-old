@@ -29,14 +29,6 @@ function lsx_blocks_block_assets() {
 		array(),
 		LSX_BLOCKS_VER
 	);
-
-	// Load the FontAwesome icon library
-	wp_enqueue_style(
-		'lsx-blocks-fontawesome',
-		plugins_url( 'dist/assets/fontawesome/css/all' . $postfix . '.css', dirname( __FILE__ ) ),
-		array(),
-		LSX_BLOCKS_VER
-	);
 }
 add_action( 'init', 'lsx_blocks_block_assets' );
 
@@ -49,14 +41,6 @@ add_action( 'init', 'lsx_blocks_block_assets' );
 function lsx_blocks_editor_assets() {
 
 	$postfix = ( SCRIPT_DEBUG === true ) ? '' : '.min';
-
-	// Load the FontAwesome icon library.
-	wp_enqueue_style(
-		'lsx-blocks-fontawesome',
-		plugins_url( 'dist/assets/fontawesome/css/all' . $postfix . '.css', dirname( __FILE__ ) ),
-		array(),
-		LSX_BLOCKS_VER
-	);
 
 	// Load the js to remove unused core blocks.
 	wp_enqueue_script(
