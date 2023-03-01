@@ -24,6 +24,6 @@ class Admin {
 	 *
 	 * @access private
 	 */
-	private function __construct() {
+	public function __construct() {
 	}
 }

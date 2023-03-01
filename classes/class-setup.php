@@ -19,12 +19,8 @@ class Setup {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @access private
 	 */
-	private function __construct() {
+	public function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'blocks_loader' ) );
 		add_action( 'init', array( $this, 'blocks_init' ) );
 	}

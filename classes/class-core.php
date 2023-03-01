@@ -37,12 +37,8 @@ class Core {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @access private
 	 */
-	private function __construct() {
+	public function __construct() {
 	}
 
 	public function init() {

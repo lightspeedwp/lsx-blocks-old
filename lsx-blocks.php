@@ -35,8 +35,9 @@ require_once LSX_BLOCKS_PATH . 'classes/class-core.php';
 function lsx_blocks() {
 	global $lsx_blocks;
 	if ( null === $lsx_blocks ) {
-		$lsx_blocks = new LSX\Blocks\Classes\Core();
+		$lsx_blocks = new \LSX\Blocks\Classes\Core();
 		$lsx_blocks->init();
 	}
 	return $lsx_blocks;
 }
+lsx_blocks();

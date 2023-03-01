@@ -24,7 +24,7 @@ class Frontend {
 	 *
 	 * @access private
 	 */
-	private function __construct() {
+	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 5 );
 	}
 
