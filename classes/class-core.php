@@ -1,17 +1,17 @@
 <?php
-namespace lsx\blocks\classes;
+namespace LSX\Blocks\Classes;
 
 /**
- * @package   lsx\blocks\classes
+ * @package   LSX\Blocks\Classes
  * @author    LightSpeed
  * @license   GPL-3.0+
  * @link
- * @copyright 2019 LightSpeed
+ * @copyright 2023 LightSpeed
  */
 
 /**
  * Class Core
- * @package lsx\blocks\classes
+ * @package LSX\Blocks\Classes
  */
 class Core {
 
@@ -20,22 +20,22 @@ class Core {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      object lsx\blocks\classes\Core()
+	 * @var      object LSX\Blocks\Classes\Core()
 	 */
 	protected static $instance = null;
 
 	/**
-	 * @var object \lsx\member_directory\classes\Setup();
+	 * @var object LSX\Blocks\Classes\Setup();
 	 */
 	public $setup;
 
 	/**
-	 * @var object \lsx\member_directory\classes\Admin();
+	 * @var object LSX\Blocks\Classes\Admin();
 	 */
 	public $admin;
 
 	/**
-	 * @var object \lsx\member_directory\classes\Frontend();
+	 * @var object LSX\Blocks\Classes\Frontend();
 	 */
 	public $frontend;
 
@@ -66,7 +66,7 @@ class Core {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return    object \lsx\member_directory\classes\Core()    A single instance of this class.
+	 * @return    object LSX\Blocks\Classes\Core()    A single instance of this class.
 	 */
 	public static function get_instance() {
 

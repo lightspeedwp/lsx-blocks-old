@@ -1,18 +1,18 @@
 <?php
-namespace lsx\blocks\classes;
+namespace LSX\Blocks\Classes;
 
 /**
- * @package   lsx\blocks\classes
+ * @package   LSX\Blocks\Classes
  * @author    LightSpeed
  * @license   GPL-3.0+
  * @link
- * @copyright 2019 LightSpeed
+ * @copyright 2023 LightSpeed
  */
 
 /**
  * Setup plugin class.
  *
- * @package lsx\blocks\classes
+ * @package LSX\Blocks\Classes
  * @author  LightSpeed
  */
 class Frontend {
@@ -47,7 +47,7 @@ class Frontend {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return    object \lsx\blocks\classes\Frontend();    A single instance of this class.
+	 * @return    object \LSX\Blocks\Classes\Frontend();    A single instance of this class.
 	 */
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.

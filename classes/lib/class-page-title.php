@@ -2,19 +2,19 @@
 /**
  * Holds the Page Title Panel Settings.
  *
- * @package   lsx\blocks\classes\lib
+ * @package   LSX\Blocks\Classes\lib
  * @author    LightSpeed
  * @license   GPL-3.0+
  * @link
- * @copyright 2019 LightSpeed
+ * @copyright 2023 LightSpeed
  */
 
-namespace lsx\blocks\classes\lib;
+namespace LSX\Blocks\Classes\lib;
 
 /**
  * Setup plugin class.
  *
- * @package lsx\blocks\classes\lib
+ * @package LSX\Blocks\Classes\lib
  * @author  LightSpeed
  */
 class Page_Title {
@@ -63,7 +63,7 @@ class Page_Title {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return    object \lsx\blocks\classes\Frontend();    A single instance of this class.
+	 * @return    object \LSX\Blocks\Classes\Frontend();    A single instance of this class.
 	 */
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.
