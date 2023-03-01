@@ -107,8 +107,5 @@ class Core {
 
 		require_once( LSX_BLOCKS_PATH . 'classes/class-frontend.php' );
 		$this->frontend = Frontend::get_instance();
-
-		require_once( LSX_BLOCKS_PATH . 'classes/lib/class-page-title.php' );
-		$this->lib['page_title'] = lib\Page_Title::get_instance();
 	}
 }
