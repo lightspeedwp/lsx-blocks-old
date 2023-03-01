@@ -46,11 +46,6 @@ class Setup {
 		require_once LSX_BLOCKS_PATH . 'dist/init.php';
 
 		/**
-		 * Load Post Grid PHP
-		 */
-		require_once LSX_BLOCKS_PATH . 'src/blocks/block-post-grid/index.php';
-
-		/**
 		 * Load Post Carousel PHP
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/blocks/block-post-carousel/index.php';
