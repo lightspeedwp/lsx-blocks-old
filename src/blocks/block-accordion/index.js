@@ -9,10 +9,6 @@ import Accordion from './components/accordion';
 import icons from './components/icons';
 import omit from 'lodash/omit';
 
-// Import CSS
-import './styles/style.scss';
-import './styles/editor.scss';
-
 // Components
 const { __ } = wp.i18n;
 

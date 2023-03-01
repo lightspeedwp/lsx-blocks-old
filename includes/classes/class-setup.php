@@ -43,11 +43,6 @@ class Setup {
 	 */
 	public function blocks_loader() {
 		/**
-		 * Load the blocks functionality
-		 */
-		require_once LSX_BLOCKS_PATH . 'dist/init.php';
-
-		/**
 		 * Load Gutenberg testimonial Block.
 		 */
 		require_once LSX_BLOCKS_PATH . 'src/blocks/block-testimonials/index.php';
