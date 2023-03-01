@@ -40,7 +40,7 @@ class Block_Setup {
 	public function register_block_pattern_category() {
 		register_block_pattern_category(
 			'lsx-blocks',
-			array( 'label' => __( 'LSX Blocks', 'lsx-projects' ) )
+			array( 'label' => __( 'LSX Blocks', 'lsx-blocks' ) )
 		);
 	} 
 
@@ -52,7 +52,7 @@ class Block_Setup {
 	public function register_block_category( $block_categories, $block_editor_context ) {
 		$block_categories[] = array(
 			'slug'  => 'lsx-blocks',
-			'title' => __( 'LSX Blocks', 'lsx-projects' ),			
+			'title' => __( 'LSX Blocks', 'lsx-blocks' ),			
 		);
 		return $block_categories;
 	} 
