@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Load internals.
-require_once LSX_BLOCKS_PATH . 'classes/class-core.php';
+require_once LSX_BLOCKS_PATH . 'includes/classes/class-core.php';
 
 /**
  * Returns the LSX Block instance

@@ -21,6 +21,12 @@ class Setup {
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 */
 	public function __construct() {
+	}
+
+	/**
+	 * Loads the actions and filters.
+	 */
+	public function init() {
 		add_action( 'plugins_loaded', array( $this, 'blocks_loader' ) );
 		add_action( 'init', array( $this, 'blocks_init' ) );
 	}

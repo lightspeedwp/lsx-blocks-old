@@ -1,6 +1,8 @@
 <?php
 namespace LSX\Blocks\Classes;
 
+use LSX\Blocks\Classes\Block_Setup;
+
 /**
  * @package   LSX\Blocks\Classes
  * @author    LightSpeed
@@ -21,19 +23,14 @@ class Core {
 	public $setup;
 
 	/**
-	 * @var object LSX\Blocks\Classes\Admin();
+	 * @var object LSX\Blocks\Classes\Block_Setup();
 	 */
-	public $admin;
+	public $block_setup;
 
 	/**
 	 * @var object LSX\Blocks\Classes\Frontend();
 	 */
 	public $frontend;
-
-	/**
-	 * @var array hold the array of library classes.
-	 */
-	public $lib = array();
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -49,13 +46,14 @@ class Core {
 	 * Loads the variable classes and the static classes.
 	 */
 	private function load_classes() {
-		require_once( LSX_BLOCKS_PATH . 'classes/class-setup.php' );
+		require_once( LSX_BLOCKS_PATH . 'includes/classes/class-setup.php' );
 		$this->setup = new Setup();
+		
+		require_once( LSX_BLOCKS_PATH . 'includes/classes/class-block-setup.php' );
+		$this->block_setup = new Block_Setup();
+		$this->block_setup->init();
 
-		require_once( LSX_BLOCKS_PATH . 'classes/class-admin.php' );
-		$this->admin = new Admin();
-
-		require_once( LSX_BLOCKS_PATH . 'classes/class-frontend.php' );
+		require_once( LSX_BLOCKS_PATH . 'includes/classes/class-frontend.php' );
 		$this->frontend = new Frontend();
 	}
 }
