@@ -2,7 +2,6 @@
  * Block dependencies
  */
 
-import './style.scss';
 import edit from './edit';
 
 /**
