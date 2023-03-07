@@ -1,11 +1,8 @@
 /**
  * Import the blocks
  */
-import './blocks/block-accordion/index.js';
-import './blocks/block-team/index.js';
-import './blocks/block-testimonials/index.js';
-
-//Extensions
+// Deprecated
+import './deprecated/block-container/index.js';
 
 // Styles
 //import "./styles/deprecated.scss";
