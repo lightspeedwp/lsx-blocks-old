@@ -125,9 +125,7 @@ registerBlockType( 'lsx-blocks/lsx-accordion', {
 			<Accordion { ...props }>
 				<details open={accordionOpen}>
 					<summary className="lsx-accordion-title" style={ { fontSize: accordionFontSize } } >
-						<RichText.Content
-							value={ accordionTitle }
-						/>
+						<p>{ accordionTitle }</p>
 					</summary>
 					<div className="lsx-accordion-text">
 						<InnerBlocks.Content />
