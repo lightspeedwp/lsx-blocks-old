@@ -124,9 +124,7 @@ registerBlockType( 'lsx-blocks/lsx-accordion', {
 		return (
 			<Accordion { ...props }>
 				<details open={accordionOpen}>
-					<summary className="lsx-accordion-title" style={ { fontSize: accordionFontSize } } >
-						<p>{ accordionTitle }</p>
-					</summary>
+					<summary className="lsx-accordion-title" style={ { fontSize: accordionFontSize } } >{ accordionTitle }</summary>
 					<div className="lsx-accordion-text">
 						<InnerBlocks.Content />
 					</div>
