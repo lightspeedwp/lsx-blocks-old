@@ -66,17 +66,17 @@ class Block_Setup {
 	public function register_block_variations() {
 		wp_enqueue_script(
 			'lsx-related-post-block',
-			get_template_directory_uri() . '/blocks/build/related-posts/index.js',
+			LSX_BLOCKS_URL . 'blocks/build/related-posts/index.js',
 			array( 'wp-blocks' )
 		);
 		wp_enqueue_script(
 			'lsx-columns-variation',
-			get_template_directory_uri() . '/blocks/build/columns/index.js',
+			LSX_BLOCKS_URL . 'blocks/build/columns/index.js',
 			array( 'wp-blocks' )
 		);
 		wp_enqueue_script(
 			'lsx-featured-post-block',
-			get_template_directory_uri() . '/blocks/build/featured-posts/index.js',
+			LSX_BLOCKS_URL . 'blocks/build/featured-posts/index.js',
 			array( 'wp-blocks' )
 		);
 	}
