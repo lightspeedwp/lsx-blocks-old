@@ -30,6 +30,12 @@ Our modern and lightweight [theme](https://lsx.lsdev.biz/) works perfectly with 
 * Activate the plugin. 
 * That's it, you can now make use of the LSX Blocks when building a new post or page! 
 
+### Merge Tags for the Navigation Blocks
+
+* CSS Classname `hide-logged-in` - Will stop the block HTML from rendering while the user is logged in.
+* CSS Classname `hide-logged-out` - Will stop the block HTML from rendering while the user is logged out.
+* Navigation Link URL `#logoutlink` - Will be replaced with a secure log out link. It will default to a WooCommerce logout link if the plugin is enabled.
+
 ## LSX Blocks Documentation
 
 Looking for more information on setting up your individual blocks? Check out our [LSX Blocks Documentation](https://lsx.lsdev.biz/documentation/blocks/) for a full breakdown on using the blocks.
