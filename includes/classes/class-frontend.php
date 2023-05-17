@@ -25,25 +25,8 @@ class Frontend {
 	 * @access private
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 5 );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'block_editor_assets' ), 5 );
 		add_filter( 'render_block', array( $this, 'check_for_login_options' ), 10, 3 );
-	}
-
-	/**
-	 * Enques the frontend scripts
-	 */
-	public function scripts() {
-		if ( function_exists( 'has_blocks' ) && has_blocks() ) {
-			wp_enqueue_script( 'lsx_blocks_script', LSX_BLOCKS_URL . 'dist/assets/js/frontend.js', array( 'jquery' ), LSX_BLOCKS_VER, true );
-
-			wp_register_style(
-				'lsx-blocks-style-css',
-				plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ),
-				array(),
-				LSX_BLOCKS_VER
-			);
-		}
 	}
 
 	/**
