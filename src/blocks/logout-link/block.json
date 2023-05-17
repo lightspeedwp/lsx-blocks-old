@@ -4,7 +4,7 @@
 	"name": "lsx-blocks/logout-link",
 	"version": "1.0.0",
 	"title": "Logout Link",
-	"category": "link",
+	"category": "lsx-blocks",
 	"icon": "flag",
 	"description": "A logout link",
 	"textdomain": "lsx"
