@@ -6,7 +6,6 @@
 import './blocks/columns/index.js';
 import './blocks/featured-posts/index.js';
 import './blocks/related-posts/index.js';
-import './blocks/logout-link/index.js';
 
 // Custom Blocks
 import './blocks/block-accordion/index.js';

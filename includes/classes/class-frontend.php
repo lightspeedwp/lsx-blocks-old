@@ -27,6 +27,7 @@ class Frontend {
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'block_editor_assets' ), 5 );
 		add_filter( 'render_block', array( $this, 'check_for_login_options' ), 10, 3 );
+		add_filter( 'render_block', array( $this, 'check_for_logout_link' ), 9, 3 );
 	}
 
 	/**
@@ -80,6 +81,36 @@ class Frontend {
 
 		if ( ! is_user_logged_in() && false !== stripos( 'hide-logged-out', $parsed_block['attrs']['className'] ) ) {
 			$block_content = '';
+		}
+		return $block_content;
+	}
+
+	/**
+	 * A function to detect variation, and alter the query args.
+	 * 
+	 * Following the https://developer.wordpress.org/news/2022/12/building-a-book-review-grid-with-a-query-loop-block-variation/
+	 *
+	 * @param string|null   $pre_render   The pre-rendered content. Default null.
+	 * @param array         $parsed_block The block being rendered.
+	 * @param WP_Block|null $parent_block If this is a nested block, a reference to the parent block.
+	 */
+	public function check_for_logout_link( $block_content, $parsed_block, $block_obj ) {
+		// Determine if this is the custom block variation.
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $block_content;
+		}
+		$allowed_blocks = array(
+			'core/navigation-link',
+		);
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $block_content; 
+		}
+		
+		$needle = '#logoutlink';
+		if ( function_exists( 'wc_logout_url' ) ) {
+			$block_content = str_replace( $needle, wc_logout_url(), $block_content);
+		} else {
+			$block_content = str_replace( $needle, wp_logout_url(), $block_content);
 		}
 		return $block_content;
 	}
