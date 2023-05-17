@@ -79,5 +79,10 @@ class Block_Setup {
 			LSX_BLOCKS_URL . 'blocks/build/featured-posts/index.js',
 			array( 'wp-blocks' )
 		);
+		wp_enqueue_script(
+			'lsx-logout-block',
+			LSX_BLOCKS_URL . 'blocks/build/logout-link/index.js',
+			array( 'wp-blocks' )
+		);
 	}
 }

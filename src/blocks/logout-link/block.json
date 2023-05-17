@@ -1,0 +1,11 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "lsx-blocks/logout-link",
+	"version": "1.0.0",
+	"title": "Logout Link",
+	"category": "link",
+	"icon": "flag",
+	"description": "A logout link",
+	"textdomain": "lsx"
+}
