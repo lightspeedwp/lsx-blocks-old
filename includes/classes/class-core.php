@@ -28,6 +28,11 @@ class Core {
 	public $block_setup;
 
 	/**
+	 * @var object LSX\Blocks\Classes\Block_Functions();
+	 */
+	public $block_functions;
+
+	/**
 	 * @var object LSX\Blocks\Classes\Frontend();
 	 */
 	public $frontend;
@@ -52,6 +57,10 @@ class Core {
 		require_once( LSX_BLOCKS_PATH . 'includes/classes/class-block-setup.php' );
 		$this->block_setup = new Block_Setup();
 		$this->block_setup->init();
+
+		require_once( LSX_BLOCKS_PATH . 'includes/classes/class-block-functions.php' );
+		$this->block_functions = new Block_Functions();
+		$this->block_functions->init();
 
 		require_once( LSX_BLOCKS_PATH . 'includes/classes/class-frontend.php' );
 		$this->frontend = new Frontend();
